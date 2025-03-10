@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Absentee Landowner Tracking | Plurinational Land Reform in CA</title>
+    <style>
+        :root {
+            --primary-color: #3a3a6a;      
+            --secondary-color: #e71d36;     
+            --dark-color: #011627;         
+            --light-color: #f7f7f7;        
+            --accent-color: #ff9f1c;       
+            --accent-green: #8bc34a;      
+            --accent-red: #e53935;         
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #2a2a4a 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            border-bottom: 4px solid var(--accent-color);
+        }
+        
+        .logo-container {
+            margin-bottom: 1.5rem;
+        }
+        
+        .logo {
+            max-width: 100%;
+            height: auto;
+            max-height: 150px;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        nav {
+            background-color: var(--dark-color);
+            padding: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav ul li {
+            margin: 0 1rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .language-toggle {
+            background-color: var(--secondary-color);
+            padding: 0.4rem 0.8rem;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .language-toggle:hover {
+            background-color: #c91020;
+        }
+        
+        .page-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+        }
+        
+        .page-title {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .page-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
+        }
+        
+        .content-section {
+            margin-bottom: 4rem;
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: var(--secondary-color);
+        }
+        
+        .image-container {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .image-container img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .image-caption {
+            margin-top: 1rem;
+            text-align: center;
+            font-style: italic;
+            color: #666;
+        }
+        
+        .back-to-home {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .back-to-home:hover {
+            background-color: #2a2a50;
+        }
+        
+        .definition-box {
+            background-color: rgba(58, 58, 106, 0.1);
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+            margin: 2rem 0;
+        }
+        
+        .definition-box h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, var(--dark-color) 0%, #000 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            border-top: 4px solid var(--accent-color);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+            gap: 1.5rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <!-- Replace with your actual logo path -->
+            <img src="images/pluri-logo.jpg" alt="Plurinational Land Reform in CA Working Group Logo" class="logo">
+        </div>
+        <h1>Absentee Landowner Tracking</h1>
+        <p>Mapping ownership patterns and analyzing economic impacts on agricultural communities</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#about">About Us</a></li>
+            <li><a href="index.html#mission">Our Work</a></li>
+            <li><a href="index.html#events">Events</a></li>
+            <li><a href="index.html#get-involved">Get Involved</a></li>
+            <li><a href="spanish.html" class="language-toggle">Español</a></li>
+        </ul>
+    </nav>
+    
+    <div class="page-content">
+        <h1 class="page-title">Absentee Landowner Tracking</h1>
+        
+        <div class="content-section">
+            <p>Our absentee landowner tracking project investigates the relationship between land ownership patterns and economic outcomes in agricultural communities. We document how absentee ownership affects local economies, labor conditions, and environmental practices across California.</p>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title">Landowner Linkage Maps</h2>
+            
+            <div class="image-container">
+                <img src="/api/placeholder/800/500" alt="Mecca, CA and Statewide Landowner Linkage Map">
+                <p class="image-caption">Mecca, CA and Statewide Landowner Linkage Map showing ownership patterns and geographical relationships</p>
+            </div>
+            
+            <p>Our landowner linkage maps trace the geographic connections between agricultural land and its owners. These visualizations reveal patterns of distant, corporate, and investor ownership that may be invisible to casual observation.</p>
+            
+            <div class="image-container">
+                <img src="/api/placeholder/800/500" alt="Mecca, CA and Western Coachella Valley Linkage Map">
+                <p class="image-caption">Detailed linkage map of Mecca, CA and the Western Coachella Valley region</p>
+            </div>
+            
+            <p>The Western Coachella Valley represents a critical case study for our work. In this region, we've documented extensive patterns of absentee ownership where productive agricultural land is controlled by entities with little connection to local communities or ecological knowledge.</p>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title">Defining Absentee Landownership</h2>
+            
+            <div class="definition-box">
+                <h3>What is an Absentee Landowner?</h3>
+                <p>We define absentee landowners as individuals or entities who own agricultural land but do not reside in the community where the land is located, do not participate directly in its management, and primarily extract value from the land without contributing to local economic development or environmental stewardship.</p>
+                <p>Key characteristics include:</p>
+                <ul>
+                    <li>Geographical distance between owner's residence and the owned land</li>
+                    <li>Limited or no participation in day-to-day agricultural operations</li>
+                    <li>Primarily economic relationship to the land (as opposed to cultural, historical, or ecological)</li>
+                    <li>Extraction of land value and agricultural profits from rural communities to urban centers or distant locations</li>
+                </ul>
+            </div>
+            
+            <p>Our research has found that absentee ownership often correlates with more exploitative labor practices, less investment in soil health and ecological stewardship, and reduced community economic benefits from agricultural production.</p>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title">Value Chain Analysis</h2>
+            
+            <div class="image-container">
+                <img src="/api/placeholder/800/500" alt="Sankey Diagram of Value Chain Wealth Transfer">
+                <p class="image-caption">Sankey diagram visualizing the flow of agricultural wealth from production to consumption</p>
+            </div>
+            
+            <p>Our value chain analysis examines how wealth generated from agricultural production flows through different stakeholders in the food system. These visualizations help identify where value is captured and where it is extracted from local communities.</p>
+            
+            <p>This work reveals that absentee ownership is just one component of a larger system of wealth extraction. Even when land is owned locally, the majority of agricultural value is often captured by non-local intermediaries, processors, distributors, and retailers.</p>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title">Beyond Land Ownership: The Importance of Intermediaries</h2>
+            
+            <p>Our research demonstrates that agrarian reform cannot focus solely on land ownership. The agricultural value chain includes multiple points where wealth is transferred away from those who work the land:</p>
+            
+            <ul>
+                <li><strong>Input suppliers</strong> who control seeds, fertilizers, and equipment</li>
+                <li><strong>Processors</strong> who transform raw agricultural products</li>
+                <li><strong>Distributors</strong> who control market access</li>
+                <li><strong>Retailers</strong> who capture significant portions of consumer food dollars</li>
+                <li><strong>Financial institutions</strong> who profit from agricultural financing</li>
+            </ul>
+            
+            <p>Comprehensive agrarian reform must address these intermediary relationships and create alternative value chains that retain wealth within farming communities. This means developing:</p>
+            
+            <ul>
+                <li>Cooperative ownership models for processing facilities</li>
+                <li>Community-controlled distribution networks</li>
+                <li>Direct producer-to-consumer relationships</li>
+                <li>Worker ownership of value-adding processes</li>
+            </ul>
+            
+            <p>By mapping these value chains and identifying key points of intervention, our work moves beyond simplistic notions of land redistribution toward a comprehensive vision of agricultural economic transformation.</p>
+        </div>
+        
+        <a href="index.html" class="back-to-home">Back to Home</a>
+    </div>
+    
+    <footer>
+        <h3>Plurinational Land Reform in CA Working Group</h3>
+        <p>Working on stolen Ohlone, Miwok, Yokuts, Chumash, Tongva, Cahuilla, Kumeyaay, Acjachemen, and many other indigenous lands</p>
+        
+        <div class="social-links">
+            <a href="https://instagram.com/plurinational.landreform_cawg" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+        </div>
+        
+        <p>&copy; 2025 Plurinational Land Reform in CA Working Group. All rights reserved.</p>
+    </footer>
+</body>
+</html>
