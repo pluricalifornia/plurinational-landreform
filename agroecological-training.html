@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agroecological Training | Plurinational Land Reform in CA</title>
+    <style>
+        :root {
+            --primary-color: #3a3a6a;      
+            --secondary-color: #e71d36;     
+            --dark-color: #011627;         
+            --light-color: #f7f7f7;        
+            --accent-color: #ff9f1c;       
+            --accent-green: #8bc34a;      
+            --accent-red: #e53935;         
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #2a2a4a 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            border-bottom: 4px solid var(--accent-color);
+        }
+        
+        .logo-container {
+            margin-bottom: 1.5rem;
+        }
+        
+        .logo {
+            max-width: 100%;
+            height: auto;
+            max-height: 150px;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        nav {
+            background-color: var(--dark-color);
+            padding: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav ul li {
+            margin: 0 1rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .language-toggle {
+            background-color: var(--secondary-color);
+            padding: 0.4rem 0.8rem;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .language-.language-toggle:hover {
+            background-color: #c91020;
+        }
+        
+        .page-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+        }
+        
+        .page-title {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .page-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
+        }
+        
+        .content-section {
+            margin-bottom: 4rem;
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: var(--secondary-color);
+        }
+        
+        .image-container {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .image-container img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .image-caption {
+            margin-top: 1rem;
+            text-align: center;
+            font-style: italic;
+            color: #666;
+        }
+        
+        .back-to-home {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .back-to-home:hover {
+            background-color: #2a2a50;
+        }
+        
+        .training-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .training-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            border-top: 4px solid var(--accent-green);
+        }
+        
+        .training-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .training-card-content {
+            padding: 1.5rem;
+        }
+        
+        .training-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .pillars-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .pillar {
+            background-color: rgba(139, 195, 74, 0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-green);
+        }
+        
+        .pillar h3 {
+            color: var(--accent-green);
+            margin-bottom: 1rem;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, var(--dark-color) 0%, #000 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            border-top: 4px solid var(--accent-color);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+            gap: 1.5rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <!-- Replace with your actual logo path -->
+            <img src="images/pluri-logo.jpg" alt="Plurinational Land Reform in CA Working Group Logo" class="logo">
+        </div>
+        <h1>Agroecological Training</h1>
+        <p>Integrating technical farming knowledge with political education and community organizing</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#about">About Us</a></li>
+            <li><a href="index.html#mission">Our Work</a></li>
+            <li><a href="index.html#events">Events</a></li>
+            <li><a href="index.html#get-involved">Get Involved</a></li>
+            <li><a href="spanish.html" class="language-toggle">Español</a></li>
+        </ul>
+    </nav>
+    
+    <div class="page-content">
+        <h1 class="page-title">Agroecological Training</h1>
+        
+        <div class="content-section">
+            <p>Our agroecological training program integrates technical farming practices with political education and community organizing strategies. We recognize that successful land reform requires not just agricultural skills, but also the ability to navigate political systems, build community power, and develop sustainable economic models.</p>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title">Land-Based Management Approach</h2>
+            
+            <p>Our approach to agroecology begins with our detailed land suitability analysis, which informs how we design management plans tailored to specific ecological contexts. This science-based foundation ensures that our agricultural training is rooted in the unique characteristics of each landscape.</p>
+            
+            <div class="training-grid">
+                <div class="training-card">
+                    <div class="training-card-content">
+                        <h3>Ecological Farm Design</h3>
+                        <p>Training in reading landscape patterns and designing agricultural systems that work with natural processes rather than against them. Includes mapping water flows, identifying ecological niches, and planning integrated production systems.</p>
+                    </div>
+                </div>
+                
+                <div class="training-card">
+                    <div class="training-card-content">
+                        <h3>Soil Health & Management</h3>
+                        <p>Techniques for assessing soil conditions, building organic matter, managing soil biology, and implementing erosion prevention. Emphasis on low-external-input methods accessible to resource-limited farmers.</p>
+                    </div>
+                </div>
+                
+                <div class="training-card">
+                    <div class="training-card-content">
+                        <h3>Water Systems Design</h3>
+                        <p>Training in water harvesting, conservation, and distribution systems appropriate to California's diverse microclimates. Includes strategies for drought resilience and efficient irrigation methods.</p>
+                    </div>
+                </div>
+                
+                <div class="training-card">
+                    <div class="training-card-content">
+                        <h3>Indigenous Land Management</h3>
+                        <p>Learning from indigenous land management practices, including controlled burning, native foodways, and seasonal stewardship approaches. Led by indigenous practitioners whenever possible.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <p>Our technical training emphasizes accessible, low-cost methods that reduce dependency on external inputs and build ecological resilience. We prioritize approaches that can be implemented by communities with limited resources but rich in traditional knowledge and labor capacity.</p>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title">The People's Agroecology Process</h2>
+            
+            <p>Our training approach draws from the People's Agroecology Process, which recognizes that agroecology is not just a set of farming techniques but a political, social, and economic movement. This framework emphasizes:</p>
+            
+            <div class="image-container">
+                <img src="/api/placeholder/800/500" alt="People's Agroecology Process Workshop">
+                <p class="image-caption">Participants in a People's Agroecology Process workshop discussing land rights and food sovereignty</p>
+            </div>
+            
+            <div class="pillars-container">
+                <div class="pillar">
+                    <h3>Political Education</h3>
+                    <p>Understanding the political economy of land and agriculture, including historical patterns of dispossession, current power structures in food systems, and strategies for policy change.</p>
+                </div>
+                
+                <div class="pillar">
+                    <h3>Collective Organization</h3>
+                    <p>Building democratic structures for collective decision-making, resource sharing, and cooperative land management. Includes training in cooperative governance models and conflict resolution.</p>
+                </div>
+                
+                <div class="pillar">
+                    <h3>Cultural Recovery</h3>
+                    <p>Reclaiming traditional agricultural practices, food ways, and cultural relationships to land that have been disrupted by colonization and industrial agriculture.</p>
+                </div>
+                
+                <div class="pillar">
+                    <h3>Economic Alternatives</h3>
+                    <p>Developing solidarity economies, cooperative markets, and alternative value chains that keep wealth within communities and fairly compensate agricultural labor.</p>
+                </div>
+            </div>
+            
+            <p>Through this holistic approach, participants develop not just farming skills but also the political analysis and organizational capacity needed to advance systemic change in land relationships.</p>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title">Understanding the Political Economy of Land</h2>
+            
+            <p>A crucial component of our training involves political education about the structures that shape land access and control in California. Participants learn about:</p>
+            
+            <ul>
+                <li>Historical processes of indigenous land dispossession and their ongoing impacts</li>
+                <li>The role of racial exclusion in shaping current land ownership patterns</li>
+                <li>How agricultural policy favors large-scale industrial production over small-scale agroecological farming</li>
+                <li>The influence of speculative investment and financialization on land markets</li>
+                <li>Key players in California's agricultural system, from large landowners to processing companies to policy makers</li>
+                <li>Successful examples of land reform and agroecological transitions from around the world</li>
+            </ul>
+            
+            <p>This political education helps participants understand their individual struggles for land access within broader systemic contexts, and identifies potential leverage points for collective action.</p>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title">Community Organizing for Land Defense</h2>
+            
+            <p>Acquiring land is only the first step in a long-term process of building food sovereignty. Our training includes strategies for organizing communities to defend land rights and build sustainable agricultural livelihoods. Participants learn:</p>
+            
+            <ul>
+                <li>How to build coalitions with allied organizations and movements</li>
+                <li>Effective communication strategies for countering dominant narratives about land and agriculture</li>
+                <li>Legal tools and resources for protecting land rights</li>
+                <li>Participatory methods for community decision-making about land use</li>
+                <li>Strategies for navigating conflicts with powerful interests</li>
+                <li>Building intergenerational leadership and knowledge transmission</li>
+            </ul>
+            
+            <p>This organizing component is especially critical given the powerful interests that often oppose land reform and agroecological transitions. Communities need not just farming skills but political organizing capacity to successfully challenge entrenched power structures.</p>
+            
+            <div class="image-container">
+                <img src="/api/placeholder/800/500" alt="Community Organizing Workshop">
+                <p class="image-caption">Community members developing organizing strategies for land defense and agroecological transition</p>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title">Training Formats and Accessibility</h2>
+            
+            <p>Our training is offered in multiple formats to meet the diverse needs of agricultural communities:</p>
+            
+            <ul>
+                <li><strong>Hands-on Field Workshops:</strong> Practical training sessions on working farms and lands</li>
+                <li><strong>Popular Education Sessions:</strong> Participatory learning that values participants' existing knowledge and experiences</li>
+                <li><strong>Farmer-to-Farmer Exchanges:</strong> Peer learning opportunities between experienced and new farmers</li>
+                <li><strong>Youth Education Programs:</strong> Specialized training for young people interested in agricultural careers</li>
+                <li><strong>Train-the-Trainer Programs:</strong> Building local capacity for ongoing education within communities</li>
+            </ul>
+            
+            <p>All of our training programs are:</p>
+            
+            <ul>
+                <li>Offered in multiple languages, particularly Spanish and English</li>
+                <li>Scheduled to accommodate working schedules of farmers and farmworkers</li>
+                <li>Provided at low or no cost to participants</li>
+                <li>Located in accessible community spaces whenever possible</li>
+                <li>Inclusive of childcare and meals to support full participation</li>
+            </ul>
+            
+            <p>We are committed to making our training accessible to those who have been most marginalized within the current agricultural system, particularly farmworkers, indigenous communities, and people of color with limited access to land and resources.</p>
+        </div>
+        
+        <a href="index.html" class="back-to-home">Back to Home</a>
+    </div>
+    
+    <footer>
+        <h3>Plurinational Land Reform in CA Working Group</h3>
+        <p>Working on stolen Ohlone, Miwok, Yokuts, Chumash, Tongva, Cahuilla, Kumeyaay, Acjachemen, and many other indigenous lands</p>
+        
+        <div class="social-links">
+            <a href="https://instagram.com/plurinational.landreform_cawg" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+        </div>
+        
+        <p>&copy; 2025 Plurinational Land Reform in CA Working Group. All rights reserved.</p>
+    </footer>
+</body>
+</html>
