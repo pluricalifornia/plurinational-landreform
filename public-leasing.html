@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Public Leasing Advocacy | Plurinational Land Reform in CA</title>
+    <style>
+        :root {
+            --primary-color: #3a3a6a;      
+            --secondary-color: #e71d36;     
+            --dark-color: #011627;         
+            --light-color: #f7f7f7;        
+            --accent-color: #ff9f1c;       
+            --accent-green: #8bc34a;      
+            --accent-red: #e53935;         
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #2a2a4a 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            border-bottom: 4px solid var(--accent-color);
+        }
+        
+        .logo-container {
+            margin-bottom: 1.5rem;
+        }
+        
+        .logo {
+            max-width: 100%;
+            height: auto;
+            max-height: 150px;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        nav {
+            background-color: var(--dark-color);
+            padding: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav ul li {
+            margin: 0 1rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-font-weight: bold;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .language-toggle {
+            background-color: var(--secondary-color);
+            padding: 0.4rem 0.8rem;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .language-toggle:hover {
+            background-color: #c91020;
+        }
+        
+        .page-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+        }
+        
+        .page-title {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .page-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
+        }
+        
+        .content-section {
+            margin-bottom: 4rem;
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: var(--secondary-color);
+        }
+        
+        .image-container {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .image-container img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .image-caption {
+            margin-top: 1rem;
+            text-align: center;
+            font-style: italic;
+            color: #666;
+        }
+        
+        .back-to-home {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .back-to-home:hover {
+            background-color: #2a2a50;
+        }
+        
+        .quote-box {
+            background-color: rgba(231, 29, 54, 0.1);
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--secondary-color);
+            margin: 2rem 0;
+            font-style: italic;
+        }
+        
+        .quote-box p {
+            margin-bottom: 1rem;
+        }
+        
+        .quote-box cite {
+            display: block;
+            text-align: right;
+            font-weight: bold;
+            font-style: normal;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, var(--dark-color) 0%, #000 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            border-top: 4px solid var(--accent-color);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+            gap: 1.5rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <!-- Replace with your actual logo path -->
+            <img src="images/pluri-logo.jpg" alt="Plurinational Land Reform in CA Working Group Logo" class="logo">
+        </div>
+        <h1>Public Leasing Advocacy</h1>
+        <p>Advancing public land leasing models for regenerative agriculture and indigenous stewardship</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#about">About Us</a></li>
+            <li><a href="index.html#mission">Our Work</a></li>
+            <li><a href="index.html#events">Events</a></li>
+            <li><a href="index.html#get-involved">Get Involved</a></li>
+            <li><a href="spanish.html" class="language-toggle">Español</a></li>
+        </ul>
+    </nav>
+    
+    <div class="page-content">
+        <h1 class="page-title">Public Leasing Advocacy</h1>
+        
+        <div class="content-section">
+            <p>Our public leasing advocacy work focuses on developing policy frameworks and practical models for making public lands available to landless peoples for regenerative agriculture. Given the extreme unaffordability of California's land market, public land leasing represents a critical pathway for expanding land access and promoting food sovereignty.</p>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title">Public Lands Suitability Analysis</h2>
+            
+            <div class="image-container">
+                <img src="/api/placeholder/800/500" alt="Public Lands Suitability Analysis Map">
+                <p class="image-caption">Suitability analysis of public lands for potential agricultural production</p>
+            </div>
+            
+            <p>Our suitability analysis identifies public lands that could support regenerative agriculture without compromising ecological integrity. We analyze factors including:</p>
+            
+            <ul>
+                <li>Soil quality and agricultural potential</li>
+                <li>Water availability and rights</li>
+                <li>Current ecological condition and conservation value</li>
+                <li>Current public use patterns</li>
+                <li>Infrastructure and accessibility</li>
+                <li>Proximity to potential stewards/farmers</li>
+                <li>Historical land relationships, particularly with indigenous communities</li>
+            </ul>
+            
+            <p>Through this analysis, we identify public parcels that could be managed through community-centered agroecological approaches that enhance rather than diminish ecological functions.</p>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title">Indigenous Critiques of Fortress Conservation</h2>
+            
+            <p>Our advocacy is informed by indigenous critiques of dominant conservation paradigms that have historically excluded human communities from their traditional lands in the name of preservation. In California, the creation of "wilderness" areas, parks, and other protected lands has often involved the removal and exclusion of indigenous peoples who had stewarded these landscapes for millennia.</p>
+            
+            <div class="quote-box">
+                <p>"The conservation movement, born from the settler-colonial imagination, created wilderness by removing Indigenous people from their lands. Now we face ecological crises precisely because of this separation of humans from the natural world."</p>
+                <cite>- Indigenous environmental justice scholar</cite>
+            </div>
+            
+            <p>We recognize that dominant conservation models in California often:</p>
+            
+            <ul>
+                <li>Reinforce colonial relationships to land by creating artificial boundaries between humans and "nature"</li>
+                <li>Ignore the role of indigenous land management in creating and maintaining California's diverse ecosystems</li>
+                <li>Privilege recreational access for predominantly white, affluent users while excluding traditional land uses by indigenous and other marginalized communities</li>
+                <li>Fail to address the structural causes of environmental degradation, such as industrial capitalism and extractive economies</li>
+            </ul>
+            
+            <p>Our public leasing advocacy seeks to transform these paradigms by centering indigenous sovereignty and knowledge systems in the management of public lands.</p>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title">Usufructuary Rights and State Market Intervention</h2>
+            
+            <p>Given the extreme unaffordability of the California land market, access to public lands represents one of the only viable pathways for many landless peoples to establish agricultural livelihoods. We advocate for:</p>
+            
+            <ul>
+                <li>Development of <strong>usufructuary property regimes</strong> on public lands that grant rights to use and derive income from the land without full ownership rights</li>
+                <li>Long-term, secure leases (20+ years) that provide sufficient tenure security for agricultural investment</li>
+                <li>Prioritization of access for historically marginalized communities, particularly indigenous peoples, farmworkers, and other landless rural communities</li>
+                <li>Lease arrangements that require and support regenerative agricultural practices</li>
+                <li>Integration of traditional ecological knowledge and contemporary agroecological practices</li>
+                <li>Creation of cooperative leasing models that support collective land management</li>
+            </ul>
+            
+            <p>This approach represents a form of state market intervention necessary to address the structural inequities of California's land market, which has been shaped by historical patterns of dispossession, speculation, and consolidation.</p>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title">Reconciling Agriculture and Conservation</h2>
+            
+            <p>A core principle of our public leasing advocacy is that environmental preservation is not inherently at odds with agriculture. This false dichotomy emerges from a colonial worldview that separates humans from nature and fails to distinguish between extractive industrial agriculture and regenerative agricultural systems.</p>
+            
+            <p>We advocate for agriculture that:</p>
+            
+            <ul>
+                <li>Enhances rather than depletes soil health and biodiversity</li>
+                <li>Builds carbon storage capacity in soils and perennial vegetation</li>
+                <li>Creates habitat for native species through integrated agroecological design</li>
+                <li>Incorporates traditional land management practices such as indigenous cultural burning</li>
+                <li>Reduces rather than accelerates climate change</li>
+                <li>Creates just livelihoods while producing nutritious food for local communities</li>
+            </ul>
+            
+            <p>The fortress conservation model arose in response to the devastating impacts of extractive industries, including industrial agriculture. However, regenerative agricultural systems managed by communities with deep relationships to the land can actually enhance ecosystem function while producing food and fiber for human needs.</p>
+            
+            <p>Our advocacy seeks to transform public land management to recognize the potential of human communities as beneficial participants in ecological systems rather than inherent threats to be excluded.</p>
+        </div>
+        
+        <a href="index.html" class="back-to-home">Back to Home</a>
+    </div>
+    
+    <footer>
+        <h3>Plurinational Land Reform in CA Working Group</h3>
+        <p>Working on stolen Ohlone, Miwok, Yokuts, Chumash, Tongva, Cahuilla, Kumeyaay, Acjachemen, and many other indigenous lands</p>
+        
+        <div class="social-links">
+            <a href="https://instagram.com/plurinational.landreform_cawg" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+        </div>
+        
+        <p>&copy; 2025 Plurinational Land Reform in CA Working Group. All rights reserved.</p>
+    </footer>
+</body>
+</html>
