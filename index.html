@@ -72,6 +72,7 @@
         
         nav ul li {
             margin: 0 1rem;
+            position: relative;
         }
         
         nav ul li a {
@@ -79,10 +80,46 @@
             text-decoration: none;
             font-weight: bold;
             transition: color 0.3s;
+            display: block;
+            padding: 0.5rem 0;
         }
         
         nav ul li a:hover {
             color: var(--secondary-color);
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--dark-color);
+            min-width: 200px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 5px;
+            margin-top: 0.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .dropdown-content a {
+            color: white;
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .has-dropdown:hover .dropdown-content {
+            display: block;
         }
         
         .language-toggle {
@@ -188,29 +225,18 @@
             color: var(--accent-color);
         }
         
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
+        .read-more {
+            display: inline-block;
+            margin-top: 1rem;
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
         }
         
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        
-        .gallery-item img {
-            width: 100%;
-            aspect-ratio: 1/1;
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
-        
-        .gallery-item:hover img {
-            transform: scale(1.05);
+        .read-more:hover {
+            color: var(--accent-color);
+            text-decoration: underline;
         }
         
         .events-list {
@@ -360,6 +386,22 @@
             nav ul li {
                 margin: 0.5rem 0;
             }
+            
+            .dropdown-content {
+                position: static;
+                transform: none;
+                box-shadow: none;
+                margin-top: 0.5rem;
+                display: none;
+            }
+            
+            .has-dropdown:hover .dropdown-content {
+                display: none;
+            }
+            
+            .has-dropdown.active .dropdown-content {
+                display: block;
+            }
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -377,8 +419,17 @@
     <nav>
         <ul>
             <li><a href="#about">About Us</a></li>
-            <li><a href="#mission">Our Work</a></li>
-
+            <li class="has-dropdown">
+                <a href="#mission">Our Work</a>
+                <div class="dropdown-content">
+                    <a href="regional-mapping.html">Regional Mapping Analysis</a>
+                    <a href="absentee-landowner.html">Absentee Landowner Tracking</a>
+                    <a href="parcel-identification.html">Parcel Identification</a>
+                    <a href="public-leasing.html">Public Leasing Advocacy</a>
+                    <a href="suitability-analysis.html">Grazing & Farming Suitability</a>
+                    <a href="agroecological-training.html">Agroecological Training</a>
+                </div>
+            </li>
             <li><a href="#events">Events</a></li>
             <li><a href="#get-involved">Get Involved</a></li>
             <li><a href="spanish.html" class="language-toggle">Español</a></li>
@@ -409,27 +460,35 @@
             <div class="principle-card">
                 <h3>Regional Mapping Analysis</h3>
                 <p>Comprehensive geospatial analysis of prime farmland across various land use codes, tenure arrangements, and ecological conditions across California's diverse regions.</p>
+                <a href="regional-mapping.html" class="read-more">Learn More</a>
             </div>
             <div class="principle-card">
                 <h3>Absentee Landowner Tracking</h3>
                 <p>Identifying and documenting patterns of absentee landownership and analyzing their economic, social, and ecological impacts on local communities.</p>
+                <a href="absentee-landowner.html" class="read-more">Learn More</a>
             </div>
             <div class="principle-card">
                 <h3>Parcel Identification</h3>
                 <p>Strategic assessment and identification of potential parcels for acquisition by indigenous communities, farmworkers, and other community-led initiatives.</p>
+                <a href="parcel-identification.html" class="read-more">Learn More</a>
             </div>
             <div class="principle-card">
                 <h3>Public Leasing Advocacy</h3>
                 <p>Developing policy frameworks and advocating for public land leasing programs that prioritize regenerative agriculture and indigenous stewardship practices.</p>
+                <a href="public-leasing.html" class="read-more">Learn More</a>
             </div>
             <div class="principle-card">
                 <h3>Grazing & Farming Suitability Analysis</h3>
                 <p>Conducting detailed assessments of land suitability for various grazing and farming practices with emphasis on traditional and agroecological methods.</p>
+                <a href="suitability-analysis.html" class="read-more">Learn More</a>
+            </div>
+            <div class="principle-card">
+                <h3>Agroecological Training</h3>
+                <p>Providing holistic education that connects farming practices with political economy understanding and organizing strategies for land protection.</p>
+                <a href="agroecological-training.html" class="read-more">Learn More</a>
             </div>
         </div>
     </section>
-    
-
     
     <section id="events">
         <h2 class="section-title">Upcoming Events</h2>
@@ -487,5 +546,20 @@
         
         <p>&copy; 2025 Plurinational Land Reform in CA Working Group. All rights reserved.</p>
     </footer>
+
+    <script>
+        // Mobile dropdown toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdownLinks = document.querySelectorAll('.has-dropdown > a');
+            
+            dropdownLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        this.parentElement.classList.toggle('active');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
-</html>
