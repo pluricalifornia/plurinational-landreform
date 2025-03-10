@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plurinational Land Reform in CA Working Group</title>
+    <style>
+        :root {
+            --primary-color: #3a3a6a;        /* Dark purple/blue from the logo text */
+            --secondary-color: #e71d36;      /* Red from the Wiphala pattern */
+            --dark-color: #011627;           /* Dark blue/black from Wiphala */
+            --light-color: #f7f7f7;          /* Off-white background */
+            --accent-color: #ff9f1c;         /* Orange from Wiphala pattern */
+            --accent-green: #8bc34a;         /* Green from the quail */
+            --accent-red: #e53935;           /* Red from the bear */
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #2a2a4a 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            border-bottom: 4px solid var(--accent-color);
+        }
+        
+        .logo-container {
+            margin-bottom: 1.5rem;
+        }
+        
+        .logo {
+            max-width: 100%;
+            height: auto;
+            max-height: 150px;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        nav {
+            background-color: var(--dark-color);
+            padding: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav ul li {
+            margin: 0 1rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .language-toggle {
+            background-color: var(--secondary-color);
+            padding: 0.4rem 0.8rem;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .language-toggle:hover {
+            background-color: #c91020;
+        }
+        
+        section {
+            padding: 3rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            font-size: 2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
+        }
+        
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-text p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+        
+        .about-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .mission-principles {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #2a2a4a 100%);
+            color: white;
+            padding: 3rem 1rem;
+        }
+        
+        .mission-principles .section-title {
+            color: white;
+        }
+        
+        .principles-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .principle-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            transition: transform 0.3s;
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .principle-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .principle-card h3 {
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .events-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .event-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .event-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .event-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .event-details {
+            padding: 1.5rem;
+        }
+        
+        .event-date {
+            color: var(--secondary-color);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .event-card h3 {
+            margin-bottom: 1rem;
+        }
+        
+        .event-info {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .event-info p {
+            margin-bottom: 0.5rem;
+        }
+        
+        .get-involved {
+            background: linear-gradient(45deg, var(--accent-green) 0%, var(--accent-color) 100%);
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+        
+        .get-involved .section-title {
+            color: var(--dark-color);
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 2rem auto 0;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        button {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #c91020;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, var(--dark-color) 0%, #000 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            border-top: 4px solid var(--accent-color);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+            gap: 1.5rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <!-- Replace "images/pluri-logo.jpg" with the actual path to your logo when you upload it -->
+            <img src="images/pluri-logo.jpg" alt="Plurinational Land Reform in CA Working Group Logo - California map with Wiphala pattern, quail, poppies, and bear" class="logo">
+        </div>
+        <h1>Plurinational Land Reform in CA Working Group</h1>
+        <p>Developing geospatial, financial, and legal tools to advance agrarian reform in California</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#mission">Our Work</a></li>
+
+            <li><a href="#events">Events</a></li>
+            <li><a href="#get-involved">Get Involved</a></li>
+            <li><a href="spanish.html" class="language-toggle">Español</a></li>
+        </ul>
+    </nav>
+    
+    <section id="about">
+        <h2 class="section-title">About Us</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>The Plurinational Land Reform in CA Working Group emerged in 2023 as a grassroots collective of students & researchers seeking to bridge the gap between (farm)working and professional classes. It takes inspiration from the legal, organizational, & tactical innovations which indigenous-peasant movements based in Bolivia, Ecuador, and Peru birthed to advance what they have coined as 'plurinationalism'.</p>
+                
+                <p>We seek to apply these lessons to the context of California by aiding landless peoples in the identification, acquisition, and cooperative management of land. In particular, we seek to create coalitions between small farmers, tenant farmers, farmworkers seeking to become new-entry farmers, and indigenous peoples seeking territorial autonomy. In shorter terms, the creation of an indigenous-peasant alliance & movement.</p>
+                
+                <p>We hope to not merely be a research arm for community-based organizations, but also an incubator for the necessary social movement infrastructure which effectively implements an agrarian reform program in the state of California. This can range from mapping, land acquisition, leadership development, organizational training, and agroecological education. We are always open to collaboration and discussion, and encourage anyone to reach out!</p>
+            </div>
+            <div class="about-image">
+                <img src="/api/placeholder/400/320" alt="Plurinational Land Reform Working Group members">
+            </div>
+        </div>
+    </section>
+    
+    <section class="mission-principles" id="mission">
+        <h2 class="section-title">Our Work</h2>
+        <p>We envision a California where land relationships are transformed through plurinational governance, indigenous sovereignty, and ecological restoration.</p>
+        
+        <div class="principles-list">
+            <div class="principle-card">
+                <h3>Regional Mapping Analysis</h3>
+                <p>Comprehensive geospatial analysis of prime farmland across various land use codes, tenure arrangements, and ecological conditions across California's diverse regions.</p>
+            </div>
+            <div class="principle-card">
+                <h3>Absentee Landowner Tracking</h3>
+                <p>Identifying and documenting patterns of absentee landownership and analyzing their economic, social, and ecological impacts on local communities.</p>
+            </div>
+            <div class="principle-card">
+                <h3>Parcel Identification</h3>
+                <p>Strategic assessment and identification of potential parcels for acquisition by indigenous communities, farmworkers, and other community-led initiatives.</p>
+            </div>
+            <div class="principle-card">
+                <h3>Public Leasing Advocacy</h3>
+                <p>Developing policy frameworks and advocating for public land leasing programs that prioritize regenerative agriculture and indigenous stewardship practices.</p>
+            </div>
+            <div class="principle-card">
+                <h3>Grazing & Farming Suitability Analysis</h3>
+                <p>Conducting detailed assessments of land suitability for various grazing and farming practices with emphasis on traditional and agroecological methods.</p>
+            </div>
+        </div>
+    </section>
+    
+
+    
+    <section id="events">
+        <h2 class="section-title">Upcoming Events</h2>
+        <div class="events-list">
+            <div class="event-card">
+                <div class="event-image">
+                    <img src="/api/placeholder/400/200" alt="RADD Monthly Meeting">
+                </div>
+                <div class="event-details">
+                    <div class="event-date">Recurring: First Wednesday of Each Month</div>
+                    <h3>RADD Monthly Meeting</h3>
+                    <p>The Radical Agroecology Dinner & Discussion (RADD) hosts monthly meetings where our working group participates as an integrated organization within this broader coalition. It's a potluck event (no worries if you cannot bring anything).</p>
+                    <p>Discussions at these meetings range from creating new friendships to organizing trainings and political education on land struggle. Come join the community!</p>
+                    <div class="event-info">
+                        <p><strong>Time:</strong> 6:00 PM - 9:00 PM</p>
+                        <p><strong>Location:</strong> Gill Tract Farm, Berkeley, California</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="get-involved" id="get-involved">
+        <h2 class="section-title">Get Involved</h2>
+        <p>Join our movement for land justice and indigenous sovereignty in California. There are many ways to contribute your skills, resources, and energy.</p>
+        
+        <div class="contact-form">
+            <form>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="involvement">How would you like to be involved?</label>
+                    <textarea id="involvement" name="involvement" required></textarea>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </section>
+    
+    <footer>
+        <h3>Plurinational Land Reform in CA Working Group</h3>
+        <p>Working on stolen Ohlone, Miwok, Yokuts, Chumash, Tongva, Cahuilla, Kumeyaay, Acjachemen, and many other indigenous lands</p>
+        
+        <div class="social-links">
+            <a href="https://instagram.com/plurinational.landreform_cawg" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+        </div>
+        
+        <p>&copy; 2025 Plurinational Land Reform in CA Working Group. All rights reserved.</p>
+    </footer>
+</body>
+</html>
