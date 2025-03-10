@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grazing & Farming Suitability Analysis | Plurinational Land Reform in CA</title>
+    <style>
+        :root {
+            --primary-color: #3a3a6a;      
+            --secondary-color: #e71d36;     
+            --dark-color: #011627;         
+            --light-color: #f7f7f7;        
+            --accent-color: #ff9f1c;       
+            --accent-green: #8bc34a;      
+            --accent-red: #e53935;         
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #2a2a4a 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            border-bottom: 4px solid var(--accent-color);
+        }
+        
+        .logo-container {
+            margin-bottom: 1.5rem;
+        }
+        
+        .logo {
+            max-width: 100%;
+            height: auto;
+            max-height: 150px;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        nav {
+            background-color: var(--dark-color);
+            padding: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav ul li {
+            margin: 0 1rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .language-toggle {
+            background-color: var(--secondary-color);
+            padding: 0.4rem 0.8rem;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .language-toggle:hover {
+            background-color: #c91020;
+        }
+        
+        .page-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+        }
+        
+        .page-title {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .page-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
+        }
+        
+        .content-section {
+            margin-bottom: 4rem;
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: var(--secondary-color);
+        }
+        
+        .image-container {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .image-container img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .image-caption {
+            margin-top: 1rem;
+            text-align: center;
+            font-style: italic;
+            color: #666;
+        }
+        
+        .back-to-home {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .back-to-home:hover {
+            background-color: #2a2a50;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        
+        .feature-card-content {
+            padding: 1.5rem;
+        }
+        
+        .feature-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, var(--dark-color) 0%, #000 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            border-top: 4px solid var(--accent-color);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+            gap: 1.5rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <!-- Replace with your actual logo path -->
+            <img src="images/pluri-logo.jpg" alt="Plurinational Land Reform in CA Working Group Logo" class="logo">
+        </div>
+        <h1>Grazing & Farming Suitability Analysis</h1>
+        <p>Identifying optimal land management strategies through detailed ecological assessment</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#about">About Us</a></li>
+            <li><a href="index.html#mission">Our Work</a></li>
+            <li><a href="index.html#events">Events</a></li>
+            <li><a href="index.html#get-involved">Get Involved</a></li>
+            <li><a href="spanish.html" class="language-toggle">Español</a></li>
+        </ul>
+    </nav>
+    
+    <div class="page-content">
+        <h1 class="page-title">Grazing & Farming Suitability Analysis</h1>
+        
+        <div class="content-section">
+            <p>Our suitability analysis work provides detailed assessments of land characteristics to determine optimal agricultural uses and management approaches. Rather than viewing land as a homogeneous commodity, we recognize that each parcel has unique ecological properties that should inform how it is stewarded.</p>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title">Land Heterogeneity Assessment</h2>
+            
+            <div class="image-container">
+                <img src="/api/placeholder/800/500" alt="Land Suitability Analysis Map">
+                <p class="image-caption">Detailed suitability analysis showing variation within a single agricultural parcel</p>
+            </div>
+            
+            <p>A core principle of our approach is understanding that land is not a homogenous body. Every parcel contains variation in:</p>
+            
+            <ul>
+                <li>Soil type, depth, and organic matter content</li>
+                <li>Topography and aspect</li>
+                <li>Water availability and drainage patterns</li>
+                <li>Microclimate conditions</li>
+                <li>Existing vegetation and ecological communities</li>
+                <li>Historical land use impacts</li>
+            </ul>
+            
+            <p>Our suitability analysis maps these variations in detail, often revealing significant differences within even small parcels that may not be apparent to casual observation. This detailed understanding allows for more nuanced and ecologically appropriate land management decisions.</p>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title">Multi-Use Planning</h2>
+            
+            <p>Based on our detailed suitability assessments, we help landless communities and existing stewards develop integrated land management plans that match agricultural practices to the specific characteristics of different areas within a parcel.</p>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <img src="/api/placeholder/400/300" alt="Agroforestry System">
+                    <div class="feature-card-content">
+                        <h3>Agroforestry Systems</h3>
+                        <p>We identify areas suitable for integrating trees with crops or livestock, creating multi-layered productive systems that enhance biodiversity and carbon sequestration.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <img src="/api/placeholder/400/300" alt="Silvopastoral Systems">
+                    <div class="feature-card-content">
+                        <h3>Silvopastoral Grazing</h3>
+                        <p>Our analysis identifies optimal locations for integrated tree-livestock systems that can enhance animal welfare, soil health, and overall land productivity.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <img src="/api/placeholder/400/300" alt="Crop Selection">
+                    <div class="feature-card-content">
+                        <h3>Ecological Crop Selection</h3>
+                        <p>We determine which crops will thrive in specific soil and microclimate conditions, with emphasis on native, drought-tolerant, and culturally significant varieties.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <img src="/api/placeholder/400/300" alt="Water Management">
+                    <div class="feature-card-content">
+                        <h3>Water Management</h3>
+                        <p>Our suitability analysis maps natural water flows and identifies optimal locations for water harvesting, retention, and distribution systems.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <p>Through this approach, we can develop land management plans that maximize productivity while enhancing ecological function and resilience. Rather than imposing a single management approach across an entire parcel, our method allows for a mosaic of complementary practices that work with the land's natural characteristics.</p>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title">Understanding Land as Living Systems</h2>
+            
+            <p>Our suitability analysis goes beyond conventional agricultural assessments by viewing land as complex, living systems with their own histories and trajectories. We consider:</p>
+            
+            <ul>
+                <li>Historical ecological conditions and human relationships with the land</li>
+                <li>Current ecological dynamics, including succession patterns and wildlife habitat</li>
+                <li>Potential futures under different management scenarios and climate change projections</li>
+                <li>Indigenous and traditional knowledge about local ecosystems and their management</li>
+            </ul>
+            
+            <p>This systems-based approach allows us to develop land management strategies that are not just productive in the short term, but regenerative and resilient over generations. It also helps us identify opportunities for ecological restoration integrated with agricultural production.</p>
+            
+            <div class="image-container">
+                <img src="/api/placeholder/800/500" alt="Ecological Succession Analysis">
+                <p class="image-caption">Analysis of ecological succession patterns to inform management interventions</p>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title">Methodology</h2>
+            
+            <p>Our suitability analysis methodology combines:</p>
+            
+            <ul>
+                <li><strong>Field Assessment:</strong> Detailed on-the-ground surveys of soil, vegetation, and hydrological conditions</li>
+                <li><strong>GIS Analysis:</strong> Integration of multiple spatial datasets, including soil surveys, topography, climate, and historical land use</li>
+                <li><strong>Traditional Ecological Knowledge:</strong> Engagement with indigenous and traditional land stewards familiar with local ecosystems</li>
+                <li><strong>Participatory Mapping:</strong> Collaborative mapping processes with community members to incorporate their knowledge and priorities</li>
+                <li><strong>Climate Projections:</strong> Incorporation of climate change scenarios to assess future conditions and appropriate adaptation strategies</li>
+            </ul>
+            
+            <p>This integrated approach produces suitability assessments that are scientifically rigorous while respecting and incorporating diverse knowledge systems and community priorities.</p>
+        </div>
+        
+        <a href="index.html" class="back-to-home">Back to Home</a>
+    </div>
+    
+    <footer>
+        <h3>Plurinational Land Reform in CA Working Group</h3>
+        <p>Working on stolen Ohlone, Miwok, Yokuts, Chumash, Tongva, Cahuilla, Kumeyaay, Acjachemen, and many other indigenous lands</p>
+        
+        <div class="social-links">
+            <a href="https://instagram.com/plurinational.landreform_cawg" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+        </div>
+        
+        <p>&copy; 2025 Plurinational Land Reform in CA Working Group. All rights reserved.</p>
+    </footer>
+</body>
+</html>
