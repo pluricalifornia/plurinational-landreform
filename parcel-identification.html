@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parcel Identification & Acquisition Planning | Plurinational Land Reform in CA</title>
+    <style>
+        :root {
+            --primary-color: #3a3a6a;      
+            --secondary-color: #e71d36;     
+            --dark-color: #011627;         
+            --light-color: #f7f7f7;        
+            --accent-color: #ff9f1c;       
+            --accent-green: #8bc34a;      
+            --accent-red: #e53935;         
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #2a2a4a 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            border-bottom: 4px solid var(--accent-color);
+        }
+        
+        .logo-container {
+            margin-bottom: 1.5rem;
+        }
+        
+        .logo {
+            max-width: 100%;
+            height: auto;
+            max-height: 150px;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        nav {
+            background-color: var(--dark-color);
+            padding: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav ul li {
+            margin: 0 1rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .language-toggle {
+            background-color: var(--secondary-color);
+            padding: 0.4rem 0.8rem;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .language-toggle:hover {
+            background-color: #c91020;
+        }
+        
+        .page-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+        }
+        
+        .page-title {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .page-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
+        }
+        
+        .content-section {
+            margin-bottom: 4rem;
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: var(--secondary-color);
+        }
+        
+        .image-container {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .image-container img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .image-caption {
+            margin-top: 1rem;
+            text-align: center;
+            font-style: italic;
+            color: #666;
+        }
+        
+        .back-to-home {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .back-to-home:hover {
+            background-color: #2a2a50;
+        }
+        
+        .callout-box {
+            background-color: rgba(139, 195, 74, 0.1);
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-green);
+            margin: 2rem 0;
+        }
+        
+        .callout-box h3 {
+            color: var(--accent-green);
+            margin-bottom: 1rem;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, var(--dark-color) 0%, #000 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            border-top: 4px solid var(--accent-color);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+            gap: 1.5rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <!-- Replace with your actual logo path -->
+            <img src="images/pluri-logo.jpg" alt="Plurinational Land Reform in CA Working Group Logo" class="logo">
+        </div>
+        <h1>Parcel Identification & Acquisition Planning</h1>
+        <p>Providing strategic land identification services for landless communities</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#about">About Us</a></li>
+            <li><a href="index.html#mission">Our Work</a></li>
+            <li><a href="index.html#events">Events</a></li>
+            <li><a href="index.html#get-involved">Get Involved</a></li>
+            <li><a href="spanish.html" class="language-toggle">Español</a></li>
+        </ul>
+    </nav>
+    
+    <div class="page-content">
+        <h1 class="page-title">Parcel Identification & Acquisition Planning</h1>
+        
+        <div class="content-section">
+            <p>Our parcel identification and acquisition planning work directly supports landless communities seeking to access agricultural land in California. We combine geospatial analysis, legal expertise, and community organizing to identify strategic parcels for acquisition and develop realistic pathways to ownership or access.</p>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title">Free Services for Landless Communities</h2>
+            
+            <div class="callout-box">
+                <h3>Who We Serve</h3>
+                <p>We provide these services at no cost to poor landless peoples and communities, including:</p>
+                <ul>
+                    <li>Tenant farmers seeking land ownership</li>
+                    <li>Farmworkers interested in transitioning to independent farming</li>
+                    <li>Federally recognized indigenous nations working to expand their land base</li>
+                    <li>Non-federally recognized indigenous nations seeking to regain ancestral territories</li>
+                    <li>Cooperative farming initiatives led by Black, Indigenous, and other people of color</li>
+                </ul>
+                <p><strong>Please reach out to us if your community needs support with land identification and acquisition planning.</strong></p>
+            </div>
+            
+            <p>Our approach is deeply collaborative. We work directly with community members to understand their specific needs, agricultural goals, and cultural relationships to land. Rather than imposing external solutions, we provide technical support that empowers communities to make their own informed decisions about land acquisition.</p>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title">Coachella Valley Initiative</h2>
+            
+            <div class="image-container">
+                <img src="/api/placeholder/800/500" alt="Vamos hacia la Reforma Agraria Integral y Popular en la Valle de Coachella">
+                <p class="image-caption">"Vamos hacia la Reforma Agraria Integral y Popular en la Valle de Coachella" - Community planning document</p>
+            </div>
+            
+            <p>The Coachella Valley represents one of our primary focus areas for community-led parcel identification. This region exemplifies many of the challenges and opportunities faced by agricultural workers throughout California:</p>
+            
+            <ul>
+                <li>Large concentration of farmworker communities with deep agricultural knowledge</li>
+                <li>Significant presence of absentee landowners and corporate agricultural interests</li>
+                <li>Rising land prices due to development pressure and agricultural intensification</li>
+                <li>Complex water rights issues and environmental challenges</li>
+                <li>Indigenous communities with historical and ongoing relationships to the land</li>
+            </ul>
+            
+            <p>Our work in the Coachella Valley has focused on identifying:</p>
+            
+            <ul>
+                <li>Underutilized agricultural parcels suitable for small-scale, diversified farming</li>
+                <li>Land with secure water rights that could support agroecological practices</li>
+                <li>Publicly owned lands that could be transitioned to community agricultural use</li>
+                <li>Parcels suitable for cooperative ownership models</li>
+            </ul>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title">Our Collaborative Process</h2>
+            
+            <p>Our parcel identification and acquisition planning process typically includes:</p>
+            
+            <ol>
+                <li><strong>Community Needs Assessment:</strong> Working with community members to understand their specific land needs, agricultural goals, and capacity</li>
+                <li><strong>Regional Land Analysis:</strong> Using GIS and other tools to identify potential parcels based on community criteria</li>
+                <li><strong>Legal and Financial Analysis:</strong> Researching ownership, zoning, water rights, and potential acquisition pathways</li>
+                <li><strong>Acquisition Strategy Development:</strong> Collaboratively developing realistic plans for land acquisition through purchase, lease, partnership, or policy advocacy</li>
+                <li><strong>Funding Research:</strong> Identifying potential funding sources, including grants, loans, and innovative financing mechanisms</li>
+                <li><strong>Technical Support:</strong> Providing ongoing assistance throughout the acquisition process</li>
+            </ol>
+            
+            <p>While our primary focus is on supporting communities to acquire their own land, we recognize that full ownership is not always immediately achievable given California's extreme land prices. Our work therefore includes developing alternative models of land access, including:</p>
+            
+            <ul>
+                <li>Long-term secure leases with path-to-ownership provisions</li>
+                <li>Community land trust models</li>
+                <li>Cooperative ownership structures</li>
+                <li>Public land access agreements</li>
+                <li>Partnerships with supportive landowners</li>
+            </ul>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title">Contact Us for Support</h2>
+            
+            <p>If your community is seeking support with land identification and acquisition planning, please reach out to us. We are committed to providing these services at no cost to landless peoples and communities throughout California.</p>
+            
+            <p>While our capacity is limited, we prioritize working with those most impacted by historical and ongoing land dispossession, particularly Indigenous communities and farmworker communities seeking to transition to independent farming.</p>
+        </div>
+        
+        <a href="index.html" class="back-to-home">Back to Home</a>
+    </div>
+    
+    <footer>
+        <h3>Plurinational Land Reform in CA Working Group</h3>
+        <p>Working on stolen Ohlone, Miwok, Yokuts, Chumash, Tongva, Cahuilla, Kumeyaay, Acjachemen, and many other indigenous lands</p>
+        
+        <div class="social-links">
+            <a href="https://instagram.com/plurinational.landreform_cawg" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+        </div>
+        
+        <p>&copy; 2025 Plurinational Land Reform in CA Working Group. All rights reserved.</p>
+    </footer>
+</body>
+</html>
