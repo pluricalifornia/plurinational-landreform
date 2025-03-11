@@ -563,7 +563,6 @@
             dropdownItems.forEach(item => {
                 item.addEventListener('click', function(e) {
                     // Allow normal navigation when clicking on dropdown items
-                    // This explicitly ensures the links work
                     window.location.href = this.getAttribute('href');
                 });
             });
