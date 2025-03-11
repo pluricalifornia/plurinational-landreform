@@ -409,13 +409,116 @@
             <li><a href="#about">About Us</a></li>
             <li class="has-dropdown">
                 <a href="#mission">Our Work</a>
-                <div class="dropdown-content">
-                    <a href="regional-mapping.html">Regional Mapping Analysis</a>
-                    <a href="absentee-landowner.html">Absentee Landowner Tracking</a>
-                    <a href="parcel-identification.html">Parcel Identification</a>
-                    <a href="public-leasing.html">Public Leasing Advocacy</a>
-                    <a href="suitability-analysis.html">Grazing & Farming Suitability</a>
-                    <a href="agroecological-training.html">Agroecological Training</a>
+                <div class=".dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: var(--dark-color);
+        min-width: 250px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        border-radius: 5px;
+        margin-top: 0.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        overflow: hidden; /* Ensures the hover background stays within rounded corners */
+    }
+    
+    .dropdown-content a {
+        color: white;
+        padding: 0.75rem 1rem;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+    }
+    
+    .dropdown-content a:last-child {
+        border-bottom: none;
+    }
+    
+    .dropdown-content a:hover {
+        background-color: rgba(255, 255, 255, 0.15);
+        color: var(--secondary-color);
+        padding-left: 1.25rem; /* Indent on hover for visual feedback */
+    }
+    
+    .has-dropdown:hover .dropdown-content {
+        display: block;
+    }
+    
+    /* Mobile-specific dropdown adjustments */
+    @media (max-width: 768px) {
+        .dropdown-content {
+            position: static;
+            transform: none;
+            box-shadow: none;
+            margin-top: 0.5rem;
+            display: none;
+            width: 100%;
+            border-radius: 0;
+        }
+        
+        .has-dropdown:hover .dropdown-content {
+            display: none; /* Don't show on hover for mobile */
+        }
+        
+        .has-dropdown.active .dropdown-content {
+            display: block;
+        }
+        
+        .dropdown-content a:hover {
+            padding-left: 1.5rem; /* Slightly more indent on mobile */
+        }
+    }
+</style>
+
+<!-- Navigation menu with dropdown -->
+<nav>
+    <ul>
+        <li><a href="#about">About Us</a></li>
+        <li class="has-dropdown">
+            <a href="#mission">Our Work</a>
+            <div class="dropdown-content">
+                <a href="regional-mapping.html">Regional Mapping Analysis</a>
+                <a href="absentee-landowner.html">Absentee Landowner Tracking</a>
+                <a href="parcel-identification.html">Parcel Identification</a>
+                <a href="public-leasing.html">Public Leasing Advocacy</a>
+                <a href="suitability-analysis.html">Grazing & Farming Suitability</a>
+                <a href="agroecological-training.html">Agroecological Training</a>
+            </div>
+        </li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#get-involved">Get Involved</a></li>
+        <li><a href="spanish.html" class="language-toggle">Español</a></li>
+    </ul>
+</nav>
+
+<script>
+    // Mobile dropdown toggle
+    document.addEventListener('DOMContentLoaded', function() {
+        const dropdownLinks = document.querySelectorAll('.has-dropdown > a');
+        
+        dropdownLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    this.parentElement.classList.toggle('active');
+                }
+            });
+        });
+        
+        // Ensure dropdown items work properly
+        const dropdownItems = document.querySelectorAll('.dropdown-content a');
+        dropdownItems.forEach(item => {
+            item.addEventListener('click', function(e) {
+                // Allow normal navigation when clicking on dropdown items
+                // This explicitly ensures the links work
+                window.location.href = this.getAttribute('href');
+            });
+        });
+    });
+</script>
                 </div>
             </li>
             <li><a href="#events">Events</a></li>
