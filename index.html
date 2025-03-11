@@ -65,6 +65,11 @@
             position: relative;
         }
         
+        /* Ensure the dropdown list item has proper spacing */
+        .has-dropdown {
+            padding-bottom: 10px;
+        }
+        
         nav ul li a {
             color: white;
             text-decoration: none;
@@ -90,6 +95,7 @@
             left: 50%;
             transform: translateX(-50%);
             overflow: hidden; /* Ensures the hover background stays within rounded corners */
+            padding-top: 10px; /* Create space for hover transition */
         }
         
         .dropdown-content a {
@@ -114,6 +120,17 @@
         
         .has-dropdown:hover .dropdown-content {
             display: block;
+        }
+        
+        /* Create an invisible bridge between menu item and dropdown */
+        .has-dropdown > a::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background-color: transparent;
         }
         
         .language-toggle {
