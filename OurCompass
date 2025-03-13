@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Compass | Plurinational Land Reform in CA</title>
+    <style>
+        :root {
+            --primary-color: #3a3a6a;      
+            --secondary-color: #e71d36;     
+            --dark-color: #011627;         
+            --light-color: #f7f7f7;        
+            --accent-color: #ff9f1c;       
+            --accent-green: #8bc34a;      
+            --accent-red: #e53935;         
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #2a2a4a 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            border-bottom: 4px solid var(--accent-color);
+        }
+        
+        .logo-container {
+            margin-bottom: 1.5rem;
+        }
+        
+        .logo {
+            max-width: 100%;
+            height: auto;
+            max-height: 150px;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        nav {
+            background-color: var(--dark-color);
+            padding: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav ul li {
+            margin: 0 1rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .language-toggle {
+            background-color: var(--secondary-color);
+            padding: 0.4rem 0.8rem;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .language-toggle:hover {
+            background-color: #c91020;
+        }
+        
+        .page-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+        }
+        
+        .page-title {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .page-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
+        }
+        
+        .content-section {
+            margin-bottom: 4rem;
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: var(--secondary-color);
+        }
+        
+        .back-to-home {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .back-to-home:hover {
+            background-color: #2a2a50;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, var(--dark-color) 0%, #000 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            border-top: 4px solid var(--accent-color);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+            gap: 1.5rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        /* Specific styles for the thesis page */
+        .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        
+        .case-study {
+            margin: 30px 0;
+            padding: 20px;
+            background-color: #f2f9ff;
+            border-radius: 5px;
+            border-left: 5px solid var(--primary-color);
+        }
+        
+        .case-study h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+        
+        .conclusion {
+            background-color: #f0f8ea;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 30px 0;
+        }
+        
+        .california-application {
+            background-color: #fff5e6;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 30px 0;
+            border-left: 5px solid var(--accent-color);
+        }
+        
+        .quote {
+            font-style: italic;
+            margin: 20px 0;
+            padding-left: 20px;
+            border-left: 3px solid var(--primary-color);
+        }
+        
+        .key-concept {
+            background-color: #eaf7fb;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            border-left: 5px solid var(--secondary-color);
+        }
+        
+        .thesis-nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: var(--primary-color);
+            padding: 10px;
+            border-radius: 5px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .thesis-nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            margin: 5px;
+            border-radius: 3px;
+            transition: background-color 0.3s;
+        }
+        
+        .thesis-nav a:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .two-column {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .column {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+            
+            .two-column {
+                flex-direction: column;
+            }
+            
+            .thesis-nav {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .thesis-nav a {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="images/pluri-logo.jpg" alt="Plurinational Land Reform in CA Working Group Logo" class="logo">
+        </div>
+        <h1>Our Compass</h1>
+        <p>Lessons from Bolivia, Guatemala, and Chile for California's Land Reform Movement</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#about">About Us</a></li>
+            <li><a href="index.html#mission">Our Work</a></li>
+            <li><a href="index.html#events">Events</a></li>
+            <li><a href="index.html#get-involved">Get Involved</a></li>
+            <li><a href="spanish.html" class="language-toggle">Español</a></li>
+        </ul>
+    </nav>
+    
+    <div class="page-content">
+        <h1 class="page-title">Our Compass</h1>
+        
+
+        
+        <section id="about" class="content-section">
+            <h2 class="section-title">Plurinationalist Projects in Latin America: Successes & Difficulties</h2>
+            <div class="abstract">
+                <p>This working group emerges from a master's thesis that situates plurinationality within the regional context of Latin America, its origins, and subsequent manifestations in other contexts. The case studies include (1) Bolivia, the origin; (2) Guatemala, emergent struggle; (3) Chile, rejection. Across these studies we understand the organizational and ideological necessities which the Bolivian example provides us, and how the other case studies struggle given their deficiencies. I describe how these aspects affect the success of a plurinationalist movement, with particular respect to the articulation of multiple groups through national and regional organizations that coalesce via the political innovation known as <em>el instrumento político</em>.</p>
+            </div>
+
+            <div class="two-column">
+                <div class="column">
+                    <h3>Research Questions</h3>
+                    <ul>
+                        <li>What organizational strategies led to successful plurinational state formation in Bolivia?</li>
+                        <li>How do current struggles in Guatemala compare with the Bolivian experience?</li>
+                        <li>Why was plurinationalism rejected in Chile despite a left-majority constituent assembly?</li>
+                        <li>What lessons can be applied to territorial struggles and land reform in California?</li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <h3>Methodology</h3>
+                    <p>This research combines historical analysis, ethnographic fieldwork, and comparative political study to understand the conditions that enable or impede plurinationalist projects. The work draws on interviews with movement leaders, analysis of primary documents, and participant observation within social movements across multiple countries.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="theory" class="content-section">
+            <h2 class="section-title">Theoretical Framework: Beyond the Nation-State</h2>
+            
+            <div class="key-concept">
+                <h3>What is Plurinationalism?</h3>
+                <p>Plurinationalism recognizes that multiple nations exist within the boundaries of a state, challenging the hegemonic myth of one nation inhabiting a polity. It acknowledges the persistence of indigenous nations within settler colonial contexts and proposes alternative models of governance that recognize their autonomy and right to self-determination.</p>
+            </div>
+
+            <div class="two-column">
+                <div class="column">
+                    <h3>Lo Nacional-Popular</h3>
+                    <p>The traditional revolutionary nationalist model that emerged from the Mexican Revolution (1910), which sought to create an inclusionary, monocultural national identity fortified by economic nationalism, land redistribution, and robust public services. This model uses the state to construct a new national identity that seeks to integrate excluded sectors.</p>
+                </div>
+                <div class="column">
+                    <h3>Formación Social Abigarrada</h3>
+                    <p>Bolivian intellectual René Zavaleta's concept describing Bolivia as a heterogeneous society where multiple modes of production, temporalities, and cosmovisions exist across various sectors of indigenous peoples, latifundistas, rentiers, middle classes, peasants, and workers.</p>
+                </div>
+            </div>
+
+            <div class="key-concept">
+                <h3>El Instrumento Político</h3>
+                <p>A critical innovation in social movement strategy that serves as both a political party and a vehicle for mass mobilization. Unlike traditional political parties, an instrumento político is controlled by and accountable to mass social organizations. It serves to articulate various sectors and communities into a coherent political force without dissolving their autonomy or particular demands.</p>
+            </div>
+        </section>
+
+        <section id="bolivia" class="content-section">
+            <h2 class="section-title">Case Study 1: Bolivia - The Origin</h2>
+            
+            <div class="case-study">
+                <h3>Historical Context</h3>
+                <p>Bolivia's 1952 National Revolution attempted to create a unified nation-state through universal suffrage, education, agrarian reform, and nationalist economic policies. However, this project failed to address the fundamental plurality of Bolivian society, leading to emergent indigenous movements in the 1960s-70s that challenged the monocultural basis of the state.</p>
+                
+                <h3>Key Movements and Ideologies</h3>
+                <ul>
+                    <li><strong>Indianismo</strong>: Emerged in the 1960s, centered indigenous identity as the primary organizing principle against colonial domination.</li>
+                    <li><strong>Katarismo</strong>: Developed in the 1970s as a synthesis of class and ethnic politics, adapting traditional unionism to indigenous communitarian structures.</li>
+                    <li><strong>CSUTCB</strong> (Unified Syndical Confederation of Bolivian Peasants): Became a vehicle for independent indigenous-peasant organizing after breaking from state control.</li>
+                    <li><strong>Coordinator of the 6 Federations</strong>: Organized coca growers (cocaleros) who developed effective resistance to US-backed eradication efforts.</li>
+                </ul>
+
+                <h3>Plurinational State Formation</h3>
+                <p>The 2006-2009 Constituent Assembly process that created the Plurinational State of Bolivia emerged from decades of organization, mobilization, and coalition-building, particularly through:</p>
+                <ul>
+                    <li>The formation of the MAS-IPSP (Movement Toward Socialism - Political Instrument for the Sovereignty of Peoples) in 1998</li>
+                    <li>The "Pacto de Unidad" (Unity Pact) that articulated indigenous, peasant, and worker organizations</li>
+                    <li>Mass mobilizations during the 2000 Water War and 2003-2005 Gas War that demonstrated the organizational capacity of indigenous-peasant movements</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="guatemala" class="content-section">
+            <h2 class="section-title">Case Study 2: Guatemala - Emergent Struggle</h2>
+            
+            <div class="case-study">
+                <h3>Historical Context</h3>
+                <p>Guatemala's revolutionary period (1944-1954) was violently suppressed by a US-backed coup, leading to decades of civil war (1960-1996) that included genocide against Maya peoples. This history of extreme repression debilitated indigenous-peasant organizing in ways that differentiate it from Bolivia's experience.</p>
+                
+                <h3>Contemporary Movements</h3>
+                <ul>
+                    <li><strong>CODECA</strong> (Committee for Peasant Development): The most significant advocate for a plurinational constituent assembly, organized in 3,000 communities across all 22 departments</li>
+                    <li><strong>MLP</strong> (Movement for the Liberation of Peoples): CODECA's political instrument, modeled after Bolivia's MAS-IPSP</li>
+                    <li><strong>CPO</strong> (Council of Maya Peoples of the West): Indigenous rights organization advocating plurinationalism but with different approaches than CODECA</li>
+                    <li><strong>48 Cantones de Totonicapán</strong>: Indigenous authority structure with significant mobilizing capacity but skeptical of radical restructuring</li>
+                </ul>
+
+                <h3>Disarticulation of Movements</h3>
+                <p>Despite widespread indigenous-peasant organizing, Guatemala struggles with:</p>
+                <ul>
+                    <li>"ONG-ización" (NGO-ization) of movements after the 1996 Peace Accords</li>
+                    <li>Divisions between indigenous authorities and popular organizations</li>
+                    <li>USAID and international influence promoting reformist approaches</li>
+                    <li>Rural-urban divides between plurinationalist demands and liberal reformism</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="chile" class="content-section">
+            <h2 class="section-title">Case Study 3: Chile - Rejection</h2>
+            
+            <div class="case-study">
+                <h3>The Estallido Social and Its Aftermath</h3>
+                <p>The 2019 social uprising (estallido social) led to a constituent assembly process, but plurinationalism polarized the population and was ultimately rejected in two consecutive constitutional referendums.</p>
+                
+                <h3>Why Plurinationalism Failed in Chile</h3>
+                <ul>
+                    <li>Lack of articulation among various sectors before the constituent assembly process</li>
+                    <li>No political instrument to socialize plurinational concepts to the broader population</li>
+                    <li>Mapuche communities (Chile's largest indigenous group) were not organized as a cohesive political bloc</li>
+                    <li>Some sectors of Mapuche resistance (CAM) rejected plurinationalism in favor of full territorial autonomy/reconstruction of Wallmapu</li>
+                    <li>Vulnerability to misinformation about what plurinationalism entails</li>
+                </ul>
+
+                <div class="quote">
+                    "The role of the political instrument serves to coalesce various peoples, groups, organizations, and movements into an articulated front that uses the same language and targets the same issues prior to the constituent assembly."
+                </div>
+            </div>
+        </section>
+
+        <section id="california" class="content-section">
+            <h2 class="section-title">Applications to California: The Plurinational Land Reform Working Group</h2>
+            
+            <div class="california-application">
+                <h3>From Theory to Practice</h3>
+                <p>The Plurinational Land Reform in California Working Group applies lessons from Latin American social movements to address land justice issues in California. Key applications include:</p>
+                
+                <div class="two-column">
+                    <div class="column">
+                        <h4>Theoretical Applications</h4>
+                        <ul>
+                            <li>Recognizing California as a settler colonial context with persistent indigenous nations</li>
+                            <li>Understanding land reform as both decolonization and postcapitalist transformation</li>
+                            <li>Applying the concept of "control social" (social control) as community self-management</li>
+                            <li>Developing multi-ethnic, multi-class coalitions around land and resource sovereignty</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h4>Organizational Lessons</h4>
+                        <ul>
+                            <li>The necessity of political education and formation processes</li>
+                            <li>Building coalitions before attempting institutional reforms</li>
+                            <li>Creating spaces for autonomous organization while supporting unified action</li>
+                            <li>Constructing alternatives to both state-centered and market-based land management</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Current Initiatives</h3>
+                <p>The Working Group is developing strategies for:</p>
+                <ul>
+                    <li>Community-based political education on land reform and plurinationalism</li>
+                    <li>Building coalitions between indigenous nations, migrant farmworkers, and urban housing movements</li>
+                    <li>Mapping land patterns and developing models for democratic land management</li>
+                    <li>Supporting campaigns for land rematriation and collective land stewardship</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="conclusion" class="content-section conclusion">
+            <h2 class="section-title">Key Findings and Implications</h2>
+            <p>The comparative study of plurinationalist projects in Latin America reveals several crucial factors for successful movements:</p>
+            <ol>
+                <li><strong>Organizational Capacity:</strong> The development of mass organizations with deep roots in communities is essential for articulating and mobilizing support for plurinational reforms.</li>
+                <li><strong>Political Instruments:</strong> Creating political vehicles that remain accountable to social movements while engaging with institutional politics is critical for translating popular mobilization into structural change.</li>
+                <li><strong>Coalition Building:</strong> Successful plurinationalist projects bridge indigenous, peasant, worker, and urban popular sectors through shared language and goals.</li>
+                <li><strong>Political Formation:</strong> Continuous political education and development of community leadership prevents co-optation and ensures movements can withstand challenges.</li>
+                <li><strong>Historical Context:</strong> The specific histories of state formation, repression, and resistance shape the possibilities and challenges for plurinational projects in each context.</li>
+            </ol>
+            
+            <div class="quote">
+                "Ultimately, struggle is the generative site of new theories of how to free ourselves — it is how you resolve the contradictions, and it is how you innovate in the face of reactionary counter-offensives."
+            </div>
+        </section>
+
+        <section id="resources" class="content-section">
+            <h2 class="section-title">Resources and Further Reading</h2>
+            <h3>Key Concepts</h3>
+            <ul>
+                <li><strong>Plurinational State:</strong> A form of state organization that recognizes multiple nations existing within its territory, with corresponding rights to self-governance and autonomy.</li>
+                <li><strong>El Instrumento Político:</strong> A political vehicle created by and accountable to social movements, designed to translate movement demands into institutional power.</li>
+                <li><strong>Control Social:</strong> Community-based governance mechanisms that enable collective self-management and decision-making.</li>
+                <li><strong>Pacto de Unidad:</strong> Coalition of indigenous, peasant, and social organizations that articulate common demands and coordinate actions.</li>
+            </ul>
+
+            <h3>Connect with the Working Group</h3>
+            <p>To learn more about the Plurinational Land Reform in California Working Group or to get involved:</p>
+            <ul>
+                <li>Email: <a href="mailto:plurinational.landreform@gmail.com">plurinational.landreform@gmail.com</a></li>
+                <li>Instagram: <a href="https://instagram.com/plurinational.landreform_cawg">@plurinational.landreform_cawg</a></li>
+            </ul>
+        </section>
+        
+        <a href="index.html" class="back-to-home">Back to Home</a>
+    </div>
+    
+    <footer>
+        <h3>Plurinational Land Reform in CA Working Group</h3>
+        <p>Working on stolen Ohlone, Miwok, Yokuts, Chumash, Tongva, Cahuilla, Kumeyaay, Acjachemen, and many other indigenous lands</p>
+        
+        <div class="social-links">
+            <a href="https://instagram.com/plurinational.landreform_cawg" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+        </div>
+        
+        <p>&copy; 2025 Plurinational Land Reform in CA Working Group. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Mobile dropdown toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            // No internal navigation links now
+        });
+    </script>
+</body>
+</html>
