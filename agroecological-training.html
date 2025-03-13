@@ -252,6 +252,53 @@
             color: var(--secondary-color);
         }
         
+        .click-indicator {
+            text-align: center;
+            color: var(--primary-color);
+            margin: 1rem 0;
+            font-size: 1.1rem;
+        }
+        
+        .clickable-image {
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .clickable-image a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .hover-effect {
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .hover-effect:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            border: 2px solid var(--accent-color);
+        }
+        
+        .clickable-image::after {
+            content: "🔍";
+            position: absolute;
+            right: 20px;
+            bottom: 50px;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .clickable-image:hover::after {
+            opacity: 1;
+        }
+        
         @media (max-width: 768px) {
             header h1 {
                 font-size: 2rem;
@@ -340,9 +387,13 @@
             
             <p>Our training approach draws from the People's Agroecology Process, which recognizes that agroecology is not just a set of farming techniques but a political, social, and economic movement. This framework emphasizes:</p>
             
-            <div class="image-container">
-                <img src="images/PeoplesAgroecology.png" alt="People's Agroecology Process Workshop">
-                <p class="image-caption">Participants in a People's Agroecology Process workshop discussing land rights and food sovereignty</p>
+            <p class="click-indicator"><strong>Click on the image below to view the full People's Agroecology document (PDF)</strong></p>
+            
+            <div class="image-container clickable-image">
+                <a href="documents/PeoplesAgroecologyProcess.pdf" target="_blank">
+                    <img src="images/PeoplesAgroecology.png" alt="People's Agroecology Process Workshop" class="hover-effect">
+                    <p class="image-caption">Participants in a People's Agroecology Process workshop discussing land rights and food sovereignty</p>
+                </a>
             </div>
             
             <div class="pillars-container">
