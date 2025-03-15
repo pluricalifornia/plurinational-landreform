@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Identificación de Parcelas y Planificación de Adquisición | Reforma Agraria Plurinacional en CA</title>
+    <style>
+        :root {
+            --primary-color: #3a3a6a;      
+            --secondary-color: #e71d36;     
+            --dark-color: #011627;         
+            --light-color: #f7f7f7;        
+            --accent-color: #ff9f1c;       
+            --accent-green: #8bc34a;      
+            --accent-red: #e53935;         
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #2a2a4a 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            border-bottom: 4px solid var(--accent-color);
+        }
+        
+        .logo-container {
+            margin-bottom: 1.5rem;
+        }
+        
+        .logo {
+            max-width: 100%;
+            height: auto;
+            max-height: 150px;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        nav {
+            background-color: var(--dark-color);
+            padding: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav ul li {
+            margin: 0 1rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        /* Dropdown Menu Styles */
+        .has-dropdown {
+            padding-bottom: 10px;
+            position: relative;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--dark-color);
+            min-width: 250px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 5px;
+            margin-top: 0.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            overflow: hidden;
+            padding-top: 10px;
+        }
+        
+        .dropdown-content a {
+            color: white;
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: var(--secondary-color);
+            padding-left: 1.25rem;
+        }
+        
+        .has-dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        /* Create an invisible bridge between menu item and dropdown */
+        .has-dropdown > a::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background-color: transparent;
+        }
+        
+        .language-toggle {
+            background-color: var(--secondary-color);
+            padding: 0.4rem 0.8rem;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .language-toggle:hover {
+            background-color: #c91020;
+        }
+        
+        .page-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+        }
+        
+        .page-title {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .page-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
+        }
+        
+        .content-section {
+            margin-bottom: 4rem;
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: var(--secondary-color);
+        }
+        
+        .image-container {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .image-container img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .image-caption {
+            margin-top: 1rem;
+            text-align: center;
+            font-style: italic;
+            color: #666;
+        }
+        
+        .back-to-home {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .back-to-home:hover {
+            background-color: #2a2a50;
+        }
+        
+        .callout-box {
+            background-color: rgba(139, 195, 74, 0.1);
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-green);
+            margin: 2rem 0;
+        }
+        
+        .callout-box h3 {
+            color: var(--accent-green);
+            margin-bottom: 1rem;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, var(--dark-color) 0%, #000 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            border-top: 4px solid var(--accent-color);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+            gap: 1.5rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+            
+            .dropdown-content {
+                position: static;
+                transform: none;
+                box-shadow: none;
+                margin-top: 0.5rem;
+                display: none;
+                width: 100%;
+                border-radius: 0;
+            }
+            
+            .has-dropdown:hover .dropdown-content {
+                display: none; /* Don't show on hover for mobile */
+            }
+            
+            .has-dropdown.active .dropdown-content {
+                display: block;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <!-- Replace with your actual logo path -->
+            <img src="images/pluri-logo.jpg" alt="Logo del Grupo de Trabajo para la Reforma Agraria Plurinacional en CA" class="logo">
+        </div>
+        <h1>Identificación de Parcelas y Planificación de Adquisición</h1>
+        <p>Proporcionando servicios estratégicos de identificación de tierras para comunidades sin tierra</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="index.html#about">Sobre Nosotros</a></li>
+            <li class="has-dropdown">
+                <a href="#mission">Nuestro Trabajo</a>
+                <div class="dropdown-content">
+                    <a href="regional-mapping.html">Análisis de Mapeo Regional</a>
+                    <a href="absentee-landowner.html">Análisis de Impacto de Propietarios Ausentes</a>
+                    <a href="parcel-identification.html">Identificación de Parcelas y Planificación de Adquisición</a>
+                    <a href="public-leasing.html">Promoción de Arrendamiento Público</a>
+                    <a href="suitability-analysis.html">Aptitud para Pastoreo y Agricultura</a>
+                    <a href="agroecological-training.html">Formación Agroecológica y Desarrollo de Liderazgo</a>
+                </div>
+            </li>
+            <li><a href="OurCompass.html">Nuestra Brújula</a></li>
+            <li><a href="for-students.html">Para Estudiantes</a></li>
+            <li><a href="index.html#events">Eventos</a></li>
+            <li><a href="index.html#get-involved">Contacto</a></li>
+            <li><a href="parcel-identification.html" class="language-toggle">English</a></li>
+        </ul>
+    </nav>
+    
+    <div class="page-content">
+        <h1 class="page-title">Identificación de Parcelas y Planificación de Adquisición</h1>
+        
+        <div class="content-section">
+            <p>Nuestro trabajo de identificación de parcelas y planificación de adquisición apoya directamente a las comunidades sin tierra que buscan acceder a tierras agrícolas en California. Combinamos análisis geoespacial, experiencia legal y organización comunitaria para identificar parcelas estratégicas para adquisición y desarrollar vías realistas hacia la propiedad o el acceso.</p>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title">Servicios Gratuitos para Comunidades sin Tierra</h2>
+            
+            <div class="callout-box">
+                <h3>A Quiénes Servimos</h3>
+                <p>Proporcionamos estos servicios sin costo para personas y comunidades sin tierra en situación de pobreza, incluyendo:</p>
+                <ul>
+                    <li>Agricultores arrendatarios que buscan propiedad de tierra</li>
+                    <li>Trabajadores agrícolas interesados en hacer la transición a la agricultura independiente</li>
+                    <li>Naciones indígenas reconocidas federalmente que trabajan para expandir su base territorial</li>
+                    <li>Naciones indígenas no reconocidas federalmente que buscan recuperar territorios ancestrales</li>
+                    <li>Iniciativas de agricultura cooperativa lideradas por personas negras, indígenas y otras personas de color</li>
+                </ul>
+                <p><strong>Por favor contáctenos si su comunidad necesita apoyo con la identificación de tierras y la planificación de adquisición.</strong></p>
+            </div>
+            
+            <p>Nuestro enfoque es profundamente colaborativo. Trabajamos directamente con miembros de la comunidad para comprender sus necesidades específicas, objetivos agrícolas y relaciones culturales con la tierra. En lugar de imponer soluciones externas, proporcionamos apoyo técnico que capacita a las comunidades para tomar sus propias decisiones informadas sobre la adquisición de tierras.</p>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title">Iniciativa del Valle de Coachella</h2>
+            
+            <div class="image-container">
+                <img src="images/Valle de Coachella.png" alt="Vamos hacia la Reforma Agraria Integral y Popular en el Valle de Coachella">
+                <p class="image-caption">"Vamos hacia la Reforma Agraria Integral y Popular en el Valle de Coachella" - Documento de planificación comunitaria</p>
+            </div>
+            
+            <p>El Valle de Coachella representa una de nuestras áreas principales de enfoque para la identificación de parcelas dirigida por la comunidad. Esta región ejemplifica muchos de los desafíos y oportunidades que enfrentan los trabajadores agrícolas en toda California:</p>
+            
+            <ul>
+                <li>Gran concentración de comunidades de trabajadores agrícolas con profundo conocimiento agrícola</li>
+                <li>Presencia significativa de propietarios ausentes e intereses agrícolas corporativos</li>
+                <li>Aumento de los precios de la tierra debido a la presión del desarrollo y la intensificación agrícola</li>
+                <li>Problemas complejos de derechos de agua y desafíos ambientales</li>
+                <li>Comunidades indígenas con relaciones históricas y continuas con la tierra</li>
+            </ul>
+            
+            <p>Nuestro trabajo en el Valle de Coachella se ha centrado en identificar:</p>
+            
+            <ul>
+                <li>Parcelas agrícolas subutilizadas adecuadas para agricultura diversificada a pequeña escala</li>
+                <li>Tierra con derechos de agua seguros que podría apoyar prácticas agroecológicas</li>
+                <li>Tierras de propiedad pública que podrían ser transformadas para uso agrícola comunitario</li>
+                <li>Parcelas adecuadas para modelos de propiedad cooperativa</li>
+            </ul>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title">Nuestro Proceso Colaborativo</h2>
+            
+            <p>Nuestro proceso de identificación de parcelas y planificación de adquisición típicamente incluye:</p>
+            
+            <ol>
+                <li><strong>Evaluación de Necesidades Comunitarias:</strong> Trabajar con miembros de la comunidad para comprender sus necesidades específicas de tierra, objetivos agrícolas y capacidad</li>
+                <li><strong>Análisis Regional de Tierras:</strong> Utilizar SIG y otras herramientas para identificar parcelas potenciales basadas en criterios comunitarios</li>
+                <li><strong>Análisis Legal y Financiero:</strong> Investigar la propiedad, zonificación, derechos de agua y posibles vías de adquisición</li>
+                <li><strong>Desarrollo de Estrategia de Adquisición:</strong> Desarrollar colaborativamente planes realistas para la adquisición de tierras mediante compra, arrendamiento, asociación o promoción de políticas</li>
+                <li><strong>Investigación de Financiamiento:</strong> Identificar posibles fuentes de financiamiento, incluyendo subvenciones, préstamos y mecanismos de financiamiento innovadores</li>
+                <li><strong>Apoyo Técnico:</strong> Proporcionar asistencia continua durante todo el proceso de adquisición</li>
+            </ol>
+            
+            <p>Si bien nuestro enfoque principal es apoyar a las comunidades para adquirir sus propias tierras, reconocemos que la propiedad completa no siempre es inmediatamente alcanzable dados los precios extremos de la tierra en California. Por lo tanto, nuestro trabajo incluye el desarrollo de modelos alternativos de acceso a la tierra, incluyendo:</p>
+            
+            <ul>
+                <li>Arrendamientos seguros a largo plazo con disposiciones de camino hacia la propiedad</li>
+                <li>Modelos de fideicomiso de tierras comunitarias</li>
+                <li>Estructuras de propiedad cooperativa</li>
+                <li>Acuerdos de acceso a tierras públicas</li>
+                <li>Asociaciones con propietarios de tierras que brindan apoyo</li>
+            </ul>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title">Contáctenos para Obtener Apoyo</h2>
+            
+            <p>Si su comunidad está buscando apoyo con identificación de tierras y planificación de adquisición, por favor contáctenos. Estamos comprometidos a proporcionar estos servicios sin costo para personas y comunidades sin tierra en toda California.</p>
+            
+            <p>Si bien nuestra capacidad es limitada, priorizamos trabajar con aquellos más afectados por el despojo histórico y continuo de tierras, particularmente comunidades indígenas y comunidades de trabajadores agrícolas que buscan hacer la transición a la agricultura independiente.</p>
+        </div>
+    
+                <li>Correo electrónico: <a href="mailto:pluricalifornia@gmail.com">pluricalifornia@gmail.com</a></li>
+                <li>Instagram: <a href="https://instagram.com/plurinational.landreform_cawg">@plurinational.landreform_cawg</a></li>
+            </ul>
+        </section>
+        <a href="index.html" class="back-to-home">Volver al Inicio</a>
+    </div>
+    
+    <footer>
+        <h3>Grupo de Trabajo para la Reforma Agraria Plurinacional en CA</h3>
+        <p>Trabajando en tierras robadas de Ohlone, Miwok, Yokuts, Chumash, Tongva, Cahuilla, Kumeyaay, Acjachemen, y muchos otros pueblos indígenas</p>
+        
+        <div class="social-links">
+            <a href="https://instagram.com/plurinational.landreform_cawg" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+        </div>
+        
+        <p>&copy; 2025 Grupo de Trabajo para la Reforma Agraria Plurinacional en CA. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // Mobile dropdown toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdownLinks = document.querySelectorAll('.has-dropdown > a');
+            
+            dropdownLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        this.parentElement.classList.toggle('active');
+                    }
+                });
+            });
+            
+            // Ensure dropdown items work properly
+            const dropdownItems = document.querySelectorAll('.dropdown-content a');
+            dropdownItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    // Allow normal navigation when clicking on dropdown items
+                    window.location.href = this.getAttribute('href');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
