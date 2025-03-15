@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis de Mapeo Regional | Reforma Agraria Plurinacional en CA</title>
+    <style>
+        :root {
+            --primary-color: #3a3a6a;      
+            --secondary-color: #e71d36;     
+            --dark-color: #011627;         
+            --light-color: #f7f7f7;        
+            --accent-color: #ff9f1c;       
+            --accent-green: #8bc34a;      
+            --accent-red: #e53935;         
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #2a2a4a 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            border-bottom: 4px solid var(--accent-color);
+        }
+        
+        .logo-container {
+            margin-bottom: 1.5rem;
+        }
+        
+        .logo {
+            max-width: 100%;
+            height: auto;
+            max-height: 150px;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        nav {
+            background-color: var(--dark-color);
+            padding: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav ul li {
+            margin: 0 1rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        /* Dropdown Menu Styles */
+        .has-dropdown {
+            padding-bottom: 10px;
+            position: relative;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--dark-color);
+            min-width: 250px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 5px;
+            margin-top: 0.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            overflow: hidden;
+            padding-top: 10px;
+        }
+        
+        .dropdown-content a {
+            color: white;
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: var(--secondary-color);
+            padding-left: 1.25rem;
+        }
+        
+        .has-dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        /* Create an invisible bridge between menu item and dropdown */
+        .has-dropdown > a::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background-color: transparent;
+        }
+        
+        .language-toggle {
+            background-color: var(--secondary-color);
+            padding: 0.4rem 0.8rem;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .language-toggle:hover {
+            background-color: #c91020;
+        }
+        
+        .page-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+        }
+        
+        .page-title {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .page-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
+        }
+        
+        .content-section {
+            margin-bottom: 4rem;
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: var(--secondary-color);
+        }
+        
+        .image-container {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .image-container img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .image-caption {
+            margin-top: 1rem;
+            text-align: center;
+            font-style: italic;
+            color: #666;
+        }
+        
+        .back-to-home {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .back-to-home:hover {
+            background-color: #2a2a50;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, var(--dark-color) 0%, #000 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            border-top: 4px solid var(--accent-color);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+            gap: 1.5rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        /* Mobile-specific dropdown adjustments */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+            
+            .dropdown-content {
+                position: static;
+                transform: none;
+                box-shadow: none;
+                margin-top: 0.5rem;
+                display: none;
+                width: 100%;
+                border-radius: 0;
+            }
+            
+            .has-dropdown:hover .dropdown-content {
+                display: none; /* Don't show on hover for mobile */
+            }
+            
+            .has-dropdown.active .dropdown-content {
+                display: block;
+            }
+            
+            .dropdown-content a:hover {
+                padding-left: 1.5rem; /* Slightly more indent on mobile */
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <!-- Replace with your actual logo path -->
+            <img src="images/pluri-logo.jpg" alt="Logo del Grupo de Trabajo para la Reforma Agraria Plurinacional en CA" class="logo">
+        </div>
+        <h1>Análisis de Mapeo Regional</h1>
+        <p>Comprendiendo patrones complejos de tierras para informar estrategias de reforma equitativa</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="index.html#about">Sobre Nosotros</a></li>
+            <li class="has-dropdown">
+                <a href="#mission">Nuestro Trabajo</a>
+                <div class="dropdown-content">
+                    <a href="regional-mapping.html">Análisis de Mapeo Regional</a>
+                    <a href="absentee-landowner.html">Análisis de Impacto de Propietarios Ausentes</a>
+                    <a href="parcel-identification.html">Identificación de Parcelas y Planificación de Adquisición</a>
+                    <a href="public-leasing.html">Promoción de Arrendamiento Público</a>
+                    <a href="suitability-analysis.html">Aptitud para Pastoreo y Agricultura</a>
+                    <a href="agroecological-training.html">Formación Agroecológica y Desarrollo de Liderazgo</a>
+                </div>
+            </li>
+            <li><a href="OurCompass.html">Nuestra Brújula</a></li>
+            <li><a href="for-students.html">Para Estudiantes</a></li>
+            <li><a href="index.html#events">Eventos</a></li>
+            <li><a href="index.html#get-involved">Contacto</a></li>
+            <li><a href="regional-mapping.html" class="language-toggle">English</a></li>
+        </ul>
+    </nav>
+    
+    <div class="page-content">
+        <h1 class="page-title">Análisis de Mapeo Regional</h1>
+        
+        <div class="content-section">
+            <p>Nuestro análisis de mapeo regional se enfoca en comprender las relaciones complejas entre el uso de la tierra, la propiedad, el potencial agrícola y los sistemas ecológicos en toda California. A través de técnicas geoespaciales avanzadas, identificamos patrones que pueden informar estrategias de reforma agraria más equitativas y sostenibles.</p>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title">Vías de Política</h2>
+            <p>Nuestra metodología se basa en el uso de conjuntos de datos SSURGO, clases de clasificación de tierras agrícolas, conjuntos de datos de uso de la tierra y datos de parcelas para identificar las siguientes vías de política:</p>
+            
+            <div class="image-container">
+                <img src="images/coachella-land-use-map.jpg" alt="Mapa de Uso de Suelo del Valle de Coachella">
+                <p class="image-caption">Cuatro mapas de vías de política que ilustran diferentes enfoques para la reforma agraria en el Valle de Coachella.</p>
+            </div>
+            
+            <ol>
+                <li><strong>Tierras Agrícolas de Primera Calidad en Terrenos No Desarrollados:</strong> El estado podría adoptar una política de cambio de uso de suelo que busque cultivar tierras productivas no utilizadas: una política aplicada en todo el mundo para ampliar el acceso a la tierra para poblaciones sin tierra — la Ley Williamson ya proporciona una base legal y de incentivos fiscales para mantener/avanzar la agricultura en estas tierras; reformas constitucionales estatales más sólidas, como una cláusula de función social de la propiedad, podrían proporcionar fundamentos legales más robustos para que las comunidades se autodefiendan y obtengan acceso a esta tierra. Las preocupaciones ambientales que rodean esta tierra pueden involucrar la degradación del medio ambiente dada la intensificación de la agricultura en estas áreas que ya sufren de escasez de agua. Sin embargo, combinar la agroecología con estas tierras recién abiertas nos brinda oportunidades para aumentar las oportunidades económicas para las personas sin tierra que buscan tierra, así como proteger nuestro medio ambiente.</li>
+                <li><strong>Tierras Agrícolas de Primera Calidad en Tierras Tribales Reconocidas Federalmente:</strong> Muchas de las tierras de reserva también están zonificadas como "conservación" y "recreación" (observe la Reserva Morongo y la Reserva Los Coyotes). Los fondos estatales contemporáneos de recompra de tierras tribales y fundaciones externas pueden proporcionar el capital necesario para transformar esta tierra en miembros tribales inscritos, quienes han expresado cada vez más críticas a las transacciones de "devolución de tierras" restringidas al uso de tierras de conservación.</li>
+                <li><strong>Tierras Agrícolas de Primera Calidad en Tierras Recreativas/Espacios Abiertos:</strong> Las parcelas rojas de tierra requerirían un cambio en los códigos de uso de la tierra por parte del estado/condado/ciudad. Esto puede ser más difícil considerando el hecho de que los residentes, especialmente aquellos que ejercen un poder político significativo, pueden querer mantener sus campos de golf y senderos para caminatas. Sin embargo, esto no es imposible y solo requeriría una amplia construcción de coaliciones e innovaciones de uso agroecológico y comunitario. Utilizar incentivos fiscales para la agricultura urbana podría proporcionar estabilidad financiera para las transformaciones de parques, junto con los incentivos de la Ley Williamson presentes para senderos de excursionismo — esto es especialmente importante para la tierra ubicada en territorio tribal federal. También debe notarse que se pueden crear arrendamientos de terrenos con tierras de propiedad gubernamental para facilitar el acceso a la tierra para personas sin tierra interesadas en utilizarla para la producción agrícola.</li>
+                <li><strong>Tierras Agrícolas de Primera Calidad en Uso Agrícola:</strong> Las parcelas de tierra azules requerirían negociaciones con los propietarios privados actuales para vender su tierra, especialmente a medida que se acercan a la edad de jubilación. Un gobierno estatal que apoyara el acceso a la tierra les ayudaría a todos ustedes a acceder a los fondos para adquirir dicha tierra, así como a proporcionar los incentivos adecuados para negociar con el propietario privado.</li>
+            </ol>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title">Tierras Improductivas y Función Social de la Propiedad</h2>
+            <p>Un aspecto clave de nuestro trabajo de mapeo implica identificar y analizar "tierras improductivas" - parcelas que actualmente están subutilizadas o gestionadas de manera que no cumplen con su potencial social y ecológico.</p>
+            
+            <p>Nos basamos en el concepto de la "función social de la propiedad" - una doctrina legal reconocida en muchas constituciones latinoamericanas que establece que la propiedad conlleva obligaciones sociales. Este principio ha sido fundamental para legitimar programas de reforma agraria en toda América.</p>
+            
+            <p>Nuestro mapeo identifica:</p>
+            <ul>
+                <li>Parcelas de propietarios ausentes que permanecen en barbecho a pesar de su potencial agrícola</li>
+                <li>Tenencias de tierras especulativas que aumentan los precios sin uso productivo</li>
+                <li>Tierras degradadas que podrían beneficiarse de la restauración agroecológica</li>
+                <li>Tierras de propiedad corporativa operadas a través de prácticas laborales explotadoras</li>
+            </ul>
+            
+            <p>Al cuantificar y visualizar estos patrones, proporcionamos apoyo empírico para iniciativas políticas que priorizan la función social de la tierra agrícola sobre los derechos de propiedad absolutos.</p>
+        </div>
+        
+        <a href="index.html" class="back-to-home">Volver al Inicio</a>
+    </div>
+    
+    <footer>
+        <h3>Grupo de Trabajo para la Reforma Agraria Plurinacional en CA</h3>
+        <p>Trabajando en tierras robadas de Ohlone, Miwok, Yokuts, Chumash, Tongva, Cahuilla, Kumeyaay, Acjachemen, y muchos otros pueblos indígenas</p>
+        
+        <div class="social-links">
+            <a href="https://instagram.com/plurinational.landreform_cawg" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+        </div>
+        
+        <p>&copy; 2025 Grupo de Trabajo para la Reforma Agraria Plurinacional en CA. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // Mobile dropdown toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdownLinks = document.querySelectorAll('.has-dropdown > a');
+            
+            dropdownLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        this.parentElement.classList.toggle('active');
+                    }
+                });
+            });
+            
+            // Ensure dropdown items work properly
+            const dropdownItems = document.querySelectorAll('.dropdown-content a');
+            dropdownItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    // Allow normal navigation when clicking on dropdown items
+                    window.location.href = this.getAttribute('href');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
