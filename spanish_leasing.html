@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promoción de Arrendamiento Público | Reforma Agraria Plurinacional en CA</title>
+    <style>
+        :root {
+            --primary-color: #3a3a6a;      
+            --secondary-color: #e71d36;     
+            --dark-color: #011627;         
+            --light-color: #f7f7f7;        
+            --accent-color: #ff9f1c;       
+            --accent-green: #8bc34a;      
+            --accent-red: #e53935;         
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #2a2a4a 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            border-bottom: 4px solid var(--accent-color);
+        }
+        
+        .logo-container {
+            margin-bottom: 1.5rem;
+        }
+        
+        .logo {
+            max-width: 100%;
+            height: auto;
+            max-height: 150px;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        nav {
+            background-color: var(--dark-color);
+            padding: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav ul li {
+            margin: 0 1rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        /* Dropdown Menu Styles */
+        .has-dropdown {
+            padding-bottom: 10px;
+            position: relative;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--dark-color);
+            min-width: 250px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 5px;
+            margin-top: 0.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            overflow: hidden;
+            padding-top: 10px;
+        }
+        
+        .dropdown-content a {
+            color: white;
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: var(--secondary-color);
+            padding-left: 1.25rem;
+        }
+        
+        .has-dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        /* Create an invisible bridge between menu item and dropdown */
+        .has-dropdown > a::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background-color: transparent;
+        }
+        
+        .language-toggle {
+            background-color: var(--secondary-color);
+            padding: 0.4rem 0.8rem;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .language-toggle:hover {
+            background-color: #c91020;
+        }
+        
+        .page-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+        }
+        
+        .page-title {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .page-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
+        }
+        
+        .content-section {
+            margin-bottom: 4rem;
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: var(--secondary-color);
+        }
+        
+        .image-container {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .image-container img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .image-caption {
+            margin-top: 1rem;
+            text-align: center;
+            font-style: italic;
+            color: #666;
+        }
+        
+        .back-to-home {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .back-to-home:hover {
+            background-color: #2a2a50;
+        }
+        
+        .quote-box {
+            background-color: rgba(231, 29, 54, 0.1);
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--secondary-color);
+            margin: 2rem 0;
+            font-style: italic;
+        }
+        
+        .quote-box p {
+            margin-bottom: 1rem;
+        }
+        
+        .quote-box cite {
+            display: block;
+            text-align: right;
+            font-weight: bold;
+            font-style: normal;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, var(--dark-color) 0%, #000 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            border-top: 4px solid var(--accent-color);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+            gap: 1.5rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+            
+            .dropdown-content {
+                position: static;
+                transform: none;
+                box-shadow: none;
+                margin-top: 0.5rem;
+                display: none;
+                width: 100%;
+                border-radius: 0;
+            }
+            
+            .has-dropdown:hover .dropdown-content {
+                display: none; /* Don't show on hover for mobile */
+            }
+            
+            .has-dropdown.active .dropdown-content {
+                display: block;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <!-- Replace with your actual logo path -->
+            <img src="images/pluri-logo.jpg" alt="Logo del Grupo de Trabajo para la Reforma Agraria Plurinacional en CA" class="logo">
+        </div>
+        <h1>Promoción de Arrendamiento Público</h1>
+        <p>Impulsando modelos de arrendamiento de tierras públicas para la agricultura regenerativa y la administración indígena</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="index.html#about">Sobre Nosotros</a></li>
+            <li class="has-dropdown">
+                <a href="#mission">Nuestro Trabajo</a>
+                <div class="dropdown-content">
+                    <a href="regional-mapping.html">Análisis de Mapeo Regional</a>
+                    <a href="absentee-landowner.html">Análisis de Impacto de Propietarios Ausentes</a>
+                    <a href="parcel-identification.html">Identificación de Parcelas y Planificación de Adquisición</a>
+                    <a href="public-leasing.html">Promoción de Arrendamiento Público</a>
+                    <a href="suitability-analysis.html">Aptitud para Pastoreo y Agricultura</a>
+                    <a href="agroecological-training.html">Formación Agroecológica y Desarrollo de Liderazgo</a>
+                </div>
+            </li>
+            <li><a href="OurCompass.html">Nuestra Brújula</a></li>
+            <li><a href="for-students.html">Para Estudiantes</a></li>
+            <li><a href="index.html#events">Eventos</a></li>
+            <li><a href="index.html#get-involved">Contacto</a></li>
+            <li><a href="public-leasing.html" class="language-toggle">English</a></li>
+        </ul>
+    </nav>
+    
+    <div class="page-content">
+        <h1 class="page-title">Promoción de Arrendamiento Público</h1>
+        
+        <div class="content-section">
+            <p>Nuestro trabajo de promoción de arrendamiento público se enfoca en desarrollar marcos de políticas y modelos prácticos para poner las tierras públicas a disposición de personas sin tierra para la agricultura regenerativa. Dada la extrema falta de accesibilidad del mercado de tierras de California, el arrendamiento de tierras públicas representa una vía fundamental para expandir el acceso a la tierra y promover la soberanía alimentaria.</p>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title">Análisis de Aptitud de Tierras Públicas</h2>
+            
+            <div class="image-container">
+                <img src="images/PublicLandsAdvocacy.jpg" alt="Mapa de Análisis de Aptitud de Tierras Públicas" style="max-width: 100%; width: 800px;">
+                <p class="image-caption">Análisis de aptitud de un parque estatal para posible agricultura y pastoreo.</p>
+            </div>
+            
+            <p>Nuestro análisis de aptitud identifica tierras públicas que podrían sustentar la agricultura regenerativa sin comprometer la integridad ecológica. Analizamos factores que incluyen:</p>
+            
+            <ul>
+                <li>Calidad del suelo y potencial agrícola</li>
+                <li>Disponibilidad de agua y derechos</li>
+                <li>Condición ecológica actual y valor de conservación</li>
+                <li>Patrones actuales de uso público</li>
+                <li>Infraestructura y accesibilidad</li>
+                <li>Proximidad a posibles administradores/agricultores</li>
+                <li>Relaciones históricas con la tierra, particularmente con comunidades indígenas</li>
+            </ul>
+            
+            <p>A través de este análisis, identificamos parcelas públicas que podrían gestionarse mediante enfoques agroecológicos centrados en la comunidad que mejoren en lugar de disminuir las funciones ecológicas.</p>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title">Críticas Indígenas a la Conservación Tipo Fortaleza</h2>
+            
+            <p>Nuestra labor de promoción está informada por críticas indígenas a los paradigmas dominantes de conservación que históricamente han excluido a las comunidades humanas de sus tierras tradicionales en nombre de la preservación. En California, la creación de áreas "silvestres", parques y otras tierras protegidas a menudo ha implicado la eliminación y exclusión de los pueblos indígenas que habían administrado estos paisajes durante milenios.</p>
+            
+            <div class="quote-box">
+                <p>"El movimiento de conservación, nacido de la imaginación colonial-colonizadora, creó áreas silvestres eliminando a los pueblos indígenas de sus tierras. Ahora enfrentamos crisis ecológicas precisamente por esta separación de los humanos del mundo natural."</p>
+                <cite>- Académico indígena de justicia ambiental</cite>
+            </div>
+            
+            <p>Reconocemos que los modelos dominantes de conservación en California a menudo:</p>
+            
+            <ul>
+                <li>Refuerzan relaciones coloniales con la tierra al crear límites artificiales entre los humanos y la "naturaleza"</li>
+                <li>Ignoran el papel de la gestión indígena de la tierra en la creación y mantenimiento de los diversos ecosistemas de California</li>
+                <li>Privilegian el acceso recreativo para usuarios predominantemente blancos y acomodados mientras excluyen los usos tradicionales de la tierra por parte de comunidades indígenas y otras comunidades marginadas</li>
+                <li>No abordan las causas estructurales de la degradación ambiental, como el capitalismo industrial y las economías extractivas</li>
+            </ul>
+            
+            <p>Nuestra promoción de arrendamiento público busca transformar estos paradigmas trascendiendo las divisiones Humano/Naturaleza y reconociendo nuestro papel como administradores ecológicos de la tierra que equilibran nuestra reproducción social y los ecosistemas en los que estamos inmersos.</p>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title">Derechos de Usufructo e Intervención Estatal en el Mercado</h2>
+            
+            <p>Dada la extrema falta de accesibilidad del mercado de tierras de California, el acceso a tierras públicas representa una de las únicas vías viables para que muchas personas sin tierra establezcan medios de vida agrícolas. Abogamos por:</p>
+            
+            <ul>
+                <li>Desarrollo de <strong>regímenes de propiedad usufructuaria</strong> en tierras públicas que otorguen derechos para usar y derivar ingresos de la tierra con tenencia garantizada por el estado.</li>
+                <li>Arrendamientos seguros a largo plazo (20 - 90+ años) que proporcionen suficiente seguridad de tenencia para la inversión agrícola.</li>
+                <li>Priorización del acceso para comunidades históricamente marginadas con sus especificaciones geográficas. Empoderamiento de personas pobres sin tierra existentes como pueblos indígenas, trabajadores agrícolas, arrendatarios negros y otras comunidades rurales sin tierra.</li>
+                <li>Acuerdos de arrendamiento que requieran y apoyen prácticas agrícolas regenerativas.</li>
+                <li>Integración del conocimiento ecológico tradicional y las prácticas agroecológicas contemporáneas.</li>
+                <li>Creación de modelos de arrendamiento cooperativo que apoyen la gestión colectiva de la tierra.</li>
+            </ul>
+            
+            <p>Este enfoque representa una forma de intervención estatal en el mercado necesaria para abordar las inequidades estructurales del mercado de tierras de California, que ha sido moldeado por patrones históricos de desposesión, especulación y consolidación.</p>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title">Reconciliando Agricultura y Conservación</h2>
+            
+            <p>Un principio fundamental de nuestra promoción de arrendamiento público es que la preservación ambiental no está inherentemente en conflicto con la agricultura. Esta falsa dicotomía surge de una visión colonial del mundo que separa a los humanos de la naturaleza y no distingue entre la agricultura industrial extractiva y los sistemas agrícolas regenerativos.</p>
+            
+            <p>Abogamos por una agricultura que:</p>
+            
+            <ul>
+                <li>Mejore en lugar de agotar la salud del suelo y la biodiversidad</li>
+                <li>Construya capacidad de almacenamiento de carbono en suelos y vegetación perenne</li>
+                <li>Cree hábitat para especies nativas a través del diseño agroecológico integrado</li>
+                <li>Incorpore prácticas tradicionales de manejo de la tierra como la quema cultural indígena</li>
+                <li>Reduzca en lugar de acelerar el cambio climático</li>
+                <li>Cree medios de vida justos mientras produce alimentos nutritivos para las comunidades locales</li>
+            </ul>
+            
+            <p>El modelo de conservación tipo fortaleza surgió en respuesta a los impactos devastadores de las industrias extractivas, incluida la agricultura industrial. Sin embargo, los sistemas agrícolas regenerativos gestionados por comunidades con relaciones profundas con la tierra pueden mejorar la función del ecosistema mientras producen alimentos y fibras para las necesidades humanas.</p>
+            
+            <p>Nuestra labor de promoción busca transformar la gestión de tierras públicas para reconocer el potencial de las comunidades humanas como participantes beneficiosos en los sistemas ecológicos en lugar de amenazas inherentes que deben ser excluidas.</p>
+        </div>
+        
+        <a href="index.html" class="back-to-home">Volver al Inicio</a>
+    </div>
+    
+    <footer>
+        <h3>Grupo de Trabajo para la Reforma Agraria Plurinacional en CA</h3>
+        <p>Trabajando en tierras robadas de Ohlone, Miwok, Yokuts, Chumash, Tongva, Cahuilla, Kumeyaay, Acjachemen, y muchos otros pueblos indígenas</p>
+        
+        <div class="social-links">
+            <a href="https://instagram.com/plurinational.landreform_cawg" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+        </div>
+        
+        <p>&copy; 2025 Grupo de Trabajo para la Reforma Agraria Plurinacional en CA. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // Mobile dropdown toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdownLinks = document.querySelectorAll('.has-dropdown > a');
+            
+            dropdownLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        this.parentElement.classList.toggle('active');
+                    }
+                });
+            });
+            
+            // Ensure dropdown items work properly
+            const dropdownItems = document.querySelectorAll('.dropdown-content a');
+            dropdownItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    // Allow normal navigation when clicking on dropdown items
+                    window.location.href = this.getAttribute('href');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
