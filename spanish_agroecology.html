@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formación Agroecológica y Desarrollo de Liderazgo | Reforma Agraria Plurinacional en CA</title>
+    <style>
+        :root {
+            --primary-color: #3a3a6a;      
+            --secondary-color: #e71d36;     
+            --dark-color: #011627;         
+            --light-color: #f7f7f7;        
+            --accent-color: #ff9f1c;       
+            --accent-green: #8bc34a;      
+            --accent-red: #e53935;         
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #2a2a4a 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            border-bottom: 4px solid var(--accent-color);
+        }
+        
+        .logo-container {
+            margin-bottom: 1.5rem;
+        }
+        
+        .logo {
+            max-width: 100%;
+            height: auto;
+            max-height: 150px;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        nav {
+            background-color: var(--dark-color);
+            padding: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav ul li {
+            margin: 0 1rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        /* Dropdown Menu Styles */
+        .has-dropdown {
+            padding-bottom: 10px;
+            position: relative;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--dark-color);
+            min-width: 250px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 5px;
+            margin-top: 0.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            overflow: hidden;
+            padding-top: 10px;
+        }
+        
+        .dropdown-content a {
+            color: white;
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: var(--secondary-color);
+            padding-left: 1.25rem;
+        }
+        
+        .has-dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        /* Create an invisible bridge between menu item and dropdown */
+        .has-dropdown > a::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background-color: transparent;
+        }
+        
+        .language-toggle {
+            background-color: var(--secondary-color);
+            padding: 0.4rem 0.8rem;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .language-toggle:hover {
+            background-color: #c91020;
+        }
+        
+        .page-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+        }
+        
+        .page-title {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .page-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
+        }
+        
+        .content-section {
+            margin-bottom: 4rem;
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: var(--secondary-color);
+        }
+        
+        .image-container {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .image-container img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .image-caption {
+            margin-top: 1rem;
+            text-align: center;
+            font-style: italic;
+            color: #666;
+        }
+        
+        .back-to-home {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .back-to-home:hover {
+            background-color: #2a2a50;
+        }
+        
+        .training-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .training-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            border-top: 4px solid var(--accent-green);
+        }
+        
+        .training-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .training-card-content {
+            padding: 1.5rem;
+        }
+        
+        .training-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .pillars-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .pillar {
+            background-color: rgba(139, 195, 74, 0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-green);
+        }
+        
+        .pillar h3 {
+            color: var(--accent-green);
+            margin-bottom: 1rem;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, var(--dark-color) 0%, #000 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            border-top: 4px solid var(--accent-color);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+            gap: 1.5rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .click-indicator {
+            text-align: center;
+            color: var(--primary-color);
+            margin: 1rem 0;
+            font-size: 1.1rem;
+        }
+        
+        .clickable-image {
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .clickable-image a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .hover-effect {
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .hover-effect:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            border: 2px solid var(--accent-color);
+        }
+        
+        .clickable-image::after {
+            content: "🔍";
+            position: absolute;
+            right: 20px;
+            bottom: 50px;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .clickable-image:hover::after {
+            opacity: 1;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+            
+            .dropdown-content {
+                position: static;
+                transform: none;
+                box-shadow: none;
+                margin-top: 0.5rem;
+                display: none;
+                width: 100%;
+                border-radius: 0;
+            }
+            
+            .has-dropdown:hover .dropdown-content {
+                display: none; /* Don't show on hover for mobile */
+            }
+            
+            .has-dropdown.active .dropdown-content {
+                display: block;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <!-- Replace with your actual logo path -->
+            <img src="images/pluri-logo.jpg" alt="Logo del Grupo de Trabajo para la Reforma Agraria Plurinacional en CA" class="logo">
+        </div>
+        <h1>Formación Agroecológica y Desarrollo de Liderazgo</h1>
+        <p>Integrando conocimientos técnicos de agricultura con educación política y organización comunitaria</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="index.html#about">Sobre Nosotros</a></li>
+            <li class="has-dropdown">
+                <a href="#mission">Nuestro Trabajo</a>
+                <div class="dropdown-content">
+                    <a href="regional-mapping.html">Análisis de Mapeo Regional</a>
+                    <a href="absentee-landowner.html">Análisis de Impacto de Propietarios Ausentes</a>
+                    <a href="parcel-identification.html">Identificación de Parcelas y Planificación de Adquisición</a>
+                    <a href="public-leasing.html">Promoción de Arrendamiento Público</a>
+                    <a href="suitability-analysis.html">Aptitud para Pastoreo y Agricultura</a>
+                    <a href="agroecological-training.html">Formación Agroecológica y Desarrollo de Liderazgo</a>
+                </div>
+            </li>
+            <li><a href="OurCompass.html">Nuestra Brújula</a></li>
+            <li><a href="for-students.html">Para Estudiantes</a></li>
+            <li><a href="index.html#events">Eventos</a></li>
+            <li><a href="index.html#get-involved">Contacto</a></li>
+            <li><a href="agroecological-training.html" class="language-toggle">English</a></li>
+        </ul>
+    </nav>
+    
+    <div class="page-content">
+        <h1 class="page-title">Formación Agroecológica y Desarrollo de Liderazgo</h1>
+        
+        <div class="content-section">
+            <p>Nuestro programa de formación agroecológica integra prácticas técnicas de agricultura con educación política y estrategias de organización comunitaria. Reconocemos que una reforma agraria exitosa requiere no solo habilidades agrícolas, sino también la capacidad de navegar sistemas políticos, construir poder comunitario y desarrollar modelos económicos sostenibles.</p>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title">Enfoque de Gestión Basado en la Tierra</h2>
+            
+            <p>Nuestro enfoque de agroecología comienza con nuestro análisis detallado de aptitud de la tierra, que informa cómo diseñamos planes de manejo adaptados a contextos ecológicos específicos. Esta base científica asegura que nuestra formación agrícola esté arraigada en las características únicas de cada paisaje.</p>
+            
+            <div class="training-grid">
+    <div class="training-card">
+        <div class="training-card-content">
+            <h3>Diseño Ecológico de Granjas</h3>
+            <p>Formación en lectura de patrones del paisaje y diseño de sistemas agrícolas que trabajen con los procesos naturales en lugar de contra ellos. Incluye mapeo de flujos de agua, identificación de nichos ecológicos y planificación de sistemas integrados de producción.</p>
+        </div>
+    </div>
+    
+    <div class="training-card">
+        <div class="training-card-content">
+            <h3>Salud y Manejo del Suelo</h3>
+            <p>Técnicas para evaluar las condiciones del suelo, aumentar la materia orgánica, manejar la biología del suelo e implementar prevención de erosión. Énfasis en métodos de bajos insumos externos accesibles para agricultores con recursos limitados.</p>
+        </div>
+    </div>
+    
+    <div class="training-card">
+        <div class="training-card-content">
+            <h3>Diseño de Sistemas de Agua</h3>
+            <p>Formación en sistemas de captación, conservación y distribución de agua apropiados para los diversos microclimas de California. Incluye estrategias para resiliencia ante sequías y métodos eficientes de riego.</p>
+        </div>
+    </div>
+</div>
+
+<p>Nuestra formación técnica enfatiza métodos accesibles y de bajo costo que reducen la dependencia de insumos externos y construyen resiliencia ecológica. Priorizamos enfoques que puedan ser implementados por comunidades con recursos limitados pero ricas en conocimientos tradicionales y capacidad de trabajo.</p>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title">El Proceso de Agroecología Popular</h2>
+            
+            <p>Nuestro enfoque de formación se basa en el Proceso de Agroecología Popular, que reconoce que la agroecología no es solo un conjunto de técnicas agrícolas sino un movimiento político, social y económico. Este marco enfatiza:</p>
+            
+            <p class="click-indicator"><strong>Haga clic en la imagen a continuación para ver el documento completo de Agroecología Popular (PDF)</strong></p>
+            
+            <div class="image-container clickable-image">
+                <a href="https://climatejusticealliance.org/wp-content/uploads/2020/07/1132-People-Agroecology_ENGLISH_ONLINE-Single.pdf" target="_blank" rel="noopener noreferrer">
+                    <img src="images/PeoplesAgroecology.png" alt="Taller del Proceso de Agroecología Popular" class="hover-effect">
+                    <p class="image-caption">Participantes en un taller del Proceso de Agroecología Popular discutiendo derechos a la tierra y soberanía alimentaria</p>
+                </a>
+            </div>
+            
+            <div class="pillars-container">
+                <div class="pillar">
+                    <h3>Educación Política</h3>
+                    <p>Comprensión de la economía política de la tierra y la agricultura, incluyendo patrones históricos de desposesión, estructuras actuales de poder en los sistemas alimentarios y estrategias para el cambio de políticas.</p>
+                </div>
+                
+                <div class="pillar">
+                    <h3>Organización Colectiva</h3>
+                    <p>Construcción de estructuras democráticas para toma de decisiones colectivas, compartir recursos y gestión cooperativa de la tierra. Incluye formación en modelos de gobernanza cooperativa y resolución de conflictos.</p>
+                </div>
+                
+                <div class="pillar">
+                    <h3>Recuperación Cultural</h3>
+                    <p>Recuperación de prácticas agrícolas tradicionales, formas alimentarias y relaciones culturales con la tierra que han sido interrumpidas por la colonización y la agricultura industrial.</p>
+                </div>
+                
+                <div class="pillar">
+                    <h3>Alternativas Económicas</h3>
+                    <p>Desarrollo de economías solidarias, mercados cooperativos y cadenas de valor alternativas que mantienen la riqueza dentro de las comunidades y compensan justamente el trabajo agrícola.</p>
+                </div>
+            </div>
+            
+            <p>A través de este enfoque holístico, los participantes desarrollan no solo habilidades agrícolas sino también el análisis político y la capacidad organizativa necesarios para avanzar en el cambio sistémico en las relaciones con la tierra.</p>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title">Comprendiendo la Economía Política de la Tierra</h2>
+            
+            <p>Un componente crucial de nuestra formación involucra la educación política sobre las estructuras que dan forma al acceso y control de la tierra en California. Los participantes aprenden sobre:</p>
+            
+            <ul>
+                <li>Procesos históricos de desposesión de tierras indígenas y sus impactos continuos</li>
+                <li>El papel de la exclusión racial en la configuración de los patrones actuales de propiedad de la tierra</li>
+                <li>Cómo la política agrícola favorece la producción industrial a gran escala sobre la agricultura agroecológica a pequeña escala</li>
+                <li>La influencia de la inversión especulativa y la financiarización en los mercados de tierras</li>
+                <li>Actores clave en el sistema agrícola de California, desde grandes terratenientes hasta empresas procesadoras y formuladores de políticas</li>
+                <li>Ejemplos exitosos de reforma agraria y transiciones agroecológicas de todo el mundo</li>
+            </ul>
+            
+            <p>Esta educación política ayuda a los participantes a entender sus luchas individuales por el acceso a la tierra dentro de contextos sistémicos más amplios, e identifica posibles puntos de influencia para la acción colectiva.</p>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title">Organización Comunitaria para la Defensa de la Tierra</h2>
+            
+            <p>Adquirir tierra es solo el primer paso en un proceso a largo plazo de construcción de soberanía alimentaria. Nuestra formación incluye estrategias para organizar comunidades para defender los derechos a la tierra y construir medios de vida agrícolas sostenibles. Los participantes aprenden:</p>
+            
+            <ul>
+                <li>Cómo construir coaliciones con organizaciones y movimientos aliados</li>
+                <li>Estrategias de comunicación efectivas para contrarrestar narrativas dominantes sobre la tierra y la agricultura</li>
+                <li>Herramientas legales y recursos para proteger los derechos a la tierra</li>
+                <li>Métodos participativos para la toma de decisiones comunitarias sobre el uso de la tierra</li>
+                <li>Estrategias para navegar conflictos con intereses poderosos</li>
+                <li>Construcción de liderazgo intergeneracional y transmisión de conocimientos</li>
+            </ul>
+            
+            <p>Este componente organizativo es especialmente crítico dados los poderosos intereses que a menudo se oponen a la reforma agraria y las transiciones agroecológicas. Las comunidades necesitan no solo habilidades agrícolas sino capacidad de organización política para desafiar con éxito las estructuras de poder arraigadas.</p>
+            
+            <div class="image-container">
+                <img src="images/Workshop.jpg" alt="Taller de Organización Comunitaria">
+                <p class="image-caption">Miembros de la comunidad desarrollando estrategias de organización para la defensa de la tierra y la transición agroecológica</p>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title">Formatos de Formación y Accesibilidad</h2>
+            
+            <p>Nuestra formación se ofrece en múltiples formatos para satisfacer las diversas necesidades de las comunidades agrícolas:</p>
+            
+            <ul>
+                <li><strong>Talleres Prácticos de Campo:</strong> Sesiones de formación práctica en granjas y tierras de trabajo</li>
+                <li><strong>Sesiones de Educación Popular:</strong> Aprendizaje participativo que valora el conocimiento y las experiencias existentes de los participantes</li>
+                <li><strong>Intercambios de Agricultor a Agricultor:</strong> Oportunidades de aprendizaje entre pares entre agricultores experimentados y nuevos</li>
+                <li><strong>Programas de Educación para Jóvenes:</strong> Formación especializada para jóvenes interesados en carreras agrícolas</li>
+                <li><strong>Programas de Formación de Formadores:</strong> Construcción de capacidad local para educación continua dentro de las comunidades</li>
+            </ul>
+            </div>
+            
+            <p>Estamos comprometidos a hacer que nuestra formación sea accesible para aquellos que han sido más marginados dentro del sistema agrícola actual, particularmente trabajadores agrícolas, comunidades indígenas y agricultores arrendatarios negros con acceso limitado a tierra y recursos.</p>
+        </div>
+        
+        <a href="index.html" class="back-to-home">Volver al Inicio</a>
+    </div>
+    
+    <footer>
+        <h3>Grupo de Trabajo para la Reforma Agraria Plurinacional en CA</h3>
+        <p>Trabajando en tierras robadas de Ohlone, Miwok, Yokuts, Chumash, Tongva, Cahuilla, Kumeyaay, Acjachemen, y muchos otros pueblos indígenas</p>
+        
+        <div class="social-links">
+            <a href="https://instagram.com/plurinational.landreform_cawg" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+        </div>
+        
+        <p>&copy; 2025 Grupo de Trabajo para la Reforma Agraria Plurinacional en CA. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // Mobile dropdown toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdownLinks = document.querySelectorAll('.has-dropdown > a');
+            
+            dropdownLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        this.parentElement.classList.toggle('active');
+                    }
+                });
+            });
+            
+            // Ensure dropdown items work properly
+            const dropdownItems = document.querySelectorAll('.dropdown-content a');
+            dropdownItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    // Allow normal navigation when clicking on dropdown items
+                    window.location.href = this.getAttribute('href');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
