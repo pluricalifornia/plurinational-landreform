@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estudiantes para la Reforma Agraria | Reforma Agraria Plurinacional en CA</title>
+    <style>
+        :root {
+            --primary-color: #3a3a6a;      
+            --secondary-color: #e71d36;     
+            --dark-color: #011627;         
+            --light-color: #f7f7f7;        
+            --accent-color: #ff9f1c;       
+            --accent-green: #8bc34a;      
+            --accent-red: #e53935;         
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #2a2a4a 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            border-bottom: 4px solid var(--accent-color);
+        }
+        
+        .logo-container {
+            margin-bottom: 1.5rem;
+        }
+        
+        .logo {
+            max-width: 100%;
+            height: auto;
+            max-height: 150px;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        nav {
+            background-color: var(--dark-color);
+            padding: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav ul li {
+            margin: 0 1rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        /* Dropdown Menu Styles */
+        .has-dropdown {
+            padding-bottom: 10px;
+            position: relative;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--dark-color);
+            min-width: 250px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 5px;
+            margin-top: 0.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            overflow: hidden;
+            padding-top: 10px;
+        }
+        
+        .dropdown-content a {
+            color: white;
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: var(--secondary-color);
+            padding-left: 1.25rem;
+        }
+        
+        .has-dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        /* Create an invisible bridge between menu item and dropdown */
+        .has-dropdown > a::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background-color: transparent;
+        }
+        
+        .language-toggle {
+            background-color: var(--secondary-color);
+            padding: 0.4rem 0.8rem;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .language-toggle:hover {
+            background-color: #c91020;
+        }
+        
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+        }
+        
+        .page-title {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .page-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
+        }
+        
+        .intro-section {
+            text-align: center;
+            margin-bottom: 3rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .intro-section p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #2a2a4a 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .highlight-box h2 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+        
+        .goals-section {
+            margin: 3rem 0;
+        }
+        
+        .section-header {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .section-header::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: var(--secondary-color);
+        }
+        
+        .goals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .goal-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .goal-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .goal-icon {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            font-size: 2rem;
+        }
+        
+        .goal-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .goal-card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .goal-card p {
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+        
+        .how-to-section {
+            margin: 3rem 0;
+        }
+        
+        .steps-list {
+            margin-top: 2rem;
+            counter-reset: step-counter;
+            list-style-type: none;
+        }
+        
+        .step-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 4rem;
+            min-height: 3rem;
+        }
+        
+        .step-item:before {
+            counter-increment: step-counter;
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: var(--secondary-color);
+            color: white;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .step-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .resources-section {
+            margin: 3rem 0;
+        }
+        
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .resource-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .resource-header {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        .resource-content {
+            padding: 1.5rem;
+        }
+        
+        .resource-card ul {
+            list-style-position: inside;
+            margin-top: 1rem;
+        }
+        
+        .resource-card li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .cta-section {
+            background: linear-gradient(45deg, var(--accent-green) 0%, var(--accent-color) 100%);
+            padding: 3rem;
+            border-radius: 10px;
+            text-align: center;
+            margin: 3rem 0;
+        }
+        
+        .cta-section h2 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+        
+        .cta-section p {
+            color: white;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: white;
+            color: var(--dark-color);
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+        }
+        
+        .cta-button:hover {
+            background-color: var(--dark-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .contact-form {
+            max-width: 800px;
+            margin: 2rem auto 0;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .form-col {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        button {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #c91020;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, var(--dark-color) 0%, #000 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 3rem;
+            border-top: 4px solid var(--accent-color);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+            gap: 1.5rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .back-to-home {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .back-to-home:hover {
+            background-color: #2a2a50;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .main-content {
+                padding: 2rem 1rem;
+            }
+            
+            .cta-section {
+                padding: 2rem 1rem;
+            }
+            
+            .dropdown-content {
+                position: static;
+                transform: none;
+                box-shadow: none;
+                margin-top: 0.5rem;
+                display: none;
+                width: 100%;
+                border-radius: 0;
+            }
+            
+            .has-dropdown:hover .dropdown-content {
+                display: none; /* Don't show on hover for mobile */
+            }
+            
+            .has-dropdown.active .dropdown-content {
+                display: block;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="images/pluri-logo.jpg" alt="Logo del Grupo de Trabajo para la Reforma Agraria Plurinacional en CA" class="logo">
+        </div>
+        <h1>Estudiantes para la Reforma Agraria</h1>
+        <p>Construyendo capítulos universitarios para promover la justicia de la tierra en toda California</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="index.html#about">Sobre Nosotros</a></li>
+            <li class="has-dropdown">
+                <a href="#mission">Nuestro Trabajo</a>
+                <div class="dropdown-content">
+                    <a href="regional-mapping.html">Análisis de Mapeo Regional</a>
+                    <a href="absentee-landowner.html">Análisis de Impacto de Propietarios Ausentes</a>
+                    <a href="parcel-identification.html">Identificación de Parcelas</a>
+                    <a href="public-leasing.html">Promoción de Arrendamiento Público</a>
+                    <a href="suitability-analysis.html">Aptitud para Pastoreo y Agricultura</a>
+                    <a href="agroecological-training.html">Formación Agroecológica y Desarrollo de Liderazgo</a>
+                </div>
+            </li>
+            <li><a href="OurCompass.html">Nuestra Brújula</a></li>
+            <li><a href="for-students.html">Para Estudiantes</a></li>
+            <li><a href="index.html#events">Eventos</a></li>
+            <li><a href="index.html#get-involved">Contacto</a></li>
+            <li><a href="for-students.html" class="language-toggle">English</a></li>
+        </ul>
+    </nav>
+    
+    <div class="main-content">
+        <section class="intro-section">
+            <h1 class="page-title">Inicia un Capítulo Universitario</h1>
+            <p>Los estudiantes han desempeñado históricamente un papel crucial en los movimientos sociales por la justicia de la tierra, desde los primeros días de los Trabajadores Agrícolas Unidos hasta las luchas actuales contra la consolidación y el despojo de tierras. El Grupo de Trabajo para la Reforma Agraria Plurinacional en CA invita a estudiantes de toda California a construir una red estatal de capítulos universitarios dedicados a promover la reforma agraria a través de la investigación, la educación y la acción.</p>
+            
+            <p>Al fundar un capítulo de Estudiantes para la Reforma Agraria en tu campus, te unirás a un movimiento creciente que conecta a organizadores estudiantiles con trabajadores agrícolas, comunidades indígenas y pequeños agricultores para transformar la relación de California con la tierra.</p>
+            
+            <div class="highlight-box">
+                <h2>Por Qué Necesitamos Organizadores Estudiantiles</h2>
+                <p>Los capítulos universitarios proporcionan un apoyo crucial para los movimientos de justicia de la tierra realizando investigaciones, creando conciencia, movilizando recursos y conectando el conocimiento académico con la organización en terreno. Los estudiantes aportan nuevas perspectivas, habilidades técnicas y recursos institucionales que fortalecen la construcción de movimientos más amplios.</p>
+            </div>
+        </section>
+        
+        <section class="goals-section">
+            <h2 class="section-header">Objetivos y Actividades del Capítulo</h2>
+            <p>Los capítulos estudiantiles realizan diversas actividades basadas en el contexto local y los intereses de los miembros, mientras contribuyen a los objetivos más amplios del Grupo de Trabajo para la Reforma Agraria Plurinacional.</p>
+            
+            <div class="goals-grid">
+                <div class="goal-card">
+                    <div class="goal-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <div class="goal-content">
+                        <h3>Investigación y Mapeo</h3>
+                        <p>Realizar investigación participativa sobre propiedad de la tierra, prácticas agrícolas y condiciones ecológicas en tu región. Los capítulos estudiantiles pueden aprovechar los recursos universitarios para apoyar las iniciativas de mapeo del grupo de trabajo y los proyectos de identificación de tierras.</p>
+                    </div>
+                </div>
+                
+                <div class="goal-card">
+                    <div class="goal-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="goal-content">
+                        <h3>Construcción de Coaliciones</h3>
+                        <p>Crear conexiones entre las comunidades universitarias y los movimientos locales basados en la tierra. Los capítulos pueden facilitar asociaciones entre departamentos universitarios, organizaciones estudiantiles y grupos comunitarios que trabajan en soberanía alimentaria, derechos indígenas y justicia climática.</p>
+                    </div>
+                </div>
+                
+                <div class="goal-card">
+                    <div class="goal-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div class="goal-content">
+                        <h3>Educación Política</h3>
+                        <p>Organizar grupos de estudio, talleres y series de conferencias que exploren el plurinacionalismo, la historia de la reforma agraria y las prácticas agroecológicas. Desarrollar materiales educativos que conecten a las comunidades universitarias con movimientos más amplios por la justicia de la tierra.</p>
+                    </div>
+                </div>
+                
+                <div class="goal-card">
+                    <div class="goal-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <div class="goal-content">
+                        <h3>Habilidades Prácticas</h3>
+                        <p>Desarrollar capacitación práctica en agricultura agroecológica, gobernanza cooperativa y administración de la tierra. Los capítulos pueden organizar intercambios de habilidades, visitas a granjas comunitarias y programas de aprendizaje con practicantes locales.</p>
+                    </div>
+                </div>
+                
+                <div class="goal-card">
+                    <div class="goal-icon">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <div class="goal-content">
+                        <h3>Promoción en el Campus</h3>
+                        <p>Abogar por políticas universitarias de tierras que apoyen la agricultura regenerativa, el acceso indígena y las iniciativas agrícolas estudiantiles. Interactuar con la administración universitaria en temas de tenencia institucional de tierras y relaciones con comunidades agrícolas.</p>
+                    </div>
+                </div>
+                
+                <div class="goal-card">
+                    <div class="goal-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <div class="goal-content">
+                        <h3>Acción Solidaria</h3>
+                        <p>Apoyar campañas comunitarias de defensa y adquisición de tierras mediante <strong>esfuerzos de recaudación de fondos específicos</strong>, movilización de voluntarios y amplificación. Desarrollar campañas creativas de recaudación de fondos y propuestas de subvenciones para proporcionar apoyo financiero directo a los movimientos de personas sin tierra y a las iniciativas comunitarias de adquisición de tierras. Conectar los recursos del campus con los movimientos en terreno que luchan por la justicia de la tierra.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="how-to-section">
+            <h2 class="section-header">Cómo Iniciar un Capítulo</h2>
+            <p>Construir un capítulo de Estudiantes para la Reforma Agraria es sencillo. Así es como puedes comenzar:</p>
+            
+            <ol class="steps-list">
+                <li class="step-item">
+                    <h3>Forma un Grupo Principal</h3>
+                    <p>Encuentra al menos 3-5 estudiantes dedicados que compartan un interés en la justicia de la tierra y la reforma agraria. Busca personas con diversas habilidades, carreras y conexiones en todo el campus.</p>
+                </li>
+                
+                <li class="step-item">
+                    <h3>Regístrate en Tu Campus</h3>
+                    <p>Sigue los procedimientos de tu universidad para convertirte en una organización estudiantil reconocida. Esto generalmente implica encontrar un asesor docente, redactar una constitución y completar el papeleo de registro.</p>
+                </li>
+                
+                <li class="step-item">
+                    <h3>Conéctate con el Grupo de Trabajo</h3>
+                    <p>Completa el formulario a continuación para registrar oficialmente tu capítulo con el Grupo de Trabajo para la Reforma Agraria Plurinacional en CA. Proporcionaremos una orientación, recursos y te conectaremos con otros capítulos.</p>
+                </li>
+                
+                <li class="step-item">
+                    <h3>Crea un Plan de Capítulo</h3>
+                    <p>Desarrolla un plan estratégico para el primer semestre de tu capítulo, que incluya horarios regulares de reuniones, proyectos iniciales y estrategias de alcance adaptadas al contexto de tu campus.</p>
+                </li>
+                
+                <li class="step-item">
+                    <h3>Lanza con un Evento Público</h3>
+                    <p>Organiza un evento inaugural, como un panel de discusión, una proyección de película o un taller, para presentar tu capítulo a la comunidad universitaria y comenzar a construir tu membresía.</p>
+                </li>
+            </ol>
+        </section>
+        
+        <section class="resources-section">
+            <h2 class="section-header">Recursos Que Proporcionamos</h2>
+            <p>El Grupo de Trabajo para la Reforma Agraria Plurinacional apoya a los capítulos estudiantiles con varios recursos:</p>
+            
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <div class="resource-header">
+                        <h3>Materiales Educativos</h3>
+                    </div>
+                    <div class="resource-content">
+                        <p>Acceso a lecturas seleccionadas, guías curriculares y plantillas de presentación sobre:</p>
+                        <ul>
+                            <li>Marco y teoría plurinacional</li>
+                            <li>Historia y análisis de la tierra en California</li>
+                            <li>Principios y prácticas agroecológicas</li>
+                            <li>Modelos de gobernanza cooperativa e indígena</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-header">
+                        <h3>Apoyo Organizativo</h3>
+                    </div>
+                    <div class="resource-content">
+                        <p>Apoyo práctico para el desarrollo del capítulo:</p>
+                        <ul>
+                            <li>Kit de inicio de capítulo</li>
+                            <li>Capacitaciones para desarrollo de liderazgo</li>
+                            <li>Mentoría de coordinador regional</li>
+                            <li>Plataforma de comunicación entre capítulos</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-header">
+                        <h3>Recursos Técnicos</h3>
+                    </div>
+                    <div class="resource-content">
+                        <p>Herramientas especializadas para investigación y mapeo:</p>
+                        <ul>
+                            <li>Plantillas y conjuntos de datos de mapeo SIG</li>
+                            <li>Metodologías de investigación participativa</li>
+                            <li>Herramientas de visualización de datos</li>
+                            <li>Marcos de identificación de tierras</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-header">
+                        <h3>Conexiones de Red</h3>
+                    </div>
+                    <div class="resource-content">
+                        <p>Enlaces con el ecosistema de movimientos más amplio:</p>
+                        <ul>
+                            <li>Presentaciones a socios comunitarios</li>
+                            <li>Oportunidades de reunión a nivel estatal</li>
+                            <li>Red de ponentes practicantes</li>
+                            <li>Ubicaciones para prácticas y experiencias de campo</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="cta-section">
+            <h2>¿Listo para Iniciar un Capítulo?</h2>
+            <p>Completa el formulario a continuación para registrar tu interés en iniciar un capítulo de Estudiantes para la Reforma Agraria. Nuestro equipo organizador te contactará dentro de una semana para proporcionarte los siguientes pasos, recursos y conectarte con capítulos cercanos.</p>
+            <a href="#signup-form" class="cta-button">Registra Tu Capítulo</a>
+        </section>
+        
+        <section id="signup-form">
+            <h2 class="section-header">Formulario de Registro de Capítulo</h2>
+            <div class="contact-form">
+                <form action="https://formspree.io/f/xdoggwpb" method="POST">
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="name">Tu Nombre *</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="email">Correo Electrónico *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="phone">Número de Teléfono</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="institution">Universidad/Colegio *</label>
+                                <input type="text" id="institution" name="institution" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="department">Departamento/Carrera</label>
+                        <input type="text" id="department" name="department">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="team-members">Miembros Iniciales del Equipo (Nombres y Roles si se Conocen)</label>
+                        <textarea id="team-members" name="team-members"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="motivation">¿Por qué estás interesado en iniciar un capítulo de Estudiantes para la Reforma Agraria? *</label>
+                        <textarea id="motivation" name="motivation" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="experience">Experiencia Relevante (Organización, Agricultura, Investigación, etc.)</label>
+                        <textarea id="experience" name="experience"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="support">¿Qué recursos o apoyo serían más útiles para iniciar tu capítulo?</label>
+                        <textarea id="support" name="support"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="timeline">Cronograma Previsto para el Lanzamiento del Capítulo</label>
+                        <select id="timeline" name="timeline">
+                            <option value="">Selecciona una opción</option>
+                            <option value="immediate">Dentro de 1 mes</option>
+                            <option value="soon">Dentro de 2-3 meses</option>
+                            <option value="next-semester">El próximo semestre</option>
+                            <option value="planning">Todavía en fase de planificación</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit">Enviar Registro</button>
+                </form>
+            </div>
+        </section>
+        
+        <section class="testimonials" style="margin-top: 3rem;">
+            <h2 class="section-header">De Capítulos Existentes</h2>
+            <div style="background-color: #f0f8ff; padding: 2rem; border-radius: 10px; margin-top: 1.5rem;">
+                <blockquote style="font-style: italic; margin-bottom: 1rem;">
+                    "Nuestro capítulo en la Universidad de Stanford comenzó con un pequeño grupo de estudiantes de los departamentos de ciencias ambientales y estudios étnicos. Hemos organizado un simposio exitoso sobre rematriación de tierras que reunió a líderes indígenas y administradores del campus. Nuestro capítulo también colaboró con la Facultad de Derecho para desarrollar marcos legales para fideicomisos comunitarios de tierras en el Área de la Bahía."
+                </blockquote>
+                <p style="text-align: right; font-weight: bold;">— Estudiantes para la Reforma Agraria de la Universidad de Stanford</p>
+            </div>
+        </section>
+        
+        <a href="index.html" class="back-to-home">Volver al Inicio</a>
+    </div>
+    
+    <footer>
+        <h3>Grupo de Trabajo para la Reforma Agraria Plurinacional en CA</h3>
+        <p>Trabajando en tierras robadas de Ohlone, Miwok, Yokuts, Chumash, Tongva, Cahuilla, Kumeyaay, Acjachemen, y muchos otros pueblos indígenas</p>
+        
+        <div class="social-links">
+            <a href="https://instagram.com/plurinational.landreform_cawg" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+        </div>
+        
+        <p>&copy; 2025 Grupo de Trabajo para la Reforma Agraria Plurinacional en CA. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // Mobile dropdown toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdownLinks = document.querySelectorAll('.has-dropdown > a');
+            
+            dropdownLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        this.parentElement.classList.toggle('active');
+                    }
+                });
+            });
+            
+            // Ensure dropdown items work properly
+            const dropdownItems = document.querySelectorAll('.dropdown-content a');
+            dropdownItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    // Allow normal navigation when clicking on dropdown items
+                    window.location.href = this.getAttribute('href');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
