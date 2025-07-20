@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Students for Agrarian Reform | Plurinational Land Reform in CA</title>
+    <title>Land Reform Summer School 2025 | Plurinational Land Reform in CA</title>
     <style>
         :root {
             --primary-color: #3a3a6a;      
@@ -47,14 +47,28 @@
         }
         
         header h1 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, var(--accent-color));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         
         header p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto;
+            font-size: 1.3rem;
+            max-width: 900px;
+            margin: 0 auto 1rem;
+        }
+        
+        .school-dates {
+            background: rgba(255, 255, 255, 0.1);
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            margin-top: 1rem;
+            font-weight: bold;
+            font-size: 1.1rem;
         }
         
         nav {
@@ -83,73 +97,6 @@
         
         nav ul li a:hover {
             color: var(--secondary-color);
-        }
-        
-        /* Dropdown Menu Styles */
-        .has-dropdown {
-            padding-bottom: 10px;
-            position: relative;
-        }
-        
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: var(--dark-color);
-            min-width: 250px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
-            border-radius: 5px;
-            margin-top: 0.5rem;
-            left: 50%;
-            transform: translateX(-50%);
-            overflow: hidden;
-            padding-top: 10px;
-        }
-        
-        .dropdown-content a {
-            color: white;
-            padding: 0.75rem 1rem;
-            text-decoration: none;
-            display: block;
-            text-align: left;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .dropdown-content a:last-child {
-            border-bottom: none;
-        }
-        
-        .dropdown-content a:hover {
-            background-color: rgba(255, 255, 255, 0.15);
-            color: var(--secondary-color);
-            padding-left: 1.25rem;
-        }
-        
-        .has-dropdown:hover .dropdown-content {
-            display: block;
-        }
-        
-        /* Create an invisible bridge between menu item and dropdown */
-        .has-dropdown > a::after {
-            content: "";
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 100%;
-            height: 10px;
-            background-color: transparent;
-        }
-        
-        .language-toggle {
-            background-color: var(--secondary-color);
-            padding: 0.4rem 0.8rem;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-        
-        .language-toggle:hover {
-            background-color: #c91020;
         }
         
         .main-content {
@@ -191,273 +138,305 @@
             margin-bottom: 1.5rem;
         }
         
-        .highlight-box {
+        .instructor-highlight {
             background: linear-gradient(135deg, var(--primary-color) 0%, #2a2a4a 100%);
             color: white;
-            padding: 2rem;
-            border-radius: 10px;
+            padding: 2.5rem;
+            border-radius: 15px;
             margin: 2rem 0;
-            text-align: center;
+            text-align: left;
         }
         
-        .highlight-box h2 {
+        .instructor-highlight h2 {
             color: var(--accent-color);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
         }
         
-        .goals-section {
+        .instructor-highlight p {
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+        
+        .school-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
             margin: 3rem 0;
+        }
+        
+        .info-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 5px solid var(--accent-color);
+        }
+        
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+        
+        .info-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+        
+        .info-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .info-card li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .info-card li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+        
+        .sessions-section {
+            margin: 4rem 0;
         }
         
         .section-header {
             color: var(--primary-color);
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            font-size: 2rem;
             position: relative;
             padding-bottom: 0.5rem;
+            text-align: center;
         }
         
         .section-header::after {
             content: "";
             position: absolute;
             bottom: 0;
-            left: 0;
-            width: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
             height: 3px;
             background: var(--secondary-color);
         }
         
-        .goals-grid {
+        .sessions-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            gap: 1.5rem;
             margin-top: 2rem;
         }
         
-        .goal-card {
-            background-color: white;
-            border-radius: 10px;
+        .session-card {
+            background: white;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-left: 6px solid var(--accent-color);
         }
         
-        .goal-card:hover {
-            transform: translateY(-5px);
+        .session-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
         }
         
-        .goal-icon {
-            background-color: var(--primary-color);
+        .session-header {
+            background: linear-gradient(135deg, var(--primary-color), #2a2a4a);
             color: white;
             padding: 1.5rem;
-            text-align: center;
-            font-size: 2rem;
-        }
-        
-        .goal-content {
-            padding: 1.5rem;
-            flex-grow: 1;
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
         }
         
-        .goal-card h3 {
-            margin-bottom: 1rem;
-            color: var(--primary-color);
-        }
-        
-        .goal-card p {
-            margin-bottom: 1rem;
-            flex-grow: 1;
-        }
-        
-        .how-to-section {
-            margin: 3rem 0;
-        }
-        
-        .steps-list {
-            margin-top: 2rem;
-            counter-reset: step-counter;
-            list-style-type: none;
-        }
-        
-        .step-item {
-            position: relative;
-            margin-bottom: 2rem;
-            padding-left: 4rem;
-            min-height: 3rem;
-        }
-        
-        .step-item:before {
-            counter-increment: step-counter;
-            content: counter(step-counter);
-            position: absolute;
-            left: 0;
-            top: 0;
-            background-color: var(--secondary-color);
+        .session-number {
+            background: var(--accent-color);
             color: white;
-            width: 3rem;
-            height: 3rem;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
         }
         
-        .step-item h3 {
+        .session-date {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .session-content {
+            padding: 2rem;
+        }
+        
+        .session-title {
             color: var(--primary-color);
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            font-weight: 600;
         }
         
-        .resources-section {
-            margin: 3rem 0;
-        }
-        
-        .resources-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .resource-card {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-        }
-        
-        .resource-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .resource-header {
-            background-color: var(--accent-color);
-            color: white;
-            padding: 1rem;
-            text-align: center;
-        }
-        
-        .resource-content {
-            padding: 1.5rem;
-        }
-        
-        .resource-card ul {
-            list-style-position: inside;
+        .reading-list {
             margin-top: 1rem;
         }
         
-        .resource-card li {
+        .reading-list h5 {
+            color: var(--secondary-color);
             margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
-        .cta-section {
+        .reading-list ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .reading-list li {
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            padding-left: 1rem;
+            position: relative;
+            line-height: 1.4;
+        }
+        
+        .reading-list li::before {
+            content: "📖";
+            position: absolute;
+            left: 0;
+        }
+        
+        .session-links {
+            margin-top: 1.5rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .session-link {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .session-link:hover {
+            background: var(--secondary-color);
+            transform: translateY(-1px);
+        }
+        
+        .join-section {
             background: linear-gradient(45deg, var(--accent-green) 0%, var(--accent-color) 100%);
-            padding: 3rem;
-            border-radius: 10px;
+            padding: 4rem 2rem;
+            border-radius: 15px;
             text-align: center;
-            margin: 3rem 0;
+            margin: 4rem 0;
+            position: relative;
+            overflow: hidden;
         }
         
-        .cta-section h2 {
+        .join-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="white" opacity="0.1"/><circle cx="80" cy="40" r="1.5" fill="white" opacity="0.1"/><circle cx="40" cy="80" r="1" fill="white" opacity="0.1"/></svg>');
+        }
+        
+        .join-section * {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .join-section h2 {
             color: white;
             margin-bottom: 1.5rem;
-            font-size: 2rem;
+            font-size: 2.2rem;
         }
         
-        .cta-section p {
+        .join-section p {
             color: white;
             margin-bottom: 2rem;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
+        }
+        
+        .join-details {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+        
+        .join-details h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .meeting-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .meeting-detail {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            color: white;
         }
         
         .cta-button {
             display: inline-block;
             background-color: white;
             color: var(--dark-color);
-            padding: 1rem 2rem;
-            border-radius: 5px;
+            padding: 1.2rem 2.5rem;
+            border-radius: 8px;
             font-weight: bold;
             text-decoration: none;
             transition: all 0.3s;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
+            margin: 0 0.5rem;
         }
         
         .cta-button:hover {
             background-color: var(--dark-color);
             color: white;
             transform: translateY(-3px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
         }
         
-        .contact-form {
-            max-width: 800px;
-            margin: 2rem auto 0;
-            background-color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-        }
-        
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-        
-        .form-group textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        .form-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-        
-        .form-col {
-            flex: 1;
-            min-width: 250px;
-        }
-        
-        button {
-            background-color: var(--secondary-color);
+        .cta-button.secondary {
+            background-color: transparent;
             color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            font-size: 1rem;
-            font-weight: bold;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
+            border: 2px solid white;
         }
         
-        button:hover {
-            background-color: #c91020;
+        .cta-button.secondary:hover {
+            background-color: white;
+            color: var(--dark-color);
         }
         
         footer {
@@ -486,65 +465,31 @@
             color: var(--secondary-color);
         }
         
-        .back-to-home {
-            display: inline-block;
-            margin-top: 2rem;
-            padding: 0.75rem 1.5rem;
-            background-color: var(--primary-color);
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-        
-        .back-to-home:hover {
-            background-color: #2a2a50;
-        }
-        
         @media (max-width: 768px) {
             header h1 {
-                font-size: 2rem;
-            }
-            
-            nav ul {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            nav ul li {
-                margin: 0.5rem 0;
-            }
-            
-            .form-row {
-                flex-direction: column;
-                gap: 0;
+                font-size: 2.2rem;
             }
             
             .main-content {
                 padding: 2rem 1rem;
             }
             
-            .cta-section {
+            .instructor-highlight {
+                padding: 1.5rem;
+            }
+            
+            .join-section {
                 padding: 2rem 1rem;
             }
             
-            .dropdown-content {
-                position: static;
-                transform: none;
-                box-shadow: none;
-                margin-top: 0.5rem;
-                display: none;
-                width: 100%;
-                border-radius: 0;
-            }
-            
-            .has-dropdown:hover .dropdown-content {
-                display: none; /* Don't show on hover for mobile */
-            }
-            
-            .has-dropdown.active .dropdown-content {
+            .cta-button {
                 display: block;
+                margin: 0.5rem 0;
+                text-align: center;
+            }
+            
+            .meeting-info {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -555,304 +500,385 @@
         <div class="logo-container">
             <img src="images/pluri-logo.jpg" alt="Plurinational Land Reform in CA Working Group Logo" class="logo">
         </div>
-        <h1>Students for Agrarian Reform</h1>
-        <p>Building campus chapters to advance land justice across California</p>
+        <h1>Land Reform Summer School 2025</h1>
+        <p>Free Political Education on Land Justice, Agrarian Reform & Movement Building</p>
+        <div class="school-dates">
+            📅 Every Thursday 6:30-8:00 PM PST | July 10 - September 11
+        </div>
     </header>
     
     <nav>
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="index.html#about">About Us</a></li>
-            <li class="has-dropdown">
-                <a href="#mission">Our Work</a>
-                <div class="dropdown-content">
-                    <a href="regional-mapping.html">Regional Mapping Analysis</a>
-                    <a href="absentee-landowner.html">Absentee Landownership Impact Analysis</a>
-                    <a href="parcel-identification.html">Parcel Identification</a>
-                    <a href="public-leasing.html">Public Leasing Advocacy</a>
-                    <a href="suitability-analysis.html">Grazing & Farming Suitability</a>
-                    <a href="agroecological-training.html">Agroecological Training & Leadership Development</a>
-                </div>
-            </li>
-            <li><a href="OurCompass.html">Our Compass</a></li>
             <li><a href="for-students.html">For Students</a></li>
+            <li><a href="OurCompass.html">Our Compass</a></li>
             <li><a href="index.html#events">Events</a></li>
             <li><a href="index.html#get-involved">Contact</a></li>
-            <li><a href="spanish.html" class="language-toggle">Español</a></li>
+            <li><a href="spanish.html">Español</a></li>
         </ul>
     </nav>
     
     <div class="main-content">
         <section class="intro-section">
-            <h1 class="page-title">Start a Campus Chapter</h1>
-            <p>Students have historically played a crucial role in social movements for land justice, from the early days of the United Farm Workers to today's struggles against land consolidation and dispossession. The Plurinational Land Reform in CA Working Group invites students across California to build a statewide network of campus chapters dedicated to advancing agrarian reform through research, education, and action.</p>
+            <p><strong>93 participants</strong> have already signed up for this transformative 10-week journey exploring land justice through the lens of plurinational organizing and international movement lessons.</p>
             
-            <p>By founding a Students for Agrarian Reform chapter on your campus, you'll join a growing movement that connects student organizers with farmworkers, indigenous communities, and small-scale farmers to transform California's relationship with land.</p>
+            <p>This summer school provides free political education to clarify why land ownership is so unequal and develops strategies for building a movement to transform this inequality. Drawing from indigenous-peasant movements in Bolivia, Guatemala, and Chile, we'll analyze California's land conflicts and explore pathways for change.</p>
+        </section>
+        
+        <div class="instructor-highlight">
+            <h2>Meet Your Instructor: Elias</h2>
+            <p>Born in San Diego, raised in the Inland Empire, schooled in the Bay Area, and working mainly in the Coachella Valley, LA, & Central Coast - Elias is a lovechild of California dedicated to learning from indigenous-peasant movements in Latin America.</p>
             
-            <div class="highlight-box">
-                <h2>Why We Need Student Organizers</h2>
-                <p>Campus chapters provide crucial support for land justice movements by conducting research, raising awareness, mobilizing resources, and connecting academic knowledge with on-the-ground organizing. Students bring fresh perspectives, technical skills, and institutional resources that strengthen broader movement-building.</p>
+            <p>Through mentorship with movements in Bolivia, Guatemala, and Chile, Elias has developed deep analysis of land conflicts and strategies for defense and redistribution. This personal journey - from witnessing his grandmother's experiences as a farmworker to seeing warehouse displacement in the Inland Empire - transformed through political education and organizational power into the curriculum you'll experience.</p>
+            
+            <p><strong>School Goals:</strong> (1) Provide free education on land inequality and movement building, (2) Learn from participants' experiences and dreams for justice, (3) Create seeds for an organizational network committed to land reform in California and beyond.</p>
+        </div>
+        
+        <div class="school-info">
+            <div class="info-card">
+                <h3>📚 What You'll Learn</h3>
+                <ul>
+                    <li>Historical analysis of US land policy and racial hierarchies</li>
+                    <li>Case studies from successful land reform movements</li>
+                    <li>Political economy of agroecological transitions</li>
+                    <li>Gendered dimensions of food production</li>
+                    <li>Extractivism and green energy land conflicts</li>
+                    <li>Financialization of agricultural land</li>
+                    <li>Indigenous-peasant organizing strategies</li>
+                    <li>Legal frameworks for land reform</li>
+                </ul>
+            </div>
+            
+            <div class="info-card">
+                <h3>🌍 Movement Connections</h3>
+                <ul>
+                    <li>Bolivian 1953 Agrarian Reform lessons</li>
+                    <li>Scottish human rights-based land reforms</li>
+                    <li>Guatemalan territorial defense organizing</li>
+                    <li>California farmworker movement history</li>
+                    <li>Indigenous land sovereignty movements</li>
+                    <li>Community land trust development</li>
+                    <li>Agroecological producer networks</li>
+                    <li>Anti-displacement organizing</li>
+                </ul>
+            </div>
+            
+            <div class="info-card">
+                <h3>🔧 Skills & Tools</h3>
+                <ul>
+                    <li>Participatory research methodologies</li>
+                    <li>Land ownership analysis techniques</li>
+                    <li>Coalition building strategies</li>
+                    <li>Political education facilitation</li>
+                    <li>Movement history analysis</li>
+                    <li>Policy advocacy frameworks</li>
+                    <li>International solidarity building</li>
+                    <li>Organizational power development</li>
+                </ul>
+            </div>
+        </div>
+        
+        <section class="sessions-section">
+            <h2 class="section-header">10-Week Curriculum</h2>
+            
+            <div class="sessions-grid">
+                <div class="session-card">
+                    <div class="session-header">
+                        <div>
+                            <div class="session-number">1</div>
+                        </div>
+                        <div class="session-date">July 10</div>
+                    </div>
+                    <div class="session-content">
+                        <h4 class="session-title">Our Current Moment & Past Land Policy in the United States</h4>
+                        <p>Examining how the US state created and now confronts racial hierarchies through land policy, setting the foundation for understanding contemporary land struggles.</p>
+                        <div class="reading-list">
+                            <h5>Required Reading:</h5>
+                            <ul>
+                                <li>"From creating to confronting racial hierarchies: The evolving role of the US state in land policy" by Anthony Pahnke</li>
+                            </ul>
+                        </div>
+                        <div class="session-links">
+                            <a href="#" class="session-link">📹 Session Recording</a>
+                            <a href="#" class="session-link">📊 Slideshow</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="session-card">
+                    <div class="session-header">
+                        <div>
+                            <div class="session-number">2</div>
+                        </div>
+                        <div class="session-date">July 17</div>
+                    </div>
+                    <div class="session-content">
+                        <h4 class="session-title">From Union to School to Revolution: The 1953 Bolivian Agrarian Reform</h4>
+                        <p>Deep dive into Bolivia's successful land reform process, extracting lessons on effective organizing strategies and revolutionary transformation.</p>
+                        <div class="reading-list">
+                            <h5>Required Readings:</h5>
+                            <ul>
+                                <li>"Peasant Wars in Bolivia: Making, Thinking, and Living the Revolution in Cochabamba (1952–64)" by Jose M. Gordillo</li>
+                                <li>"Peasant Mobilization for Land Reform: Historical Case Studies and Theoretical Considerations" by Gerrit Huizer</li>
+                            </ul>
+                            <h5>Suggested Readings:</h5>
+                            <ul>
+                                <li>"Fields of Revolution: Agrarian Reform and Rural State Formation in Bolivia, 1935-1964" by Carmen Soliz</li>
+                                <li>"Political Economy of Land Reforms in Korea and Bolivia" by Hochul Lee</li>
+                            </ul>
+                        </div>
+                        <div class="session-links">
+                            <a href="#" class="session-link">📹 Session Recording</a>
+                            <a href="#" class="session-link">📊 Slideshow</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="session-card">
+                    <div class="session-header">
+                        <div>
+                            <div class="session-number">3</div>
+                        </div>
+                        <div class="session-date">July 24</div>
+                    </div>
+                    <div class="session-content">
+                        <h4 class="session-title">Who Are We Organizing & For What?</h4>
+                        <p>Critical analysis of agroecological transitions and alternative agricultural movements. Who is the central organizing subject and why are they not agricultural/food chain workers?</p>
+                        <div class="reading-list">
+                            <h5>Required Reading:</h5>
+                            <ul>
+                                <li>"The political economy of agroecological transitions: key analytical dimensions" by Ben M McKay</li>
+                                <li>Emma Harden on Small Farmer/Alt Ag Ethnography & Trajectories</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="session-card">
+                    <div class="session-header">
+                        <div>
+                            <div class="session-number">4</div>
+                        </div>
+                        <div class="session-date">July 31</div>
+                    </div>
+                    <div class="session-content">
+                        <h4 class="session-title">Social Reproduction and the Gendered Labor of Food Production</h4>
+                        <p>Exploring how gender shapes food production systems and the essential but often invisible labor that sustains agricultural communities.</p>
+                        <div class="reading-list">
+                            <h5>Required Reading:</h5>
+                            <ul>
+                                <li>"Women and the Gendered Politics of Food" by Vandana Shiva</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="session-card">
+                    <div class="session-header">
+                        <div>
+                            <div class="session-number">5</div>
+                        </div>
+                        <div class="session-date">August 7</div>
+                    </div>
+                    <div class="session-content">
+                        <h4 class="session-title">Extractivism - From Mining & Drilling to Wind & Solar Farms</h4>
+                        <p>Analyzing how "green" energy transitions can reproduce extractive relationships with land and communities, using case studies from Mexico and global perspectives.</p>
+                        <div class="reading-list">
+                            <h5>Required Readings:</h5>
+                            <ul>
+                                <li>"Transnational Capital & Wind Farm Rent-Seeking in the Isthmus of Tehuantepec" by Sarah Reyes</li>
+                                <li>"Peripheral labour and accumulation on a world scale in the green transitions" by Max Ajl</li>
+                            </ul>
+                            <h5>Suggested Reading:</h5>
+                            <ul>
+                                <li>"Theories of Political Ecology: Monopoly Capital Against People and the Planet" by Max Ajl</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="session-card">
+                    <div class="session-header">
+                        <div>
+                            <div class="session-number">6</div>
+                        </div>
+                        <div class="session-date">August 14</div>
+                    </div>
+                    <div class="session-content">
+                        <h4 class="session-title">Financialization of Agricultural Land & the Unaffordability Crisis</h4>
+                        <p>Understanding how financial markets have transformed agricultural land into investment commodities, driving up prices and displacing farmers.</p>
+                        <div class="reading-list">
+                            <h5>Required Reading:</h5>
+                            <ul>
+                                <li>"Fields of Gold: Financing the Global Land Rush" by Madeleine Fairbairn</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="session-card">
+                    <div class="session-header">
+                        <div>
+                            <div class="session-number">7</div>
+                        </div>
+                        <div class="session-date">August 21</div>
+                    </div>
+                    <div class="session-content">
+                        <h4 class="session-title">Citizenship, Race, and the Colonial Creation of the Agricultural Worker</h4>
+                        <p>Examining how colonial land relations created racialized categories of agricultural workers, with focus on Texas borderlands and Jamaican farmworkers.</p>
+                        <div class="reading-list">
+                            <h5>Required Readings:</h5>
+                            <ul>
+                                <li>"Blood Oranges: Colonialism and Agriculture in the South Texas Borderlands" by Tim Bowman</li>
+                                <li>"'In America Life Is Given Away': Jamaican Farmworkers and the Making of Agricultural Immigration Policy" by Cindy Hahamovitch</li>
+                            </ul>
+                            <h5>Suggested Readings:</h5>
+                            <ul>
+                                <li>"Ernesto Galarza, Mexican Immigration, and Farm Labor Organizing in Postwar California" by Stephen Pitti</li>
+                                <li>"Property relations: Alien land laws and the racial formation of Filipinos" by Eric J. Pido</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="session-card">
+                    <div class="session-header">
+                        <div>
+                            <div class="session-number">8</div>
+                        </div>
+                        <div class="session-date">August 28</div>
+                    </div>
+                    <div class="session-content">
+                        <h4 class="session-title">Law and Land Reform in Global North: Scotland Case Study</h4>
+                        <p>Exploring how Scotland has used human rights-based approaches to expand community land ownership and agroecological practices through legal reform.</p>
+                        <div class="reading-list">
+                            <h5>Required Reading:</h5>
+                            <ul>
+                                <li>"Using property law to expand agroecology: Scotland's land reforms based on human rights" by Adam Calo</li>
+                            </ul>
+                            <h5>Suggested Readings:</h5>
+                            <ul>
+                                <li>"Back to the Basics: Lessons from U.S. Property Law for Land Reform" by Shelley Cavalieri</li>
+                                <li>"The moral economy of land: from land reform to ownership society, 1880–2018" by Alexander Dobeson and Sebastian Kohl</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="session-card">
+                    <div class="session-header">
+                        <div>
+                            <div class="session-number">9</div>
+                        </div>
+                        <div class="session-date">September 4</div>
+                    </div>
+                    <div class="session-content">
+                        <h4 class="session-title">Territory vs Land: Indigenous-Peasant Convergences & Divergences</h4>
+                        <p>Analyzing different approaches to territorial defense and food sovereignty, examining both convergences and tensions between indigenous and peasant movements in Guatemala.</p>
+                        <div class="reading-list">
+                            <h5>Required Reading:</h5>
+                            <ul>
+                                <li>"The Defense of Territory and Food Sovereignty: Two Paradigms for Radical Territorial Restructuring in Neoliberal Guatemala" by Nicholas Copeland</li>
+                            </ul>
+                            <h5>Suggested Reading:</h5>
+                            <ul>
+                                <li>"The State of Nature: Country Folk, Conservationists, and Criminals at Yellowstone National Park, 1872-1908" by Karl Jacoby</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="session-card">
+                    <div class="session-header">
+                        <div>
+                            <div class="session-number">10</div>
+                        </div>
+                        <div class="session-date">September 11</div>
+                    </div>
+                    <div class="session-content">
+                        <h4 class="session-title">Building Popular Power for Land Reform in California</h4>
+                        <p>Final session synthesizing lessons learned and developing concrete strategies for building a land reform movement in California. From theory to practice.</p>
+                        <div class="reading-list">
+                            <h5>Required Reading:</h5>
+                            <ul>
+                                <li>"Land reform in the United States: Lost cause or simply a cause that has been lost?" by Antonio Roman-Alcala</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
         
-        <section class="goals-section">
-            <h2 class="section-header">Chapter Goals and Activities</h2>
-            <p>Student chapters pursue various activities based on local context and member interests, while contributing to the broader goals of the Plurinational Land Reform Working Group.</p>
+        <section class="join-section">
+            <h2>Join 93+ Organizers This Summer</h2>
+            <p>This free political education program brings together students, farmworkers, organizers, and land defenders from across California and beyond. Every session is recorded for those who can't attend live.</p>
             
-            <div class="goals-grid">
-                <div class="goal-card">
-                    <div class="goal-icon">
-                        <i class="fas fa-map-marked-alt"></i>
+            <div class="join-details">
+                <h3>How to Participate</h3>
+                <div class="meeting-info">
+                    <div class="meeting-detail">
+                        <strong>📅 Schedule</strong><br>
+                        Every Thursday<br>
+                        6:30 - 8:00 PM PST
                     </div>
-                    <div class="goal-content">
-                        <h3>Research & Mapping</h3>
-                        <p>Conduct participatory research on land ownership, agricultural practices, and ecological conditions in your region. Student chapters can tap into university resources to support the working group's mapping initiatives and land identification projects.</p>
+                    <div class="meeting-detail">
+                        <strong>🔗 Join Online</strong><br>
+                        Google Meet Link<br>
+                        meet.google.com/ukw-sbiu-gst
                     </div>
-                </div>
-                
-                <div class="goal-card">
-                    <div class="goal-icon">
-                        <i class="fas fa-users"></i>
+                    <div class="meeting-detail">
+                        <strong>📞 Call In</strong><br>
+                        +1 682-235-5592<br>
+                        PIN: 644 248 237#
                     </div>
-                    <div class="goal-content">
-                        <h3>Coalition Building</h3>
-                        <p>Create connections between campus communities and local land-based movements. Chapters can facilitate partnerships between university departments, student organizations, and community groups working on food sovereignty, indigenous rights, and climate justice.</p>
-                    </div>
-                </div>
-                
-                <div class="goal-card">
-                    <div class="goal-icon">
-                        <i class="fas fa-book-open"></i>
-                    </div>
-                    <div class="goal-content">
-                        <h3>Political Education</h3>
-                        <p>Organize study groups, workshops, and speaker series exploring plurinationalism, land reform history, and agroecological practices. Develop educational materials connecting campus communities to broader movements for land justice.</p>
+                    <div class="meeting-detail">
+                        <strong>📚 Materials</strong><br>
+                        Reading drive provided<br>
+                        All sessions recorded
                     </div>
                 </div>
                 
-                <div class="goal-card">
-                    <div class="goal-icon">
-                        <i class="fas fa-seedling"></i>
-                    </div>
-                    <div class="goal-content">
-                        <h3>Practical Skills</h3>
-                        <p>Develop hands-on training in agroecological farming, cooperative governance, and land stewardship. Chapters can organize skill shares, field trips to community farms, and apprenticeship programs with local practitioners.</p>
-                    </div>
-                </div>
-                
-                <div class="goal-card">
-                    <div class="goal-icon">
-                        <i class="fas fa-bullhorn"></i>
-                    </div>
-                    <div class="goal-content">
-                        <h3>Campus Advocacy</h3>
-                        <p>Advocate for university land policies that support regenerative agriculture, indigenous access, and student farming initiatives. Engage with university administration on issues of institutional land holdings and relationships with agricultural communities.</p>
-                    </div>
-                </div>
-                
-                <div class="goal-card">
-                    <div class="goal-icon">
-                        <i class="fas fa-hands-helping"></i>
-                    </div>
-                    <div class="goal-content">
-                        <h3>Solidarity Action</h3>
-                        <p>Support community-led land defense and acquisition campaigns through <strong>targeted fundraising efforts</strong>, volunteer mobilization, and amplification. Develop creative fundraising campaigns and grant proposals to provide direct financial support for landless peoples' movements and community land acquisition initiatives. Connect campus resources to on-the-ground movements fighting for land justice.</p>
-                    </div>
-                </div>
+                <p style="margin-top: 1.5rem; font-size: 1rem;">
+                    <strong>Privacy Options:</strong> Uncomfortable being recorded? Join with camera off and an alias, or watch recordings and email <em>pluricalifornia@gmail.com</em> for one-on-one debriefs.
+                </p>
+            </div>
+            
+            <div style="margin-top: 2rem;">
+                <a href="#" class="cta-button">Sign Up Now (Free)</a>
+                <a href="#" class="cta-button secondary">Access Reading Materials</a>
             </div>
         </section>
         
-        <section class="how-to-section">
-            <h2 class="section-header">How to Start a Chapter</h2>
-            <p>Building a Students for Agrarian Reform chapter is straightforward. Here's how to get started:</p>
-            
-            <ol class="steps-list">
-                <li class="step-item">
-                    <h3>Form a Core Group</h3>
-                    <p>Find at least 3-5 dedicated students who share an interest in land justice and agrarian reform. Look for people with diverse skills, majors, and connections across campus.</p>
-                </li>
-                
-                <li class="step-item">
-                    <h3>Register with Your Campus</h3>
-                    <p>Follow your university's procedures to become a recognized student organization. This typically involves finding a faculty advisor, writing a constitution, and completing registration paperwork.</p>
-                </li>
-                
-                <li class="step-item">
-                    <h3>Connect with the Working Group</h3>
-                    <p>Fill out the form below to officially register your chapter with the Plurinational Land Reform in CA Working Group. We'll provide an orientation, resources, and connect you with other chapters.</p>
-                </li>
-                
-                <li class="step-item">
-                    <h3>Create a Chapter Plan</h3>
-                    <p>Develop a strategic plan for your chapter's first semester, including regular meeting times, initial projects, and outreach strategies tailored to your campus context.</p>
-                </li>
-                
-                <li class="step-item">
-                    <h3>Launch with a Public Event</h3>
-                    <p>Organize an inaugural event—such as a panel discussion, film screening, or workshop—to introduce your chapter to the campus community and begin building your membership.</p>
-                </li>
-            </ol>
-        </section>
-        
-        <section class="resources-section">
-            <h2 class="section-header">Resources We Provide</h2>
-            <p>The Plurinational Land Reform Working Group supports student chapters with various resources:</p>
-            
-            <div class="resources-grid">
-                <div class="resource-card">
-                    <div class="resource-header">
-                        <h3>Educational Materials</h3>
-                    </div>
-                    <div class="resource-content">
-                        <p>Access to curated readings, curriculum guides, and presentation templates on:</p>
-                        <ul>
-                            <li>Plurinational framework and theory</li>
-                            <li>California land history and analysis</li>
-                            <li>Agroecological principles and practices</li>
-                            <li>Cooperative and indigenous governance models</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="resource-card">
-                    <div class="resource-header">
-                        <h3>Organizing Support</h3>
-                    </div>
-                    <div class="resource-content">
-                        <p>Practical support for chapter development:</p>
-                        <ul>
-                            <li>Chapter start-up toolkit</li>
-                            <li>Leadership development trainings</li>
-                            <li>Regional coordinator mentorship</li>
-                            <li>Inter-chapter communication platform</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="resource-card">
-                    <div class="resource-header">
-                        <h3>Technical Resources</h3>
-                    </div>
-                    <div class="resource-content">
-                        <p>Specialized tools for research and mapping:</p>
-                        <ul>
-                            <li>GIS mapping templates and datasets</li>
-                            <li>Participatory research methodologies</li>
-                            <li>Data visualization tools</li>
-                            <li>Land identification frameworks</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="resource-card">
-                    <div class="resource-header">
-                        <h3>Network Connections</h3>
-                    </div>
-                    <div class="resource-content">
-                        <p>Links to the broader movement ecosystem:</p>
-                        <ul>
-                            <li>Community partner introductions</li>
-                            <li>Statewide gathering opportunities</li>
-                            <li>Practitioner speaker network</li>
-                            <li>Internship and field experience placements</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section class="cta-section">
-            <h2>Ready to Start a Chapter?</h2>
-            <p>Fill out the form below to register your interest in starting a Students for Agrarian Reform chapter. Our organizing team will follow up within one week to provide next steps, resources, and connect you with nearby chapters.</p>
-            <a href="#signup-form" class="cta-button">Register Your Chapter</a>
-        </section>
-        
-        <section id="signup-form">
-            <h2 class="section-header">Chapter Registration Form</h2>
-            <div class="contact-form">
-                <form action="https://formspree.io/f/xdoggwpb" method="POST">
-                    <div class="form-row">
-                        <div class="form-col">
-                            <div class="form-group">
-                                <label for="name">Your Name *</label>
-                                <input type="text" id="name" name="name" required>
-                            </div>
-                        </div>
-                        <div class="form-col">
-                            <div class="form-group">
-                                <label for="email">Email Address *</label>
-                                <input type="email" id="email" name="email" required>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-col">
-                            <div class="form-group">
-                                <label for="phone">Phone Number</label>
-                                <input type="tel" id="phone" name="phone">
-                            </div>
-                        </div>
-                        <div class="form-col">
-                            <div class="form-group">
-                                <label for="institution">University/College *</label>
-                                <input type="text" id="institution" name="institution" required>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="department">Department/Major</label>
-                        <input type="text" id="department" name="department">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="team-members">Initial Team Members (Names and Roles if Known)</label>
-                        <textarea id="team-members" name="team-members"></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="motivation">Why are you interested in starting a Students for Agrarian Reform chapter? *</label>
-                        <textarea id="motivation" name="motivation" required></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="experience">Relevant Experience (Organizing, Agriculture, Research, etc.)</label>
-                        <textarea id="experience" name="experience"></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="support">What resources or support would be most helpful for starting your chapter?</label>
-                        <textarea id="support" name="support"></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="timeline">Anticipated Timeline for Chapter Launch</label>
-                        <select id="timeline" name="timeline">
-                            <option value="">Select an option</option>
-                            <option value="immediate">Within 1 month</option>
-                            <option value="soon">Within 2-3 months</option>
-                            <option value="next-semester">Next semester</option>
-                            <option value="planning">Still in planning phase</option>
-                        </select>
-                    </div>
-                    
-                    <button type="submit">Submit Registration</button>
-                </form>
-            </div>
-        </section>
-        
-        <section class="testimonials" style="margin-top: 3rem;">
-            <h2 class="section-header">From Existing Chapters</h2>
-            <div style="background-color: #f0f8ff; padding: 2rem; border-radius: 10px; margin-top: 1.5rem;">
-                <blockquote style="font-style: italic; margin-bottom: 1rem;">
-                    "Our chapter at Stanford University began with a small group of students from environmental science and ethnic studies departments. We've organized a successful symposium on land rematriation that brought together indigenous leaders and campus administrators. Our chapter also collaborated with the Law School to develop legal frameworks for community land trusts in the Bay Area."
+        <section style="margin: 4rem 0; text-align: center;">
+            <h2 class="section-header">From Our Community</h2>
+            <div style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: 3rem; border-radius: 15px; margin-top: 2rem;">
+                <blockquote style="font-style: italic; margin-bottom: 2rem; font-size: 1.1rem; color: var(--primary-color);">
+                    "This summer school transformed how I understand land struggles in California. Learning from Bolivian peasant movements gave me concrete tools for organizing in my own community. The connections between participants have continued long after the sessions ended."
                 </blockquote>
-                <p style="text-align: right; font-weight: bold;">— Stanford University Students for Agrarian Reform</p>
+                <p style="font-weight: bold; color: var(--secondary-color);">— 2024 Participant, Central Valley Organizer</p>
+                
+                <blockquote style="font-style: italic; margin: 2rem 0; font-size: 1.1rem; color: var(--primary-color);">
+                    "As a student, this program connected academic theory with real movement strategy. The readings on financialization helped me understand why my family lost our farm, and the sessions on organizing gave me hope for change."
+                </blockquote>
+                <p style="font-weight: bold; color: var(--secondary-color);">— 2024 Participant, UC Student</p>
             </div>
         </section>
         
-        <a href="index.html" class="back-to-home">Back to Home</a>
+        <section style="background: white; padding: 3rem; border-radius: 15px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); margin: 3rem 0;">
+            <h2 style="color: var(--primary-color); text-align: center; margin-bottom: 2rem;">About the Plurinational Land Reform in CA Working Group</h2>
+            <p style="text-align: center; font-size: 1.1rem; max-width: 800px; margin: 0 auto;">
+                We are a statewide network committed to advancing land justice through research, education, and organizing. Our work centers plurinational approaches that honor indigenous sovereignty while building solidarity between landless peoples fighting for access to land. This summer school represents our commitment to political education as a foundation for movement building.
+            </p>
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="index.html" style="color: var(--secondary-color); text-decoration: none; font-weight: bold;">Learn more about our work →</a>
+            </div>
+        </section>
+        
+        <section style="text-align: center; margin: 3rem 0;">
+            <h3 style="color: var(--primary-color); margin-bottom: 1rem;">Questions?</h3>
+            <p>Email us at <strong>pluricalifornia@gmail.com</strong> or connect with us on social media below.</p>
+        </section>
     </div>
     
     <footer>
@@ -867,30 +893,5 @@
         
         <p>&copy; 2025 Plurinational Land Reform in CA Working Group. All rights reserved.</p>
     </footer>
-
-    <script>
-        // Mobile dropdown toggle
-        document.addEventListener('DOMContentLoaded', function() {
-            const dropdownLinks = document.querySelectorAll('.has-dropdown > a');
-            
-            dropdownLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    if (window.innerWidth <= 768) {
-                        e.preventDefault();
-                        this.parentElement.classList.toggle('active');
-                    }
-                });
-            });
-            
-            // Ensure dropdown items work properly
-            const dropdownItems = document.querySelectorAll('.dropdown-content a');
-            dropdownItems.forEach(item => {
-                item.addEventListener('click', function(e) {
-                    // Allow normal navigation when clicking on dropdown items
-                    window.location.href = this.getAttribute('href');
-                });
-            });
-        });
-    </script>
 </body>
 </html>
