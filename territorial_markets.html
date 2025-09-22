@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Territorial Markets - Plurinational Land Reform in CA Working Group</title>
+    <style>
+        :root {
+            --primary-color: #3a3a6a;        /* Dark purple/blue from the logo text */
+            --secondary-color: #e71d36;      /* Red from the Wiphala pattern */
+            --dark-color: #011627;           /* Dark blue/black from Wiphala */
+            --light-color: #f7f7f7;          /* Off-white background */
+            --accent-color: #ff9f1c;         /* Orange from Wiphala pattern */
+            --accent-green: #8bc34a;         /* Green from the quail */
+            --accent-red: #e53935;           /* Red from the bear */
+            --card-bg: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #2a2a4a 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            border-bottom: 4px solid var(--accent-color);
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        nav {
+            background-color: var(--dark-color);
+            padding: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav ul li {
+            margin: 0 1rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+            display: block;
+            padding: 0.5rem 0;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .active {
+            color: var(--accent-color) !important;
+        }
+        
+        section {
+            padding: 3rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            font-size: 2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
+        }
+        
+        .intro-section {
+            background: linear-gradient(135deg, var(--accent-green) 0%, var(--accent-color) 100%);
+            color: var(--dark-color);
+            padding: 3rem 1rem;
+        }
+        
+        .intro-section .section-title {
+            color: var(--dark-color);
+        }
+        
+        .intro-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .intro-content p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .partnership-info {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+        }
+        
+        .partnership-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .partnership-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .partnership-card {
+            background-color: var(--card-bg);
+            border: 2px solid var(--accent-color);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .partnership-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        
+        .partnership-card h4 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .products-section {
+            padding: 3rem 1rem;
+        }
+        
+        .filter-bar {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: bold;
+        }
+        
+        .filter-btn:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .filter-btn.active {
+            background-color: var(--accent-color);
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .product-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        
+        .product-header {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        .product-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-category {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .product-details {
+            padding: 1.5rem;
+        }
+        
+        .price-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .individual-price {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .bulk-section {
+            background-color: var(--light-color);
+            border-radius: 8px;
+            padding: 1rem;
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .bulk-label {
+            font-weight: bold;
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .bulk-price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+        
+        .contact-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #2a2a4a 100%);
+            color: white;
+            padding: 3rem 1rem;
+        }
+        
+        .contact-section .section-title {
+            color: white;
+        }
+        
+        .contact-info {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .contact-info > p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .order-form-container {
+            background-color: white;
+            color: var(--dark-color);
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem auto;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: left;
+        }
+        
+        .order-form {
+            max-width: 100%;
+        }
+        
+        .form-section {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--light-color);
+        }
+        
+        .form-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        
+        .form-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: var(--dark-color);
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+        
+        .order-items {
+            background-color: var(--light-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .order-item {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr auto;
+            gap: 1rem;
+            align-items: end;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .order-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .add-item-btn {
+            background-color: var(--accent-green);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .add-item-btn:hover {
+            background-color: #7aa93a;
+        }
+        
+        .remove-item-btn {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+        
+        .remove-item-btn:hover {
+            background-color: #c91020;
+        }
+        
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--light-color);
+        }
+        
+        .order-total {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+        
+        .submit-order-btn {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .submit-order-btn:hover {
+            background-color: #c91020;
+        }
+        
+        .contact-backup {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+        }
+        
+        .contact-backup a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .contact-backup a:hover {
+            text-decoration: underline;
+        }
+        
+        .success-message {
+            background-color: var(--accent-green);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            text-align: center;
+            display: none;
+        }
+        
+        .error-message {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            text-align: center;
+            display: none;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, var(--dark-color) 0%, #000 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            border-top: 4px solid var(--accent-color);
+        }
+        
+        .back-to-main {
+            display: inline-block;
+            margin-top: 1rem;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .back-to-main:hover {
+            background-color: #c91020;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-bar {
+                justify-content: center;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 1rem;
+            }
+            
+            .order-item {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+            
+            .order-item .remove-item-btn {
+                justify-self: end;
+                margin-top: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Territorial Markets</h1>
+        <p>Direct farm purchasing to strengthen farmer autonomy and build solidarity economies</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="OurCompass.html">Our Compass</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#contact">Order</a></li>
+            <li><a href="#" class="active">Territorial Markets</a></li>
+        </ul>
+    </nav>
+    
+    <section class="intro-section">
+        <h2 class="section-title">Building Solidarity Through Direct Purchasing</h2>
+        <div class="intro-content">
+            <p>Territorial Markets connects student cooperatives, tenant unions, and community formations directly with small farmers, bypassing intermediaries that extract value from both producers and consumers. This initiative strengthens farmer autonomy while making fresh, local produce accessible to organized communities.</p>
+            
+            <p>By purchasing directly from farms, we build the economic foundation necessary for land reform and food sovereignty. Every transaction supports farmers in maintaining their land, investing in sustainable practices, and building power within their communities.</p>
+            
+            <div class="partnership-info">
+                <h3>Who Can Participate</h3>
+                <div class="partnership-types">
+                    <div class="partnership-card">
+                        <h4>Student Cooperatives</h4>
+                        <p>Food cooperatives, buying clubs, and student-run cafeterias seeking fresh, affordable produce while supporting local farmers.</p>
+                    </div>
+                    <div class="partnership-card">
+                        <h4>Tenant Unions</h4>
+                        <p>Organized tenants pooling resources for bulk purchasing to reduce food costs and support community-controlled food systems.</p>
+                    </div>
+                    <div class="partnership-card">
+                        <h4>Community Formations</h4>
+                        <p>Mutual aid groups, community centers, and collectives working to provide accessible food while building economic alternatives.</p>
+                    </div>
+                    <div class="partnership-card">
+                        <h4>Small Farmers</h4>
+                        <p>Producers seeking direct markets, fair prices, and relationships with communities committed to supporting local agriculture.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="products" class="products-section">
+        <h2 class="section-title">Available Products</h2>
+        <p style="text-align: center; margin-bottom: 2rem; color: var(--primary-color); font-size: 1.1rem;">Fresh produce from <strong>Tierra Milperas Farm</strong> - committed to agroecological practices and community partnerships</p>
+        
+        <div class="filter-bar">
+            <button class="filter-btn active" onclick="filterProducts('all')">All Products</button>
+            <button class="filter-btn" onclick="filterProducts('vegetables')">Vegetables</button>
+            <button class="filter-btn" onclick="filterProducts('peppers')">Peppers</button>
+            <button class="filter-btn" onclick="filterProducts('greens')">Greens</button>
+            <button class="filter-btn" onclick="filterProducts('fruits')">Fruits</button>
+        </div>
+        
+        <div class="products-grid" id="productsGrid">
+            <!-- Products will be populated by JavaScript -->
+        </div>
+    </section>
+    
+    <section id="contact" class="contact-section">
+        <h2 class="section-title">Place Your Order</h2>
+        <div class="contact-info">
+            <p>Ready to build territorial markets in your community? Fill out the form below to place your order directly.</p>
+            
+            <p><strong>Minimum Orders:</strong> Bulk pricing requires minimum quantities as specified per product. Perfect for cooperatives, unions, and community formations.</p>
+            
+            <div class="order-form-container">
+                <form id="orderForm" class="order-form">
+                    <div class="form-section">
+                        <h3>Organization Information</h3>
+                        <div class="form-group">
+                            <label for="orgName">Organization/Group Name *</label>
+                            <input type="text" id="orgName" name="orgName" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="orgType">Organization Type *</label>
+                            <select id="orgType" name="orgType" required>
+                                <option value="">Select Organization Type</option>
+                                <option value="student-cooperative">Student Cooperative</option>
+                                <option value="tenant-union">Tenant Union</option>
+                                <option value="community-formation">Community Formation</option>
+                                <option value="mutual-aid">Mutual Aid Group</option>
+                                <option value="food-coop">Food Cooperative</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contactName">Contact Person *</label>
+                            <input type="text" id="contactName" name="contactName" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h3>Order Details</h3>
+                        <div id="orderItems" class="order-items">
+                            <!-- Order items will be populated by JavaScript -->
+                        </div>
+                        
+                        <button type="button" class="add-item-btn" onclick="addOrderItem()">+ Add Another Product</button>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h3>Delivery & Pickup</h3>
+                        <div class="form-group">
+                            <label for="deliveryMethod">Preferred Method *</label>
+                            <select id="deliveryMethod" name="deliveryMethod" required>
+                                <option value="">Select Delivery Method</option>
+                                <option value="farm-pickup">Farm Pickup</option>
+                                <option value="berkeley-delivery">Berkeley Area Delivery</option>
+                                <option value="coordinate-pickup">Coordinate Group Pickup</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="preferredDate">Preferred Date</label>
+                            <input type="date" id="preferredDate" name="preferredDate">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="address">Delivery Address (if applicable)</label>
+                            <textarea id="address" name="address" rows="3"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h3>Additional Information</h3>
+                        <div class="form-group">
+                            <label for="commitment">How does your organization commit to supporting territorial markets?</label>
+                            <textarea id="commitment" name="commitment" rows="4" placeholder="Describe your group's approach to solidarity economies, community organizing, or food justice work..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="specialRequests">Special Requests or Notes</label>
+                            <textarea id="specialRequests" name="specialRequests" rows="3"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <div class="order-total" id="orderTotal">
+                            <strong>Estimated Total: $0.00</strong>
+                        </div>
+                        <button type="submit" class="submit-order-btn">Submit Order</button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="contact-backup">
+                <p><strong>Alternative Contact:</strong> <a href="mailto:pluricalifornia@gmail.com">pluricalifornia@gmail.com</a></p>
+                <p>Orders submitted through this form are reviewed within 48 hours. You'll receive confirmation and pickup/delivery coordination details via email.</p>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <h3>Plurinational Land Reform in CA Working Group</h3>
+        <p>Building economic alternatives through direct farmer-community partnerships</p>
+        <a href="index.html" class="back-to-main">← Back to Main Site</a>
+        <p style="margin-top: 1rem;">&copy; 2025 Plurinational Land Reform in CA Working Group. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const products = [
+            { name: "Broccoli", category: "vegetables", individual: 3.00, individualDisplay: "$3.00/lb", bulk: 60.00, bulkDisplay: "$60.00 (20 lb)", bulkQty: 20 },
+            { name: "Cauliflower", category: "vegetables", individual: 3.00, individualDisplay: "$3.00/lb", bulk: 60.00, bulkDisplay: "$60.00 (20 lb)", bulkQty: 20 },
+            { name: "Celery", category: "vegetables", individual: 2.50, individualDisplay: "$2.50/pz", bulk: 60.00, bulkDisplay: "$60.00 (24 ct)", bulkQty: 24 },
+            { name: "Romaine Lettuce", category: "greens", individual: 2.50, individualDisplay: "$2.50/pz", bulk: 60.00, bulkDisplay: "$60.00 (24 ct)", bulkQty: 24 },
+            { name: "Onions (Dry)", category: "vegetables", individual: 1.50, individualDisplay: "$1.50/lb", bulk: 30.00, bulkDisplay: "$30.00 (20 lb)", bulkQty: 20 },
+            { name: "Strawberry", category: "fruits", individual: 0, individualDisplay: "Bulk Only", bulk: 35.00, bulkDisplay: "$35.00 (12 basket)", bulkQty: 12 },
+            { name: "Cucumber", category: "vegetables", individual: 2.00, individualDisplay: "$2.00/lb", bulk: 40.00, bulkDisplay: "$40.00 (20 lb)", bulkQty: 20 },
+            { name: "Zucchini", category: "vegetables", individual: 2.00, individualDisplay: "$2.00/lb", bulk: 40.00, bulkDisplay: "$40.00 (20 lb)", bulkQty: 20 },
+            { name: "Sweet Peppers (Bell)", category: "peppers", individual: 3.00, individualDisplay: "$3.00/lb", bulk: 60.00, bulkDisplay: "$60.00 (20 lb)", bulkQty: 20 },
+            { name: "Hot Peppers", category: "peppers", individual: 3.00, individualDisplay: "$3.00/lb", bulk: 60.00, bulkDisplay: "$60.00 (20 lb)", bulkQty: 20 },
+            { name: "Carrots", category: "vegetables", individual: 2.00, individualDisplay: "$2.00/bunch", bulk: 48.00, bulkDisplay: "$48.00 (24 bunch)", bulkQty: 24 },
+            { name: "Beets", category: "vegetables", individual: 2.00, individualDisplay: "$2.00/bunch", bulk: 48.00, bulkDisplay: "$48.00 (24 bunch)", bulkQty: 24 },
+            { name: "Cherry Tomatoes", category: "fruits", individual: 3.50, individualDisplay: "$3.50/basket", bulk: 42.00, bulkDisplay: "$42.00 (12 basket)", bulkQty: 12 },
+            { name: "Roma Tomatoes", category: "fruits", individual: 2.00, individualDisplay: "$2.00/lb", bulk: 40.00, bulkDisplay: "$40.00 (20 lb)", bulkQty: 20 },
+            { name: "Early Girl Tomatoes", category: "fruits", individual: 3.00, individualDisplay: "$3.00/lb", bulk: 30.00, bulkDisplay: "$30.00 (10 lb)", bulkQty: 10 },
+            { name: "Heirloom Tomatoes", category: "fruits", individual: 3.00, individualDisplay: "$3.00/lb", bulk: 30.00, bulkDisplay: "$30.00 (10 lb)", bulkQty: 10 },
+            { name: "Swiss Chard", category: "greens", individual: 2.00, individualDisplay: "$2.00/bunch", bulk: 48.00, bulkDisplay: "$48.00 (24 bunch)", bulkQty: 24 },
+            { name: "Kale", category: "greens", individual: 2.00, individualDisplay: "$2.00/bunch", bulk: 48.00, bulkDisplay: "$48.00 (24 bunch)", bulkQty: 24 },
+            { name: "Cabbage", category: "vegetables", individual: 1.50, individualDisplay: "$1.50/lb", bulk: 52.50, bulkDisplay: "$52.50 (35 lb)", bulkQty: 35 },
+            { name: "Yukon Gold Potatoes", category: "vegetables", individual: 1.25, individualDisplay: "$1.25/lb", bulk: 62.50, bulkDisplay: "$62.50 (50 lb box)", bulkQty: 50 },
+            { name: "Red Norland Potatoes", category: "vegetables", individual: 1.20, individualDisplay: "$1.20/lb", bulk: 55.00, bulkDisplay: "$55.00 (50 lb box)", bulkQty: 50 },
+            { name: "Gypsy Peppers", category: "peppers", individual: 3.25, individualDisplay: "$3.25/lb", bulk: 65.00, bulkDisplay: "$65.00 (20 lb box)", bulkQty: 20 },
+            { name: "Shishito Peppers", category: "peppers", individual: 4.00, individualDisplay: "$4.00/lb", bulk: 80.00, bulkDisplay: "$80.00 (20 lb box)", bulkQty: 20 },
+            { name: "Padron Peppers", category: "peppers", individual: 4.25, individualDisplay: "$4.25/lb", bulk: 85.00, bulkDisplay: "$85.00 (20 lb box)", bulkQty: 20 },
+            { name: "Escamillo Peppers", category: "peppers", individual: 4.50, individualDisplay: "$4.50/lb", bulk: 90.00, bulkDisplay: "$90.00 (20 lb box)", bulkQty: 20 },
+            { name: "Strawberries", category: "fruits", individual: 4.25, individualDisplay: "$4.25/basket", bulk: 51.00, bulkDisplay: "$51.00 (12 baskets)", bulkQty: 12 },
+            { name: "Carrots (Orange)", category: "vegetables", individual: 2.25, individualDisplay: "$2.25/bunch", bulk: 54.00, bulkDisplay: "$54.00 (24 bunches)", bulkQty: 24 },
+            { name: "Carrots (Mix Colors)", category: "vegetables", individual: 2.75, individualDisplay: "$2.75/bunch", bulk: 66.00, bulkDisplay: "$66.00 (24 bunches)", bulkQty: 24 }
+        ];
+
+        let orderItemCount = 0;
+
+        function createProductCard(product) {
+            return `
+                <div class="product-card" data-category="${product.category}">
+                    <div class="product-header">
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-category">${product.category.charAt(0).toUpperCase() + product.category.slice(1)}</div>
+                    </div>
+                    <div class="product-details">
+                        <div class="price-info">
+                            <span class="individual-price">${product.individualDisplay}</span>
+                        </div>
+                        <div class="bulk-section">
+                            <div class="bulk-label">BULK PRICING</div>
+                            <div class="bulk-price">${product.bulkDisplay}</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderProducts(productsToShow = products) {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = productsToShow.map(createProductCard).join('');
+        }
+
+        function filterProducts(category) {
+            // Update active filter button
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Filter and render products
+            if (category === 'all') {
+                renderProducts();
+            } else {
+                const filtered = products.filter(product => product.category === category);
+                renderProducts(filtered);
+            }
+        }
+
+        function addOrderItem() {
+            orderItemCount++;
+            const orderItems = document.getElementById('orderItems');
+            
+            const productOptions = products.map(p => 
+                `<option value="${p.name}">${p.name} - ${p.individualDisplay} | Bulk: ${p.bulkDisplay}</option>`
+            ).join('');
+            
+            const orderItem = document.createElement('div');
+            orderItem.className = 'order-item';
+            orderItem.id = `orderItem-${orderItemCount}`;
+            orderItem.innerHTML = `
+                <div class="form-group">
+                    <label>Product</label>
+                    <select name="product" onchange="updateOrderItem(${orderItemCount})" required>
+                        <option value="">Select Product</option>
+                        ${productOptions}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Quantity</label>
+                    <input type="number" name="quantity" min="1" onchange="calculateTotal()" required>
+                </div>
+                <div class="form-group">
+                    <label>Pricing</label>
+                    <select name="pricing" onchange="calculateTotal()" required>
+                        <option value="">Select Pricing</option>
+                        <option value="individual">Individual Price</option>
+                        <option value="bulk">Bulk Price</option>
+                    </select>
+                </div>
+                <div>
+                    <button type="button" class="remove-item-btn" onclick="removeOrderItem(${orderItemCount})">Remove</button>
+                </div>
+            `;
+            
+            orderItems.appendChild(orderItem);
+        }
+
+        function removeOrderItem(itemId) {
+            const item = document.getElementById(`orderItem-${itemId}`);
+            if (item) {
+                item.remove();
+                calculateTotal();
+            }
+        }
+
+        function updateOrderItem(itemId) {
+            const item = document.getElementById(`orderItem-${itemId}`);
+            const productSelect = item.querySelector('select[name="product"]');
+            const pricingSelect = item.querySelector('select[name="pricing"]');
+            
+            // Reset pricing options when product changes
+            pricingSelect.innerHTML = `
+                <option value="">Select Pricing</option>
+                <option value="individual">Individual Price</option>
+                <option value="bulk">Bulk Price</option>
+            `;
+            
+            calculateTotal();
+        }
+
+        function calculateTotal() {
+            let total = 0;
+            const orderItems = document.querySelectorAll('.order-item');
+            
+            orderItems.forEach(item => {
+                const productName = item.querySelector('select[name="product"]').value;
+                const quantity = parseInt(item.querySelector('input[name="quantity"]').value) || 0;
+                const pricing = item.querySelector('select[name="pricing"]').value;
+                
+                if (productName && quantity && pricing) {
+                    const product = products.find(p => p.name === productName);
+                    if (product) {
+                        if (pricing === 'individual' && product.individual > 0) {
+                            total += product.individual * quantity;
+                        } else if (pricing === 'bulk') {
+                            total += product.bulk * quantity;
+                        }
+                    }
+                }
+            });
+            
+            document.getElementById('orderTotal').innerHTML = `<strong>Estimated Total: ${total.toFixed(2)}</strong>`;
+        }
+
+        function generateOrderData() {
+            const formData = new FormData(document.getElementById('orderForm'));
+            const orderItems = [];
+            
+            document.querySelectorAll('.order-item').forEach(item => {
+                const productName = item.querySelector('select[name="product"]').value;
+                const quantity = item.querySelector('input[name="quantity"]').value;
+                const pricing = item.querySelector('select[name="pricing"]').value;
+                
+                if (productName && quantity && pricing) {
+                    const product = products.find(p => p.name === productName);
+                    let itemTotal = 0;
+                    if (pricing === 'individual' && product.individual > 0) {
+                        itemTotal = product.individual * parseInt(quantity);
+                    } else if (pricing === 'bulk') {
+                        itemTotal = product.bulk * parseInt(quantity);
+                    }
+                    
+                    orderItems.push({
+                        product: productName,
+                        quantity: parseInt(quantity),
+                        pricing: pricing,
+                        itemTotal: itemTotal
+                    });
+                }
+            });
+            
+            return {
+                timestamp: new Date().toISOString(),
+                orderNumber: 'TM-' + Date.now(),
+                organization: {
+                    name: formData.get('orgName'),
+                    type: formData.get('orgType'),
+                    contactPerson: formData.get('contactName'),
+                    email: formData.get('email'),
+                    phone: formData.get('phone')
+                },
+                orderItems: orderItems,
+                delivery: {
+                    method: formData.get('deliveryMethod'),
+                    preferredDate: formData.get('preferredDate'),
+                    address: formData.get('address')
+                },
+                commitment: formData.get('commitment'),
+                specialRequests: formData.get('specialRequests'),
+                estimatedTotal: orderItems.reduce((sum, item) => sum + item.itemTotal, 0)
+            };
+        }
+
+        async function submitOrder(orderData) {
+            try {
+                // For a real implementation, you would send this to a backend service
+                // that would commit to your GitHub repository
+                
+                // For now, we'll simulate the order submission and provide the JSON
+                // that should be saved to your repository
+                
+                const orderJson = JSON.stringify(orderData, null, 2);
+                const filename = `orders/order-${orderData.orderNumber}.json`;
+                
+                // Show success message with instructions
+                showMessage('success', `
+                    Order submitted successfully! Order Number: ${orderData.orderNumber}<br>
+                    <small>Your order data should be saved as: ${filename}</small><br>
+                    <small>We'll contact you within 48 hours via email for confirmation.</small>
+                `);
+                
+                // Log order data for manual processing
+                console.log('Order Data to be saved to GitHub:', orderJson);
+                console.log('Suggested filename:', filename);
+                
+                // Reset form
+                document.getElementById('orderForm').reset();
+                document.getElementById('orderItems').innerHTML = '';
+                orderItemCount = 0;
+                calculateTotal();
+                
+                return true;
+            } catch (error) {
+                showMessage('error', 'There was an error submitting your order. Please try again or contact us directly.');
+                console.error('Order submission error:', error);
+                return false;
+            }
+        }
+
+        function showMessage(type, message) {
+            // Remove existing messages
+            document.querySelectorAll('.success-message, .error-message').forEach(msg => msg.remove());
+            
+            const messageDiv = document.createElement('div');
+            messageDiv.className = type === 'success' ? 'success-message' : 'error-message';
+            messageDiv.innerHTML = message;
+            messageDiv.style.display = 'block';
+            
+            const form = document.getElementById('orderForm');
+            form.parentNode.insertBefore(messageDiv, form);
+            
+            // Auto-hide after 10 seconds
+            setTimeout(() => {
+                messageDiv.remove();
+            }, 10000);
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            renderProducts();
+            
+            // Add initial order item
+            addOrderItem();
+            
+            // Handle form submission
+            document.getElementById('orderForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const orderData = generateOrderData();
+                
+                if (orderData.orderItems.length === 0) {
+                    showMessage('error', 'Please add at least one product to your order.');
+                    return;
+                }
+                
+                await submitOrder(orderData);
+            });
+        });20 lb)" },
+            { name: "Cauliflower", category: "vegetables", individual: "$3.00/lb", bulk: "$60.00 (20 lb)" },
+            { name: "Celery", category: "vegetables", individual: "$2.50/pz", bulk: "$60.00 (24 ct)" },
+            { name: "Romaine Lettuce", category: "greens", individual: "$2.50/pz", bulk: "$60.00 (24 ct)" },
+            { name: "Onions (Dry)", category: "vegetables", individual: "$1.50/lb", bulk: "$30.00 (20 lb)" },
+            { name: "Strawberry", category: "fruits", individual: "Bulk Only", bulk: "$35.00 (12 basket)" },
+            { name: "Cucumber", category: "vegetables", individual: "$2.00/lb", bulk: "$40.00 (20 lb)" },
+            { name: "Zucchini", category: "vegetables", individual: "$2.00/lb", bulk: "$40.00 (20 lb)" },
+            { name: "Sweet Peppers (Bell)", category: "peppers", individual: "$3.00/lb", bulk: "$60.00 (20 lb)" },
+            { name: "Hot Peppers", category: "peppers", individual: "$3.00/lb", bulk: "$60.00 (20 lb)" },
+            { name: "Carrots", category: "vegetables", individual: "$2.00/bunch", bulk: "$48.00 (24 bunch)" },
+            { name: "Beets", category: "vegetables", individual: "$2.00/bunch", bulk: "$48.00 (24 bunch)" },
+            { name: "Cherry Tomatoes", category: "fruits", individual: "$3.50/basket", bulk: "$42.00 (12 basket)" },
+            { name: "Roma Tomatoes", category: "fruits", individual: "$2.00/lb", bulk: "$40.00 (20 lb)" },
+            { name: "Early Girl Tomatoes", category: "fruits", individual: "$3.00/lb", bulk: "$30.00 (10 lb)" },
+            { name: "Heirloom Tomatoes", category: "fruits", individual: "$3.00/lb", bulk: "$30.00 (10 lb)" },
+            { name: "Swiss Chard", category: "greens", individual: "$2.00/bunch", bulk: "$48.00 (24 bunch)" },
+            { name: "Kale", category: "greens", individual: "$2.00/bunch", bulk: "$48.00 (24 bunch)" },
+            { name: "Cabbage", category: "vegetables", individual: "$1.50/lb", bulk: "$52.50 (35 lb)" },
+            { name: "Yukon Gold Potatoes", category: "vegetables", individual: "$1.25/lb", bulk: "$62.50 (50 lb box)" },
+            { name: "Red Norland Potatoes", category: "vegetables", individual: "$1.20/lb", bulk: "$55.00 (50 lb box)" },
+            { name: "Gypsy Peppers", category: "peppers", individual: "$3.25/lb", bulk: "$65.00 (20 lb box)" },
+            { name: "Shishito Peppers", category: "peppers", individual: "$4.00/lb", bulk: "$80.00 (20 lb box)" },
+            { name: "Padron Peppers", category: "peppers", individual: "$4.25/lb", bulk: "$85.00 (20 lb box)" },
+            { name: "Escamillo Peppers", category: "peppers", individual: "$4.50/lb", bulk: "$90.00 (20 lb box)" },
+            { name: "Strawberries", category: "fruits", individual: "$4.25/basket", bulk: "$51.00 (12 baskets)" },
+            { name: "Carrots (Orange)", category: "vegetables", individual: "$2.25/bunch", bulk: "$54.00 (24 bunches)" },
+            { name: "Carrots (Mix Colors)", category: "vegetables", individual: "$2.75/bunch", bulk: "$66.00 (24 bunches)" }
+        ];
+
+        function createProductCard(product) {
+            return `
+                <div class="product-card" data-category="${product.category}">
+                    <div class="product-header">
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-category">${product.category.charAt(0).toUpperCase() + product.category.slice(1)}</div>
+                    </div>
+                    <div class="product-details">
+                        <div class="price-info">
+                            <span class="individual-price">${product.individual}</span>
+                        </div>
+                        <div class="bulk-section">
+                            <div class="bulk-label">BULK PRICING</div>
+                            <div class="bulk-price">${product.bulk}</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderProducts(productsToShow = products) {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = productsToShow.map(createProductCard).join('');
+        }
+
+        function filterProducts(category) {
+            // Update active filter button
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Filter and render products
+            if (category === 'all') {
+                renderProducts();
+            } else {
+                const filtered = products.filter(product => product.category === category);
+                renderProducts(filtered);
+            }
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            renderProducts();
+        });
+    </script>
+</body>
+</html>
