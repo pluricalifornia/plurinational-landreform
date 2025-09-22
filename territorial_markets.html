@@ -794,6 +794,11 @@
             orderItemCount++;
             const orderItems = document.getElementById('orderItems');
             
+            if (!orderItems) {
+                console.error('Order items container not found');
+                return;
+            }
+            
             const productOptions = products.map(p => 
                 `<option value="${p.name}">${p.name} - ${p.individualDisplay} | Bulk: ${p.bulkDisplay}</option>`
             ).join('');
@@ -827,6 +832,7 @@
             `;
             
             orderItems.appendChild(orderItem);
+            console.log(`Added order item ${orderItemCount}`);
         }
 
         function removeOrderItem(itemId) {
@@ -927,36 +933,75 @@
 
         async function submitOrder(orderData) {
             try {
-                // For a real implementation, you would send this to a backend service
-                // that would commit to your GitHub repository
+                // Show loading state
+                const submitButton = document.querySelector('.submit-order-btn');
+                const originalText = submitButton.textContent;
+                submitButton.textContent = 'Submitting Order...';
+                submitButton.disabled = true;
                 
-                // For now, we'll simulate the order submission and provide the JSON
-                // that should be saved to your repository
+                // Submit to GitHub Actions via webhook
+                const response = await fetch('/.netlify/functions/submit-order', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(orderData)
+                });
                 
+                const result = await response.json();
+                
+                if (response.ok && result.success) {
+                    // Success! Show confirmation
+                    showMessage('success', `
+                        Order submitted successfully! Order Number: ${orderData.orderNumber}<br>
+                        <small>We'll contact you within 48 hours via email for confirmation.</small><br>
+                        <small>Your order has been automatically saved to our system.</small>
+                    `);
+                    
+                    // Reset form
+                    document.getElementById('orderForm').reset();
+                    document.getElementById('orderItems').innerHTML = '';
+                    orderItemCount = 0;
+                    calculateTotal();
+                    
+                    // Add a new blank order item
+                    setTimeout(() => {
+                        window.addOrderItem();
+                    }, 500);
+                    
+                } else {
+                    // Handle API error
+                    throw new Error(result.message || 'Failed to submit order');
+                }
+                
+                // Restore button
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+                
+                return true;
+                
+            } catch (error) {
+                console.error('Order submission error:', error);
+                
+                // Fallback: Show order data for manual processing
                 const orderJson = JSON.stringify(orderData, null, 2);
                 const filename = `orders/order-${orderData.orderNumber}.json`;
                 
-                // Show success message with instructions
-                showMessage('success', `
-                    Order submitted successfully! Order Number: ${orderData.orderNumber}<br>
-                    <small>Your order data should be saved as: ${filename}</small><br>
-                    <small>We'll contact you within 48 hours via email for confirmation.</small>
+                showMessage('error', `
+                    There was an error submitting your order automatically. Please email us with your order details:<br><br>
+                    <strong>Email:</strong> pluricalifornia@gmail.com<br>
+                    <strong>Subject:</strong> Manual Order Submission - ${orderData.orderNumber}<br><br>
+                    <details>
+                        <summary>Click to copy order details</summary>
+                        <textarea readonly style="width:100%;height:200px;margin:10px 0;">${orderJson}</textarea>
+                    </details>
                 `);
                 
-                // Log order data for manual processing
-                console.log('Order Data to be saved to GitHub:', orderJson);
-                console.log('Suggested filename:', filename);
+                // Restore button
+                const submitButton = document.querySelector('.submit-order-btn');
+                submitButton.textContent = 'Submit Order';
+                submitButton.disabled = false;
                 
-                // Reset form
-                document.getElementById('orderForm').reset();
-                document.getElementById('orderItems').innerHTML = '';
-                orderItemCount = 0;
-                calculateTotal();
-                
-                return true;
-            } catch (error) {
-                showMessage('error', 'There was an error submitting your order. Please try again or contact us directly.');
-                console.error('Order submission error:', error);
                 return false;
             }
         }
@@ -981,24 +1026,48 @@
 
         // Initialize page
         document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, initializing page...');
+            
+            // Render products first
             renderProducts();
             
-            // Add initial order item
-            addOrderItem();
+            // Add initial order item after a brief delay to ensure DOM is ready
+            setTimeout(() => {
+                console.log('Adding initial order item...');
+                window.addOrderItem();
+            }, 200);
             
             // Handle form submission
-            document.getElementById('orderForm').addEventListener('submit', async function(e) {
-                e.preventDefault();
-                
-                const orderData = generateOrderData();
-                
-                if (orderData.orderItems.length === 0) {
-                    showMessage('error', 'Please add at least one product to your order.');
-                    return;
-                }
-                
-                await submitOrder(orderData);
-            });
+            const orderForm = document.getElementById('orderForm');
+            if (orderForm) {
+                orderForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    console.log('Form submitted');
+                    
+                    const orderData = generateOrderData();
+                    
+                    if (orderData.orderItems.length === 0) {
+                        showMessage('error', 'Please add at least one product to your order.');
+                        return;
+                    }
+                    
+                    await submitOrder(orderData);
+                });
+            } else {
+                console.error('Order form not found');
+            }
+            
+            // Test the add button functionality
+            const addButton = document.querySelector('.add-item-btn');
+            if (addButton) {
+                console.log('Add button found:', addButton);
+                addButton.addEventListener('click', function() {
+                    console.log('Add button clicked via event listener');
+                    window.addOrderItem();
+                });
+            } else {
+                console.error('Add button not found');
+            }
         });20 lb)" },
             { name: "Cauliflower", category: "vegetables", individual: "$3.00/lb", bulk: "$60.00 (20 lb)" },
             { name: "Celery", category: "vegetables", individual: "$2.50/pz", bulk: "$60.00 (24 ct)" },
