@@ -15,6 +15,7 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  issues: write           # ← ADDED THIS LINE
 
 jobs:
   process-order:
@@ -149,6 +150,7 @@ jobs:
     - name: Create issue for order review
       uses: actions/github-script@v7
       with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}    # ← ADDED THIS LINE
         script: |
           const orderNumber = '${{ steps.process_order.outputs.order_number }}';
           const orgName = '${{ steps.process_order.outputs.org_name }}';
