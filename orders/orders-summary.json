@@ -17,9 +17,18 @@
       "total": 2.00,
       "status": "pending",
       "filename": "orders/order-TM-TEST-001-20250923_153636.json"
+    },
+    {
+      "orderNumber": "TM-TEST-001",
+      "timestamp": "2025-09-23T15:50:48+00:00",
+      "organizationName": "Test Organization",
+      "email": "test@example.com",
+      "total": 2.00,
+      "status": "pending",
+      "filename": "orders/order-TM-TEST-001-20250923_155048.json"
     }
   ],
-  "totalOrders": 2,
-  "totalRevenue": 4,
-  "lastUpdated": "2025-09-23T15:36:36+00:00"
+  "totalOrders": 3,
+  "totalRevenue": 6,
+  "lastUpdated": "2025-09-23T15:50:48+00:00"
 }

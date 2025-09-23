@@ -1,0 +1,23 @@
+{
+  "timestamp": "2025-01-22T15:30:00.000Z",
+  "orderNumber": "TM-TEST-001",
+  "organization": {
+    "name": "Test Organization",
+    "type": "student-cooperative",
+    "contactPerson": "Test User",
+    "email": "test@example.com"
+  },
+  "orderItems": [
+    {
+      "product": "Kale",
+      "quantity": 1,
+      "pricing": "individual",
+      "itemTotal": 2.00
+    }
+  ],
+  "delivery": {
+    "method": "farm-pickup",
+    "preferredDate": "2025-01-25"
+  },
+  "estimatedTotal": 2.00
+}
