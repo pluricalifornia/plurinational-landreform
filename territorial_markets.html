@@ -6,13 +6,13 @@
     <title>Territorial Markets - Plurinational Land Reform in CA Working Group</title>
     <style>
         :root {
-            --primary-color: #3a3a6a;        /* Dark purple/blue from the logo text */
-            --secondary-color: #e71d36;      /* Red from the Wiphala pattern */
-            --dark-color: #011627;           /* Dark blue/black from Wiphala */
-            --light-color: #f7f7f7;          /* Off-white background */
-            --accent-color: #ff9f1c;         /* Orange from Wiphala pattern */
-            --accent-green: #8bc34a;         /* Green from the quail */
-            --accent-red: #e53935;           /* Red from the bear */
+            --primary-color: #3a3a6a;
+            --secondary-color: #e71d36;
+            --dark-color: #011627;
+            --light-color: #f7f7f7;
+            --accent-color: #ff9f1c;
+            --accent-green: #8bc34a;
+            --accent-red: #e53935;
             --card-bg: #ffffff;
         }
         
@@ -751,6 +751,133 @@
 
         let orderItemCount = 0;
 
+        // Make functions global for onclick attributes
+        window.addOrderItem = function() {
+            try {
+                orderItemCount++;
+                const orderItems = document.getElementById('orderItems');
+                
+                if (!orderItems) {
+                    console.error('Order items container not found');
+                    return;
+                }
+                
+                const productOptions = products.map(p => 
+                    `<option value="${p.name}">${p.name} - ${p.individualDisplay} | Bulk: ${p.bulkDisplay}</option>`
+                ).join('');
+                
+                const orderItem = document.createElement('div');
+                orderItem.className = 'order-item';
+                orderItem.id = `orderItem-${orderItemCount}`;
+                orderItem.innerHTML = `
+                    <div class="form-group">
+                        <label>Product</label>
+                        <select name="product" onchange="updateOrderItem(${orderItemCount})" required>
+                            <option value="">Select Product</option>
+                            ${productOptions}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Quantity</label>
+                        <input type="number" name="quantity" min="1" onchange="calculateTotal()" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Pricing</label>
+                        <select name="pricing" onchange="calculateTotal()" required>
+                            <option value="">Select Pricing</option>
+                            <option value="individual">Individual Price</option>
+                            <option value="bulk">Bulk Price</option>
+                        </select>
+                    </div>
+                    <div>
+                        <button type="button" class="remove-item-btn" onclick="removeOrderItem(${orderItemCount})">Remove</button>
+                    </div>
+                `;
+                
+                orderItems.appendChild(orderItem);
+                console.log(`Added order item ${orderItemCount}`);
+            } catch (error) {
+                console.error('Error adding order item:', error);
+            }
+        };
+
+        window.removeOrderItem = function(itemId) {
+            try {
+                const item = document.getElementById(`orderItem-${itemId}`);
+                if (item) {
+                    item.remove();
+                    calculateTotal();
+                    console.log(`Removed order item ${itemId}`);
+                }
+            } catch (error) {
+                console.error('Error removing order item:', error);
+            }
+        };
+
+        window.updateOrderItem = function(itemId) {
+            try {
+                const item = document.getElementById(`orderItem-${itemId}`);
+                const productSelect = item.querySelector('select[name="product"]');
+                const pricingSelect = item.querySelector('select[name="pricing"]');
+                
+                // Reset pricing options when product changes
+                pricingSelect.innerHTML = `
+                    <option value="">Select Pricing</option>
+                    <option value="individual">Individual Price</option>
+                    <option value="bulk">Bulk Price</option>
+                `;
+                
+                calculateTotal();
+            } catch (error) {
+                console.error('Error updating order item:', error);
+            }
+        };
+
+        window.calculateTotal = function() {
+            try {
+                let total = 0;
+                const orderItems = document.querySelectorAll('.order-item');
+                
+                orderItems.forEach(item => {
+                    const productName = item.querySelector('select[name="product"]').value;
+                    const quantity = parseInt(item.querySelector('input[name="quantity"]').value) || 0;
+                    const pricing = item.querySelector('select[name="pricing"]').value;
+                    
+                    if (productName && quantity && pricing) {
+                        const product = products.find(p => p.name === productName);
+                        if (product) {
+                            if (pricing === 'individual' && product.individual > 0) {
+                                total += product.individual * quantity;
+                            } else if (pricing === 'bulk') {
+                                total += product.bulk * quantity;
+                            }
+                        }
+                    }
+                });
+                
+                const totalElement = document.getElementById('orderTotal');
+                if (totalElement) {
+                    totalElement.innerHTML = `<strong>Estimated Total: ${total.toFixed(2)}</strong>`;
+                }
+            } catch (error) {
+                console.error('Error calculating total:', error);
+            }
+        };
+
+        window.filterProducts = function(category) {
+            // Update active filter button
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Filter and render products
+            if (category === 'all') {
+                renderProducts();
+            } else {
+                const filtered = products.filter(product => product.category === category);
+                renderProducts(filtered);
+            }
+        };
+
         function createProductCard(product) {
             return `
                 <div class="product-card" data-category="${product.category}">
@@ -774,112 +901,6 @@
         function renderProducts(productsToShow = products) {
             const grid = document.getElementById('productsGrid');
             grid.innerHTML = productsToShow.map(createProductCard).join('');
-        }
-
-        function filterProducts(category) {
-            // Update active filter button
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-
-            // Filter and render products
-            if (category === 'all') {
-                renderProducts();
-            } else {
-                const filtered = products.filter(product => product.category === category);
-                renderProducts(filtered);
-            }
-        }
-
-        function addOrderItem() {
-            orderItemCount++;
-            const orderItems = document.getElementById('orderItems');
-            
-            if (!orderItems) {
-                console.error('Order items container not found');
-                return;
-            }
-            
-            const productOptions = products.map(p => 
-                `<option value="${p.name}">${p.name} - ${p.individualDisplay} | Bulk: ${p.bulkDisplay}</option>`
-            ).join('');
-            
-            const orderItem = document.createElement('div');
-            orderItem.className = 'order-item';
-            orderItem.id = `orderItem-${orderItemCount}`;
-            orderItem.innerHTML = `
-                <div class="form-group">
-                    <label>Product</label>
-                    <select name="product" onchange="updateOrderItem(${orderItemCount})" required>
-                        <option value="">Select Product</option>
-                        ${productOptions}
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Quantity</label>
-                    <input type="number" name="quantity" min="1" onchange="calculateTotal()" required>
-                </div>
-                <div class="form-group">
-                    <label>Pricing</label>
-                    <select name="pricing" onchange="calculateTotal()" required>
-                        <option value="">Select Pricing</option>
-                        <option value="individual">Individual Price</option>
-                        <option value="bulk">Bulk Price</option>
-                    </select>
-                </div>
-                <div>
-                    <button type="button" class="remove-item-btn" onclick="removeOrderItem(${orderItemCount})">Remove</button>
-                </div>
-            `;
-            
-            orderItems.appendChild(orderItem);
-            console.log(`Added order item ${orderItemCount}`);
-        }
-
-        function removeOrderItem(itemId) {
-            const item = document.getElementById(`orderItem-${itemId}`);
-            if (item) {
-                item.remove();
-                calculateTotal();
-            }
-        }
-
-        function updateOrderItem(itemId) {
-            const item = document.getElementById(`orderItem-${itemId}`);
-            const productSelect = item.querySelector('select[name="product"]');
-            const pricingSelect = item.querySelector('select[name="pricing"]');
-            
-            // Reset pricing options when product changes
-            pricingSelect.innerHTML = `
-                <option value="">Select Pricing</option>
-                <option value="individual">Individual Price</option>
-                <option value="bulk">Bulk Price</option>
-            `;
-            
-            calculateTotal();
-        }
-
-        function calculateTotal() {
-            let total = 0;
-            const orderItems = document.querySelectorAll('.order-item');
-            
-            orderItems.forEach(item => {
-                const productName = item.querySelector('select[name="product"]').value;
-                const quantity = parseInt(item.querySelector('input[name="quantity"]').value) || 0;
-                const pricing = item.querySelector('select[name="pricing"]').value;
-                
-                if (productName && quantity && pricing) {
-                    const product = products.find(p => p.name === productName);
-                    if (product) {
-                        if (pricing === 'individual' && product.individual > 0) {
-                            total += product.individual * quantity;
-                        } else if (pricing === 'bulk') {
-                            total += product.bulk * quantity;
-                        }
-                    }
-                }
-            });
-            
-            document.getElementById('orderTotal').innerHTML = `<strong>Estimated Total: ${total.toFixed(2)}</strong>`;
         }
 
         function generateOrderData() {
@@ -985,7 +1006,6 @@
                 
                 // Fallback: Show order data for manual processing
                 const orderJson = JSON.stringify(orderData, null, 2);
-                const filename = `orders/order-${orderData.orderNumber}.json`;
                 
                 showMessage('error', `
                     There was an error submitting your order automatically. Please email us with your order details:<br><br>
@@ -1056,90 +1076,6 @@
             } else {
                 console.error('Order form not found');
             }
-            
-            // Test the add button functionality
-            const addButton = document.querySelector('.add-item-btn');
-            if (addButton) {
-                console.log('Add button found:', addButton);
-                addButton.addEventListener('click', function() {
-                    console.log('Add button clicked via event listener');
-                    window.addOrderItem();
-                });
-            } else {
-                console.error('Add button not found');
-            }
-        });20 lb)" },
-            { name: "Cauliflower", category: "vegetables", individual: "$3.00/lb", bulk: "$60.00 (20 lb)" },
-            { name: "Celery", category: "vegetables", individual: "$2.50/pz", bulk: "$60.00 (24 ct)" },
-            { name: "Romaine Lettuce", category: "greens", individual: "$2.50/pz", bulk: "$60.00 (24 ct)" },
-            { name: "Onions (Dry)", category: "vegetables", individual: "$1.50/lb", bulk: "$30.00 (20 lb)" },
-            { name: "Strawberry", category: "fruits", individual: "Bulk Only", bulk: "$35.00 (12 basket)" },
-            { name: "Cucumber", category: "vegetables", individual: "$2.00/lb", bulk: "$40.00 (20 lb)" },
-            { name: "Zucchini", category: "vegetables", individual: "$2.00/lb", bulk: "$40.00 (20 lb)" },
-            { name: "Sweet Peppers (Bell)", category: "peppers", individual: "$3.00/lb", bulk: "$60.00 (20 lb)" },
-            { name: "Hot Peppers", category: "peppers", individual: "$3.00/lb", bulk: "$60.00 (20 lb)" },
-            { name: "Carrots", category: "vegetables", individual: "$2.00/bunch", bulk: "$48.00 (24 bunch)" },
-            { name: "Beets", category: "vegetables", individual: "$2.00/bunch", bulk: "$48.00 (24 bunch)" },
-            { name: "Cherry Tomatoes", category: "fruits", individual: "$3.50/basket", bulk: "$42.00 (12 basket)" },
-            { name: "Roma Tomatoes", category: "fruits", individual: "$2.00/lb", bulk: "$40.00 (20 lb)" },
-            { name: "Early Girl Tomatoes", category: "fruits", individual: "$3.00/lb", bulk: "$30.00 (10 lb)" },
-            { name: "Heirloom Tomatoes", category: "fruits", individual: "$3.00/lb", bulk: "$30.00 (10 lb)" },
-            { name: "Swiss Chard", category: "greens", individual: "$2.00/bunch", bulk: "$48.00 (24 bunch)" },
-            { name: "Kale", category: "greens", individual: "$2.00/bunch", bulk: "$48.00 (24 bunch)" },
-            { name: "Cabbage", category: "vegetables", individual: "$1.50/lb", bulk: "$52.50 (35 lb)" },
-            { name: "Yukon Gold Potatoes", category: "vegetables", individual: "$1.25/lb", bulk: "$62.50 (50 lb box)" },
-            { name: "Red Norland Potatoes", category: "vegetables", individual: "$1.20/lb", bulk: "$55.00 (50 lb box)" },
-            { name: "Gypsy Peppers", category: "peppers", individual: "$3.25/lb", bulk: "$65.00 (20 lb box)" },
-            { name: "Shishito Peppers", category: "peppers", individual: "$4.00/lb", bulk: "$80.00 (20 lb box)" },
-            { name: "Padron Peppers", category: "peppers", individual: "$4.25/lb", bulk: "$85.00 (20 lb box)" },
-            { name: "Escamillo Peppers", category: "peppers", individual: "$4.50/lb", bulk: "$90.00 (20 lb box)" },
-            { name: "Strawberries", category: "fruits", individual: "$4.25/basket", bulk: "$51.00 (12 baskets)" },
-            { name: "Carrots (Orange)", category: "vegetables", individual: "$2.25/bunch", bulk: "$54.00 (24 bunches)" },
-            { name: "Carrots (Mix Colors)", category: "vegetables", individual: "$2.75/bunch", bulk: "$66.00 (24 bunches)" }
-        ];
-
-        function createProductCard(product) {
-            return `
-                <div class="product-card" data-category="${product.category}">
-                    <div class="product-header">
-                        <div class="product-name">${product.name}</div>
-                        <div class="product-category">${product.category.charAt(0).toUpperCase() + product.category.slice(1)}</div>
-                    </div>
-                    <div class="product-details">
-                        <div class="price-info">
-                            <span class="individual-price">${product.individual}</span>
-                        </div>
-                        <div class="bulk-section">
-                            <div class="bulk-label">BULK PRICING</div>
-                            <div class="bulk-price">${product.bulk}</div>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-
-        function renderProducts(productsToShow = products) {
-            const grid = document.getElementById('productsGrid');
-            grid.innerHTML = productsToShow.map(createProductCard).join('');
-        }
-
-        function filterProducts(category) {
-            // Update active filter button
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-
-            // Filter and render products
-            if (category === 'all') {
-                renderProducts();
-            } else {
-                const filtered = products.filter(product => product.category === category);
-                renderProducts(filtered);
-            }
-        }
-
-        // Initialize page
-        document.addEventListener('DOMContentLoaded', function() {
-            renderProducts();
         });
     </script>
 </body>
