@@ -1,169 +1,49 @@
-# .github/workflows/process-orders.yml
-name: Process Territorial Markets Orders
+#!/bin/bash
+# test-workflow.sh - Script to test the GitHub Actions workflow
 
-on:
-  repository_dispatch:
-    types: [new-order]
-  workflow_dispatch:
-    inputs:
-      order_data:
-        description: 'Order data in JSON format'
-        required: true
-        type: string
+# Replace with your actual values
+GITHUB_TOKEN="your_github_token_here"
+REPO_OWNER="pluricalifornia"
+REPO_NAME="plurinational-landreform"
 
-permissions:
-  contents: write
-  pull-requests: write
+# Test JSON data (properly escaped for curl)
+TEST_ORDER_DATA='{
+  "timestamp": "2025-01-22T15:30:00.000Z",
+  "orderNumber": "TM-TEST-001",
+  "organization": {
+    "name": "Test Organization",
+    "type": "student-cooperative", 
+    "contactPerson": "Test User",
+    "email": "test@example.com"
+  },
+  "orderItems": [
+    {
+      "product": "Kale",
+      "quantity": 1,
+      "pricing": "individual",
+      "itemTotal": 2.00
+    }
+  ],
+  "delivery": {
+    "method": "farm-pickup",
+    "preferredDate": "2025-01-25"
+  },
+  "estimatedTotal": 2.00
+}'
 
-jobs:
-  process-order:
-    runs-on: ubuntu-latest
-    
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-      
-    - name: Set up Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
-        
-    - name: Create orders directory
-      run: mkdir -p orders
-      
-    - name: Process order data
-      id: process_order
-      run: |
-        # Get order data from either repository_dispatch or manual input
-        if [ "${{ github.event_name }}" = "repository_dispatch" ]; then
-          ORDER_DATA='${{ toJson(github.event.client_payload) }}'
-        else
-          ORDER_DATA='${{ github.event.inputs.order_data }}'
-        fi
-        
-        # Extract order number and create filename
-        ORDER_NUMBER=$(echo "$ORDER_DATA" | jq -r '.orderNumber // "UNKNOWN"')
-        TIMESTAMP=$(date -u +"%Y%m%d_%H%M%S")
-        FILENAME="orders/order-${ORDER_NUMBER}-${TIMESTAMP}.json"
-        
-        # Save order data to file
-        echo "$ORDER_DATA" | jq '.' > "$FILENAME"
-        
-        # Set outputs for later steps
-        echo "filename=$FILENAME" >> $GITHUB_OUTPUT
-        echo "order_number=$ORDER_NUMBER" >> $GITHUB_OUTPUT
-        echo "customer_email=$(echo "$ORDER_DATA" | jq -r '.organization.email // "unknown@example.com"')" >> $GITHUB_OUTPUT
-        echo "org_name=$(echo "$ORDER_DATA" | jq -r '.organization.name // "Unknown Organization"')" >> $GITHUB_OUTPUT
-        echo "total=$(echo "$ORDER_DATA" | jq -r '.estimatedTotal // 0')" >> $GITHUB_OUTPUT
-        
-    - name: Update order summary
-      run: |
-        # Create or update orders summary file
-        SUMMARY_FILE="orders/orders-summary.json"
-        
-        if [ ! -f "$SUMMARY_FILE" ]; then
-          echo '{"orders": [], "totalOrders": 0, "totalRevenue": 0, "lastUpdated": ""}' > "$SUMMARY_FILE"
-        fi
-        
-        # Add new order to summary
-        ORDER_SUMMARY='{
-          "orderNumber": "${{ steps.process_order.outputs.order_number }}",
-          "timestamp": "'$(date -u -Iseconds)'",
-          "organizationName": "${{ steps.process_order.outputs.org_name }}",
-          "email": "${{ steps.process_order.outputs.customer_email }}",
-          "total": ${{ steps.process_order.outputs.total }},
-          "status": "pending",
-          "filename": "${{ steps.process_order.outputs.filename }}"
-        }'
-        
-        # Update summary file
-        jq --argjson newOrder "$ORDER_SUMMARY" '
-          .orders += [$newOrder] |
-          .totalOrders = (.orders | length) |
-          .totalRevenue = ([.orders[].total] | add) |
-          .lastUpdated = "'$(date -u -Iseconds)'"
-        ' "$SUMMARY_FILE" > temp.json && mv temp.json "$SUMMARY_FILE"
-        
-    - name: Create order confirmation email template
-      run: |
-        cat > "orders/email-template-${{ steps.process_order.outputs.order_number }}.md" << 'EOF'
-        # Order Confirmation - ${{ steps.process_order.outputs.order_number }}
-        
-        **To:** ${{ steps.process_order.outputs.customer_email }}
-        **Organization:** ${{ steps.process_order.outputs.org_name }}
-        **Total:** ${{ steps.process_order.outputs.total }}
-        **Date:** $(date -u +"%Y-%m-%d %H:%M:%S UTC")
-        
-        ---
-        
-        Hello ${{ steps.process_order.outputs.org_name }},
-        
-        Thank you for your Territorial Markets order! We've received your order and will be in touch within 48 hours to coordinate delivery/pickup.
-        
-        **Order Details:**
-        - Order Number: ${{ steps.process_order.outputs.order_number }}
-        - Estimated Total: ${{ steps.process_order.outputs.total }}
-        
-        **Next Steps:**
-        1. We'll review your order and confirm product availability
-        2. We'll contact you to schedule pickup/delivery
-        3. Payment will be collected upon delivery/pickup
-        
-        Building solidarity through direct farm partnerships!
-        
-        Plurinational Land Reform in CA Working Group
-        pluricalifornia@gmail.com
-        EOF
-        
-    - name: Commit order files
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add orders/
-        git commit -m "New order: ${{ steps.process_order.outputs.order_number }} from ${{ steps.process_order.outputs.org_name }}" || exit 0
-        git push
-        
-    - name: Create issue for order review
-      uses: actions/github-script@v7
-      with:
-        script: |
-          const orderNumber = '${{ steps.process_order.outputs.order_number }}';
-          const orgName = '${{ steps.process_order.outputs.org_name }}';
-          const customerEmail = '${{ steps.process_order.outputs.customer_email }}';
-          const total = '${{ steps.process_order.outputs.total }}';
-          const filename = '${{ steps.process_order.outputs.filename }}';
-          
-          const issueBody = `
-          ## New Territorial Markets Order
-          
-          **Order Number:** ${orderNumber}
-          **Organization:** ${orgName}
-          **Contact:** ${customerEmail}
-          **Estimated Total:** $${total}
-          **Order File:** \`${filename}\`
-          
-          ### Action Items:
-          - [ ] Review order details in \`${filename}\`
-          - [ ] Confirm product availability with Tierra Milperas
-          - [ ] Contact customer to confirm order and arrange delivery/pickup
-          - [ ] Update order status in summary file
-          - [ ] Send confirmation email using template
-          
-          ### Order Processing Checklist:
-          - [ ] Order reviewed and approved
-          - [ ] Customer contacted for delivery coordination
-          - [ ] Payment method confirmed
-          - [ ] Delivery/pickup scheduled
-          - [ ] Order fulfilled
-          
-          ---
-          *This issue was automatically created by GitHub Actions when a new order was submitted.*
-          `;
-          
-          await github.rest.issues.create({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            title: `🛒 New Order: ${orderNumber} - ${orgName}`,
-            body: issueBody,
-            labels: ['order', 'pending-review']
-          });
+echo "Testing GitHub Actions workflow..."
+
+# Trigger the workflow via GitHub API
+curl -X POST \
+  -H "Accept: application/vnd.github.v3+json" \
+  -H "Authorization: Bearer $GITHUB_TOKEN" \
+  -H "Content-Type: application/json" \
+  "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/actions/workflows/process-orders.yml/dispatches" \
+  -d "{
+    \"ref\": \"main\",
+    \"inputs\": {
+      \"order_data\": $(echo "$TEST_ORDER_DATA" | jq -c .)
+    }
+  }"
+
+echo "Workflow triggered. Check your repository's Actions tab to see the results."
