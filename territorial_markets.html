@@ -613,9 +613,10 @@
             <p><strong>Minimum Orders:</strong> Bulk pricing requires minimum quantities as specified per product. Perfect for cooperatives, unions, and community formations.</p>
             
             <div class="order-form-container">
-                <form id="orderForm" class="order-form" action="mailto:pluricalifornia@gmail.com" method="post" enctype="text/plain">
-                    <input type="hidden" name="subject" value="New Territorial Markets Order">
-                    <input type="hidden" id="orderDataField" name="body" value="">
+                <form id="orderForm" class="order-form" action="https://formspree.io/f/mrbygllj" method="POST">
+                    <input type="hidden" name="_subject" value="New Territorial Markets Order">
+                    <input type="hidden" name="_next" value="https://pluricalifornia.github.io/plurinational-landreform/territorial_markets.html?submitted=true">
+                    <input type="hidden" id="orderDataField" name="order_details" value="">
                     
                     <div class="form-section">
                         <h3>Organization Information</h3>
@@ -697,14 +698,14 @@
                         <div class="order-total" id="orderTotal">
                             <strong>Estimated Total: $0.00</strong>
                         </div>
-                        <button type="submit" class="submit-order-btn">Submit Order via Email</button>
+                        <button type="submit" class="submit-order-btn">Submit Order</button>
                     </div>
                 </form>
             </div>
             
             <div class="contact-backup">
                 <p><strong>Alternative Contact:</strong> <a href="mailto:pluricalifornia@gmail.com">pluricalifornia@gmail.com</a></p>
-                <p>Orders submitted through this form open your default email client with all order details pre-filled. Simply send the email and we'll respond within 48 hours with confirmation and coordination details.</p>
+                <p>Orders submitted through this form are sent directly to our team and reviewed within 48 hours. You'll receive confirmation and pickup/delivery coordination details via email.</p>
             </div>
         </div>
     </section>
@@ -1040,38 +1041,61 @@ Thank you for supporting territorial markets and the Coalición de Pequeños Agr
                         return;
                     }
                     
-                    // Format the order data for email body
+                    // Format the order data for the form submission
                     const emailBody = formatOrderForEmail(orderData);
                     document.getElementById('orderDataField').value = emailBody;
                     
-                    // Create the mailto URL manually to ensure compatibility
-                    const subject = encodeURIComponent('New Territorial Markets Order - ' + orderData.orderNumber);
-                    const body = encodeURIComponent(emailBody);
-                    const mailtoUrl = `mailto:pluricalifornia@gmail.com?subject=${subject}&body=${body}`;
+                    // Show loading state
+                    const submitButton = this.querySelector('.submit-order-btn');
+                    const originalText = submitButton.textContent;
+                    submitButton.textContent = 'Submitting Order...';
+                    submitButton.disabled = true;
                     
-                    // Open email client
-                    window.location.href = mailtoUrl;
+                    // Submit the form using fetch to handle the response
+                    const formData = new FormData(orderForm);
                     
-                    // Show success message
-                    showMessage('success', `
-                        Order prepared! Your email client should open with the order details.<br>
-                        <strong>Order Number:</strong> ${orderData.orderNumber}<br>
-                        <small>If your email client didn't open automatically, please copy the order details below and send to pluricalifornia@gmail.com</small>
-                        <br><br>
-                        <details>
-                            <summary>Click to view/copy order details</summary>
-                            <textarea readonly style="width:100%;height:200px;margin:10px 0;font-family:monospace;font-size:12px;">${emailBody}</textarea>
-                        </details>
-                    `);
-                    
-                    // Reset form
-                    setTimeout(() => {
-                        orderForm.reset();
-                        document.getElementById('orderItems').innerHTML = '';
-                        orderItemCount = 0;
-                        calculateTotal();
-                        window.addOrderItem();
-                    }, 2000);
+                    fetch(orderForm.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    }).then(response => {
+                        if (response.ok) {
+                            showMessage('success', `
+                                Order submitted successfully! Order Number: ${orderData.orderNumber}<br>
+                                <strong>What happens next:</strong><br>
+                                • Your order has been sent to pluricalifornia@gmail.com<br>
+                                • We'll respond within 48 hours with confirmation<br>
+                                • You'll receive pickup/delivery coordination details<br>
+                                <small>Thank you for supporting territorial markets!</small>
+                            `);
+                            
+                            // Reset form
+                            orderForm.reset();
+                            document.getElementById('orderItems').innerHTML = '';
+                            orderItemCount = 0;
+                            calculateTotal();
+                            setTimeout(() => window.addOrderItem(), 1000);
+                        } else {
+                            throw new Error('Form submission failed');
+                        }
+                    }).catch(error => {
+                        console.error('Submission error:', error);
+                        showMessage('error', `
+                            There was an error submitting your order. Please try again or email us directly:<br><br>
+                            <strong>Email:</strong> pluricalifornia@gmail.com<br>
+                            <strong>Subject:</strong> New Territorial Markets Order - ${orderData.orderNumber}<br><br>
+                            <details>
+                                <summary>Click to view/copy order details</summary>
+                                <textarea readonly style="width:100%;height:200px;margin:10px 0;font-family:monospace;font-size:12px;">${emailBody}</textarea>
+                            </details>
+                        `);
+                    }).finally(() => {
+                        // Restore button
+                        submitButton.textContent = originalText;
+                        submitButton.disabled = false;
+                    });
                 });
             } else {
                 console.error('Order form not found');
