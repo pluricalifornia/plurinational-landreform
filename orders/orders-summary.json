@@ -1,0 +1,16 @@
+{
+  "orders": [
+    {
+      "orderNumber": "TM-TEST-001",
+      "timestamp": "2025-09-23T15:30:18+00:00",
+      "organizationName": "Test Organization",
+      "email": "test@example.com",
+      "total": 2.00,
+      "status": "pending",
+      "filename": "orders/order-TM-TEST-001-20250923_153018.json"
+    }
+  ],
+  "totalOrders": 1,
+  "totalRevenue": 2.00,
+  "lastUpdated": "2025-09-23T15:30:18+00:00"
+}
