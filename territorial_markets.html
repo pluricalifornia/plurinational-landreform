@@ -613,7 +613,10 @@
             <p><strong>Minimum Orders:</strong> Bulk pricing requires minimum quantities as specified per product. Perfect for cooperatives, unions, and community formations.</p>
             
             <div class="order-form-container">
-                <form id="orderForm" class="order-form">
+                <form id="orderForm" class="order-form" action="mailto:pluricalifornia@gmail.com" method="post" enctype="text/plain">
+                    <input type="hidden" name="subject" value="New Territorial Markets Order">
+                    <input type="hidden" id="orderDataField" name="body" value="">
+                    
                     <div class="form-section">
                         <h3>Organization Information</h3>
                         <div class="form-group">
@@ -694,14 +697,14 @@
                         <div class="order-total" id="orderTotal">
                             <strong>Estimated Total: $0.00</strong>
                         </div>
-                        <button type="submit" class="submit-order-btn">Submit Order</button>
+                        <button type="submit" class="submit-order-btn">Submit Order via Email</button>
                     </div>
                 </form>
             </div>
             
             <div class="contact-backup">
                 <p><strong>Alternative Contact:</strong> <a href="mailto:pluricalifornia@gmail.com">pluricalifornia@gmail.com</a></p>
-                <p>Orders submitted through this form are reviewed within 48 hours. You'll receive confirmation and pickup/delivery coordination details via email.</p>
+                <p>Orders submitted through this form open your default email client with all order details pre-filled. Simply send the email and we'll respond within 48 hours with confirmation and coordination details.</p>
             </div>
         </div>
     </section>
@@ -728,8 +731,8 @@
             { name: "Carrots", category: "vegetables", individual: 2.00, individualDisplay: "$2.00/bunch", bulk: 48.00, bulkDisplay: "$48.00 (24 bunch)", bulkQty: 24 },
             { name: "Beets", category: "vegetables", individual: 2.00, individualDisplay: "$2.00/bunch", bulk: 48.00, bulkDisplay: "$48.00 (24 bunch)", bulkQty: 24 },
             { name: "Cherry Tomatoes", category: "fruits", individual: 3.50, individualDisplay: "$3.50/basket", bulk: 42.00, bulkDisplay: "$42.00 (12 basket)", bulkQty: 12 },
-            { name: "Sweet Corn", category: "vegetable", individual: 1.00, individualDisplay: "$1.00/pz", bulk: 40.00, bulkDisplay: "$40.00 (48 count)", bulkQty: 48 },
-            { name: "Oaxacan Corn (Purple-Red-Yellow)", category: "vegetable", individual: 2.50, individualDisplay: "$2.50/pz", bulk: 80.00, bulkDisplay: "$80.00 (48 count)", bulkQty: 48 },
+            { name: "Sweet Corn", category: "vegetables", individual: 1.00, individualDisplay: "$1.00/pz", bulk: 40.00, bulkDisplay: "$40.00 (48 count)", bulkQty: 48 },
+            { name: "Oaxacan Corn (Purple-Red-Yellow)", category: "vegetables", individual: 2.50, individualDisplay: "$2.50/pz", bulk: 80.00, bulkDisplay: "$80.00 (48 count)", bulkQty: 48 },
             { name: "Roma Tomatoes", category: "fruits", individual: 2.00, individualDisplay: "$2.00/lb", bulk: 40.00, bulkDisplay: "$40.00 (20 lb)", bulkQty: 20 },
             { name: "Early Girl Tomatoes", category: "fruits", individual: 3.00, individualDisplay: "$3.00/lb", bulk: 30.00, bulkDisplay: "$30.00 (10 lb)", bulkQty: 10 },
             { name: "Heirloom Tomatoes", category: "fruits", individual: 3.00, individualDisplay: "$3.00/lb", bulk: 30.00, bulkDisplay: "$30.00 (10 lb)", bulkQty: 10 },
@@ -862,7 +865,7 @@
                 
                 const totalElement = document.getElementById('orderTotal');
                 if (totalElement) {
-                    totalElement.innerHTML = `<strong>Estimated Total: ${total.toFixed(2)}</strong>`;
+                    totalElement.innerHTML = `<strong>Estimated Total: $${total.toFixed(2)}</strong>`;
                 }
             } catch (error) {
                 console.error('Error calculating total:', error);
@@ -951,84 +954,45 @@
                     preferredDate: formData.get('preferredDate'),
                     address: formData.get('address')
                 },
-                commitment: formData.get('commitment'),
                 specialRequests: formData.get('specialRequests'),
                 estimatedTotal: orderItems.reduce((sum, item) => sum + item.itemTotal, 0)
             };
         }
 
-        async function submitOrder(orderData) {
-            try {
-                // Show loading state
-                const submitButton = document.querySelector('.submit-order-btn');
-                const originalText = submitButton.textContent;
-                submitButton.textContent = 'Submitting Order...';
-                submitButton.disabled = true;
-                
-                // Submit to GitHub Actions via webhook
-                const response = await fetch('https://leafy-licorice-cbde51.netlify.app/.netlify/functions/submit-order', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(orderData)
-                });
-                
-                const result = await response.json();
-                
-                if (response.ok && result.success) {
-                    // Success! Show confirmation
-                    showMessage('success', `
-                        Order submitted successfully! Order Number: ${orderData.orderNumber}<br>
-                        <small>We'll contact you within 48 hours via email for confirmation.</small><br>
-                        <small>Your order has been automatically saved to our system.</small>
-                    `);
-                    
-                    // Reset form
-                    document.getElementById('orderForm').reset();
-                    document.getElementById('orderItems').innerHTML = '';
-                    orderItemCount = 0;
-                    calculateTotal();
-                    
-                    // Add a new blank order item
-                    setTimeout(() => {
-                        window.addOrderItem();
-                    }, 500);
-                    
-                } else {
-                    // Handle API error
-                    throw new Error(result.message || 'Failed to submit order');
-                }
-                
-                // Restore button
-                submitButton.textContent = originalText;
-                submitButton.disabled = false;
-                
-                return true;
-                
-            } catch (error) {
-                console.error('Order submission error:', error);
-                
-                // Fallback: Show order data for manual processing
-                const orderJson = JSON.stringify(orderData, null, 2);
-                
-                showMessage('error', `
-                    There was an error submitting your order automatically. Please email us with your order details:<br><br>
-                    <strong>Email:</strong> pluricalifornia@gmail.com<br>
-                    <strong>Subject:</strong> Manual Order Submission - ${orderData.orderNumber}<br><br>
-                    <details>
-                        <summary>Click to copy order details</summary>
-                        <textarea readonly style="width:100%;height:200px;margin:10px 0;">${orderJson}</textarea>
-                    </details>
-                `);
-                
-                // Restore button
-                const submitButton = document.querySelector('.submit-order-btn');
-                submitButton.textContent = 'Submit Order';
-                submitButton.disabled = false;
-                
-                return false;
-            }
+        function formatOrderForEmail(orderData) {
+            return `
+NEW TERRITORIAL MARKETS ORDER
+=============================
+
+Order Number: ${orderData.orderNumber}
+Date: ${new Date(orderData.timestamp).toLocaleString()}
+
+ORGANIZATION INFORMATION:
+- Name: ${orderData.organization.name}
+- Type: ${orderData.organization.type}
+- Contact: ${orderData.organization.contactPerson}
+- Email: ${orderData.organization.email}
+- Phone: ${orderData.organization.phone || 'Not provided'}
+
+ORDER DETAILS:
+${orderData.orderItems.map(item => 
+    `- ${item.product}: ${item.quantity} units (${item.pricing} pricing) - $${item.itemTotal.toFixed(2)}`
+).join('\n')}
+
+DELIVERY:
+- Method: ${orderData.delivery.method}
+- Preferred Date: ${orderData.delivery.preferredDate || 'Not specified'}
+- Address: ${orderData.delivery.address || 'Not provided'}
+
+SPECIAL REQUESTS:
+${orderData.specialRequests || 'None'}
+
+ESTIMATED TOTAL: $${orderData.estimatedTotal.toFixed(2)}
+
+Please confirm this order and coordinate pickup/delivery details.
+
+Thank you for supporting territorial markets and the Coalición de Pequeños Agricultores!
+            `.trim();
         }
 
         function showMessage(type, message) {
@@ -1065,7 +1029,7 @@
             // Handle form submission
             const orderForm = document.getElementById('orderForm');
             if (orderForm) {
-                orderForm.addEventListener('submit', async function(e) {
+                orderForm.addEventListener('submit', function(e) {
                     e.preventDefault();
                     console.log('Form submitted');
                     
@@ -1076,7 +1040,38 @@
                         return;
                     }
                     
-                    await submitOrder(orderData);
+                    // Format the order data for email body
+                    const emailBody = formatOrderForEmail(orderData);
+                    document.getElementById('orderDataField').value = emailBody;
+                    
+                    // Create the mailto URL manually to ensure compatibility
+                    const subject = encodeURIComponent('New Territorial Markets Order - ' + orderData.orderNumber);
+                    const body = encodeURIComponent(emailBody);
+                    const mailtoUrl = `mailto:pluricalifornia@gmail.com?subject=${subject}&body=${body}`;
+                    
+                    // Open email client
+                    window.location.href = mailtoUrl;
+                    
+                    // Show success message
+                    showMessage('success', `
+                        Order prepared! Your email client should open with the order details.<br>
+                        <strong>Order Number:</strong> ${orderData.orderNumber}<br>
+                        <small>If your email client didn't open automatically, please copy the order details below and send to pluricalifornia@gmail.com</small>
+                        <br><br>
+                        <details>
+                            <summary>Click to view/copy order details</summary>
+                            <textarea readonly style="width:100%;height:200px;margin:10px 0;font-family:monospace;font-size:12px;">${emailBody}</textarea>
+                        </details>
+                    `);
+                    
+                    // Reset form
+                    setTimeout(() => {
+                        orderForm.reset();
+                        document.getElementById('orderItems').innerHTML = '';
+                        orderItemCount = 0;
+                        calculateTotal();
+                        window.addOrderItem();
+                    }, 2000);
                 });
             } else {
                 console.error('Order form not found');
