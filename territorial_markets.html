@@ -597,6 +597,8 @@
             <button class="filter-btn" onclick="filterProducts('peppers')">Peppers</button>
             <button class="filter-btn" onclick="filterProducts('greens')">Greens</button>
             <button class="filter-btn" onclick="filterProducts('fruits')">Fruits</button>
+            <button class="filter-btn" onclick="filterProducts('celeb')">Celebration</button>
+            <button class="filter-btn" onclick="filterProducts('squash')">Squashes</button>
             <button class="filter-btn" onclick="filterProducts('misc')">Misc</button>
         </div>
         
@@ -720,12 +722,10 @@
     <script>
         const products = [
             { name: "Broccoli", category: "vegetables", individual: 3.00, individualDisplay: "$3.00/lb", bulk: 60.00, bulkDisplay: "$60.00 (20 lb)", bulkQty: 20 },
-            { name: "Cauliflower", category: "vegetables", individual: 3.00, individualDisplay: "$3.00/lb", bulk: 60.00, bulkDisplay: "$60.00 (20 lb)", bulkQty: 20 },
             { name: "Celery", category: "vegetables", individual: 2.50, individualDisplay: "$2.50/pz", bulk: 60.00, bulkDisplay: "$60.00 (24 ct)", bulkQty: 24 },
             { name: "Romaine Lettuce", category: "greens", individual: 2.50, individualDisplay: "$2.50/pz", bulk: 60.00, bulkDisplay: "$60.00 (24 ct)", bulkQty: 24 },
             { name: "Onions (Yellow)", category: "vegetables", individual: 1.50, individualDisplay: "$1.50/lb", bulk: 30.00, bulkDisplay: "$30.00 (20 lb)", bulkQty: 20 },
             { name: "Strawberry", category: "fruits", individual: 0, individualDisplay: "Bulk Only", bulk: 35.00, bulkDisplay: "$35.00 (12 basket)", bulkQty: 12 },
-            { name: "Cucumber", category: "vegetables", individual: 2.00, individualDisplay: "$2.00/lb", bulk: 40.00, bulkDisplay: "$40.00 (20 lb)", bulkQty: 20 },
             { name: "Zucchini", category: "vegetables", individual: 2.00, individualDisplay: "$2.00/lb", bulk: 40.00, bulkDisplay: "$40.00 (22 lb)", bulkQty: 22 },
             { name: "Sweet Peppers (Bell)", category: "peppers", individual: 3.00, individualDisplay: "$3.00/lb", bulk: 60.00, bulkDisplay: "$60.00 (20 lb)", bulkQty: 20 },
             { name: "Hot Peppers", category: "peppers", individual: 3.00, individualDisplay: "$3.00/lb", bulk: 60.00, bulkDisplay: "$60.00 (20 lb)", bulkQty: 20 },
@@ -733,10 +733,10 @@
             { name: "Beets", category: "vegetables", individual: 2.00, individualDisplay: "$2.00/bunch", bulk: 48.00, bulkDisplay: "$48.00 (24 bunch)", bulkQty: 24 },
             { name: "Cherry Tomatoes", category: "fruits", individual: 3.50, individualDisplay: "$3.50/basket", bulk: 42.00, bulkDisplay: "$42.00 (12 basket)", bulkQty: 12 },
             { name: "Sweet Corn", category: "vegetables", individual: 1.00, individualDisplay: "$1.00/pz", bulk: 40.00, bulkDisplay: "$40.00 (48 count)", bulkQty: 48 },
-            { name: "Oaxacan Corn (Purple-Red-Yellow)", category: "vegetables", individual: 2.50, individualDisplay: "$2.50/pz", bulk: 80.00, bulkDisplay: "$80.00 (48 count)", bulkQty: 48 },
             { name: "Roma Tomatoes", category: "fruits", individual: 2.00, individualDisplay: "$2.00/lb", bulk: 40.00, bulkDisplay: "$40.00 (20 lb)", bulkQty: 20 },
             { name: "Early Girl Tomatoes", category: "fruits", individual: 3.00, individualDisplay: "$3.00/lb", bulk: 30.00, bulkDisplay: "$30.00 (10 lb)", bulkQty: 10 },
             { name: "Heirloom Tomatoes", category: "fruits", individual: 3.00, individualDisplay: "$3.00/lb", bulk: 30.00, bulkDisplay: "$30.00 (10 lb)", bulkQty: 10 },
+            { name: "Tomatillos", category: "fruits", individual: 2.50, individualDisplay: "$2.50/lb", bulk: 50.00, bulkDisplay: "$50.00 (20 lb)", bulkQty: 20 },
             { name: "Swiss Chard", category: "greens", individual: 2.00, individualDisplay: "$2.00/bunch", bulk: 48.00, bulkDisplay: "$48.00 (24 bunch)", bulkQty: 24 },
             { name: "Kale", category: "greens", individual: 2.00, individualDisplay: "$2.00/bunch", bulk: 48.00, bulkDisplay: "$48.00 (24 bunch)", bulkQty: 24 },
             { name: "Cabbage", category: "vegetables", individual: 1.50, individualDisplay: "$1.50/lb", bulk: 52.50, bulkDisplay: "$52.50 (35 lb)", bulkQty: 35 },
@@ -749,10 +749,15 @@
             { name: "Strawberries", category: "fruits", individual: 3.50, individualDisplay: "$3.50/basket", bulk: 35.00, bulkDisplay: "$35.00 (12 baskets)", bulkQty: 12 },
             { name: "Blackberries", category: "fruits", individual: 4.00, individualDisplay: "$4.00/basket", bulk: 45.00, bulkDisplay: "$45.00 (12 baskets)", bulkQty: 12 },
             { name: "Raspberries", category: "fruits", individual: 4.00, individualDisplay: "$4.00/basket", bulk: 45.00, bulkDisplay: "$45.00 (12 baskets)", bulkQty: 12 },
-            { name: "Goldberries", category: "fruits", individual: 5.00, individualDisplay: "$5.00/basket", bulk: 50.00, bulkDisplay: "$50.00 (12 baskets)", bulkQty: 12 },
+            { name: "Delicata Squash", category: "sqaush", individual: 2.00, individualDisplay: "$2.00/lb", bulk: 40.00, bulkDisplay: "$40.00 (20 lbs)", bulkQty: 20 },
+            { name: "Butternut Squash", category: "sqaush", individual: 2.00, individualDisplay: "$2.00/lb", bulk: 40.00, bulkDisplay: "$40.00 (20 lbs)", bulkQty: 20 },
+            { name: "Acorn Squash", category: "sqaush", individual: 2.00, individualDisplay: "$2.00/lb", bulk: 40.00, bulkDisplay: "$40.00 (20 lbs)", bulkQty: 20 },
+            { name: "Spaghetti Squash", category: "sqaush", individual: 2.00, individualDisplay: "$2.00/lb", bulk: 40.00, bulkDisplay: "$40.00 (20 lbs)", bulkQty: 20 },
             { name: "Garlic", category: "misc", individual: 6.00, individualDisplay: "$6.00/lb", bulk: 30.00, bulkDisplay: "$30.00 (5 lb)", bulkQty: 5 },
             { name: "Dried Jamaica Flowers", category: "misc", individual: 15.00, individualDisplay: "$15.00/lb", bulk: 40.00, bulkDisplay: "$40.00 (3 lb)", bulkQty: 3 },
             { name: "Honey (16 Oz.)", category: "misc", individual: 20.00, individualDisplay: "$20/pz", bulk: 60.00, bulkDisplay: "$60.00 (3 pz)", bulkQty: 3 },
+            { name: "Cempasúchitl", category: "celeb", individual: 5.00, individualDisplay: "$5.00/small bunch", bulk: 10.00, bulkDisplay: "$10.00/large bunch", bulkQty: 1 },
+            { name: "Pumpkins", category: "celeb", individual: 2.00, individualDisplay: "$2.00/small pumpkin", bulk: 12.00, bulkDisplay: "$12.00/large pumpkin, bulkQty: 1 },
             { name: "Eggs", category: "misc", individual: 10.00, individualDisplay: "$10/dozen", bulk: 100.00, bulkDisplay: "$100.00 (10 dozens)", bulkQty: 10 },
             { name: "Carrots (Orange)", category: "vegetables", individual: 2.25, individualDisplay: "$2.25/bunch", bulk: 50.00, bulkDisplay: "$50.00 (24 bunches)", bulkQty: 24 },
             { name: "Carrots (Mix Colors)", category: "vegetables", individual: 2.75, individualDisplay: "$2.75/bunch", bulk: 60.00, bulkDisplay: "$60.00 (24 bunches)", bulkQty: 24 }
