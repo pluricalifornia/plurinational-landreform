@@ -1168,7 +1168,11 @@
         window.updateOrderItem = function(itemId) {
             try {
                 const item = document.getElementById(`orderItem-${itemId}`);
+                if (!item) return;
+                
                 const productSelect = item.querySelector('select[name="product"]');
+                if (!productSelect) return;
+                
                 const productName = productSelect.value;
                 const pricingGroup = document.getElementById(`pricingGroup-${itemId}`);
                 const quantityGroup = document.getElementById(`quantityGroup-${itemId}`);
@@ -1443,6 +1447,8 @@
                 let total = 0;
                 const orderItems = document.querySelectorAll('.order-item');
                 
+                console.log(`[calculateTotal] Found ${orderItems.length} order items`);
+                
                 // If SNAP Special is enabled, everything is free
                 if (isSnapSpecial) {
                     const totalElement = document.getElementById('orderTotal');
@@ -1453,41 +1459,76 @@
                 }
                 
                 orderItems.forEach(item => {
-                    const productName = item.querySelector('select[name="product"]').value;
-                    const quantity = parseInt(item.querySelector('input[name="quantity"]').value) || 0;
+                    // Get the item ID from the element
+                    const itemId = item.id.replace('orderItem-', '');
+                    const productSelect = document.getElementById(`productSelect-${itemId}`);
+                    const productName = productSelect ? productSelect.value : '';
+                    const quantityInput = item.querySelector('input[name="quantity"]');
+                    const quantity = quantityInput ? (parseInt(quantityInput.value) || 0) : 0;
                     const pricingSelect = item.querySelector('select[name="pricing"]');
                     const pricing = pricingSelect ? pricingSelect.value : '';
+                    
+                    console.log(`[Item ${itemId}] Product: "${productName}", Qty: ${quantity}, Pricing: "${pricing}"`);
                     
                     if (productName && quantity && pricing) {
                         const product = products.find(p => p.name === productName);
                         if (product) {
+                            console.log(`[Item ${itemId}] Found product, hasSizes: ${product.hasSizes}`);
                             // Handle salsa products with size-based pricing and bulk 3-packs
                             if (product.hasSizes) {
                                 const sizeSelect = item.querySelector('select[name="size"]');
                                 const selectedSizeValue = sizeSelect ? sizeSelect.value : '';
                                 
+                                console.log(`[Item ${itemId}] Selected size: "${selectedSizeValue}"`);
+                                
                                 if (selectedSizeValue) {
                                     const selectedSize = product.sizes.find(s => s.size === selectedSizeValue);
                                     if (selectedSize) {
                                         if (pricing === 'individual') {
-                                            total += selectedSize.price * quantity;
+                                            const itemTotal = selectedSize.price * quantity;
+                                            console.log(`[Item ${itemId}] Individual calc: $${selectedSize.price} x ${quantity} = $${itemTotal}`);
+                                            total += itemTotal;
                                         } else if (pricing === 'bulk') {
                                             // Bulk is 3-pack, so multiply price by 3
-                                            total += (selectedSize.price * 3) * quantity;
+                                            const itemTotal = (selectedSize.price * 3) * quantity;
+                                            console.log(`[Item ${itemId}] Bulk calc: $${selectedSize.price * 3} x ${quantity} = $${itemTotal}`);
+                                            total += itemTotal;
                                         }
                                     }
                                 }
                             } else {
                                 // Handle regular products with individual/bulk pricing
                                 if (pricing === 'individual' && product.individual > 0) {
-                                    total += product.individual * quantity;
+                                    const itemTotal = product.individual * quantity;
+                                    console.log(`[Item ${itemId}] Regular individual: $${product.individual} x ${quantity} = $${itemTotal}`);
+                                    total += itemTotal;
                                 } else if (pricing === 'bulk') {
-                                    total += product.bulk * quantity;
+                                    const itemTotal = product.bulk * quantity;
+                                    console.log(`[Item ${itemId}] Regular bulk: $${product.bulk} x ${quantity} = $${itemTotal}`);
+                                    total += itemTotal;
                                 }
                             }
+                        } else {
+                            console.log(`[Item ${itemId}] Product not found in products array`);
                         }
+                    } else {
+                        console.log(`[Item ${itemId}] Missing required fields`);
                     }
                 });
+                
+                console.log(`[calculateTotal] Final total: $${total.toFixed(2)}`);
+                
+                const totalElement = document.getElementById('orderTotal');
+                if (totalElement) {
+                    totalElement.innerHTML = `<strong>Estimated Total: $${total.toFixed(2)}</strong>`;
+                } else {
+                    console.error('[calculateTotal] orderTotal element not found');
+                }
+            } catch (error) {
+                console.error('Error calculating total:', error);
+            }
+        };
+        };
                 
                 const totalElement = document.getElementById('orderTotal');
                 if (totalElement) {
@@ -1602,7 +1643,10 @@
             const orderItems = [];
             
             document.querySelectorAll('.order-item').forEach(item => {
-                const productName = item.querySelector('select[name="product"]').value;
+                // Get the item ID from the element
+                const itemId = item.id.replace('orderItem-', '');
+                const productSelect = document.getElementById(`productSelect-${itemId}`);
+                const productName = productSelect ? productSelect.value : '';
                 const quantity = item.querySelector('input[name="quantity"]').value;
                 const pricingSelect = item.querySelector('select[name="pricing"]');
                 const pricing = pricingSelect ? pricingSelect.value : '';
