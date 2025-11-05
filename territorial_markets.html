@@ -1102,6 +1102,12 @@
                 const orderItem = document.createElement('div');
                 orderItem.className = 'order-item';
                 orderItem.id = `orderItem-${orderItemCount}`;
+                
+                // Generate product options for the hidden select
+                const productOptions = products.map(p => 
+                    `<option value="${p.name}">${p.name}</option>`
+                ).join('');
+                
                 orderItem.innerHTML = `
                     <div class="form-group">
                         <label>Product</label>
@@ -1123,6 +1129,7 @@
                             >
                             <select name="product" id="productSelect-${orderItemCount}" class="product-select-hidden" required>
                                 <option value="">Select Product</option>
+                                ${productOptions}
                             </select>
                             <div class="product-dropdown" id="productDropdown-${orderItemCount}"></div>
                         </div>
@@ -1378,9 +1385,22 @@
             const button = document.getElementById(`productSelectButton-${itemId}`);
             const productInfo = document.getElementById(`productInfo-${itemId}`);
             
+            console.log(`[selectProductFromDropdown] itemId: ${itemId}, productName: ${productName}`);
+            console.log(`[selectProductFromDropdown] productSelect element:`, productSelect);
+            
             if (productSelect) {
+                console.log(`[selectProductFromDropdown] BEFORE setting - value: "${productSelect.value}"`);
                 productSelect.value = productName;
+                console.log(`[selectProductFromDropdown] AFTER setting - value: "${productSelect.value}"`);
+                
+                // Verify the value is actually set
+                setTimeout(() => {
+                    console.log(`[selectProductFromDropdown] AFTER 100ms - value: "${productSelect.value}"`);
+                }, 100);
+                
                 updateOrderItem(itemId);
+            } else {
+                console.error(`[selectProductFromDropdown] productSelect element NOT FOUND for itemId ${itemId}`);
             }
             
             if (button) {
@@ -1427,6 +1447,10 @@
             if (dropdown) {
                 dropdown.classList.remove('active');
             }
+            
+            // Recalculate total after product selection
+            console.log(`[selectProductFromDropdown] Calling calculateTotal()`);
+            calculateTotal();
         };
 
         // Close dropdown when clicking outside
@@ -1462,11 +1486,17 @@
                     // Get the item ID from the element
                     const itemId = item.id.replace('orderItem-', '');
                     const productSelect = document.getElementById(`productSelect-${itemId}`);
+                    
+                    console.log(`[Item ${itemId}] productSelect element:`, productSelect);
+                    console.log(`[Item ${itemId}] productSelect.value:`, productSelect ? productSelect.value : 'NULL');
+                    
                     const productName = productSelect ? productSelect.value : '';
                     const quantityInput = item.querySelector('input[name="quantity"]');
                     const quantity = quantityInput ? (parseInt(quantityInput.value) || 0) : 0;
                     const pricingSelect = item.querySelector('select[name="pricing"]');
                     const pricing = pricingSelect ? pricingSelect.value : '';
+                    
+                    console.log(`[Item ${itemId}] Raw values - Product: "${productName}", Qty input:`, quantityInput, `Qty value: ${quantity}, Pricing select:`, pricingSelect, `Pricing value: "${pricing}"`);
                     
                     console.log(`[Item ${itemId}] Product: "${productName}", Qty: ${quantity}, Pricing: "${pricing}"`);
                     
@@ -1523,16 +1553,6 @@
                     totalElement.innerHTML = `<strong>Estimated Total: $${total.toFixed(2)}</strong>`;
                 } else {
                     console.error('[calculateTotal] orderTotal element not found');
-                }
-            } catch (error) {
-                console.error('Error calculating total:', error);
-            }
-        };
-        };
-                
-                const totalElement = document.getElementById('orderTotal');
-                if (totalElement) {
-                    totalElement.innerHTML = `<strong>Estimated Total: $${total.toFixed(2)}</strong>`;
                 }
             } catch (error) {
                 console.error('Error calculating total:', error);
