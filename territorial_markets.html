@@ -181,6 +181,158 @@
             flex-wrap: wrap;
         }
         
+        .search-bar-container {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto 1.5rem auto;
+        }
+        
+        .search-bar {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            border: 2px solid var(--primary-color);
+            border-radius: 25px;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        
+        .search-bar:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(255, 159, 28, 0.2);
+        }
+        
+        .search-bar::placeholder {
+            color: #999;
+        }
+        
+        .product-search-wrapper {
+            position: relative;
+        }
+        
+        .product-search-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            display: none;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-search-input.active {
+            display: block;
+        }
+        
+        .product-search-input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+        
+        .product-select-hidden {
+            display: none;
+        }
+        
+        .product-select-button {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            background: white;
+            text-align: left;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+        
+        .product-select-button:hover {
+            border-color: var(--accent-color);
+        }
+        
+        .product-select-button:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+        
+        .product-select-button.has-selection {
+            color: var(--dark-color);
+        }
+        
+        .product-info-display {
+            background-color: var(--light-color);
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 0.75rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+        
+        .product-info-display.active {
+            display: block;
+        }
+        
+        .product-info-display strong {
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-info-display .price-detail {
+            margin: 0.25rem 0;
+            font-size: 0.9rem;
+            color: var(--dark-color);
+        }
+        
+        .product-info-display .price-detail span {
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+        
+        .product-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            max-height: 200px;
+            overflow-y: auto;
+            background: white;
+            border: 2px solid var(--accent-color);
+            border-radius: 5px;
+            z-index: 1000;
+            display: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 0.25rem;
+        }
+        
+        .product-dropdown.active {
+            display: block;
+        }
+        
+        .product-dropdown-item {
+            padding: 0.75rem;
+            cursor: pointer;
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.2s;
+        }
+        
+        .product-dropdown-item:last-child {
+            border-bottom: none;
+        }
+        
+        .product-dropdown-item:hover {
+            background-color: var(--light-color);
+        }
+        
+        .product-dropdown-item strong {
+            color: var(--primary-color);
+        }
+        
+        .product-dropdown-item small {
+            color: #666;
+            display: block;
+            margin-top: 0.25rem;
+        }
+        
         .filter-btn {
             background-color: var(--primary-color);
             color: white;
@@ -476,6 +628,103 @@
             display: none;
         }
         
+        .snap-special-container {
+            background-color: #f0f8ff;
+            border: 2px solid var(--accent-green);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .snap-toggle {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .snap-toggle label {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+        
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+        
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .slider {
+            background-color: var(--accent-green);
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        
+        .snap-info {
+            background-color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            border-left: 4px solid var(--accent-green);
+        }
+        
+        .snap-info p {
+            margin: 0.5rem 0;
+            color: var(--dark-color);
+        }
+        
+        .custom-items-container {
+            display: none;
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            border: 2px dashed var(--accent-color);
+        }
+        
+        .custom-items-container.active {
+            display: block;
+        }
+        
+        .custom-items-container h4 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+        
         footer {
             background: linear-gradient(135deg, var(--dark-color) 0%, #000 100%);
             color: white;
@@ -591,6 +840,10 @@
         <h2 class="section-title">Available Products</h2>
         <p style="text-align: center; margin-bottom: 2rem; color: var(--primary-color); font-size: 1.1rem;">Fresh produce from the <strong>Coalición de Pequeños Agricultores</strong> - majority farmworker-to-farmer, organic producers from across San Benito, Santa Clara, Santa Cruz, and Monterey Counties.</p>
         
+        <div class="search-bar-container">
+            <input type="text" id="productSearch" class="search-bar" placeholder="Search products... (e.g., tomatoes, peppers, salsa)" oninput="searchProducts()">
+        </div>
+        
         <div class="filter-bar">
             <button class="filter-btn active" onclick="filterProducts('all')">All Products</button>
             <button class="filter-btn" onclick="filterProducts('vegetables')">Vegetables</button>
@@ -658,6 +911,30 @@
                         </div>
                     </div>
                     
+                    <div class="form-section snap-special-container">
+                        <div class="snap-toggle">
+                            <label for="snapSpecial">SNAP Special</label>
+                            <label class="switch">
+                                <input type="checkbox" id="snapSpecial" name="snapSpecial" onchange="toggleSnapSpecial()">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        
+                        <div class="snap-info">
+                            <p><strong>SNAP Special Program:</strong> When enabled, all products become free of charge for eligible SNAP recipients.</p>
+                            <p>This program ensures equitable access to fresh, local produce, non-perishable food items, canned & boxed goods, and other essential food resources for all community members.</p>
+                        </div>
+                        
+                        <div class="custom-items-container" id="customItemsContainer">
+                            <h4>Request Custom Items</h4>
+                            <p style="margin-bottom: 1rem; color: var(--dark-color);">Don't see what you need in our list? Let us know what you're looking for and we'll do our best to source it from our network of farmers and partners.</p>
+                            <div class="form-group">
+                                <label for="customItems">Custom Items Requested</label>
+                                <textarea id="customItems" name="customItems" rows="5" placeholder="Examples:&#10;• Fresh produce: Asian greens (bok choy, gai lan), specialty peppers, specific herbs&#10;• Non-perishables: rice, beans, pasta, flour, cooking oil&#10;• Canned goods: tomatoes, beans, vegetables, fruits&#10;• Boxed goods: cereal, crackers, grains&#10;• Other essentials: milk, eggs, bread, tortillas"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <div class="form-section">
                         <h3>Order Details</h3>
                         <div id="orderItems" class="order-items">
@@ -675,6 +952,10 @@
                                 <option value="">Select Delivery Method</option>
                                 <option value="farm-pickup">Farm Pickup</option>
                                 <option value="stanford-delivery">Stanford Area Delivery</option>
+                                <option value="east-palo-alto-delivery">East Palo Alto Delivery</option>
+                                <option value="san-francisco-delivery">San Francisco Delivery</option>
+                                <option value="east-bay-delivery">East Bay Delivery</option>
+                                <option value="peninsula-delivery">Peninsula Delivery</option>
                                 <option value="coordinate-pickup">Coordinate Group Pickup</option>
                             </select>
                         </div>
@@ -722,6 +1003,27 @@
     </footer>
 
     <script>
+        // Global variable to track SNAP Special status
+        let isSnapSpecial = false;
+
+        // Toggle SNAP Special functionality
+        window.toggleSnapSpecial = function() {
+            const snapCheckbox = document.getElementById('snapSpecial');
+            const customItemsContainer = document.getElementById('customItemsContainer');
+            
+            isSnapSpecial = snapCheckbox.checked;
+            
+            // Show/hide custom items container
+            if (isSnapSpecial) {
+                customItemsContainer.classList.add('active');
+            } else {
+                customItemsContainer.classList.remove('active');
+            }
+            
+            // Recalculate total with SNAP pricing
+            calculateTotal();
+        };
+
         const products = [
             { name: "Broccoli", category: "vegetables", individual: 3.00, individualDisplay: "$3.00/lb", bulk: 60.00, bulkDisplay: "$60.00 (20 lb)", bulkQty: 20 },
             { name: "Celery", category: "vegetables", individual: 2.50, individualDisplay: "$2.50/pz", bulk: 60.00, bulkDisplay: "$60.00 (24 ct)", bulkQty: 24 },
@@ -764,7 +1066,24 @@
             { name: "Parsley", category: "herbs", individual: 1.50, individualDisplay: "$1.50/bunch", bulk: 15.00, bulkDisplay: "$15.00 (10 bunches)", bulkQty: 10 },
             { name: "Eggs", category: "misc", individual: 10.00, individualDisplay: "$10/dozen", bulk: 100.00, bulkDisplay: "$100.00 (10 dozens)", bulkQty: 10 },
             { name: "Carrots (Orange)", category: "vegetables", individual: 2.25, individualDisplay: "$2.25/bunch", bulk: 50.00, bulkDisplay: "$50.00 (24 bunches)", bulkQty: 24 },
-            { name: "Carrots (Mix Colors)", category: "vegetables", individual: 2.75, individualDisplay: "$2.75/bunch", bulk: 60.00, bulkDisplay: "$60.00 (24 bunches)", bulkQty: 24 }
+            { name: "Carrots (Mix Colors)", category: "vegetables", individual: 2.75, individualDisplay: "$2.75/bunch", bulk: 60.00, bulkDisplay: "$60.00 (24 bunches)", bulkQty: 24 },
+            { name: "Salsa Roja", category: "salsas", individual: 0, individualDisplay: "By Size", bulk: 0, bulkDisplay: "See sizes below", bulkQty: 1, hasSizes: true, sizes: [
+                { size: "8 oz", price: 5.00 },
+                { size: "16 oz", price: 8.00 },
+                { size: "32 oz", price: 15.00 },
+                { size: "64 oz", price: 25.00 }
+            ]},
+            { name: "Salsa Verde", category: "salsas", individual: 0, individualDisplay: "By Size", bulk: 0, bulkDisplay: "See sizes below", bulkQty: 1, hasSizes: true, sizes: [
+                { size: "8 oz", price: 5.00 },
+                { size: "16 oz", price: 8.00 },
+                { size: "32 oz", price: 15.00 },
+                { size: "64 oz", price: 25.00 }
+            ]},
+            { name: "Tomato Sauce", category: "salsas", individual: 0, individualDisplay: "By Size", bulk: 0, bulkDisplay: "See sizes below", bulkQty: 1, hasSizes: true, sizes: [
+                { size: "16 oz", price: 8.00 },
+                { size: "32 oz", price: 15.00 },
+                { size: "64 oz", price: 25.00 }
+            ]}
         ];
 
         let orderItemCount = 0;
@@ -780,28 +1099,42 @@
                     return;
                 }
                 
-                const productOptions = products.map(p => 
-                    `<option value="${p.name}">${p.name} - ${p.individualDisplay} | Bulk: ${p.bulkDisplay}</option>`
-                ).join('');
-                
                 const orderItem = document.createElement('div');
                 orderItem.className = 'order-item';
                 orderItem.id = `orderItem-${orderItemCount}`;
                 orderItem.innerHTML = `
                     <div class="form-group">
                         <label>Product</label>
-                        <select name="product" onchange="updateOrderItem(${orderItemCount})" required>
-                            <option value="">Select Product</option>
-                            ${productOptions}
-                        </select>
+                        <div class="product-search-wrapper" id="searchWrapper-${orderItemCount}">
+                            <button 
+                                type="button"
+                                class="product-select-button" 
+                                id="productSelectButton-${orderItemCount}"
+                                onclick="toggleProductDropdown(${orderItemCount})"
+                            >
+                                Select Product
+                            </button>
+                            <input 
+                                type="text" 
+                                class="product-search-input" 
+                                id="productSearchInput-${orderItemCount}"
+                                placeholder="Type to search products..."
+                                oninput="filterProductDropdown(${orderItemCount})"
+                            >
+                            <select name="product" id="productSelect-${orderItemCount}" class="product-select-hidden" required>
+                                <option value="">Select Product</option>
+                            </select>
+                            <div class="product-dropdown" id="productDropdown-${orderItemCount}"></div>
+                        </div>
+                        <div class="product-info-display" id="productInfo-${orderItemCount}"></div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" id="quantityGroup-${orderItemCount}">
                         <label>Quantity</label>
                         <input type="number" name="quantity" min="1" onchange="calculateTotal()" required>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" id="pricingGroup-${orderItemCount}">
                         <label>Pricing</label>
-                        <select name="pricing" onchange="calculateTotal()" required>
+                        <select name="pricing" data-item-id="${orderItemCount}" onchange="updatePricingType(${orderItemCount}); calculateTotal()" required>
                             <option value="">Select Pricing</option>
                             <option value="individual">Individual Price</option>
                             <option value="bulk">Bulk Price</option>
@@ -836,14 +1169,68 @@
             try {
                 const item = document.getElementById(`orderItem-${itemId}`);
                 const productSelect = item.querySelector('select[name="product"]');
-                const pricingSelect = item.querySelector('select[name="pricing"]');
+                const productName = productSelect.value;
+                const pricingGroup = document.getElementById(`pricingGroup-${itemId}`);
+                const quantityGroup = document.getElementById(`quantityGroup-${itemId}`);
                 
-                // Reset pricing options when product changes
-                pricingSelect.innerHTML = `
-                    <option value="">Select Pricing</option>
-                    <option value="individual">Individual Price</option>
-                    <option value="bulk">Bulk Price</option>
-                `;
+                if (!productName) {
+                    return;
+                }
+                
+                const product = products.find(p => p.name === productName);
+                
+                // If product has sizes (salsa products), show size selection
+                if (product && product.hasSizes) {
+                    pricingGroup.innerHTML = `
+                        <label>Order Type</label>
+                        <select name="pricing" data-item-id="${itemId}" onchange="updateSizeOptions(${itemId}); calculateTotal()" required>
+                            <option value="">Select Order Type</option>
+                            <option value="individual">Individual</option>
+                            <option value="bulk">Bulk (3-packs)</option>
+                        </select>
+                    `;
+                    
+                    // Add a size selection group below pricing
+                    const sizeGroupId = `sizeGroup-${itemId}`;
+                    let sizeGroup = document.getElementById(sizeGroupId);
+                    
+                    if (!sizeGroup) {
+                        sizeGroup = document.createElement('div');
+                        sizeGroup.className = 'form-group';
+                        sizeGroup.id = sizeGroupId;
+                        sizeGroup.style.display = 'none';
+                        pricingGroup.parentNode.insertBefore(sizeGroup, pricingGroup.nextSibling);
+                    }
+                    
+                    sizeGroup.innerHTML = `
+                        <label>Size</label>
+                        <select name="size" onchange="calculateTotal()" required disabled>
+                            <option value="">Select order type first</option>
+                        </select>
+                    `;
+                    
+                    // Update quantity label
+                    quantityGroup.querySelector('label').textContent = 'Quantity';
+                } else {
+                    // Reset to standard pricing options for non-salsa products
+                    pricingGroup.innerHTML = `
+                        <label>Pricing</label>
+                        <select name="pricing" data-item-id="${itemId}" onchange="calculateTotal()" required>
+                            <option value="">Select Pricing</option>
+                            <option value="individual">Individual Price</option>
+                            <option value="bulk">Bulk Price</option>
+                        </select>
+                    `;
+                    
+                    // Remove size group if it exists
+                    const sizeGroup = document.getElementById(`sizeGroup-${itemId}`);
+                    if (sizeGroup) {
+                        sizeGroup.remove();
+                    }
+                    
+                    // Reset quantity label
+                    quantityGroup.querySelector('label').textContent = 'Quantity';
+                }
                 
                 calculateTotal();
             } catch (error) {
@@ -851,23 +1238,252 @@
             }
         };
 
+        window.updateSizeOptions = function(itemId) {
+            try {
+                const item = document.getElementById(`orderItem-${itemId}`);
+                const productSelect = item.querySelector('select[name="product"]');
+                const productName = productSelect.value;
+                const pricingSelect = item.querySelector('select[name="pricing"]');
+                const pricingType = pricingSelect.value;
+                const sizeGroup = document.getElementById(`sizeGroup-${itemId}`);
+                const quantityGroup = document.getElementById(`quantityGroup-${itemId}`);
+                
+                if (!productName || !pricingType || !sizeGroup) {
+                    return;
+                }
+                
+                const product = products.find(p => p.name === productName);
+                
+                if (product && product.hasSizes) {
+                    const sizeSelect = sizeGroup.querySelector('select[name="size"]');
+                    sizeSelect.disabled = false;
+                    
+                    if (pricingType === 'individual') {
+                        const sizeOptions = product.sizes.map(s => 
+                            `<option value="${s.size}">${s.size} - $${s.price.toFixed(2)}</option>`
+                        ).join('');
+                        
+                        sizeSelect.innerHTML = `
+                            <option value="">Select Size</option>
+                            ${sizeOptions}
+                        `;
+                        quantityGroup.querySelector('label').textContent = 'Quantity (units)';
+                    } else if (pricingType === 'bulk') {
+                        const sizeOptions = product.sizes.map(s => 
+                            `<option value="${s.size}">${s.size} - $${(s.price * 3).toFixed(2)} (3-pack)</option>`
+                        ).join('');
+                        
+                        sizeSelect.innerHTML = `
+                            <option value="">Select Size</option>
+                            ${sizeOptions}
+                        `;
+                        quantityGroup.querySelector('label').textContent = 'Quantity (3-packs)';
+                    }
+                    
+                    sizeGroup.style.display = 'block';
+                }
+                
+                calculateTotal();
+            } catch (error) {
+                console.error('Error updating size options:', error);
+            }
+        };
+
+        window.updatePricingType = function(itemId) {
+            // This function is for non-salsa products, no special handling needed
+            calculateTotal();
+        };
+
+        window.toggleProductDropdown = function(itemId) {
+            const dropdown = document.getElementById(`productDropdown-${itemId}`);
+            const searchInput = document.getElementById(`productSearchInput-${itemId}`);
+            const button = document.getElementById(`productSelectButton-${itemId}`);
+            
+            // Close all other dropdowns
+            document.querySelectorAll('.product-dropdown').forEach((dd, index) => {
+                if (dd.id !== `productDropdown-${itemId}`) {
+                    dd.classList.remove('active');
+                }
+            });
+            document.querySelectorAll('.product-search-input').forEach((input, index) => {
+                if (input.id !== `productSearchInput-${itemId}`) {
+                    input.classList.remove('active');
+                }
+            });
+            
+            // Toggle current dropdown
+            const isActive = dropdown.classList.contains('active');
+            
+            if (!isActive) {
+                searchInput.classList.add('active');
+                searchInput.focus();
+                filterProductDropdown(itemId);
+            } else {
+                dropdown.classList.remove('active');
+                searchInput.classList.remove('active');
+                searchInput.value = '';
+            }
+        };
+
+        window.hideProductDropdown = function(itemId) {
+            const dropdown = document.getElementById(`productDropdown-${itemId}`);
+            const searchInput = document.getElementById(`productSearchInput-${itemId}`);
+            
+            if (dropdown) dropdown.classList.remove('active');
+            if (searchInput) {
+                searchInput.classList.remove('active');
+                searchInput.value = '';
+            }
+        };
+
+        window.filterProductDropdown = function(itemId) {
+            const searchInput = document.getElementById(`productSearchInput-${itemId}`);
+            const dropdown = document.getElementById(`productDropdown-${itemId}`);
+            
+            if (!searchInput || !dropdown) return;
+            
+            const searchQuery = searchInput.value.toLowerCase().trim();
+            
+            // Filter products based on search query
+            const filtered = searchQuery === '' 
+                ? products 
+                : products.filter(product => 
+                    product.name.toLowerCase().includes(searchQuery) || 
+                    product.category.toLowerCase().includes(searchQuery)
+                );
+            
+            // Populate dropdown
+            if (filtered.length > 0) {
+                dropdown.innerHTML = filtered.map(product => `
+                    <div class="product-dropdown-item" onclick="selectProductFromDropdown(${itemId}, '${product.name.replace(/'/g, "\\'")}')">
+                        <strong>${product.name}</strong>
+                        <small>${product.category.charAt(0).toUpperCase() + product.category.slice(1)} - ${product.individualDisplay}</small>
+                    </div>
+                `).join('');
+                dropdown.classList.add('active');
+            } else {
+                dropdown.innerHTML = '<div class="product-dropdown-item" style="color: #999;">No products found</div>';
+                dropdown.classList.add('active');
+            }
+        };
+
+        window.selectProductFromDropdown = function(itemId, productName) {
+            const productSelect = document.getElementById(`productSelect-${itemId}`);
+            const searchInput = document.getElementById(`productSearchInput-${itemId}`);
+            const dropdown = document.getElementById(`productDropdown-${itemId}`);
+            const button = document.getElementById(`productSelectButton-${itemId}`);
+            const productInfo = document.getElementById(`productInfo-${itemId}`);
+            
+            if (productSelect) {
+                productSelect.value = productName;
+                updateOrderItem(itemId);
+            }
+            
+            if (button) {
+                button.textContent = productName;
+                button.classList.add('has-selection');
+            }
+            
+            // Display product pricing information
+            if (productInfo) {
+                const product = products.find(p => p.name === productName);
+                if (product) {
+                    let priceHTML = '<strong>Pricing Information:</strong>';
+                    
+                    if (product.hasSizes) {
+                        // For salsa/sauce products with sizes
+                        priceHTML += '<div style="margin-top: 0.5rem;">';
+                        priceHTML += '<div style="font-weight: bold; color: var(--primary-color); margin-bottom: 0.25rem;">Individual:</div>';
+                        product.sizes.forEach(size => {
+                            priceHTML += `<div class="price-detail">${size.size}: <span>$${size.price.toFixed(2)}</span></div>`;
+                        });
+                        priceHTML += '<div style="font-weight: bold; color: var(--primary-color); margin-top: 0.5rem; margin-bottom: 0.25rem;">Bulk (3-packs):</div>';
+                        product.sizes.forEach(size => {
+                            priceHTML += `<div class="price-detail">${size.size}: <span>$${(size.price * 3).toFixed(2)}</span></div>`;
+                        });
+                        priceHTML += '</div>';
+                    } else {
+                        // For regular products
+                        if (product.individual > 0) {
+                            priceHTML += `<div class="price-detail">Individual: <span>${product.individualDisplay}</span></div>`;
+                        }
+                        priceHTML += `<div class="price-detail">Bulk: <span>${product.bulkDisplay}</span></div>`;
+                    }
+                    
+                    productInfo.innerHTML = priceHTML;
+                    productInfo.classList.add('active');
+                }
+            }
+            
+            if (searchInput) {
+                searchInput.classList.remove('active');
+                searchInput.value = '';
+            }
+            
+            if (dropdown) {
+                dropdown.classList.remove('active');
+            }
+        };
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const isDropdown = event.target.closest('.product-search-wrapper');
+            if (!isDropdown) {
+                document.querySelectorAll('.product-dropdown').forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+                document.querySelectorAll('.product-search-input').forEach(input => {
+                    input.classList.remove('active');
+                });
+            }
+        });
+
         window.calculateTotal = function() {
             try {
                 let total = 0;
                 const orderItems = document.querySelectorAll('.order-item');
                 
+                // If SNAP Special is enabled, everything is free
+                if (isSnapSpecial) {
+                    const totalElement = document.getElementById('orderTotal');
+                    if (totalElement) {
+                        totalElement.innerHTML = `<strong>SNAP Special Active - Total: $0.00 (FREE)</strong>`;
+                    }
+                    return;
+                }
+                
                 orderItems.forEach(item => {
                     const productName = item.querySelector('select[name="product"]').value;
                     const quantity = parseInt(item.querySelector('input[name="quantity"]').value) || 0;
-                    const pricing = item.querySelector('select[name="pricing"]').value;
+                    const pricingSelect = item.querySelector('select[name="pricing"]');
+                    const pricing = pricingSelect ? pricingSelect.value : '';
                     
                     if (productName && quantity && pricing) {
                         const product = products.find(p => p.name === productName);
                         if (product) {
-                            if (pricing === 'individual' && product.individual > 0) {
-                                total += product.individual * quantity;
-                            } else if (pricing === 'bulk') {
-                                total += product.bulk * quantity;
+                            // Handle salsa products with size-based pricing and bulk 3-packs
+                            if (product.hasSizes) {
+                                const sizeSelect = item.querySelector('select[name="size"]');
+                                const selectedSizeValue = sizeSelect ? sizeSelect.value : '';
+                                
+                                if (selectedSizeValue) {
+                                    const selectedSize = product.sizes.find(s => s.size === selectedSizeValue);
+                                    if (selectedSize) {
+                                        if (pricing === 'individual') {
+                                            total += selectedSize.price * quantity;
+                                        } else if (pricing === 'bulk') {
+                                            // Bulk is 3-pack, so multiply price by 3
+                                            total += (selectedSize.price * 3) * quantity;
+                                        }
+                                    }
+                                }
+                            } else {
+                                // Handle regular products with individual/bulk pricing
+                                if (pricing === 'individual' && product.individual > 0) {
+                                    total += product.individual * quantity;
+                                } else if (pricing === 'bulk') {
+                                    total += product.bulk * quantity;
+                                }
                             }
                         }
                     }
@@ -886,6 +1502,9 @@
             // Update active filter button
             document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
+            
+            // Clear search bar when using filter buttons
+            document.getElementById('productSearch').value = '';
 
             // Filter and render products
             if (category === 'all') {
@@ -896,7 +1515,64 @@
             }
         };
 
+        window.searchProducts = function() {
+            const searchQuery = document.getElementById('productSearch').value.toLowerCase().trim();
+            
+            // Clear active filter button when searching
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            
+            if (searchQuery === '') {
+                // If search is empty, show all products and reactivate "All Products" button
+                document.querySelector('.filter-btn').classList.add('active');
+                renderProducts();
+                return;
+            }
+            
+            // Filter products based on search query (name or category)
+            const filtered = products.filter(product => 
+                product.name.toLowerCase().includes(searchQuery) || 
+                product.category.toLowerCase().includes(searchQuery)
+            );
+            
+            renderProducts(filtered);
+        };
+
         function createProductCard(product) {
+            // Special handling for products with sizes (salsas/sauces)
+            if (product.hasSizes) {
+                const individualSizes = product.sizes.map(s => 
+                    `<div style="margin: 0.25rem 0;">${s.size}: <strong>$${s.price.toFixed(2)}</strong></div>`
+                ).join('');
+                
+                const bulkSizes = product.sizes.map(s => 
+                    `<div style="margin: 0.25rem 0;">${s.size}: <strong>$${(s.price * 3).toFixed(2)}</strong></div>`
+                ).join('');
+                
+                return `
+                    <div class="product-card" data-category="${product.category}">
+                        <div class="product-header">
+                            <div class="product-name">${product.name}</div>
+                            <div class="product-category">${product.category.charAt(0).toUpperCase() + product.category.slice(1)}</div>
+                        </div>
+                        <div class="product-details">
+                            <div style="margin-bottom: 1rem;">
+                                <div style="font-weight: bold; color: var(--primary-color); margin-bottom: 0.5rem; font-size: 0.9rem;">INDIVIDUAL PRICING</div>
+                                <div style="font-size: 0.95rem;">
+                                    ${individualSizes}
+                                </div>
+                            </div>
+                            <div class="bulk-section">
+                                <div class="bulk-label">BULK PRICING (3-PACKS)</div>
+                                <div style="margin-top: 0.5rem; font-size: 0.95rem;">
+                                    ${bulkSizes}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Standard product card for non-salsa products
             return `
                 <div class="product-card" data-category="${product.category}">
                     <div class="product-header">
@@ -928,21 +1604,50 @@
             document.querySelectorAll('.order-item').forEach(item => {
                 const productName = item.querySelector('select[name="product"]').value;
                 const quantity = item.querySelector('input[name="quantity"]').value;
-                const pricing = item.querySelector('select[name="pricing"]').value;
+                const pricingSelect = item.querySelector('select[name="pricing"]');
+                const pricing = pricingSelect ? pricingSelect.value : '';
                 
                 if (productName && quantity && pricing) {
                     const product = products.find(p => p.name === productName);
                     let itemTotal = 0;
-                    if (pricing === 'individual' && product.individual > 0) {
-                        itemTotal = product.individual * parseInt(quantity);
-                    } else if (pricing === 'bulk') {
-                        itemTotal = product.bulk * parseInt(quantity);
+                    let pricingDisplay = pricing;
+                    
+                    // If SNAP Special is active, all items are free
+                    if (isSnapSpecial) {
+                        itemTotal = 0;
+                    } else {
+                        // Handle salsa products with size-based pricing
+                        if (product.hasSizes) {
+                            const sizeSelect = item.querySelector('select[name="size"]');
+                            const selectedSizeValue = sizeSelect ? sizeSelect.value : '';
+                            
+                            if (selectedSizeValue) {
+                                const selectedSize = product.sizes.find(s => s.size === selectedSizeValue);
+                                if (selectedSize) {
+                                    if (pricing === 'individual') {
+                                        itemTotal = selectedSize.price * parseInt(quantity);
+                                        pricingDisplay = `${selectedSize.size} (Individual)`;
+                                    } else if (pricing === 'bulk') {
+                                        // Bulk is 3-pack
+                                        itemTotal = (selectedSize.price * 3) * parseInt(quantity);
+                                        pricingDisplay = `${selectedSize.size} (Bulk 3-pack)`;
+                                    }
+                                }
+                            }
+                        } else {
+                            // Handle regular products with individual/bulk pricing
+                            if (pricing === 'individual' && product.individual > 0) {
+                                itemTotal = product.individual * parseInt(quantity);
+                            } else if (pricing === 'bulk') {
+                                itemTotal = product.bulk * parseInt(quantity);
+                            }
+                        }
                     }
                     
                     orderItems.push({
                         product: productName,
                         quantity: parseInt(quantity),
-                        pricing: pricing,
+                        pricing: pricingDisplay,
                         itemTotal: itemTotal
                     });
                 }
@@ -951,6 +1656,8 @@
             return {
                 timestamp: new Date().toISOString(),
                 orderNumber: 'TM-' + Date.now(),
+                snapSpecial: isSnapSpecial,
+                customItems: formData.get('customItems'),
                 organization: {
                     name: formData.get('orgName'),
                     type: formData.get('orgType'),
@@ -965,17 +1672,21 @@
                     address: formData.get('address')
                 },
                 specialRequests: formData.get('specialRequests'),
-                estimatedTotal: orderItems.reduce((sum, item) => sum + item.itemTotal, 0)
+                estimatedTotal: isSnapSpecial ? 0 : orderItems.reduce((sum, item) => sum + item.itemTotal, 0)
             };
         }
 
         function formatOrderForEmail(orderData) {
+            const snapStatus = orderData.snapSpecial ? '**SNAP SPECIAL - FREE ORDER**' : 'Regular Order';
+            const customItemsText = orderData.customItems ? `\n\nCUSTOM ITEMS REQUESTED:\n${orderData.customItems}` : '';
+            
             return `
 NEW TERRITORIAL MARKETS ORDER
 =============================
 
 Order Number: ${orderData.orderNumber}
 Date: ${new Date(orderData.timestamp).toLocaleString()}
+Order Type: ${snapStatus}
 
 ORGANIZATION INFORMATION:
 - Name: ${orderData.organization.name}
@@ -987,7 +1698,7 @@ ORGANIZATION INFORMATION:
 ORDER DETAILS:
 ${orderData.orderItems.map(item => 
     `- ${item.product}: ${item.quantity} units (${item.pricing} pricing) - $${item.itemTotal.toFixed(2)}`
-).join('\n')}
+).join('\n')}${customItemsText}
 
 DELIVERY:
 - Method: ${orderData.delivery.method}
@@ -997,7 +1708,7 @@ DELIVERY:
 SPECIAL REQUESTS:
 ${orderData.specialRequests || 'None'}
 
-ESTIMATED TOTAL: $${orderData.estimatedTotal.toFixed(2)}
+ESTIMATED TOTAL: $${orderData.estimatedTotal.toFixed(2)}${orderData.snapSpecial ? ' (SNAP SPECIAL - FREE)' : ''}
 
 Please confirm this order and coordinate pickup/delivery details.
 
