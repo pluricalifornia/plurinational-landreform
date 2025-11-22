@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ciudad y Campo Winter School 2024-2025 | Bay Area Land Reform</title>
+    <style>
+        :root {
+            --primary-color: #8B1A1A;      
+            --secondary-color: #e71d36;     
+            --dark-color: #2a1a1a;         
+            --light-color: #f7f7f7;        
+            --accent-color: #ff9f1c;       
+            --accent-green: #8bc34a;      
+            --accent-red: #c62828;
+            --lime-green: #9acd32;         
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--dark-color) 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            border-bottom: 4px solid var(--accent-color);
+        }
+        
+        .logo-container {
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .logo {
+            max-width: 150px;
+            height: auto;
+        }
+        
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        header h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+            font-style: italic;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            max-width: 900px;
+            margin: 0 auto 1rem;
+        }
+        
+        .school-dates {
+            background: rgba(255, 255, 255, 0.15);
+            display: inline-block;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            font-weight: bold;
+            font-size: 1.2rem;
+            border: 2px solid var(--accent-color);
+        }
+        
+        nav {
+            background-color: var(--dark-color);
+            padding: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+            font-size: 1rem;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+        
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(139, 26, 26, 0.9), rgba(42, 26, 26, 0.9)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%238B1A1A" width="1200" height="600"/></svg>');
+            color: white;
+            padding: 4rem 2rem;
+            margin: -3rem -1rem 3rem -1rem;
+            text-align: center;
+        }
+        
+        .hero-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+        
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .topic-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent-color);
+            transition: transform 0.3s;
+        }
+        
+        .topic-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .topic-card h3 {
+            margin-bottom: 0.5rem;
+            color: var(--lime-green);
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            text-align: center;
+            margin: 3rem 0 2rem;
+            font-size: 2.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--accent-color);
+        }
+        
+        .session-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-left: 6px solid var(--primary-color);
+        }
+        
+        .session-card h3 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .session-card h4 {
+            color: var(--accent-red);
+            font-size: 1.3rem;
+            margin: 1.5rem 0 1rem;
+        }
+        
+        .session-card ul {
+            margin-left: 2rem;
+            margin-top: 1rem;
+        }
+        
+        .session-card li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(139, 26, 26, 0.1) 0%, rgba(154, 205, 50, 0.1) 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--accent-orange);
+        }
+        
+        .join-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--dark-color) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 10px;
+            margin: 3rem 0;
+            text-align: center;
+        }
+        
+        .join-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .join-section p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .meeting-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .meeting-detail {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 2px solid var(--accent-color);
+        }
+        
+        .meeting-detail strong {
+            font-size: 1.2rem;
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--lime-green);
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: var(--accent-orange);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin: 0.5rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        
+        .cta-button:hover {
+            background: #e68a00;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .cta-button.secondary {
+            background: var(--lime-green);
+            color: var(--dark-color);
+        }
+        
+        .cta-button.secondary:hover {
+            background: #85b82a;
+        }
+        
+        .special-event {
+            background: var(--lime-green);
+            color: var(--dark-color);
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .special-event h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 3rem;
+        }
+        
+        footer h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+        
+        footer p {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        
+        .social-links {
+            margin-top: 1.5rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 1rem;
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            header h2 {
+                font-size: 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .session-card h3 {
+                font-size: 1.5rem;
+            }
+            
+            nav ul {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <div style="font-size: 3rem;">🌱</div>
+            <div style="text-align: center;">
+                <h1>Ciudad y Campo</h1>
+                <h2>The Urban Role in Processes of Agrarian Transformation</h2>
+            </div>
+            <div style="font-size: 3rem;">🌾</div>
+        </div>
+        <p>Land Reform Winter School - Bay Area</p>
+        <p style="margin-top: 0.5rem; font-size: 1.1rem;">Co-hosted by Radical Agroecology Dinner and Discussion (RADD)</p>
+        <div class="school-dates">
+            📅 First Wednesdays 6-9 PM @ Gill Tract Community Farm<br>
+            December 3, 2024 - March 4, 2025
+        </div>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#sessions">Sessions</a></li>
+            <li><a href="#join">Join Us</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <div class="main-content">
+        <div class="hero-section" id="about">
+            <h2>Building Popular, Working Class Power for Land Reform</h2>
+            <p style="font-size: 1.2rem; max-width: 900px; margin: 0 auto 2rem; font-style: italic;">
+                This winter school is about more than understanding land issues—it's about building the organized capacity to win. We focus on concrete strategies for developing popular, working class power to transform who controls land and how it is used.
+            </p>
+            
+            <h3 style="font-size: 2rem; margin: 2rem 0 1.5rem;">We will be discussing:</h3>
+            <div class="topics-grid">
+                <div class="topic-card">
+                    <h3>🏙️ Urban-Rural Networks</h3>
+                    <p>The role of urban-rural networks to effectively advance a land reform proposal and build the political alliances necessary for victory</p>
+                </div>
+                <div class="topic-card">
+                    <h3>📚 Historical Politics</h3>
+                    <p>Historical and contemporary politics of land in the Bay Area, CA, and USA—understanding how power has shaped land distribution</p>
+                </div>
+                <div class="topic-card">
+                    <h3>🏘️ Urban Land Struggle</h3>
+                    <p>Urban applications of agrarian land struggle for tenant rights to the city—connecting housing and land justice</p>
+                </div>
+                <div class="topic-card">
+                    <h3>🤝 Community Organization</h3>
+                    <p>Concrete steps to foment community organization for land reform and build sustained movement infrastructure</p>
+                </div>
+            </div>
+            
+            <div style="margin-top: 3rem; padding: 2rem; background: rgba(255, 255, 255, 0.1); border-radius: 10px;">
+                <p style="font-size: 1.3rem; margin-bottom: 1rem;">
+                    <strong>We particularly invite folks in the greater Bay Area who work with, or are interested in intersections of land and liberation.</strong>
+                </p>
+                <p style="font-size: 1.1rem; font-style: italic;">
+                    Please try and commit to the whole course.
+                </p>
+                <p style="font-size: 1.3rem; margin-top: 1rem; color: var(--lime-green);">
+                    <strong>Let's build out an organized network for land reform in our region and beyond!</strong>
+                </p>
+            </div>
+        </div>
+        
+        <h2 class="section-title" id="sessions">📖 Sessions Overview</h2>
+        
+        <div class="session-card">
+            <h3>Session 1 (December 3rd): What is Land Reform?</h3>
+            <p style="font-size: 1.1rem; margin-bottom: 1rem;">
+                Our opening session establishes foundational concepts for understanding land reform as a process of transforming power relations. We examine how land reform is fundamentally about redistributing not just land, but political and economic power from elites to working people.
+            </p>
+            
+            <h4>Key Questions:</h4>
+            <ul>
+                <li>What distinguishes land reform from other forms of land policy?</li>
+                <li>How have successful land reforms restructured class relations?</li>
+                <li>What role does organized popular power play in determining land reform outcomes?</li>
+                <li>Why do some land reforms transform societies while others merely tinker at the margins?</li>
+            </ul>
+            
+            <p style="margin-top: 1rem; font-size: 1.05rem;">
+                We'll explore historical examples from the Global South where popular movements successfully won land redistribution, examining the organizational capacity and political strategies that made victory possible.
+            </p>
+            
+            <div class="highlight-box">
+                <h4>🔍 Reading Group (12/18 - location TBA): Case Study Deep Dive</h4>
+                <p>Between sessions, we'll meet for an in-depth exploration of specific land reform case studies. We'll analyze how movements built the power necessary to win, what obstacles they faced, and what lessons we can apply to California. This deeper study session connects historical examples to our contemporary organizing challenges.</p>
+            </div>
+        </div>
+        
+        <div class="session-card">
+            <h3>Session 2 (January 7th): Bay Area Deep Dive</h3>
+            <p style="font-size: 1.1rem; margin-bottom: 1rem;">
+                Historic and contemporary land issues in our home - examining how settler colonialism, racial capitalism, and tech industry concentration have shaped who controls land in the Bay Area. We analyze the specific political, economic, and social dynamics that have created our current crisis of displacement, unaffordable housing, and agricultural land loss.
+            </p>
+            
+            <h4>Topics We'll Cover:</h4>
+            <ul>
+                <li>Indigenous dispossession and the foundations of Bay Area land ownership patterns</li>
+                <li>How agricultural land became suburban sprawl and tech campuses</li>
+                <li>The role of financial speculation in displacing working class communities</li>
+                <li>Contemporary struggles: tenant organizing, farmworker movements, and land defenders</li>
+                <li>Understanding local power structures—who makes decisions about land and why?</li>
+            </ul>
+            
+            <p style="margin-top: 1rem; font-size: 1.05rem;">
+                This session grounds our analysis in the material reality of the Bay Area, connecting historical processes to present-day organizing opportunities. We'll examine both the forces concentrating land ownership and the growing movements resisting displacement.
+            </p>
+            
+            <div class="highlight-box">
+                <h4>🚶 Field Trip: TBA</h4>
+                <p>We'll visit sites that illustrate the land struggles and histories we're studying—places where working people are organizing for their right to stay, farm, or return. This experiential learning connects theory to the physical landscape of our region and introduces us to ongoing organizing efforts we can support or join.</p>
+            </div>
+        </div>
+        
+        <div class="session-card">
+            <h3>Session 3 (February 4th): Who are we? Who are they?</h3>
+            <p style="font-size: 1.1rem; margin-bottom: 1rem;">
+                Urban / Rural Relationships - Understanding the key actors necessary to build a land reform movement and win it, versus the actors standing in our way preventing this transformation. This session is about strategic clarity: identifying our potential allies, understanding our opponents, and recognizing why urban-rural unity is essential for building the power necessary for victory.
+            </p>
+            
+            <h4>Strategic Questions:</h4>
+            <ul>
+                <li>Who benefits from current land arrangements? Who loses?</li>
+                <li>Which class forces have the interest and capacity to fight for land redistribution?</li>
+                <li>How do landlords, developers, agribusiness, and finance capital maintain control?</li>
+                <li>Why must urban tenant struggles and rural farmworker movements unite?</li>
+                <li>What organizational forms can bridge city and countryside effectively?</li>
+            </ul>
+            
+            <p style="margin-top: 1rem; font-size: 1.05rem;">
+                We examine how struggles for housing justice in cities and struggles for land access in the countryside are part of the same fight against concentrated land ownership. Urban workers need affordable housing; rural workers need land to farm. Both need to break the power of landlords and land speculators. This session develops our understanding of the political alliances necessary to win comprehensive land reform.
+            </p>
+            
+            <div class="highlight-box">
+                <h4>🚶 Field Trip: TBA</h4>
+                <p>An experiential learning opportunity to witness urban-rural connections firsthand and understand the strategic importance of these alliances. We'll meet organizers building these bridges and learn from their successes and challenges.</p>
+            </div>
+        </div>
+        
+        <div class="session-card">
+            <h3>Session 4 (March 4th): Seeding Movements Cafe</h3>
+            <p style="font-size: 1.1rem; margin-bottom: 1rem;">
+                Our closing session brings together learning and celebration as we chart concrete paths forward for organizing. After three sessions of analysis and strategy, we focus on action: What specific organizing work can we commit to? How do we build sustained capacity rather than one-off events? What infrastructure do we need to create?
+            </p>
+            
+            <h4>Moving from Analysis to Action:</h4>
+            <ul>
+                <li>Identifying concrete organizing opportunities in our communities</li>
+                <li>Building vendor networks, cooperative housing, and mutual aid infrastructure</li>
+                <li>Connecting with existing farmworker and tenant organizations</li>
+                <li>Developing political education capacity in our workplaces and neighborhoods</li>
+                <li>Creating sustained relationships between urban and rural organizers</li>
+            </ul>
+            
+            <p style="margin-top: 1rem; font-size: 1.05rem;">
+                The winter school doesn't end here—it's the beginning of an organized network. We'll discuss ongoing initiatives: Bay Area organizing sessions, vendor-matching programs with student cooperatives, engineering brigades with struggling agricultural producers, and fundraising for landless workers' trusts. This is about building the infrastructure for a long-term movement.
+            </p>
+            
+            <div class="special-event">
+                <h3>🎉 Final Dance Party</h3>
+                <p style="font-size: 1.2rem; font-weight: bold;">DJ'd by the Machete DJ Collective</p>
+                <p style="margin-top: 0.5rem;">Celebrate our learning and build community through music, food, and collective joy! Movement building isn't just meetings—it's creating the relationships and culture that sustain us through long struggles. Dance with us as we commit to the fight ahead.</p>
+            </div>
+        </div>
+        
+        <div style="background: #fff3cd; border-left: 4px solid var(--accent-orange); padding: 2rem; border-radius: 10px; margin: 2rem 0;">
+            <h3 style="color: var(--primary-color); margin-bottom: 1rem;">📅 Format</h3>
+            <p style="font-size: 1.1rem;">
+                <strong>FIRST WEDNESDAYS</strong><br>
+                6 - 9 PM @ Gill Tract Community Farm<br>
+                December 3 - March 4
+            </p>
+            <p style="margin-top: 1rem; font-size: 1.1rem;">
+                <strong>ALTERNATING READING GROUP AND FIELD TRIP DATES BETWEEN MAIN SESSIONS FOR DEEPER STUDY</strong>
+            </p>
+        </div>
+        
+        <div style="background: rgba(154, 205, 50, 0.2); border-left: 4px solid var(--lime-green); padding: 2rem; border-radius: 10px; margin: 2rem 0;">
+            <h3 style="color: var(--primary-color); margin-bottom: 1rem;">🍽️ Radical Agroecology Dinner & Discussion (RADD)</h3>
+            <p style="font-size: 1.1rem;">
+                Each session includes a communal meal hosted by Radical Agroecology Dinner and Discussion (RADD), featuring food grown with care for the land and people. RADD creates space for informal discussion and relationship-building around radical agroecology principles. Breaking bread together is fundamental to building the trust and solidarity necessary for transformative organizing.
+            </p>
+        </div>
+        
+        <section class="join-section" id="join">
+            <h2>Join Us for the Winter School</h2>
+            <p>This in-person political education program brings together organizers, farmworkers, students, and land defenders from across the Bay Area and beyond.</p>
+            
+            <div class="meeting-info">
+                <div class="meeting-detail">
+                    <strong>📍 Location</strong><br>
+                    Gill Tract Community Farm<br>
+                    Albany, CA
+                </div>
+                <div class="meeting-detail">
+                    <strong>📅 Schedule</strong><br>
+                    First Wednesdays<br>
+                    6:00 - 9:00 PM
+                </div>
+                <div class="meeting-detail">
+                    <strong>🗓️ Dates</strong><br>
+                    December 3, 2024<br>
+                    January 7, 2025<br>
+                    February 4, 2025<br>
+                    March 4, 2025
+                </div>
+                <div class="meeting-detail">
+                    <strong>🍽️ Includes</strong><br>
+                    Radical agroecology dinner<br>
+                    Reading materials<br>
+                    Field trips between sessions
+                </div>
+            </div>
+            
+            <p style="margin-top: 1.5rem; font-size: 1.1rem;">
+                <strong>Commitment:</strong> We encourage participants to commit to attending all four sessions plus the reading groups and field trips to build cohesion and collective understanding.
+            </p>
+            
+            <div style="margin-top: 2rem;">
+                <a href="#contact" class="cta-button">Sign Up / Get Involved</a>
+                <a href="#contact" class="cta-button secondary">Join the Signal Chat</a>
+            </div>
+        </section>
+        
+        <div style="background: white; padding: 2rem; border-radius: 10px; margin: 3rem 0; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+            <h3 style="color: var(--primary-color); text-align: center; margin-bottom: 1.5rem; font-size: 2rem;">
+                Our Political Framework
+            </h3>
+            <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1rem;">
+                This winter school is grounded in the understanding that <strong>land reform is fundamentally about class struggle and the redistribution of power.</strong> We reject approaches that treat land as merely an environmental or cultural issue while ignoring the economic and political forces that concentrate ownership.
+            </p>
+            
+            <div style="background: rgba(139, 26, 26, 0.05); padding: 1.5rem; border-radius: 8px; margin: 1.5rem 0;">
+                <h4 style="color: var(--primary-color); margin-bottom: 1rem;">Five Core Principles:</h4>
+                
+                <p style="margin-bottom: 1rem;"><strong>1. Politics is Strategic Terrain:</strong> Politics is not a bad word but "the struggle over who decides how we live"—the very terrain where our future will be won or lost. We must engage politically with strategic clarity, not moral appeals alone.</p>
+                
+                <p style="margin-bottom: 1rem;"><strong>2. Organization Over Romanticism:</strong> The success of Global South agrarian movements stems from organizational precision and clarity, not cultural factors. We need serious strategic thinking about capacity-building, political education, and infrastructure development.</p>
+                
+                <p style="margin-bottom: 1rem;"><strong>3. From Defensive to Offensive:</strong> We do not need to remain on the defensive but can claim our right to determine history. Even amid fascist attacks, people are ready for struggle—we must offer a clear path forward.</p>
+                
+                <p style="margin-bottom: 1rem;"><strong>4. Urban-Rural Unity is Essential:</strong> Land reform cannot be won by rural movements alone, nor can housing justice be won by urban movements alone. The working class must unite across the city-countryside divide to break landlord and corporate power.</p>
+                
+                <p style="margin-bottom: 1rem;"><strong>5. Build for the Long Term:</strong> We're not building a study group—we're building sustained organizing infrastructure. This means committing to ongoing political education, concrete mutual aid projects, and accountability to working class communities.</p>
+            </div>
+        </div>
+        
+        <div style="background: linear-gradient(135deg, rgba(139, 26, 26, 0.1) 0%, rgba(154, 205, 50, 0.1) 100%); padding: 2rem; border-radius: 10px; margin: 2rem 0; border-left: 4px solid var(--primary-color);">
+            <h3 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 1.8rem;">Why Ciudad y Campo? Why Urban-Rural Connection?</h3>
+            <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1rem;">
+                The separation of city and countryside serves ruling class interests. When urban tenants and rural farmworkers fight separately, landlords and agribusiness win. But when we recognize our common enemy—those who profit from concentrated land ownership—we can build the united power necessary for transformation.
+            </p>
+            <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1rem;">
+                In the Bay Area, tech workers facing skyrocketing rent, service workers being pushed out of the region, and farmworkers struggling for land access are all victims of the same system. Real estate speculators, corporate landlords, and agribusiness giants extract wealth from our labor and our need for shelter and food. Our struggles must converge.
+            </p>
+            <p style="font-size: 1.1rem; line-height: 1.8;">
+                This winter school develops our capacity to build these connections concretely: matching urban food cooperatives with rural producers, connecting tenant unions with farmworker organizations, creating networks of mutual support between city and countryside. Theory must become practice.
+            </p>
+        </div>
+        
+        <section style="background: white; padding: 2rem; border-radius: 10px; margin: 3rem 0; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+            <h3 style="color: var(--primary-color); text-align: center; margin-bottom: 1.5rem; font-size: 2rem;">
+                About the Plurinational Land Reform in CA Working Group
+            </h3>
+            <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1rem;">
+                This winter school is organized by the Plurinational Land Reform in CA Working Group, which emerged from our 2025 Summer School that brought together 105+ organizers across California. We're not just studying land reform—we're building concrete organizing infrastructure.
+            </p>
+            <h4 style="color: var(--primary-color); margin: 1.5rem 0 1rem;">Our Ongoing Work:</h4>
+            <ul style="margin-left: 2rem; font-size: 1.05rem; line-height: 1.8;">
+                <li><strong>Bay Area winter sessions</strong> for sustained political education and organizing</li>
+                <li><strong>Vendor-matching programs</strong> connecting student residential cooperatives with local producers</li>
+                <li><strong>Engineering brigades</strong> providing technical support to struggling agricultural producers</li>
+                <li><strong>Fundraising for landless workers' trusts</strong> and agroecological school networks</li>
+                <li><strong>Regional coordination</strong> with interest from LA, Inland Empire, and San Diego for similar programming</li>
+            </ul>
+            <p style="font-size: 1.1rem; line-height: 1.8; margin-top: 1rem;">
+                Our work is grounded in the principle that <strong>we do not need to remain on the defensive but can claim our right to determine history.</strong> We believe in moving from reactive responses to proactive organizing, building the capacity for advanced struggle rather than simply responding to immediate crises.
+            </p>
+            <p style="font-size: 1.1rem; line-height: 1.8; margin-top: 1rem;">
+                Following our successful summer program, we're expanding with regional winter schools to build the organized network necessary for comprehensive land reform in California and beyond. This is not merely academic—it's about building popular, working class power to win a dignified life for us all: a right to work, land, housing, and food.
+            </p>
+        </section>
+        
+        <section style="text-align: center; margin: 3rem 0;" id="contact">
+            <h3 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 2rem;">Questions?</h3>
+            <p style="font-size: 1.1rem;">
+                Email us at <strong>plurinationallandreformCA@gmail.com</strong><br>
+                or connect with us on social media below.
+            </p>
+            <p style="margin-top: 1.5rem; font-size: 1rem; color: #666;">
+                Scan the QR code on our flyer to join the Signal chat group!
+            </p>
+        </section>
+    </div>
+    
+    <footer>
+        <h3>Plurinational Land Reform in CA Working Group</h3>
+        <p style="font-style: normal; margin-bottom: 0.5rem;">Co-hosted by Radical Agroecology Dinner and Discussion (RADD)</p>
+        <p>Working on stolen Ohlone, Miwok, Yokuts, Chumash, Tongva, Cahuilla, Kumeyaay, Acjachemen, and many other indigenous lands</p>
+        <p style="margin-top: 1rem; font-size: 1.1rem; font-weight: bold;">
+            ¡Vamos hacia la reforma agraria integral y popular!
+        </p>
+        
+        <div class="social-links">
+            <a href="https://instagram.com/plurinational.landreform_cawg" aria-label="Instagram">📱 Instagram</a>
+        </div>
+        
+        <p style="margin-top: 2rem; font-size: 0.9rem;">
+            © 2024-2025 Plurinational Land Reform in CA Working Group
+        </p>
+    </footer>
+</body>
+</html>
