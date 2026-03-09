@@ -3,888 +3,321 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Territorial Markets - Plurinational Land Reform in CA Working Group</title>
+    <title>Order Now — Territorial Markets — PLRCAWG</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #3a3a6a;
-            --secondary-color: #e71d36;
-            --dark-color: #011627;
-            --light-color: #f7f7f7;
-            --accent-color: #ff9f1c;
-            --accent-green: #8bc34a;
-            --accent-red: #e53935;
-            --card-bg: #ffffff;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: var(--light-color);
-            color: var(--dark-color);
-            line-height: 1.6;
-        }
-        
-        header {
-            background: linear-gradient(135deg, var(--primary-color) 0%, #2a2a4a 100%);
-            color: white;
-            text-align: center;
-            padding: 2rem 1rem;
-            border-bottom: 4px solid var(--accent-color);
-        }
-        
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        header p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        nav {
-            background-color: var(--dark-color);
-            padding: 1rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        
-        nav ul {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            flex-wrap: wrap;
-        }
-        
-        nav ul li {
-            margin: 0 1rem;
-        }
-        
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s;
-            display: block;
-            padding: 0.5rem 0;
-        }
-        
-        nav ul li a:hover {
-            color: var(--secondary-color);
-        }
-        
-        .active {
-            color: var(--accent-color) !important;
-        }
-        
-        section {
-            padding: 3rem 1rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 2rem;
-            color: var(--primary-color);
-            font-size: 2rem;
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-        
-        .section-title::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
-        }
-        
-        .intro-section {
-            background: linear-gradient(135deg, var(--accent-green) 0%, var(--accent-color) 100%);
-            color: var(--dark-color);
-            padding: 3rem 1rem;
-        }
-        
-        .intro-section .section-title {
-            color: var(--dark-color);
-        }
-        
-        .intro-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        
-        .intro-content p {
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-        }
-        
-        .partnership-info {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-top: 2rem;
-        }
-        
-        .partnership-info h3 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-        
-        .partnership-types {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-        
-        .partnership-card {
-            background-color: var(--card-bg);
-            border: 2px solid var(--accent-color);
-            border-radius: 10px;
-            padding: 1.5rem;
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .partnership-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-        }
-        
-        .partnership-card h4 {
-            color: var(--secondary-color);
-            margin-bottom: 1rem;
-        }
-        
-        .products-section {
-            padding: 3rem 1rem;
-        }
-        
-        .filter-bar {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-        
-        .search-bar-container {
-            width: 100%;
-            max-width: 500px;
-            margin: 0 auto 1.5rem auto;
-        }
-        
-        .search-bar {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            font-size: 1rem;
-            border: 2px solid var(--primary-color);
-            border-radius: 25px;
-            outline: none;
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
-        
-        .search-bar:focus {
-            border-color: var(--accent-color);
-            box-shadow: 0 0 0 3px rgba(255, 159, 28, 0.2);
-        }
-        
-        .search-bar::placeholder {
-            color: #999;
-        }
-        
-        .product-search-wrapper {
-            position: relative;
-        }
-        
-        .product-search-input {
-            width: 100%;
-            padding: 0.75rem;
-            border: 2px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-            display: none;
-            margin-bottom: 0.5rem;
-        }
-        
-        .product-search-input.active {
-            display: block;
-        }
-        
-        .product-search-input:focus {
-            outline: none;
-            border-color: var(--accent-color);
-        }
-        
-        .product-select-hidden {
-            display: none;
-        }
-        
-        .product-select-button {
-            width: 100%;
-            padding: 0.75rem;
-            border: 2px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-            background: white;
-            text-align: left;
-            cursor: pointer;
-            transition: border-color 0.3s;
-        }
-        
-        .product-select-button:hover {
-            border-color: var(--accent-color);
-        }
-        
-        .product-select-button:focus {
-            outline: none;
-            border-color: var(--accent-color);
-        }
-        
-        .product-select-button.has-selection {
-            color: var(--dark-color);
-        }
-        
-        .product-info-display {
-            background-color: var(--light-color);
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 0.75rem;
-            margin-top: 0.5rem;
-            display: none;
-        }
-        
-        .product-info-display.active {
-            display: block;
-        }
-        
-        .product-info-display strong {
-            color: var(--primary-color);
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-        
-        .product-info-display .price-detail {
-            margin: 0.25rem 0;
-            font-size: 0.9rem;
-            color: var(--dark-color);
-        }
-        
-        .product-info-display .price-detail span {
-            font-weight: bold;
-            color: var(--secondary-color);
-        }
-        
-        .product-dropdown {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            max-height: 200px;
-            overflow-y: auto;
-            background: white;
-            border: 2px solid var(--accent-color);
-            border-radius: 5px;
-            z-index: 1000;
-            display: none;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-top: 0.25rem;
-        }
-        
-        .product-dropdown.active {
-            display: block;
-        }
-        
-        .product-dropdown-item {
-            padding: 0.75rem;
-            cursor: pointer;
-            border-bottom: 1px solid #eee;
-            transition: background-color 0.2s;
-        }
-        
-        .product-dropdown-item:last-child {
-            border-bottom: none;
-        }
-        
-        .product-dropdown-item:hover {
-            background-color: var(--light-color);
-        }
-        
-        .product-dropdown-item strong {
-            color: var(--primary-color);
-        }
-        
-        .product-dropdown-item small {
-            color: #666;
-            display: block;
-            margin-top: 0.25rem;
-        }
-        
-        .filter-btn {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            font-weight: bold;
-        }
-        
-        .filter-btn:hover {
-            background-color: var(--secondary-color);
-        }
-        
-        .filter-btn.active {
-            background-color: var(--accent-color);
-        }
-        
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .product-card {
-            background-color: var(--card-bg);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-        }
-        
-        .product-header {
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 1rem;
-            text-align: center;
-        }
-        
-        .product-name {
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-        
-        .product-category {
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-        
-        .product-details {
-            padding: 1.5rem;
-        }
-        
-        .price-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-        
-        .individual-price {
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-        
-        .bulk-section {
-            background-color: var(--light-color);
-            border-radius: 8px;
-            padding: 1rem;
-            border-left: 4px solid var(--accent-color);
-        }
-        
-        .bulk-label {
-            font-weight: bold;
-            color: var(--secondary-color);
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .bulk-price {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: var(--accent-color);
-        }
-        
-        .contact-section {
-            background: linear-gradient(135deg, var(--primary-color) 0%, #2a2a4a 100%);
-            color: white;
-            padding: 3rem 1rem;
-        }
-        
-        .contact-section .section-title {
-            color: white;
-        }
-        
-        .contact-info {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        
-        .contact-info > p {
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-        }
-        
-        .order-form-container {
-            background-color: white;
-            color: var(--dark-color);
-            border-radius: 10px;
-            padding: 2rem;
-            margin: 2rem auto;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            text-align: left;
-        }
-        
-        .order-form {
-            max-width: 100%;
-        }
-        
-        .form-section {
-            margin-bottom: 2rem;
-            padding-bottom: 2rem;
-            border-bottom: 2px solid var(--light-color);
-        }
-        
-        .form-section:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-        }
-        
-        .form-section h3 {
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-            font-size: 1.3rem;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-            color: var(--dark-color);
-        }
-        
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 2px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-        
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--accent-color);
-        }
-        
-        .order-items {
-            background-color: var(--light-color);
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .order-item {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr auto;
-            gap: 1rem;
-            align-items: end;
-            margin-bottom: 1rem;
-            padding: 1rem;
-            background-color: white;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        
-        .order-item:last-child {
-            margin-bottom: 0;
-        }
-        
-        .add-item-btn {
-            background-color: var(--accent-green);
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-        
-        .add-item-btn:hover {
-            background-color: #7aa93a;
-        }
-        
-        .remove-item-btn {
-            background-color: var(--secondary-color);
-            color: white;
-            border: none;
-            padding: 0.5rem;
-            border-radius: 3px;
-            cursor: pointer;
-            font-size: 0.8rem;
-        }
-        
-        .remove-item-btn:hover {
-            background-color: #c91020;
-        }
-        
-        .form-actions {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1rem;
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 2px solid var(--light-color);
-        }
-        
-        .order-total {
-            font-size: 1.2rem;
-            color: var(--primary-color);
-        }
-        
-        .submit-order-btn {
-            background-color: var(--secondary-color);
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            font-size: 1.1rem;
-            font-weight: bold;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        
-        .submit-order-btn:hover {
-            background-color: #c91020;
-        }
-        
-        .contact-backup {
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-top: 2rem;
-        }
-        
-        .contact-backup a {
-            color: var(--accent-color);
-            text-decoration: none;
-            font-weight: bold;
-        }
-        
-        .contact-backup a:hover {
-            text-decoration: underline;
-        }
-        
-        .success-message {
-            background-color: var(--accent-green);
-            color: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin: 1rem 0;
-            text-align: center;
-            display: none;
-        }
-        
-        .error-message {
-            background-color: var(--secondary-color);
-            color: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin: 1rem 0;
-            text-align: center;
-            display: none;
-        }
-        
-        .snap-special-container {
-            background-color: #f0f8ff;
-            border: 2px solid var(--accent-green);
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-        }
-        
-        .snap-toggle {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-        
-        .snap-toggle label {
-            font-weight: bold;
-            color: var(--primary-color);
-            font-size: 1.1rem;
-        }
-        
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 34px;
-        }
-        
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-        
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: .4s;
-            border-radius: 34px;
-        }
-        
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
-        }
-        
-        input:checked + .slider {
-            background-color: var(--accent-green);
-        }
-        
-        input:checked + .slider:before {
-            transform: translateX(26px);
-        }
-        
-        .snap-info {
-            background-color: white;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-top: 1rem;
-            border-left: 4px solid var(--accent-green);
-        }
-        
-        .snap-info p {
-            margin: 0.5rem 0;
-            color: var(--dark-color);
-        }
-        
-        .custom-items-container {
-            display: none;
-            background-color: white;
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin-top: 1rem;
-            border: 2px dashed var(--accent-color);
-        }
-        
-        .custom-items-container.active {
-            display: block;
-        }
-        
-        .custom-items-container h4 {
-            color: var(--secondary-color);
-            margin-bottom: 1rem;
-        }
-        
-        footer {
-            background: linear-gradient(135deg, var(--dark-color) 0%, #000 100%);
-            color: white;
-            text-align: center;
-            padding: 2rem 1rem;
-            border-top: 4px solid var(--accent-color);
-        }
-        
-        .back-to-main {
-            display: inline-block;
-            margin-top: 1rem;
-            background-color: var(--secondary-color);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-        
-        .back-to-main:hover {
-            background-color: #c91020;
-        }
-        
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2rem;
-            }
-            
-            nav ul {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            nav ul li {
-                margin: 0.5rem 0;
-            }
-            
-            .products-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .filter-bar {
-                justify-content: center;
-            }
-            
-            .form-actions {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 1rem;
-            }
-            
-            .order-item {
-                grid-template-columns: 1fr;
-                gap: 0.5rem;
-            }
-            
-            .order-item .remove-item-btn {
-                justify-self: end;
-                margin-top: 0.5rem;
-            }
+            --primary: #3a3a6a;
+            --red:     #e71d36;
+            --dark:    #011627;
+            --light:   #f5f5f3;
+            --orange:  #ff9f1c;
+            --green:   #8bc34a;
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { font-size: 16px; }
+        body { background: var(--light); color: #1a1a2e; font-family: 'Barlow', sans-serif; font-size: 1rem; line-height: 1.7; }
+
+        /* ── NAV TOP ── */
+        .nav-top { background: var(--dark); display: flex; justify-content: flex-end; align-items: center; padding: 0 2rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
+        .nav-top a { color: rgba(255,255,255,0.6); text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.5rem 0.85rem; transition: color 0.2s; }
+        .nav-top a:hover { color: #fff; }
+        .nav-top .lang-btn { background: var(--orange); color: var(--dark); padding: 0.4rem 1rem; margin-left: 0.4rem; font-weight: 900; }
+        .nav-top .lang-btn:hover { background: #e08a10; }
+
+        /* ── MAIN NAV ── */
+        nav { background: var(--red); position: sticky; top: 0; z-index: 100; display: flex; align-items: stretch; box-shadow: 0 3px 0 rgba(0,0,0,0.3); }
+        .nav-brand { display: flex; align-items: center; padding: 0 1.5rem; background: var(--dark); text-decoration: none; border-right: 2px solid var(--orange); flex-shrink: 0; }
+        .nav-brand span { color: var(--orange); font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 0.9rem; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.2; max-width: 130px; }
+        .nav-main-links { display: flex; list-style: none; }
+        .nav-main-links > li { position: relative; }
+        .nav-main-links > li > a { color: #fff; text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: 0.07em; text-transform: uppercase; display: flex; align-items: center; padding: 0 1.1rem; height: 100%; min-height: 46px; position: relative; white-space: nowrap; transition: background 0.15s; }
+        .nav-main-links > li > a::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: #fff; transform: scaleX(0); transition: transform 0.2s; }
+        .nav-main-links > li > a:hover, .nav-main-links > li > a.active { background: rgba(0,0,0,0.18); }
+        .nav-main-links > li > a:hover::after, .nav-main-links > li > a.active::after { transform: scaleX(1); }
+        .chevron { display: inline-block; margin-left: 4px; font-size: 0.6rem; transition: transform 0.2s; }
+        .mega-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--dark); border-top: 3px solid var(--red); box-shadow: 0 6px 0 rgba(0,0,0,0.25); z-index: 200; padding: 1.25rem 1.75rem; min-width: 280px; }
+        .mega-menu.wide { min-width: 440px; }
+        .mega-menu-label { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 0.6rem; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.35rem; }
+        .mega-menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.15rem 1.25rem; }
+        .mega-menu-grid.single-col { grid-template-columns: 1fr; }
+        .mega-menu a { color: rgba(255,255,255,0.8); text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.97rem; letter-spacing: 0.04em; text-transform: uppercase; padding: 0.45rem 0.55rem; display: block; border-left: 3px solid transparent; transition: all 0.12s; }
+        .mega-menu a:hover { color: #fff; border-left-color: var(--red); padding-left: 0.85rem; background: rgba(255,255,255,0.03); }
+        .has-dropdown:hover .mega-menu { display: block; }
+        .has-dropdown:hover > a .chevron { transform: rotate(180deg); }
+        .nav-hamburger { display: none; }
+
+        /* ── HERO ── */
+        .hero { background: var(--dark); color: #fff; padding: 3.5rem 2rem 3rem; position: relative; overflow: hidden; border-bottom: 5px solid var(--red); }
+        .hero::before { content: ""; position: absolute; top: 0; right: 0; bottom: 0; width: 45%; background: repeating-linear-gradient(-45deg, rgba(231,29,54,0.055) 0px, rgba(231,29,54,0.055) 2px, transparent 2px, transparent 14px); pointer-events: none; }
+        .hero-inner { max-width: 1100px; margin: 0 auto; }
+        .hero-eyebrow { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.75rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--red); margin-bottom: 0.75rem; }
+        .hero h1 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(2.8rem, 6vw, 4.5rem); text-transform: uppercase; line-height: 1; letter-spacing: 0.01em; margin-bottom: 1.25rem; max-width: 700px; }
+        .hero-sub { font-size: 1.05rem; line-height: 1.65; color: rgba(255,255,255,0.72); border-left: 3px solid var(--red); padding-left: 1rem; max-width: 580px; }
+        .hero-actions { display: flex; gap: 1rem; margin-top: 1.75rem; flex-wrap: wrap; }
+        .hero-btn { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.75rem 1.75rem; text-decoration: none; display: inline-block; transition: background 0.18s; }
+        .hero-btn-primary { background: var(--red); color: #fff; }
+        .hero-btn-primary:hover { background: #c41020; }
+        .hero-btn-secondary { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.35); }
+        .hero-btn-secondary:hover { border-color: #fff; }
+
+        /* ── LAYOUT SYSTEM ── */
+        .section-wrap { max-width: 1100px; margin: 0 auto; padding: 3.5rem 2rem; }
+        .dark-band { background: var(--dark); }
+        .dark-band .section-wrap { color: #fff; }
+        .light-band { background: var(--light); }
+        .white-band { background: #fff; }
+
+        /* ── PRODUCT CATALOGUE ── */
+        .catalogue-header { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem 1rem; }
+        .catalogue-header h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 2rem; text-transform: uppercase; color: var(--primary); margin-bottom: 0.5rem; border-left: 5px solid var(--red); padding-left: 1rem; }
+        .catalogue-header p { font-size: 1rem; color: #444; line-height: 1.65; margin-top: 0.75rem; padding-left: 1.3rem; }
+
+        .search-filter-bar { max-width: 1100px; margin: 0 auto; padding: 1rem 2rem 1.5rem; display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+        .product-search { flex: 1; min-width: 200px; max-width: 340px; padding: 0.6rem 1rem; border: 2px solid #ccc; font-family: 'Barlow', sans-serif; font-size: 0.95rem; background: #fff; transition: border-color 0.2s; }
+        .product-search:focus { outline: none; border-color: var(--red); }
+        .filter-btn { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.45rem 0.9rem; border: 2px solid var(--primary); color: var(--primary); background: transparent; cursor: pointer; transition: all 0.15s; }
+        .filter-btn:hover { background: var(--primary); color: #fff; }
+        .filter-btn.active { background: var(--red); border-color: var(--red); color: #fff; }
+
+        .products-grid { max-width: 1100px; margin: 0 auto; padding: 0 2rem 3rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.25rem; }
+        .product-card { background: #fff; border-top: 4px solid var(--red); box-shadow: 4px 4px 0 rgba(0,0,0,0.07); transition: transform 0.18s; }
+        .product-card:hover { transform: translateY(-3px); }
+        .product-card-head { background: var(--dark); padding: 1rem 1.25rem; }
+        .product-card-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.1rem; text-transform: uppercase; color: #fff; line-height: 1.1; }
+        .product-card-cat { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-top: 0.2rem; }
+        .product-card-body { padding: 1.1rem 1.25rem; }
+        .price-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.65rem; }
+        .price-ind { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.25rem; color: var(--primary); }
+        .price-ind-label { font-size: 0.78rem; color: #888; font-family: 'Barlow Condensed', sans-serif; letter-spacing: 0.06em; text-transform: uppercase; }
+        .bulk-box { background: var(--light); border-left: 3px solid var(--orange); padding: 0.6rem 0.85rem; }
+        .bulk-box-label { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--red); margin-bottom: 0.25rem; }
+        .bulk-box-price { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.1rem; color: var(--orange); }
+        .size-row { font-size: 0.88rem; color: #333; margin: 0.18rem 0; }
+        .size-row strong { color: var(--red); }
+
+        /* ── ORDER FORM ── */
+        .order-band { background: linear-gradient(135deg, var(--primary), #252545); padding: 4rem 2rem; }
+        .order-inner { max-width: 900px; margin: 0 auto; }
+        .order-band h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 2.4rem; text-transform: uppercase; color: #fff; margin-bottom: 0.5rem; }
+        .order-band > .order-inner > p { color: rgba(255,255,255,0.7); font-size: 1rem; line-height: 1.65; margin-bottom: 2.5rem; }
+
+        .order-form { display: flex; flex-direction: column; gap: 0; }
+        .form-section { background: rgba(255,255,255,0.06); border-left: 4px solid var(--red); padding: 2rem; margin-bottom: 1.25rem; }
+        .form-section h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 0.07em; color: #fff; margin-bottom: 1.5rem; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .form-grid.single { grid-template-columns: 1fr; }
+        .form-group { display: flex; flex-direction: column; gap: 0.35rem; }
+        .form-group label { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.6); }
+        .form-group input, .form-group select, .form-group textarea { padding: 0.7rem 0.9rem; background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.18); color: #fff; font-family: 'Barlow', sans-serif; font-size: 0.97rem; transition: border-color 0.2s; }
+        .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.3); }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--red); }
+        .form-group select option { background: var(--dark); color: #fff; }
+        .form-group textarea { min-height: 90px; resize: vertical; }
+
+        /* SNAP special */
+        .snap-box { background: rgba(139,195,74,0.12); border: 2px solid var(--green); padding: 1.5rem 2rem; margin-bottom: 1.25rem; }
+        .snap-toggle-row { display: flex; align-items: center; gap: 1.25rem; margin-bottom: 0.75rem; }
+        .snap-toggle-row label { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green); }
+        .switch { position: relative; display: inline-block; width: 54px; height: 30px; flex-shrink: 0; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255,255,255,0.15); transition: .3s; border-radius: 30px; }
+        .slider:before { position: absolute; content: ""; height: 22px; width: 22px; left: 4px; bottom: 4px; background: #fff; transition: .3s; border-radius: 50%; }
+        input:checked + .slider { background: var(--green); }
+        input:checked + .slider:before { transform: translateX(24px); }
+        .snap-desc { font-size: 0.92rem; color: rgba(255,255,255,0.65); line-height: 1.6; }
+        .custom-items-box { display: none; margin-top: 1.25rem; background: rgba(255,255,255,0.06); border-left: 3px solid var(--orange); padding: 1.25rem 1.5rem; }
+        .custom-items-box.active { display: block; }
+        .custom-items-box h4 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1rem; text-transform: uppercase; color: var(--orange); margin-bottom: 0.75rem; }
+
+        /* order items */
+        .order-items-container { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1rem; }
+        .order-item { background: rgba(255,255,255,0.08); padding: 1.25rem; display: grid; grid-template-columns: 2fr 1fr 1fr auto; gap: 1rem; align-items: end; }
+        .order-item .remove-btn { background: transparent; border: 2px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.6); padding: 0.55rem 0.75rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: all 0.15s; align-self: end; }
+        .order-item .remove-btn:hover { border-color: var(--red); color: #fff; background: var(--red); }
+        .add-item-btn { background: transparent; border: 2px solid var(--green); color: var(--green); padding: 0.6rem 1.25rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: all 0.15s; }
+        .add-item-btn:hover { background: var(--green); color: var(--dark); }
+
+        /* product search dropdown in order form */
+        .product-search-wrapper { position: relative; }
+        .product-select-button { width: 100%; padding: 0.7rem 0.9rem; background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.18); color: rgba(255,255,255,0.7); font-family: 'Barlow', sans-serif; font-size: 0.97rem; text-align: left; cursor: pointer; transition: border-color 0.2s; }
+        .product-select-button.has-selection { color: #fff; }
+        .product-select-button:hover { border-color: rgba(255,255,255,0.5); }
+        .product-search-input { display: none; width: 100%; padding: 0.7rem 0.9rem; background: rgba(255,255,255,0.15); border: 2px solid var(--red); color: #fff; font-family: 'Barlow', sans-serif; font-size: 0.97rem; margin-bottom: 0; }
+        .product-search-input::placeholder { color: rgba(255,255,255,0.4); }
+        .product-search-input:focus { outline: none; }
+        .product-search-input.active { display: block; }
+        .product-select-hidden { display: none; }
+        .product-dropdown { display: none; position: absolute; top: 100%; left: 0; right: 0; max-height: 200px; overflow-y: auto; background: #0d2235; border: 2px solid var(--red); z-index: 500; box-shadow: 0 6px 20px rgba(0,0,0,0.4); }
+        .product-dropdown.active { display: block; }
+        .product-dropdown-item { padding: 0.65rem 0.9rem; cursor: pointer; border-bottom: 1px solid rgba(255,255,255,0.06); transition: background 0.12s; }
+        .product-dropdown-item:hover { background: rgba(231,29,54,0.15); }
+        .product-dropdown-item strong { display: block; font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 0.95rem; text-transform: uppercase; color: #fff; }
+        .product-dropdown-item small { color: rgba(255,255,255,0.45); font-size: 0.82rem; }
+        .product-info-display { display: none; margin-top: 0.5rem; padding: 0.6rem 0.85rem; background: rgba(255,255,255,0.06); border-left: 3px solid var(--orange); font-size: 0.88rem; color: rgba(255,255,255,0.7); line-height: 1.5; }
+        .product-info-display.active { display: block; }
+
+        /* form actions */
+        .form-actions { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1.75rem 2rem; background: rgba(255,255,255,0.04); border-left: 4px solid var(--orange); }
+        .order-total { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.4rem; text-transform: uppercase; color: #fff; }
+        .order-total span { color: var(--orange); }
+        .submit-btn { background: var(--red); color: #fff; border: none; padding: 1rem 2.5rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.1rem; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.18s; }
+        .submit-btn:hover { background: #c41020; }
+
+        /* feedback messages */
+        .msg { padding: 1.25rem 1.5rem; margin-bottom: 1.25rem; font-size: 0.97rem; line-height: 1.6; }
+        .msg-success { background: rgba(139,195,74,0.18); border-left: 4px solid var(--green); color: #fff; }
+        .msg-error { background: rgba(231,29,54,0.15); border-left: 4px solid var(--red); color: #fff; }
+        .msg textarea { width: 100%; height: 150px; margin-top: 0.75rem; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2); color: #fff; font-family: monospace; font-size: 0.82rem; padding: 0.5rem; }
+        .msg details summary { cursor: pointer; color: var(--orange); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-top: 0.75rem; }
+
+        /* backup contact */
+        .backup-contact { background: rgba(255,255,255,0.05); border-left: 3px solid rgba(255,255,255,0.2); padding: 1.25rem 1.5rem; margin-top: 2rem; font-size: 0.93rem; color: rgba(255,255,255,0.65); line-height: 1.65; }
+        .backup-contact a { color: var(--orange); text-decoration: none; font-weight: 600; }
+        .backup-contact a:hover { text-decoration: underline; }
+
+        /* ── FOOTER ── */
+        footer { background: linear-gradient(135deg, var(--dark), #000); color: #fff; text-align: center; padding: 2rem 1rem; border-top: 4px solid var(--orange); }
+        footer h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem; }
+        footer p { color: rgba(255,255,255,0.55); font-size: 0.88rem; margin-top: 0.4rem; }
+        .social-links { display: flex; justify-content: center; gap: 1.25rem; margin: 0.9rem 0; }
+        .social-links a { color: #fff; font-size: 1.3rem; transition: color 0.2s; }
+        .social-links a:hover { color: var(--red); }
+
+        /* ── MOBILE ── */
+        @media (max-width: 820px) {
+            nav { flex-direction: column; }
+            .nav-brand { padding: 0.7rem 1rem; justify-content: center; }
+            .nav-main-links { flex-direction: column; display: none; }
+            .nav-main-links.open { display: flex; }
+            .nav-main-links > li > a { padding: 0.7rem 1rem; min-height: auto; }
+            .mega-menu { position: static; display: none !important; box-shadow: none; padding: 0.4rem 0.9rem 0.9rem 1.75rem; border-top: none; border-left: 3px solid var(--red); margin: 0 0.9rem 0.4rem; }
+            .has-dropdown.open .mega-menu { display: block !important; }
+            .mega-menu-grid { grid-template-columns: 1fr; }
+            .nav-hamburger { display: flex; align-items: center; background: none; border: none; color: #fff; font-size: 1.3rem; padding: 0.7rem 1rem; cursor: pointer; margin-left: auto; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; }
+            .form-grid { grid-template-columns: 1fr; }
+            .order-item { grid-template-columns: 1fr; gap: 0.6rem; }
+            .form-actions { flex-direction: column; align-items: stretch; }
+            .submit-btn { text-align: center; }
+            .search-filter-bar { flex-direction: column; align-items: stretch; }
+            .product-search { max-width: 100%; }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Territorial Markets</h1>
-        <p>Direct farm purchasing to strengthen farmer autonomy and build solidarity economies</p>
-    </header>
-    
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="OurCompass.html">Our Compass</a></li>
-            <li><a href="#products">Products</a></li>
-            <li><a href="#contact">Order</a></li>
-            <li><a href="#" class="active">Territorial Markets</a></li>
-        </ul>
-    </nav>
-    
-    <section class="intro-section">
-        <h2 class="section-title">Building Solidarity Through Direct Purchasing</h2>
-        <div class="intro-content">
-            <p>Territorial Markets connects student cooperatives, tenant unions, and community formations directly with small farmers, bypassing intermediaries that extract value from both producers and consumers. This initiative strengthens farmer autonomy while making fresh, local produce accessible to organized communities.</p>
-            
-            <p>By purchasing directly from farms, we build the economic foundation necessary for land reform and food sovereignty. Every transaction supports farmers in maintaining their land, investing in sustainable practices, and building power within their communities.</p>
-            
-            <div class="partnership-info">
-                <h3>Who Can Participate</h3>
-                <div class="partnership-types">
-                    <div class="partnership-card">
-                        <h4>Student Cooperatives</h4>
-                        <p>Food cooperatives, buying clubs, and student-run cafeterias seeking fresh, affordable produce while supporting local farmers.</p>
-                    </div>
-                    <div class="partnership-card">
-                        <h4>Tenant Unions</h4>
-                        <p>Organized tenants pooling resources for bulk purchasing to reduce food costs and support community-controlled food systems.</p>
-                    </div>
-                    <div class="partnership-card">
-                        <h4>Community Formations</h4>
-                        <p>Mutual aid groups, community centers, and collectives working to provide accessible food while building economic alternatives.</p>
-                    </div>
-                    <div class="partnership-card">
-                        <h4>Small Farmers</h4>
-                        <p>Producers seeking direct markets, fair prices, and relationships with communities committed to supporting local agriculture.</p>
+
+    <!-- TOP BAR -->
+    <div class="nav-top">
+        <a href="index.html#get-involved">Contact</a>
+        <a href="spanish.html" class="lang-btn">Español</a>
+    </div>
+
+    <!-- MAIN NAV -->
+    <nav id="main-nav">
+        <a href="index.html" class="nav-brand"><span>← PLRCAWG</span></a>
+        <button class="nav-hamburger" id="hamburger">☰ Menu</button>
+        <ul class="nav-main-links" id="nav-links">
+            <li><a href="OurCompass.html">Theory of Change</a></li>
+            <li><a href="territorial_markets.html" class="active">Order Now ↗</a></li>
+            <li class="has-dropdown">
+                <a href="#">Our Initiatives <span class="chevron">▼</span></a>
+                <div class="mega-menu wide">
+                    <div class="mega-menu-label">Initiatives</div>
+                    <div class="mega-menu-grid single-col">
+                        <a href="territorial_markets_about.html">Territorial Markets</a>
+                        <a href="engineering-brigades.html">Engineering Brigades</a>
+                        <a href="parcel-identification.html">Land Acquisition</a>
+                        <a href="agroecological-training.html">Political Education</a>
                     </div>
                 </div>
+            </li>
+            <li class="has-dropdown">
+                <a href="#">Land Reform School <span class="chevron">▼</span></a>
+                <div class="mega-menu">
+                    <div class="mega-menu-label">Programs</div>
+                    <div class="mega-menu-grid single-col">
+                        <a href="summer-school.html">Summer School</a>
+                        <a href="winter-school.html">Winter School</a>
+                    </div>
+                </div>
+            </li>
+            <li class="has-dropdown">
+                <a href="#">Join Us <span class="chevron">▼</span></a>
+                <div class="mega-menu">
+                    <div class="mega-menu-label">Chapters</div>
+                    <div class="mega-menu-grid single-col">
+                        <a href="join-general.html">General</a>
+                        <a href="join-bay-area.html">Bay Area</a>
+                        <a href="join-la.html">Los Angeles</a>
+                        <a href="join-san-diego.html">San Diego</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <div class="hero">
+        <div class="hero-inner">
+            <p class="hero-eyebrow">Territorial Markets — Order Directly</p>
+            <h1>Order Now</h1>
+            <p class="hero-sub">Fresh produce from the <strong style="color:#fff">Coalición de Pequeños Agricultores</strong> — majority farmworker-to-farmer, organic producers across San Benito, Santa Clara, Santa Cruz, and Monterey Counties.</p>
+            <div class="hero-actions">
+                <a href="#products" class="hero-btn hero-btn-secondary">Browse Products ↓</a>
+                <a href="#order" class="hero-btn hero-btn-primary">Place Order →</a>
             </div>
         </div>
-    </section>
-    
-    <section id="products" class="products-section">
-        <h2 class="section-title">Available Products</h2>
-        <p style="text-align: center; margin-bottom: 2rem; color: var(--primary-color); font-size: 1.1rem;">Fresh produce from the <strong>Coalición de Pequeños Agricultores</strong> - majority farmworker-to-farmer, organic producers from across San Benito, Santa Clara, Santa Cruz, and Monterey Counties.</p>
-        
-        <div class="search-bar-container">
-            <input type="text" id="productSearch" class="search-bar" placeholder="Search products... (e.g., tomatoes, peppers, salsa)" oninput="searchProducts()">
+    </div>
+
+    <!-- PRODUCT CATALOGUE -->
+    <div class="white-band" id="products">
+        <div class="catalogue-header">
+            <h2>Available Products</h2>
+            <p>All produce is grown by small campesin@ farmers. Individual pricing for single-household orders; bulk pricing for cooperatives, unions, and community formations.</p>
         </div>
-        
-        <div class="filter-bar">
-            <button class="filter-btn active" onclick="filterProducts('all')">All Products</button>
-            <button class="filter-btn" onclick="filterProducts('vegetables')">Vegetables</button>
-            <button class="filter-btn" onclick="filterProducts('peppers')">Peppers</button>
-            <button class="filter-btn" onclick="filterProducts('herbs')">Herbs</button>
-            <button class="filter-btn" onclick="filterProducts('greens')">Greens</button>
-            <button class="filter-btn" onclick="filterProducts('fruits')">Fruits</button>
-            <button class="filter-btn" onclick="filterProducts('salsas')">Salsas</button>
-            <button class="filter-btn" onclick="filterProducts('squashes')">Squashes</button>
-            <button class="filter-btn" onclick="filterProducts('misc')">Misc</button>
+
+        <div class="search-filter-bar">
+            <input type="text" id="productSearch" class="product-search" placeholder="Search products..." oninput="searchProducts()">
+            <button class="filter-btn active" onclick="filterProducts('all', event)">All</button>
+            <button class="filter-btn" onclick="filterProducts('vegetables', event)">Vegetables</button>
+            <button class="filter-btn" onclick="filterProducts('peppers', event)">Peppers</button>
+            <button class="filter-btn" onclick="filterProducts('herbs', event)">Herbs</button>
+            <button class="filter-btn" onclick="filterProducts('greens', event)">Greens</button>
+            <button class="filter-btn" onclick="filterProducts('fruits', event)">Fruits</button>
+            <button class="filter-btn" onclick="filterProducts('salsas', event)">Salsas</button>
+            <button class="filter-btn" onclick="filterProducts('squashes', event)">Squashes</button>
+            <button class="filter-btn" onclick="filterProducts('misc', event)">Misc</button>
         </div>
-        
+
         <div class="products-grid" id="productsGrid">
-            <!-- Products will be populated by JavaScript -->
+            <!-- populated by JS -->
         </div>
-    </section>
-    
-    <section id="contact" class="contact-section">
-        <h2 class="section-title">Place Your Order</h2>
-        <div class="contact-info">
-            <p>Ready to build territorial markets in your community? Fill out the form below to place your order directly.</p>
-            
-            <p><strong>Minimum Orders:</strong> Bulk pricing requires minimum quantities as specified per product. Perfect for cooperatives, unions, and community formations.</p>
-            
-            <div class="order-form-container">
-                <form id="orderForm" class="order-form" action="https://formspree.io/f/mrbygllj" method="POST">
-                    <input type="hidden" name="_subject" value="New Territorial Markets Order">
-                    <input type="hidden" name="_next" value="https://pluricalifornia.github.io/plurinational-landreform/territorial_markets.html?submitted=true">
-                    <input type="hidden" id="orderDataField" name="order_details" value="">
-                    
-                    <div class="form-section">
-                        <h3>Organization Information</h3>
+    </div>
+
+    <!-- ORDER FORM -->
+    <div class="order-band" id="order">
+        <div class="order-inner">
+            <h2>Place Your Order</h2>
+            <p>Fill out the form below. Orders are reviewed within 48 hours — you'll receive confirmation and coordination details by email. For SNAP recipients, enable the SNAP Special toggle to order at no cost.</p>
+
+            <form id="orderForm" class="order-form" action="https://formspree.io/f/mrbygllj" method="POST">
+                <input type="hidden" name="_subject" value="New Territorial Markets Order">
+                <input type="hidden" name="_next" value="https://pluricalifornia.github.io/plurinational-landreform/territorial_markets.html?submitted=true">
+                <input type="hidden" id="orderDataField" name="order_details" value="">
+
+                <!-- ORGANIZATION INFO -->
+                <div class="form-section">
+                    <h3>Organization Information</h3>
+                    <div class="form-grid">
                         <div class="form-group">
-                            <label for="orgName">Organization/Group Name *</label>
-                            <input type="text" id="orgName" name="orgName" required>
+                            <label for="orgName">Organization / Group Name *</label>
+                            <input type="text" id="orgName" name="orgName" required placeholder="e.g. Stanford Eating Clubs Co-op">
                         </div>
-                        
                         <div class="form-group">
                             <label for="orgType">Organization Type *</label>
                             <select id="orgType" name="orgType" required>
-                                <option value="">Select Organization Type</option>
+                                <option value="">Select type</option>
                                 <option value="student-cooperative">Student Cooperative</option>
                                 <option value="tenant-union">Tenant Union</option>
                                 <option value="community-formation">Community Formation</option>
@@ -893,62 +326,58 @@
                                 <option value="other">Other</option>
                             </select>
                         </div>
-                        
                         <div class="form-group">
                             <label for="contactName">Contact Person *</label>
-                            <input type="text" id="contactName" name="contactName" required>
+                            <input type="text" id="contactName" name="contactName" required placeholder="Full name">
                         </div>
-                        
                         <div class="form-group">
                             <label for="email">Email *</label>
-                            <input type="email" id="email" name="email" required>
+                            <input type="email" id="email" name="email" required placeholder="you@example.com">
                         </div>
-                        
                         <div class="form-group">
-                            <label for="phone">Phone</label>
-                            <input type="tel" id="phone" name="phone">
+                            <label for="phone">Phone (optional)</label>
+                            <input type="tel" id="phone" name="phone" placeholder="(415) 000-0000">
                         </div>
                     </div>
-                    
-                    <div class="form-section snap-special-container">
-                        <div class="snap-toggle">
-                            <label for="snapSpecial">SNAP Special</label>
-                            <label class="switch">
-                                <input type="checkbox" id="snapSpecial" name="snapSpecial" onchange="toggleSnapSpecial()">
-                                <span class="slider"></span>
-                            </label>
-                        </div>
-                        
-                        <div class="snap-info">
-                            <p><strong>SNAP Special Program:</strong> When enabled, all products become free of charge for eligible SNAP recipients.</p>
-                            <p>This program ensures equitable access to fresh, local produce, non-perishable food items, canned & boxed goods, and other essential food resources for all community members.</p>
-                        </div>
-                        
-                        <div class="custom-items-container" id="customItemsContainer">
-                            <h4>Request Custom Items</h4>
-                            <p style="margin-bottom: 1rem; color: var(--dark-color);">Don't see what you need in our list? Let us know what you're looking for and we'll do our best to source it from our network of farmers and partners.</p>
-                            <div class="form-group">
-                                <label for="customItems">Custom Items Requested</label>
-                                <textarea id="customItems" name="customItems" rows="5" placeholder="Examples:&#10;• Fresh produce: Asian greens (bok choy, gai lan), specialty peppers, specific herbs&#10;• Non-perishables: rice, beans, pasta, flour, cooking oil&#10;• Canned goods: tomatoes, beans, vegetables, fruits&#10;• Boxed goods: cereal, crackers, grains&#10;• Other essentials: milk, eggs, bread, tortillas"></textarea>
-                            </div>
+                </div>
+
+                <!-- SNAP SPECIAL -->
+                <div class="snap-box">
+                    <div class="snap-toggle-row">
+                        <label for="snapSpecial">SNAP Special</label>
+                        <label class="switch">
+                            <input type="checkbox" id="snapSpecial" name="snapSpecial" onchange="toggleSnapSpecial()">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <p class="snap-desc">When enabled, all products are available at no charge for eligible SNAP recipients — ensuring equitable access to fresh local produce regardless of income.</p>
+                    <div class="custom-items-box" id="customItemsContainer">
+                        <h4>Request Custom Items</h4>
+                        <p style="font-size:0.9rem;color:rgba(255,255,255,0.6);margin-bottom:0.85rem">Don't see what you need? Let us know and we'll source from our farmer network.</p>
+                        <div class="form-group">
+                            <label for="customItems">Custom Items Requested</label>
+                            <textarea id="customItems" name="customItems" rows="4" placeholder="e.g. Asian greens, specialty peppers, rice, beans, canned goods..."></textarea>
                         </div>
                     </div>
-                    
-                    <div class="form-section">
-                        <h3>Order Details</h3>
-                        <div id="orderItems" class="order-items">
-                            <!-- Order items will be populated by JavaScript -->
-                        </div>
-                        
-                        <button type="button" class="add-item-btn" onclick="addOrderItem()">+ Add Another Product</button>
+                </div>
+
+                <!-- ORDER DETAILS -->
+                <div class="form-section">
+                    <h3>Order Details</h3>
+                    <div class="order-items-container" id="orderItems">
+                        <!-- populated by JS -->
                     </div>
-                    
-                    <div class="form-section">
-                        <h3>Delivery & Pickup</h3>
+                    <button type="button" class="add-item-btn" onclick="addOrderItem()">+ Add Another Product</button>
+                </div>
+
+                <!-- DELIVERY -->
+                <div class="form-section">
+                    <h3>Delivery &amp; Pickup</h3>
+                    <div class="form-grid">
                         <div class="form-group">
                             <label for="deliveryMethod">Preferred Method *</label>
                             <select id="deliveryMethod" name="deliveryMethod" required>
-                                <option value="">Select Delivery Method</option>
+                                <option value="">Select method</option>
                                 <option value="farm-pickup">Farm Pickup</option>
                                 <option value="stanford-delivery">Stanford Area Delivery</option>
                                 <option value="east-palo-alto-delivery">East Palo Alto Delivery</option>
@@ -958,917 +387,437 @@
                                 <option value="coordinate-pickup">Coordinate Group Pickup</option>
                             </select>
                         </div>
-                        
                         <div class="form-group">
                             <label for="preferredDate">Preferred Date</label>
                             <input type="date" id="preferredDate" name="preferredDate">
                         </div>
-                        
-                        <div class="form-group">
+                        <div class="form-group" style="grid-column:1/-1">
                             <label for="address">Delivery Address (if applicable)</label>
-                            <textarea id="address" name="address" rows="3"></textarea>
-                        </div>
-                    </div>
-                    
-                    <div class="form-section">
-                        <h3>Additional Information</h3>
-                        <div class="form-group">
-                            <label for="specialRequests">Special Requests or Notes</label>
-                            <textarea id="specialRequests" name="specialRequests" rows="3"></textarea>
-                        </div>
-                    </div>
-                    
-                    <div class="form-actions">
-                        <div class="order-total" id="orderTotal">
-                            <strong>Estimated Total: $0.00</strong>
-                        </div>
-                        <button type="submit" class="submit-order-btn">Submit Order</button>
-                    </div>
-                </form>
-            </div>
-            
-            <div class="contact-backup">
-                <p><strong>Alternative Contact:</strong> <a href="mailto:pluricalifornia@gmail.com">pluricalifornia@gmail.com</a></p>
-                <p>Orders submitted through this form are sent directly to our team and reviewed within 48 hours. You'll receive confirmation and pickup/delivery coordination details via email.</p>
-            </div>
-        </div>
-    </section>
-    
-    <footer>
-        <h3>Plurinational Land Reform in CA Working Group</h3>
-        <p>Building economic alternatives through direct farmer-community partnerships</p>
-        <a href="index.html" class="back-to-main">← Back to Main Site</a>
-        <p style="margin-top: 1rem;">&copy; 2025 Plurinational Land Reform in CA Working Group. All rights reserved.</p>
-    </footer>
-
-    <script>
-        // Global variable to track SNAP Special status
-        let isSnapSpecial = false;
-
-        // Toggle SNAP Special functionality
-        window.toggleSnapSpecial = function() {
-            const snapCheckbox = document.getElementById('snapSpecial');
-            const customItemsContainer = document.getElementById('customItemsContainer');
-            
-            isSnapSpecial = snapCheckbox.checked;
-            
-            // Show/hide custom items container
-            if (isSnapSpecial) {
-                customItemsContainer.classList.add('active');
-            } else {
-                customItemsContainer.classList.remove('active');
-            }
-            
-            // Recalculate total with SNAP pricing
-            calculateTotal();
-        };
-
-        const products = [
-            { name: "Broccoli (Green)", category: "vegetables", individual: 3.00, individualDisplay: "$3.00/lb", bulk: 60.00, bulkDisplay: "$60.00 (20 lb)", bulkQty: 20 },
-            { name: "Cauliflower", category: "vegetables", individual: 3.00, individualDisplay: "$3.00/lb", bulk: 60.00, bulkDisplay: "$60.00 (20 lb)", bulkQty: 20 },
-            { name: "Celery", category: "vegetables", individual: 2.50, individualDisplay: "$2.50/pz", bulk: 60.00, bulkDisplay: "$60.00 (24 ct)", bulkQty: 24 },
-            { name: "Romaine Lettuce", category: "greens", individual: 2.50, individualDisplay: "$2.50/pz", bulk: 60.00, bulkDisplay: "$60.00 (24 ct)", bulkQty: 24 },
-            { name: "Onions (Yellow)", category: "vegetables", individual: 1.50, individualDisplay: "$1.50/lb", bulk: 30.00, bulkDisplay: "$30.00 (20 lb)", bulkQty: 20 },
-            { name: "Broccolini", category: "vegetables", individual: 3.00, individualDisplay: "$3.00/lb", bulk: 60.00, bulkDisplay: "$60.00 (20 lb)", bulkQty: 20 },
-            { name: "Maiz Pinto", category: "vegetables", individual: 1.50, individualDisplay: "$1.50/lb", bulk: 30.00, bulkDisplay: "$30.00 (20 pz)", bulkQty: 20 },
-            { name: "Carrots", category: "vegetables", individual: 2.00, individualDisplay: "$2.00/bunch", bulk: 48.00, bulkDisplay: "$48.00 (24 bunch)", bulkQty: 24 },
-            { name: "Beets", category: "vegetables", individual: 2.00, individualDisplay: "$2.00/bunch", bulk: 48.00, bulkDisplay: "$48.00 (24 bunch)", bulkQty: 24 },
-            { name: "Chard", category: "greens", individual: 2.00, individualDisplay: "$2.00/bunch", bulk: 48.00, bulkDisplay: "$48.00 (24 bunch)", bulkQty: 24 },
-            { name: "Kale (Lacinato Green)", category: "greens", individual: 2.00, individualDisplay: "$2.00/bunch", bulk: 48.00, bulkDisplay: "$48.00 (24 bunch)", bulkQty: 24 },
-            { name: "Kale (Red)", category: "greens", individual: 2.00, individualDisplay: "$2.00/bunch", bulk: 48.00, bulkDisplay: "$48.00 (24 bunch)", bulkQty: 24 },
-            { name: "Cabbage (Green)", category: "greens", individual: 1.50, individualDisplay: "$1.50/lb", bulk: 52.50, bulkDisplay: "$52.50 (35 lb)", bulkQty: 35 },
-            { name: "Cabbage (Red)", category: "greens", individual: 1.50, individualDisplay: "$1.50/lb", bulk: 52.50, bulkDisplay: "$52.50 (35 lb)", bulkQty: 35 },
-            { name: "Strawberries", category: "fruits", individual: 3.50, individualDisplay: "$3.50/basket", bulk: 35.00, bulkDisplay: "$35.00 (12 baskets)", bulkQty: 12 },
-            { name: "Blackberries", category: "fruits", individual: 4.00, individualDisplay: "$4.00/basket", bulk: 45.00, bulkDisplay: "$45.00 (12 baskets)", bulkQty: 12 },
-            { name: "Delicata Squash", category: "squashes", individual: 2.00, individualDisplay: "$2.00/lb", bulk: 40.00, bulkDisplay: "$40.00 (20 lbs)", bulkQty: 20 },
-            { name: "Acorn Squash", category: "squashes", individual: 2.00, individualDisplay: "$2.00/lb", bulk: 40.00, bulkDisplay: "$40.00 (20 lbs)", bulkQty: 20 },
-            { name: "Spaghetti Squash", category: "squashes", individual: 2.00, individualDisplay: "$2.00/lb", bulk: 40.00, bulkDisplay: "$40.00 (20 lbs)", bulkQty: 20 },
-            { name: "Garlic", category: "misc", individual: 6.00, individualDisplay: "$6.00/lb", bulk: 30.00, bulkDisplay: "$30.00 (5 lb)", bulkQty: 5 },
-            { name: "Honey (16 Oz.)", category: "misc", individual: 20.00, individualDisplay: "$20/pz", bulk: 60.00, bulkDisplay: "$60.00 (3 pz)", bulkQty: 3 },
-            { name: "Lavender", category: "misc", individual: 7.00, individualDisplay: "$7.00/bunch", bulk: 70.00, bulkDisplay: "$70.00 (10 bunches)", bulkQty: 10 },
-            { name: "Cilantro", category: "herbs", individual: 1.50, individualDisplay: "$1.50/bunch", bulk: 15.00, bulkDisplay: "$15.00 (10 bunches)", bulkQty: 10 },
-            { name: "Parsley", category: "herbs", individual: 1.50, individualDisplay: "$1.50/bunch", bulk: 15.00, bulkDisplay: "$15.00 (10 bunches)", bulkQty: 10 },
-            { name: "Radishes", category: "misc", individual: 1.50, individualDisplay: "$1.50/bunch", bulk: 30.00, bulkDisplay: "$30.00 (20 bunches)", bulkQty: 20 },
-            { name: "Eggs", category: "misc", individual: 10.00, individualDisplay: "$10/dozen", bulk: 100.00, bulkDisplay: "$100.00 (10 dozens)", bulkQty: 10 },
-            { name: "Handmade Tortilla Packs", category: "misc", individual: 10.00, individualDisplay: "$10/dozen", bulk: 100.00, bulkDisplay: "$100.00 (10 dozens)", bulkQty: 10 },
-            { name: "Salsa Roja", category: "salsas", individual: 0, individualDisplay: "By Size", bulk: 0, bulkDisplay: "See sizes below", bulkQty: 1, hasSizes: true, sizes: [
-                { size: "8 oz", price: 5.00 },
-                { size: "16 oz", price: 8.00 },
-                { size: "32 oz", price: 15.00 },
-                { size: "64 oz", price: 25.00 }
-            ]},
-            { name: "Salsa Verde", category: "salsas", individual: 0, individualDisplay: "By Size", bulk: 0, bulkDisplay: "See sizes below", bulkQty: 1, hasSizes: true, sizes: [
-                { size: "8 oz", price: 5.00 },
-                { size: "16 oz", price: 8.00 },
-                { size: "32 oz", price: 15.00 },
-                { size: "64 oz", price: 25.00 }
-            ]},
-            { name: "Tomato Sauce", category: "salsas", individual: 0, individualDisplay: "By Size", bulk: 0, bulkDisplay: "See sizes below", bulkQty: 1, hasSizes: true, sizes: [
-                { size: "16 oz", price: 8.00 },
-                { size: "32 oz", price: 15.00 },
-                { size: "64 oz", price: 25.00 }
-            ]}
-        ];
-
-        let orderItemCount = 0;
-
-        // Make functions global for onclick attributes
-        window.addOrderItem = function() {
-            try {
-                orderItemCount++;
-                const orderItems = document.getElementById('orderItems');
-                
-                if (!orderItems) {
-                    console.error('Order items container not found');
-                    return;
-                }
-                
-                const orderItem = document.createElement('div');
-                orderItem.className = 'order-item';
-                orderItem.id = `orderItem-${orderItemCount}`;
-                
-                // Generate product options for the hidden select
-                const productOptions = products.map(p => 
-                    `<option value="${p.name}">${p.name}</option>`
-                ).join('');
-                
-                orderItem.innerHTML = `
-                    <div class="form-group">
-                        <label>Product</label>
-                        <div class="product-search-wrapper" id="searchWrapper-${orderItemCount}">
-                            <button 
-                                type="button"
-                                class="product-select-button" 
-                                id="productSelectButton-${orderItemCount}"
-                                onclick="toggleProductDropdown(${orderItemCount})"
-                            >
-                                Select Product
-                            </button>
-                            <input 
-                                type="text" 
-                                class="product-search-input" 
-                                id="productSearchInput-${orderItemCount}"
-                                placeholder="Type to search products..."
-                                oninput="filterProductDropdown(${orderItemCount})"
-                            >
-                            <select name="product" id="productSelect-${orderItemCount}" class="product-select-hidden" required>
-                                <option value="">Select Product</option>
-                                ${productOptions}
-                            </select>
-                            <div class="product-dropdown" id="productDropdown-${orderItemCount}"></div>
-                        </div>
-                        <div class="product-info-display" id="productInfo-${orderItemCount}"></div>
-                    </div>
-                    <div class="form-group" id="quantityGroup-${orderItemCount}">
-                        <label>Quantity</label>
-                        <input type="number" name="quantity" min="1" onchange="calculateTotal()" required>
-                    </div>
-                    <div class="form-group" id="pricingGroup-${orderItemCount}">
-                        <label>Pricing</label>
-                        <select name="pricing" data-item-id="${orderItemCount}" onchange="updatePricingType(${orderItemCount}); calculateTotal()" required>
-                            <option value="">Select Pricing</option>
-                            <option value="individual">Individual Price</option>
-                            <option value="bulk">Bulk Price</option>
-                        </select>
-                    </div>
-                    <div>
-                        <button type="button" class="remove-item-btn" onclick="removeOrderItem(${orderItemCount})">Remove</button>
-                    </div>
-                `;
-                
-                orderItems.appendChild(orderItem);
-                console.log(`Added order item ${orderItemCount}`);
-            } catch (error) {
-                console.error('Error adding order item:', error);
-            }
-        };
-
-        window.removeOrderItem = function(itemId) {
-            try {
-                const item = document.getElementById(`orderItem-${itemId}`);
-                if (item) {
-                    item.remove();
-                    calculateTotal();
-                    console.log(`Removed order item ${itemId}`);
-                }
-            } catch (error) {
-                console.error('Error removing order item:', error);
-            }
-        };
-
-        window.updateOrderItem = function(itemId) {
-            try {
-                const item = document.getElementById(`orderItem-${itemId}`);
-                if (!item) return;
-                
-                const productSelect = item.querySelector('select[name="product"]');
-                if (!productSelect) return;
-                
-                const productName = productSelect.value;
-                const pricingGroup = document.getElementById(`pricingGroup-${itemId}`);
-                const quantityGroup = document.getElementById(`quantityGroup-${itemId}`);
-                
-                if (!productName) {
-                    return;
-                }
-                
-                const product = products.find(p => p.name === productName);
-                
-                // If product has sizes (salsa products), show size selection
-                if (product && product.hasSizes) {
-                    pricingGroup.innerHTML = `
-                        <label>Order Type</label>
-                        <select name="pricing" data-item-id="${itemId}" onchange="updateSizeOptions(${itemId}); calculateTotal()" required>
-                            <option value="">Select Order Type</option>
-                            <option value="individual">Individual</option>
-                            <option value="bulk">Bulk (3-packs)</option>
-                        </select>
-                    `;
-                    
-                    // Add a size selection group below pricing
-                    const sizeGroupId = `sizeGroup-${itemId}`;
-                    let sizeGroup = document.getElementById(sizeGroupId);
-                    
-                    if (!sizeGroup) {
-                        sizeGroup = document.createElement('div');
-                        sizeGroup.className = 'form-group';
-                        sizeGroup.id = sizeGroupId;
-                        sizeGroup.style.display = 'none';
-                        pricingGroup.parentNode.insertBefore(sizeGroup, pricingGroup.nextSibling);
-                    }
-                    
-                    sizeGroup.innerHTML = `
-                        <label>Size</label>
-                        <select name="size" onchange="calculateTotal()" required disabled>
-                            <option value="">Select order type first</option>
-                        </select>
-                    `;
-                    
-                    // Update quantity label
-                    quantityGroup.querySelector('label').textContent = 'Quantity';
-                } else {
-                    // Reset to standard pricing options for non-salsa products
-                    pricingGroup.innerHTML = `
-                        <label>Pricing</label>
-                        <select name="pricing" data-item-id="${itemId}" onchange="calculateTotal()" required>
-                            <option value="">Select Pricing</option>
-                            <option value="individual">Individual Price</option>
-                            <option value="bulk">Bulk Price</option>
-                        </select>
-                    `;
-                    
-                    // Remove size group if it exists
-                    const sizeGroup = document.getElementById(`sizeGroup-${itemId}`);
-                    if (sizeGroup) {
-                        sizeGroup.remove();
-                    }
-                    
-                    // Reset quantity label
-                    quantityGroup.querySelector('label').textContent = 'Quantity';
-                }
-                
-                calculateTotal();
-            } catch (error) {
-                console.error('Error updating order item:', error);
-            }
-        };
-
-        window.updateSizeOptions = function(itemId) {
-            try {
-                const item = document.getElementById(`orderItem-${itemId}`);
-                const productSelect = item.querySelector('select[name="product"]');
-                const productName = productSelect.value;
-                const pricingSelect = item.querySelector('select[name="pricing"]');
-                const pricingType = pricingSelect.value;
-                const sizeGroup = document.getElementById(`sizeGroup-${itemId}`);
-                const quantityGroup = document.getElementById(`quantityGroup-${itemId}`);
-                
-                if (!productName || !pricingType || !sizeGroup) {
-                    return;
-                }
-                
-                const product = products.find(p => p.name === productName);
-                
-                if (product && product.hasSizes) {
-                    const sizeSelect = sizeGroup.querySelector('select[name="size"]');
-                    sizeSelect.disabled = false;
-                    
-                    if (pricingType === 'individual') {
-                        const sizeOptions = product.sizes.map(s => 
-                            `<option value="${s.size}">${s.size} - $${s.price.toFixed(2)}</option>`
-                        ).join('');
-                        
-                        sizeSelect.innerHTML = `
-                            <option value="">Select Size</option>
-                            ${sizeOptions}
-                        `;
-                        quantityGroup.querySelector('label').textContent = 'Quantity (units)';
-                    } else if (pricingType === 'bulk') {
-                        const sizeOptions = product.sizes.map(s => 
-                            `<option value="${s.size}">${s.size} - $${(s.price * 3).toFixed(2)} (3-pack)</option>`
-                        ).join('');
-                        
-                        sizeSelect.innerHTML = `
-                            <option value="">Select Size</option>
-                            ${sizeOptions}
-                        `;
-                        quantityGroup.querySelector('label').textContent = 'Quantity (3-packs)';
-                    }
-                    
-                    sizeGroup.style.display = 'block';
-                }
-                
-                calculateTotal();
-            } catch (error) {
-                console.error('Error updating size options:', error);
-            }
-        };
-
-        window.updatePricingType = function(itemId) {
-            // This function is for non-salsa products, no special handling needed
-            calculateTotal();
-        };
-
-        window.toggleProductDropdown = function(itemId) {
-            const dropdown = document.getElementById(`productDropdown-${itemId}`);
-            const searchInput = document.getElementById(`productSearchInput-${itemId}`);
-            const button = document.getElementById(`productSelectButton-${itemId}`);
-            
-            // Close all other dropdowns
-            document.querySelectorAll('.product-dropdown').forEach((dd, index) => {
-                if (dd.id !== `productDropdown-${itemId}`) {
-                    dd.classList.remove('active');
-                }
-            });
-            document.querySelectorAll('.product-search-input').forEach((input, index) => {
-                if (input.id !== `productSearchInput-${itemId}`) {
-                    input.classList.remove('active');
-                }
-            });
-            
-            // Toggle current dropdown
-            const isActive = dropdown.classList.contains('active');
-            
-            if (!isActive) {
-                searchInput.classList.add('active');
-                searchInput.focus();
-                filterProductDropdown(itemId);
-            } else {
-                dropdown.classList.remove('active');
-                searchInput.classList.remove('active');
-                searchInput.value = '';
-            }
-        };
-
-        window.hideProductDropdown = function(itemId) {
-            const dropdown = document.getElementById(`productDropdown-${itemId}`);
-            const searchInput = document.getElementById(`productSearchInput-${itemId}`);
-            
-            if (dropdown) dropdown.classList.remove('active');
-            if (searchInput) {
-                searchInput.classList.remove('active');
-                searchInput.value = '';
-            }
-        };
-
-        window.filterProductDropdown = function(itemId) {
-            const searchInput = document.getElementById(`productSearchInput-${itemId}`);
-            const dropdown = document.getElementById(`productDropdown-${itemId}`);
-            
-            if (!searchInput || !dropdown) return;
-            
-            const searchQuery = searchInput.value.toLowerCase().trim();
-            
-            // Filter products based on search query
-            const filtered = searchQuery === '' 
-                ? products 
-                : products.filter(product => 
-                    product.name.toLowerCase().includes(searchQuery) || 
-                    product.category.toLowerCase().includes(searchQuery)
-                );
-            
-            // Populate dropdown
-            if (filtered.length > 0) {
-                dropdown.innerHTML = filtered.map(product => `
-                    <div class="product-dropdown-item" onclick="selectProductFromDropdown(${itemId}, '${product.name.replace(/'/g, "\\'")}')">
-                        <strong>${product.name}</strong>
-                        <small>${product.category.charAt(0).toUpperCase() + product.category.slice(1)} - ${product.individualDisplay}</small>
-                    </div>
-                `).join('');
-                dropdown.classList.add('active');
-            } else {
-                dropdown.innerHTML = '<div class="product-dropdown-item" style="color: #999;">No products found</div>';
-                dropdown.classList.add('active');
-            }
-        };
-
-        window.selectProductFromDropdown = function(itemId, productName) {
-            const productSelect = document.getElementById(`productSelect-${itemId}`);
-            const searchInput = document.getElementById(`productSearchInput-${itemId}`);
-            const dropdown = document.getElementById(`productDropdown-${itemId}`);
-            const button = document.getElementById(`productSelectButton-${itemId}`);
-            const productInfo = document.getElementById(`productInfo-${itemId}`);
-            
-            console.log(`[selectProductFromDropdown] itemId: ${itemId}, productName: ${productName}`);
-            console.log(`[selectProductFromDropdown] productSelect element:`, productSelect);
-            
-            if (productSelect) {
-                console.log(`[selectProductFromDropdown] BEFORE setting - value: "${productSelect.value}"`);
-                productSelect.value = productName;
-                console.log(`[selectProductFromDropdown] AFTER setting - value: "${productSelect.value}"`);
-                
-                // Verify the value is actually set
-                setTimeout(() => {
-                    console.log(`[selectProductFromDropdown] AFTER 100ms - value: "${productSelect.value}"`);
-                }, 100);
-                
-                updateOrderItem(itemId);
-            } else {
-                console.error(`[selectProductFromDropdown] productSelect element NOT FOUND for itemId ${itemId}`);
-            }
-            
-            if (button) {
-                button.textContent = productName;
-                button.classList.add('has-selection');
-            }
-            
-            // Display product pricing information
-            if (productInfo) {
-                const product = products.find(p => p.name === productName);
-                if (product) {
-                    let priceHTML = '<strong>Pricing Information:</strong>';
-                    
-                    if (product.hasSizes) {
-                        // For salsa/sauce products with sizes
-                        priceHTML += '<div style="margin-top: 0.5rem;">';
-                        priceHTML += '<div style="font-weight: bold; color: var(--primary-color); margin-bottom: 0.25rem;">Individual:</div>';
-                        product.sizes.forEach(size => {
-                            priceHTML += `<div class="price-detail">${size.size}: <span>$${size.price.toFixed(2)}</span></div>`;
-                        });
-                        priceHTML += '<div style="font-weight: bold; color: var(--primary-color); margin-top: 0.5rem; margin-bottom: 0.25rem;">Bulk (3-packs):</div>';
-                        product.sizes.forEach(size => {
-                            priceHTML += `<div class="price-detail">${size.size}: <span>$${(size.price * 3).toFixed(2)}</span></div>`;
-                        });
-                        priceHTML += '</div>';
-                    } else {
-                        // For regular products
-                        if (product.individual > 0) {
-                            priceHTML += `<div class="price-detail">Individual: <span>${product.individualDisplay}</span></div>`;
-                        }
-                        priceHTML += `<div class="price-detail">Bulk: <span>${product.bulkDisplay}</span></div>`;
-                    }
-                    
-                    productInfo.innerHTML = priceHTML;
-                    productInfo.classList.add('active');
-                }
-            }
-            
-            if (searchInput) {
-                searchInput.classList.remove('active');
-                searchInput.value = '';
-            }
-            
-            if (dropdown) {
-                dropdown.classList.remove('active');
-            }
-            
-            // Recalculate total after product selection
-            console.log(`[selectProductFromDropdown] Calling calculateTotal()`);
-            calculateTotal();
-        };
-
-        // Close dropdown when clicking outside
-        document.addEventListener('click', function(event) {
-            const isDropdown = event.target.closest('.product-search-wrapper');
-            if (!isDropdown) {
-                document.querySelectorAll('.product-dropdown').forEach(dropdown => {
-                    dropdown.classList.remove('active');
-                });
-                document.querySelectorAll('.product-search-input').forEach(input => {
-                    input.classList.remove('active');
-                });
-            }
-        });
-
-        window.calculateTotal = function() {
-            try {
-                let total = 0;
-                const orderItems = document.querySelectorAll('.order-item');
-                
-                console.log(`[calculateTotal] Found ${orderItems.length} order items`);
-                
-                // If SNAP Special is enabled, everything is free
-                if (isSnapSpecial) {
-                    const totalElement = document.getElementById('orderTotal');
-                    if (totalElement) {
-                        totalElement.innerHTML = `<strong>SNAP Special Active - Total: $0.00 (FREE)</strong>`;
-                    }
-                    return;
-                }
-                
-                orderItems.forEach(item => {
-                    // Get the item ID from the element
-                    const itemId = item.id.replace('orderItem-', '');
-                    const productSelect = document.getElementById(`productSelect-${itemId}`);
-                    
-                    console.log(`[Item ${itemId}] productSelect element:`, productSelect);
-                    console.log(`[Item ${itemId}] productSelect.value:`, productSelect ? productSelect.value : 'NULL');
-                    
-                    const productName = productSelect ? productSelect.value : '';
-                    const quantityInput = item.querySelector('input[name="quantity"]');
-                    const quantity = quantityInput ? (parseInt(quantityInput.value) || 0) : 0;
-                    const pricingSelect = item.querySelector('select[name="pricing"]');
-                    const pricing = pricingSelect ? pricingSelect.value : '';
-                    
-                    console.log(`[Item ${itemId}] Raw values - Product: "${productName}", Qty input:`, quantityInput, `Qty value: ${quantity}, Pricing select:`, pricingSelect, `Pricing value: "${pricing}"`);
-                    
-                    console.log(`[Item ${itemId}] Product: "${productName}", Qty: ${quantity}, Pricing: "${pricing}"`);
-                    
-                    if (productName && quantity && pricing) {
-                        const product = products.find(p => p.name === productName);
-                        if (product) {
-                            console.log(`[Item ${itemId}] Found product, hasSizes: ${product.hasSizes}`);
-                            // Handle salsa products with size-based pricing and bulk 3-packs
-                            if (product.hasSizes) {
-                                const sizeSelect = item.querySelector('select[name="size"]');
-                                const selectedSizeValue = sizeSelect ? sizeSelect.value : '';
-                                
-                                console.log(`[Item ${itemId}] Selected size: "${selectedSizeValue}"`);
-                                
-                                if (selectedSizeValue) {
-                                    const selectedSize = product.sizes.find(s => s.size === selectedSizeValue);
-                                    if (selectedSize) {
-                                        if (pricing === 'individual') {
-                                            const itemTotal = selectedSize.price * quantity;
-                                            console.log(`[Item ${itemId}] Individual calc: $${selectedSize.price} x ${quantity} = $${itemTotal}`);
-                                            total += itemTotal;
-                                        } else if (pricing === 'bulk') {
-                                            // Bulk is 3-pack, so multiply price by 3
-                                            const itemTotal = (selectedSize.price * 3) * quantity;
-                                            console.log(`[Item ${itemId}] Bulk calc: $${selectedSize.price * 3} x ${quantity} = $${itemTotal}`);
-                                            total += itemTotal;
-                                        }
-                                    }
-                                }
-                            } else {
-                                // Handle regular products with individual/bulk pricing
-                                if (pricing === 'individual' && product.individual > 0) {
-                                    const itemTotal = product.individual * quantity;
-                                    console.log(`[Item ${itemId}] Regular individual: $${product.individual} x ${quantity} = $${itemTotal}`);
-                                    total += itemTotal;
-                                } else if (pricing === 'bulk') {
-                                    const itemTotal = product.bulk * quantity;
-                                    console.log(`[Item ${itemId}] Regular bulk: $${product.bulk} x ${quantity} = $${itemTotal}`);
-                                    total += itemTotal;
-                                }
-                            }
-                        } else {
-                            console.log(`[Item ${itemId}] Product not found in products array`);
-                        }
-                    } else {
-                        console.log(`[Item ${itemId}] Missing required fields`);
-                    }
-                });
-                
-                console.log(`[calculateTotal] Final total: $${total.toFixed(2)}`);
-                
-                const totalElement = document.getElementById('orderTotal');
-                if (totalElement) {
-                    totalElement.innerHTML = `<strong>Estimated Total: $${total.toFixed(2)}</strong>`;
-                } else {
-                    console.error('[calculateTotal] orderTotal element not found');
-                }
-            } catch (error) {
-                console.error('Error calculating total:', error);
-            }
-        };
-
-        window.filterProducts = function(category) {
-            // Update active filter button
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            
-            // Clear search bar when using filter buttons
-            document.getElementById('productSearch').value = '';
-
-            // Filter and render products
-            if (category === 'all') {
-                renderProducts();
-            } else {
-                const filtered = products.filter(product => product.category === category);
-                renderProducts(filtered);
-            }
-        };
-
-        window.searchProducts = function() {
-            const searchQuery = document.getElementById('productSearch').value.toLowerCase().trim();
-            
-            // Clear active filter button when searching
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            
-            if (searchQuery === '') {
-                // If search is empty, show all products and reactivate "All Products" button
-                document.querySelector('.filter-btn').classList.add('active');
-                renderProducts();
-                return;
-            }
-            
-            // Filter products based on search query (name or category)
-            const filtered = products.filter(product => 
-                product.name.toLowerCase().includes(searchQuery) || 
-                product.category.toLowerCase().includes(searchQuery)
-            );
-            
-            renderProducts(filtered);
-        };
-
-        function createProductCard(product) {
-            // Special handling for products with sizes (salsas/sauces)
-            if (product.hasSizes) {
-                const individualSizes = product.sizes.map(s => 
-                    `<div style="margin: 0.25rem 0;">${s.size}: <strong>$${s.price.toFixed(2)}</strong></div>`
-                ).join('');
-                
-                const bulkSizes = product.sizes.map(s => 
-                    `<div style="margin: 0.25rem 0;">${s.size}: <strong>$${(s.price * 3).toFixed(2)}</strong></div>`
-                ).join('');
-                
-                return `
-                    <div class="product-card" data-category="${product.category}">
-                        <div class="product-header">
-                            <div class="product-name">${product.name}</div>
-                            <div class="product-category">${product.category.charAt(0).toUpperCase() + product.category.slice(1)}</div>
-                        </div>
-                        <div class="product-details">
-                            <div style="margin-bottom: 1rem;">
-                                <div style="font-weight: bold; color: var(--primary-color); margin-bottom: 0.5rem; font-size: 0.9rem;">INDIVIDUAL PRICING</div>
-                                <div style="font-size: 0.95rem;">
-                                    ${individualSizes}
-                                </div>
-                            </div>
-                            <div class="bulk-section">
-                                <div class="bulk-label">BULK PRICING (3-PACKS)</div>
-                                <div style="margin-top: 0.5rem; font-size: 0.95rem;">
-                                    ${bulkSizes}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }
-            
-            // Standard product card for non-salsa products
-            return `
-                <div class="product-card" data-category="${product.category}">
-                    <div class="product-header">
-                        <div class="product-name">${product.name}</div>
-                        <div class="product-category">${product.category.charAt(0).toUpperCase() + product.category.slice(1)}</div>
-                    </div>
-                    <div class="product-details">
-                        <div class="price-info">
-                            <span class="individual-price">${product.individualDisplay}</span>
-                        </div>
-                        <div class="bulk-section">
-                            <div class="bulk-label">BULK PRICING</div>
-                            <div class="bulk-price">${product.bulkDisplay}</div>
+                            <textarea id="address" name="address" rows="2" placeholder="Street address, city, zip"></textarea>
                         </div>
                     </div>
                 </div>
-            `;
+
+                <!-- NOTES -->
+                <div class="form-section">
+                    <h3>Additional Notes</h3>
+                    <div class="form-group">
+                        <label for="specialRequests">Special Requests</label>
+                        <textarea id="specialRequests" name="specialRequests" rows="3" placeholder="Substitutions, accessibility needs, recurring order info..."></textarea>
+                    </div>
+                </div>
+
+                <!-- SUBMIT -->
+                <div class="form-actions">
+                    <div class="order-total" id="orderTotal">Estimated Total: <span>$0.00</span></div>
+                    <button type="submit" class="submit-btn">Submit Order →</button>
+                </div>
+            </form>
+
+            <div class="backup-contact">
+                <strong style="color:#fff">Alternative:</strong> Email us directly at <a href="mailto:pluricalifornia@gmail.com">pluricalifornia@gmail.com</a> with your order details. Orders are confirmed within 48 hours.
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <h3>Plurinational Land Reform in CA Working Group</h3>
+        <p>Working on stolen Ohlone, Miwok, Yokuts, Chumash, Tongva, Cahuilla, Kumeyaay, Acjachemen, and many other indigenous lands</p>
+        <div class="social-links">
+            <a href="https://instagram.com/plurinational.landreform_cawg" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p>&copy; 2025 Plurinational Land Reform in CA Working Group. All rights reserved.</p>
+    </footer>
+
+<script>
+    // ── NAV ──────────────────────────────────────────────────────────────────
+    document.getElementById('hamburger').addEventListener('click', function() {
+        document.getElementById('nav-links').classList.toggle('open');
+    });
+    document.querySelectorAll('.has-dropdown > a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            if (window.innerWidth <= 820) { e.preventDefault(); this.parentElement.classList.toggle('open'); }
+        });
+    });
+
+    // ── PRODUCTS DATA ─────────────────────────────────────────────────────────
+    const products = [
+        { name: "Broccoli (Green)", category: "vegetables", individual: 3.00, individualDisplay: "$3.00/lb", bulk: 60.00, bulkDisplay: "$60.00 (20 lb)", bulkQty: 20 },
+        { name: "Cauliflower", category: "vegetables", individual: 3.00, individualDisplay: "$3.00/lb", bulk: 60.00, bulkDisplay: "$60.00 (20 lb)", bulkQty: 20 },
+        { name: "Celery", category: "vegetables", individual: 2.50, individualDisplay: "$2.50/pz", bulk: 60.00, bulkDisplay: "$60.00 (24 ct)", bulkQty: 24 },
+        { name: "Romaine Lettuce", category: "greens", individual: 2.50, individualDisplay: "$2.50/pz", bulk: 60.00, bulkDisplay: "$60.00 (24 ct)", bulkQty: 24 },
+        { name: "Onions (Yellow)", category: "vegetables", individual: 1.50, individualDisplay: "$1.50/lb", bulk: 30.00, bulkDisplay: "$30.00 (20 lb)", bulkQty: 20 },
+        { name: "Broccolini", category: "vegetables", individual: 3.00, individualDisplay: "$3.00/lb", bulk: 60.00, bulkDisplay: "$60.00 (20 lb)", bulkQty: 20 },
+        { name: "Maiz Pinto", category: "vegetables", individual: 1.50, individualDisplay: "$1.50/lb", bulk: 30.00, bulkDisplay: "$30.00 (20 pz)", bulkQty: 20 },
+        { name: "Carrots", category: "vegetables", individual: 2.00, individualDisplay: "$2.00/bunch", bulk: 48.00, bulkDisplay: "$48.00 (24 bunch)", bulkQty: 24 },
+        { name: "Beets", category: "vegetables", individual: 2.00, individualDisplay: "$2.00/bunch", bulk: 48.00, bulkDisplay: "$48.00 (24 bunch)", bulkQty: 24 },
+        { name: "Chard", category: "greens", individual: 2.00, individualDisplay: "$2.00/bunch", bulk: 48.00, bulkDisplay: "$48.00 (24 bunch)", bulkQty: 24 },
+        { name: "Kale (Lacinato Green)", category: "greens", individual: 2.00, individualDisplay: "$2.00/bunch", bulk: 48.00, bulkDisplay: "$48.00 (24 bunch)", bulkQty: 24 },
+        { name: "Kale (Red)", category: "greens", individual: 2.00, individualDisplay: "$2.00/bunch", bulk: 48.00, bulkDisplay: "$48.00 (24 bunch)", bulkQty: 24 },
+        { name: "Cabbage (Green)", category: "greens", individual: 1.50, individualDisplay: "$1.50/lb", bulk: 52.50, bulkDisplay: "$52.50 (35 lb)", bulkQty: 35 },
+        { name: "Cabbage (Red)", category: "greens", individual: 1.50, individualDisplay: "$1.50/lb", bulk: 52.50, bulkDisplay: "$52.50 (35 lb)", bulkQty: 35 },
+        { name: "Strawberries", category: "fruits", individual: 3.50, individualDisplay: "$3.50/basket", bulk: 35.00, bulkDisplay: "$35.00 (12 baskets)", bulkQty: 12 },
+        { name: "Blackberries", category: "fruits", individual: 4.00, individualDisplay: "$4.00/basket", bulk: 45.00, bulkDisplay: "$45.00 (12 baskets)", bulkQty: 12 },
+        { name: "Delicata Squash", category: "squashes", individual: 2.00, individualDisplay: "$2.00/lb", bulk: 40.00, bulkDisplay: "$40.00 (20 lbs)", bulkQty: 20 },
+        { name: "Acorn Squash", category: "squashes", individual: 2.00, individualDisplay: "$2.00/lb", bulk: 40.00, bulkDisplay: "$40.00 (20 lbs)", bulkQty: 20 },
+        { name: "Spaghetti Squash", category: "squashes", individual: 2.00, individualDisplay: "$2.00/lb", bulk: 40.00, bulkDisplay: "$40.00 (20 lbs)", bulkQty: 20 },
+        { name: "Garlic", category: "misc", individual: 6.00, individualDisplay: "$6.00/lb", bulk: 30.00, bulkDisplay: "$30.00 (5 lb)", bulkQty: 5 },
+        { name: "Honey (16 Oz.)", category: "misc", individual: 20.00, individualDisplay: "$20/pz", bulk: 60.00, bulkDisplay: "$60.00 (3 pz)", bulkQty: 3 },
+        { name: "Lavender", category: "misc", individual: 7.00, individualDisplay: "$7.00/bunch", bulk: 70.00, bulkDisplay: "$70.00 (10 bunches)", bulkQty: 10 },
+        { name: "Cilantro", category: "herbs", individual: 1.50, individualDisplay: "$1.50/bunch", bulk: 15.00, bulkDisplay: "$15.00 (10 bunches)", bulkQty: 10 },
+        { name: "Parsley", category: "herbs", individual: 1.50, individualDisplay: "$1.50/bunch", bulk: 15.00, bulkDisplay: "$15.00 (10 bunches)", bulkQty: 10 },
+        { name: "Radishes", category: "misc", individual: 1.50, individualDisplay: "$1.50/bunch", bulk: 30.00, bulkDisplay: "$30.00 (20 bunches)", bulkQty: 20 },
+        { name: "Eggs", category: "misc", individual: 10.00, individualDisplay: "$10/dozen", bulk: 100.00, bulkDisplay: "$100.00 (10 dozens)", bulkQty: 10 },
+        { name: "Handmade Tortilla Packs", category: "misc", individual: 10.00, individualDisplay: "$10/dozen", bulk: 100.00, bulkDisplay: "$100.00 (10 dozens)", bulkQty: 10 },
+        { name: "Salsa Roja", category: "salsas", individual: 0, individualDisplay: "By Size", bulk: 0, bulkDisplay: "See sizes", bulkQty: 1, hasSizes: true, sizes: [
+            { size: "8 oz", price: 5.00 }, { size: "16 oz", price: 8.00 }, { size: "32 oz", price: 15.00 }, { size: "64 oz", price: 25.00 }
+        ]},
+        { name: "Salsa Verde", category: "salsas", individual: 0, individualDisplay: "By Size", bulk: 0, bulkDisplay: "See sizes", bulkQty: 1, hasSizes: true, sizes: [
+            { size: "8 oz", price: 5.00 }, { size: "16 oz", price: 8.00 }, { size: "32 oz", price: 15.00 }, { size: "64 oz", price: 25.00 }
+        ]},
+        { name: "Tomato Sauce", category: "salsas", individual: 0, individualDisplay: "By Size", bulk: 0, bulkDisplay: "See sizes", bulkQty: 1, hasSizes: true, sizes: [
+            { size: "16 oz", price: 8.00 }, { size: "32 oz", price: 15.00 }, { size: "64 oz", price: 25.00 }
+        ]}
+    ];
+
+    // ── SNAP ─────────────────────────────────────────────────────────────────
+    let isSnapSpecial = false;
+    window.toggleSnapSpecial = function() {
+        isSnapSpecial = document.getElementById('snapSpecial').checked;
+        document.getElementById('customItemsContainer').classList.toggle('active', isSnapSpecial);
+        calculateTotal();
+    };
+
+    // ── PRODUCT CATALOGUE RENDER ──────────────────────────────────────────────
+    function createProductCard(product) {
+        if (product.hasSizes) {
+            const indSizes = product.sizes.map(s => `<div class="size-row">${s.size}: <strong>$${s.price.toFixed(2)}</strong></div>`).join('');
+            const bulkSizes = product.sizes.map(s => `<div class="size-row">${s.size}: <strong>$${(s.price*3).toFixed(2)}</strong> (3-pack)</div>`).join('');
+            return `<div class="product-card" data-category="${product.category}">
+                <div class="product-card-head"><div class="product-card-name">${product.name}</div><div class="product-card-cat">${product.category}</div></div>
+                <div class="product-card-body">
+                    <div style="margin-bottom:0.75rem"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:#888;margin-bottom:0.35rem">Individual</div>${indSizes}</div>
+                    <div class="bulk-box"><div class="bulk-box-label">Bulk (3-packs)</div>${bulkSizes}</div>
+                </div></div>`;
         }
+        return `<div class="product-card" data-category="${product.category}">
+            <div class="product-card-head"><div class="product-card-name">${product.name}</div><div class="product-card-cat">${product.category}</div></div>
+            <div class="product-card-body">
+                <div class="price-row"><span class="price-ind">${product.individualDisplay}</span><span class="price-ind-label">Individual</span></div>
+                <div class="bulk-box"><div class="bulk-box-label">Bulk Pricing</div><div class="bulk-box-price">${product.bulkDisplay}</div></div>
+            </div></div>`;
+    }
 
-        function renderProducts(productsToShow = products) {
-            const grid = document.getElementById('productsGrid');
-            grid.innerHTML = productsToShow.map(createProductCard).join('');
+    function renderProducts(list = products) {
+        document.getElementById('productsGrid').innerHTML = list.map(createProductCard).join('');
+    }
+
+    window.filterProducts = function(cat, e) {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        if (e && e.target) e.target.classList.add('active');
+        document.getElementById('productSearch').value = '';
+        renderProducts(cat === 'all' ? products : products.filter(p => p.category === cat));
+    };
+
+    window.searchProducts = function() {
+        const q = document.getElementById('productSearch').value.toLowerCase().trim();
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        if (!q) { document.querySelector('.filter-btn').classList.add('active'); renderProducts(); return; }
+        renderProducts(products.filter(p => p.name.toLowerCase().includes(q) || p.category.toLowerCase().includes(q)));
+    };
+
+    // ── ORDER ITEMS ───────────────────────────────────────────────────────────
+    let orderItemCount = 0;
+
+    window.addOrderItem = function() {
+        orderItemCount++;
+        const id = orderItemCount;
+        const productOptions = products.map(p => `<option value="${p.name}">${p.name}</option>`).join('');
+        const div = document.createElement('div');
+        div.className = 'order-item';
+        div.id = `orderItem-${id}`;
+        div.innerHTML = `
+            <div class="form-group">
+                <label>Product</label>
+                <div class="product-search-wrapper" id="searchWrapper-${id}">
+                    <button type="button" class="product-select-button" id="productSelectButton-${id}" onclick="toggleProductDropdown(${id})">Select Product</button>
+                    <input type="text" class="product-search-input" id="productSearchInput-${id}" placeholder="Type to search..." oninput="filterProductDropdown(${id})">
+                    <select name="product" id="productSelect-${id}" class="product-select-hidden" required>
+                        <option value="">Select Product</option>${productOptions}
+                    </select>
+                    <div class="product-dropdown" id="productDropdown-${id}"></div>
+                </div>
+                <div class="product-info-display" id="productInfo-${id}"></div>
+            </div>
+            <div class="form-group" id="quantityGroup-${id}">
+                <label>Quantity</label>
+                <input type="number" name="quantity" min="1" value="1" onchange="calculateTotal()">
+            </div>
+            <div class="form-group" id="pricingGroup-${id}">
+                <label>Pricing</label>
+                <select name="pricing" data-item-id="${id}" onchange="updatePricingType(${id}); calculateTotal()" required>
+                    <option value="">Select Pricing</option>
+                    <option value="individual">Individual</option>
+                    <option value="bulk">Bulk</option>
+                </select>
+            </div>
+            <button type="button" class="remove-btn" onclick="removeOrderItem(${id})">✕ Remove</button>`;
+        document.getElementById('orderItems').appendChild(div);
+    };
+
+    window.removeOrderItem = function(id) {
+        const el = document.getElementById(`orderItem-${id}`);
+        if (el) { el.remove(); calculateTotal(); }
+    };
+
+    window.toggleProductDropdown = function(id) {
+        const dd = document.getElementById(`productDropdown-${id}`);
+        const inp = document.getElementById(`productSearchInput-${id}`);
+        // close others
+        document.querySelectorAll('.product-dropdown').forEach(d => { if (d.id !== `productDropdown-${id}`) d.classList.remove('active'); });
+        document.querySelectorAll('.product-search-input').forEach(i => { if (i.id !== `productSearchInput-${id}`) { i.classList.remove('active'); i.value=''; } });
+        if (!dd.classList.contains('active')) { inp.classList.add('active'); inp.focus(); filterProductDropdown(id); }
+        else { dd.classList.remove('active'); inp.classList.remove('active'); inp.value=''; }
+    };
+
+    window.filterProductDropdown = function(id) {
+        const inp = document.getElementById(`productSearchInput-${id}`);
+        const dd  = document.getElementById(`productDropdown-${id}`);
+        if (!inp || !dd) return;
+        const q = inp.value.toLowerCase().trim();
+        const filtered = q ? products.filter(p => p.name.toLowerCase().includes(q) || p.category.toLowerCase().includes(q)) : products;
+        if (filtered.length) {
+            dd.innerHTML = filtered.map(p =>
+                `<div class="product-dropdown-item" onclick="selectProductFromDropdown(${id}, '${p.name.replace(/'/g,"\\'")}')">
+                    <strong>${p.name}</strong>
+                    <small>${p.category} — ${p.individualDisplay}</small>
+                </div>`).join('');
+            dd.classList.add('active');
+        } else {
+            dd.innerHTML = '<div class="product-dropdown-item"><small>No products found</small></div>';
+            dd.classList.add('active');
         }
+    };
 
-        function generateOrderData() {
-            const formData = new FormData(document.getElementById('orderForm'));
-            const orderItems = [];
-            
-            document.querySelectorAll('.order-item').forEach(item => {
-                // Get the item ID from the element
-                const itemId = item.id.replace('orderItem-', '');
-                const productSelect = document.getElementById(`productSelect-${itemId}`);
-                const productName = productSelect ? productSelect.value : '';
-                const quantity = item.querySelector('input[name="quantity"]').value;
-                const pricingSelect = item.querySelector('select[name="pricing"]');
-                const pricing = pricingSelect ? pricingSelect.value : '';
-                
-                if (productName && quantity && pricing) {
-                    const product = products.find(p => p.name === productName);
-                    let itemTotal = 0;
-                    let pricingDisplay = pricing;
-                    
-                    // If SNAP Special is active, all items are free
-                    if (isSnapSpecial) {
-                        itemTotal = 0;
-                    } else {
-                        // Handle salsa products with size-based pricing
-                        if (product.hasSizes) {
-                            const sizeSelect = item.querySelector('select[name="size"]');
-                            const selectedSizeValue = sizeSelect ? sizeSelect.value : '';
-                            
-                            if (selectedSizeValue) {
-                                const selectedSize = product.sizes.find(s => s.size === selectedSizeValue);
-                                if (selectedSize) {
-                                    if (pricing === 'individual') {
-                                        itemTotal = selectedSize.price * parseInt(quantity);
-                                        pricingDisplay = `${selectedSize.size} (Individual)`;
-                                    } else if (pricing === 'bulk') {
-                                        // Bulk is 3-pack
-                                        itemTotal = (selectedSize.price * 3) * parseInt(quantity);
-                                        pricingDisplay = `${selectedSize.size} (Bulk 3-pack)`;
-                                    }
-                                }
-                            }
-                        } else {
-                            // Handle regular products with individual/bulk pricing
-                            if (pricing === 'individual' && product.individual > 0) {
-                                itemTotal = product.individual * parseInt(quantity);
-                            } else if (pricing === 'bulk') {
-                                itemTotal = product.bulk * parseInt(quantity);
-                            }
-                        }
-                    }
-                    
-                    orderItems.push({
-                        product: productName,
-                        quantity: parseInt(quantity),
-                        pricing: pricingDisplay,
-                        itemTotal: itemTotal
-                    });
-                }
-            });
-            
-            return {
-                timestamp: new Date().toISOString(),
-                orderNumber: 'TM-' + Date.now(),
-                snapSpecial: isSnapSpecial,
-                customItems: formData.get('customItems'),
-                organization: {
-                    name: formData.get('orgName'),
-                    type: formData.get('orgType'),
-                    contactPerson: formData.get('contactName'),
-                    email: formData.get('email'),
-                    phone: formData.get('phone')
-                },
-                orderItems: orderItems,
-                delivery: {
-                    method: formData.get('deliveryMethod'),
-                    preferredDate: formData.get('preferredDate'),
-                    address: formData.get('address')
-                },
-                specialRequests: formData.get('specialRequests'),
-                estimatedTotal: isSnapSpecial ? 0 : orderItems.reduce((sum, item) => sum + item.itemTotal, 0)
-            };
-        }
-
-        function formatOrderForEmail(orderData) {
-            const snapStatus = orderData.snapSpecial ? '**SNAP SPECIAL - FREE ORDER**' : 'Regular Order';
-            const customItemsText = orderData.customItems ? `\n\nCUSTOM ITEMS REQUESTED:\n${orderData.customItems}` : '';
-            
-            return `
-NEW TERRITORIAL MARKETS ORDER
-=============================
-
-Order Number: ${orderData.orderNumber}
-Date: ${new Date(orderData.timestamp).toLocaleString()}
-Order Type: ${snapStatus}
-
-ORGANIZATION INFORMATION:
-- Name: ${orderData.organization.name}
-- Type: ${orderData.organization.type}
-- Contact: ${orderData.organization.contactPerson}
-- Email: ${orderData.organization.email}
-- Phone: ${orderData.organization.phone || 'Not provided'}
-
-ORDER DETAILS:
-${orderData.orderItems.map(item => 
-    `- ${item.product}: ${item.quantity} units (${item.pricing} pricing) - $${item.itemTotal.toFixed(2)}`
-).join('\n')}${customItemsText}
-
-DELIVERY:
-- Method: ${orderData.delivery.method}
-- Preferred Date: ${orderData.delivery.preferredDate || 'Not specified'}
-- Address: ${orderData.delivery.address || 'Not provided'}
-
-SPECIAL REQUESTS:
-${orderData.specialRequests || 'None'}
-
-ESTIMATED TOTAL: $${orderData.estimatedTotal.toFixed(2)}${orderData.snapSpecial ? ' (SNAP SPECIAL - FREE)' : ''}
-
-Please confirm this order and coordinate pickup/delivery details.
-
-Thank you for supporting territorial markets and the Coalición de Pequeños Agricultores!
-            `.trim();
-        }
-
-        function showMessage(type, message) {
-            // Remove existing messages
-            document.querySelectorAll('.success-message, .error-message').forEach(msg => msg.remove());
-            
-            const messageDiv = document.createElement('div');
-            messageDiv.className = type === 'success' ? 'success-message' : 'error-message';
-            messageDiv.innerHTML = message;
-            messageDiv.style.display = 'block';
-            
-            const form = document.getElementById('orderForm');
-            form.parentNode.insertBefore(messageDiv, form);
-            
-            // Auto-hide after 10 seconds
-            setTimeout(() => {
-                messageDiv.remove();
-            }, 10000);
-        }
-
-        // Initialize page
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM loaded, initializing page...');
-            
-            // Render products first
-            renderProducts();
-            
-            // Add initial order item after a brief delay to ensure DOM is ready
-            setTimeout(() => {
-                console.log('Adding initial order item...');
-                window.addOrderItem();
-            }, 200);
-            
-            // Handle form submission
-            const orderForm = document.getElementById('orderForm');
-            if (orderForm) {
-                orderForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    console.log('Form submitted');
-                    
-                    const orderData = generateOrderData();
-                    
-                    if (orderData.orderItems.length === 0) {
-                        showMessage('error', 'Please add at least one product to your order.');
-                        return;
-                    }
-                    
-                    // Format the order data for the form submission
-                    const emailBody = formatOrderForEmail(orderData);
-                    document.getElementById('orderDataField').value = emailBody;
-                    
-                    // Show loading state
-                    const submitButton = this.querySelector('.submit-order-btn');
-                    const originalText = submitButton.textContent;
-                    submitButton.textContent = 'Submitting Order...';
-                    submitButton.disabled = true;
-                    
-                    // Submit the form using fetch to handle the response
-                    const formData = new FormData(orderForm);
-                    
-                    fetch(orderForm.action, {
-                        method: 'POST',
-                        body: formData,
-                        headers: {
-                            'Accept': 'application/json'
-                        }
-                    }).then(response => {
-                        if (response.ok) {
-                            showMessage('success', `
-                                Order submitted successfully! Order Number: ${orderData.orderNumber}<br>
-                                <strong>What happens next:</strong><br>
-                                • Your order has been sent to pluricalifornia@gmail.com<br>
-                                • We'll respond within 48 hours with confirmation<br>
-                                • You'll receive pickup/delivery coordination details<br>
-                                <small>Thank you for supporting territorial markets!</small>
-                            `);
-                            
-                            // Reset form
-                            orderForm.reset();
-                            document.getElementById('orderItems').innerHTML = '';
-                            orderItemCount = 0;
-                            calculateTotal();
-                            setTimeout(() => window.addOrderItem(), 1000);
-                        } else {
-                            throw new Error('Form submission failed');
-                        }
-                    }).catch(error => {
-                        console.error('Submission error:', error);
-                        showMessage('error', `
-                            There was an error submitting your order. Please try again or email us directly:<br><br>
-                            <strong>Email:</strong> pluricalifornia@gmail.com<br>
-                            <strong>Subject:</strong> New Territorial Markets Order - ${orderData.orderNumber}<br><br>
-                            <details>
-                                <summary>Click to view/copy order details</summary>
-                                <textarea readonly style="width:100%;height:200px;margin:10px 0;font-family:monospace;font-size:12px;">${emailBody}</textarea>
-                            </details>
-                        `);
-                    }).finally(() => {
-                        // Restore button
-                        submitButton.textContent = originalText;
-                        submitButton.disabled = false;
-                    });
-                });
+    window.selectProductFromDropdown = function(id, name) {
+        const btn  = document.getElementById(`productSelectButton-${id}`);
+        const sel  = document.getElementById(`productSelect-${id}`);
+        const inp  = document.getElementById(`productSearchInput-${id}`);
+        const dd   = document.getElementById(`productDropdown-${id}`);
+        const info = document.getElementById(`productInfo-${id}`);
+        btn.textContent = name;
+        btn.classList.add('has-selection');
+        sel.value = name;
+        dd.classList.remove('active');
+        inp.classList.remove('active');
+        inp.value = '';
+        // Show product info
+        const product = products.find(p => p.name === name);
+        if (product) {
+            if (product.hasSizes) {
+                info.innerHTML = product.sizes.map(s => `${s.size}: $${s.price.toFixed(2)} individual / $${(s.price*3).toFixed(2)} bulk (3-pack)`).join(' &nbsp;·&nbsp; ');
             } else {
-                console.error('Order form not found');
+                info.innerHTML = `Individual: <strong>${product.individualDisplay}</strong> &nbsp;·&nbsp; Bulk: <strong>${product.bulkDisplay}</strong>`;
+            }
+            info.classList.add('active');
+        }
+        window.updateOrderItem(id);
+    };
+
+    window.updateOrderItem = function(id) {
+        const item = document.getElementById(`orderItem-${id}`);
+        if (!item) return;
+        const sel = item.querySelector('select[name="product"]');
+        if (!sel || !sel.value) return;
+        const product = products.find(p => p.name === sel.value);
+        const pricingGroup = document.getElementById(`pricingGroup-${id}`);
+        const quantityGroup = document.getElementById(`quantityGroup-${id}`);
+        if (product && product.hasSizes) {
+            pricingGroup.innerHTML = `
+                <label>Order Type</label>
+                <select name="pricing" data-item-id="${id}" onchange="updateSizeOptions(${id}); calculateTotal()" required>
+                    <option value="">Select type</option>
+                    <option value="individual">Individual</option>
+                    <option value="bulk">Bulk (3-packs)</option>
+                </select>`;
+            let sg = document.getElementById(`sizeGroup-${id}`);
+            if (!sg) {
+                sg = document.createElement('div');
+                sg.className = 'form-group';
+                sg.id = `sizeGroup-${id}`;
+                sg.style.display = 'none';
+                pricingGroup.parentNode.insertBefore(sg, pricingGroup.nextSibling);
+            }
+            sg.innerHTML = `<label>Size</label><select name="size" onchange="calculateTotal()" required disabled><option value="">Select type first</option></select>`;
+        } else {
+            pricingGroup.innerHTML = `
+                <label>Pricing</label>
+                <select name="pricing" data-item-id="${id}" onchange="calculateTotal()" required>
+                    <option value="">Select</option>
+                    <option value="individual">Individual</option>
+                    <option value="bulk">Bulk</option>
+                </select>`;
+            const sg = document.getElementById(`sizeGroup-${id}`);
+            if (sg) sg.remove();
+        }
+        calculateTotal();
+    };
+
+    window.updateSizeOptions = function(id) {
+        const item = document.getElementById(`orderItem-${id}`);
+        const sel  = item.querySelector('select[name="product"]');
+        const pricing = item.querySelector('select[name="pricing"]').value;
+        const sg   = document.getElementById(`sizeGroup-${id}`);
+        const quantityGroup = document.getElementById(`quantityGroup-${id}`);
+        if (!sel || !pricing || !sg) return;
+        const product = products.find(p => p.name === sel.value);
+        if (product && product.hasSizes) {
+            const sizeSelect = sg.querySelector('select[name="size"]');
+            sizeSelect.disabled = false;
+            if (pricing === 'individual') {
+                sizeSelect.innerHTML = `<option value="">Select size</option>` + product.sizes.map(s => `<option value="${s.size}">${s.size} — $${s.price.toFixed(2)}</option>`).join('');
+                quantityGroup.querySelector('label').textContent = 'Qty (units)';
+            } else {
+                sizeSelect.innerHTML = `<option value="">Select size</option>` + product.sizes.map(s => `<option value="${s.size}">${s.size} — $${(s.price*3).toFixed(2)} (3-pack)</option>`).join('');
+                quantityGroup.querySelector('label').textContent = 'Qty (3-packs)';
+            }
+            sg.style.display = 'flex';
+        }
+        calculateTotal();
+    };
+
+    window.updatePricingType = function(id) { calculateTotal(); };
+
+    // ── TOTAL CALC ────────────────────────────────────────────────────────────
+    function calculateTotal() {
+        if (isSnapSpecial) {
+            document.getElementById('orderTotal').innerHTML = 'Estimated Total: <span>$0.00 (SNAP)</span>';
+            return;
+        }
+        let total = 0;
+        document.querySelectorAll('.order-item').forEach(item => {
+            const id = item.id.replace('orderItem-','');
+            const sel = document.getElementById(`productSelect-${id}`);
+            const qtyInput = item.querySelector('input[name="quantity"]');
+            const pricingSelect = item.querySelector('select[name="pricing"]');
+            if (!sel || !sel.value || !qtyInput || !pricingSelect || !pricingSelect.value) return;
+            const qty = parseInt(qtyInput.value) || 0;
+            const pricing = pricingSelect.value;
+            const product = products.find(p => p.name === sel.value);
+            if (!product || !qty) return;
+            if (product.hasSizes) {
+                const ss = item.querySelector('select[name="size"]');
+                if (ss && ss.value) {
+                    const sz = product.sizes.find(s => s.size === ss.value);
+                    if (sz) total += pricing === 'individual' ? sz.price * qty : sz.price * 3 * qty;
+                }
+            } else {
+                total += pricing === 'individual' ? product.individual * qty : product.bulk * qty;
             }
         });
-    </script>
+        document.getElementById('orderTotal').innerHTML = `Estimated Total: <span>$${total.toFixed(2)}</span>`;
+    }
+
+    // close dropdowns when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.product-search-wrapper')) {
+            document.querySelectorAll('.product-dropdown').forEach(d => d.classList.remove('active'));
+            document.querySelectorAll('.product-search-input').forEach(i => { i.classList.remove('active'); i.value=''; });
+        }
+    });
+
+    // ── FORM SUBMIT ───────────────────────────────────────────────────────────
+    function generateOrderData() {
+        const formData = new FormData(document.getElementById('orderForm'));
+        const orderItems = [];
+        document.querySelectorAll('.order-item').forEach(item => {
+            const id = item.id.replace('orderItem-','');
+            const sel = document.getElementById(`productSelect-${id}`);
+            const qtyInput = item.querySelector('input[name="quantity"]');
+            const pricingSelect = item.querySelector('select[name="pricing"]');
+            if (!sel || !sel.value || !qtyInput || !pricingSelect) return;
+            const productName = sel.value;
+            const quantity = parseInt(qtyInput.value) || 0;
+            const pricing = pricingSelect.value;
+            if (!productName || !quantity || !pricing) return;
+            const product = products.find(p => p.name === productName);
+            let itemTotal = 0, pricingDisplay = pricing;
+            if (!isSnapSpecial && product) {
+                if (product.hasSizes) {
+                    const ss = item.querySelector('select[name="size"]');
+                    if (ss && ss.value) {
+                        const sz = product.sizes.find(s => s.size === ss.value);
+                        if (sz) {
+                            pricingDisplay = pricing === 'individual' ? `${sz.size} (Individual)` : `${sz.size} (Bulk 3-pack)`;
+                            itemTotal = pricing === 'individual' ? sz.price * quantity : sz.price * 3 * quantity;
+                        }
+                    }
+                } else {
+                    itemTotal = pricing === 'individual' ? product.individual * quantity : product.bulk * quantity;
+                }
+            }
+            orderItems.push({ product: productName, quantity, pricing: pricingDisplay, itemTotal });
+        });
+        return {
+            timestamp: new Date().toISOString(),
+            orderNumber: 'TM-' + Date.now(),
+            snapSpecial: isSnapSpecial,
+            customItems: formData.get('customItems'),
+            organization: { name: formData.get('orgName'), type: formData.get('orgType'), contactPerson: formData.get('contactName'), email: formData.get('email'), phone: formData.get('phone') },
+            orderItems,
+            delivery: { method: formData.get('deliveryMethod'), preferredDate: formData.get('preferredDate'), address: formData.get('address') },
+            specialRequests: formData.get('specialRequests'),
+            estimatedTotal: isSnapSpecial ? 0 : orderItems.reduce((s, i) => s + i.itemTotal, 0)
+        };
+    }
+
+    function formatOrderForEmail(o) {
+        return `NEW TERRITORIAL MARKETS ORDER\n=============================\nOrder Number: ${o.orderNumber}\nDate: ${new Date(o.timestamp).toLocaleString()}\nOrder Type: ${o.snapSpecial ? 'SNAP SPECIAL - FREE ORDER' : 'Regular Order'}\n\nORGANIZATION:\n- Name: ${o.organization.name}\n- Type: ${o.organization.type}\n- Contact: ${o.organization.contactPerson}\n- Email: ${o.organization.email}\n- Phone: ${o.organization.phone||'Not provided'}\n\nORDER DETAILS:\n${o.orderItems.map(i=>`- ${i.product}: ${i.quantity} units (${i.pricing}) - $${i.itemTotal.toFixed(2)}`).join('\n')}${o.customItems?'\n\nCUSTOM ITEMS:\n'+o.customItems:''}\n\nDELIVERY:\n- Method: ${o.delivery.method}\n- Preferred Date: ${o.delivery.preferredDate||'Not specified'}\n- Address: ${o.delivery.address||'Not provided'}\n\nSPECIAL REQUESTS:\n${o.specialRequests||'None'}\n\nESTIMATED TOTAL: $${o.estimatedTotal.toFixed(2)}${o.snapSpecial?' (SNAP SPECIAL - FREE)':''}`;
+    }
+
+    function showMsg(type, html) {
+        document.querySelectorAll('.msg').forEach(m => m.remove());
+        const d = document.createElement('div');
+        d.className = `msg msg-${type}`;
+        d.innerHTML = html;
+        document.getElementById('orderForm').parentNode.insertBefore(d, document.getElementById('orderForm'));
+        setTimeout(() => d.remove(), 12000);
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        renderProducts();
+        setTimeout(() => addOrderItem(), 100);
+
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const orderData = generateOrderData();
+            if (orderData.orderItems.length === 0) { showMsg('error', 'Please add at least one product to your order.'); return; }
+            const emailBody = formatOrderForEmail(orderData);
+            document.getElementById('orderDataField').value = emailBody;
+            const btn = this.querySelector('.submit-btn');
+            btn.textContent = 'Submitting...';
+            btn.disabled = true;
+            fetch(this.action, { method: 'POST', body: new FormData(this), headers: { 'Accept': 'application/json' } })
+                .then(r => {
+                    if (r.ok) {
+                        showMsg('success', `<strong>Order submitted!</strong> Order #${orderData.orderNumber}<br>We'll respond within 48 hours with confirmation and pickup/delivery details.<br><small>Thank you for supporting territorial markets and the Coalición!</small>`);
+                        this.reset();
+                        document.getElementById('orderItems').innerHTML = '';
+                        orderItemCount = 0;
+                        calculateTotal();
+                        setTimeout(() => addOrderItem(), 800);
+                        btn.textContent = 'Submitted ✓';
+                        btn.style.background = 'var(--green)';
+                    } else { throw new Error('failed'); }
+                })
+                .catch(() => {
+                    showMsg('error', `There was an error submitting your order. Please try again or email us directly at <a href="mailto:pluricalifornia@gmail.com" style="color:var(--orange)">pluricalifornia@gmail.com</a><details><summary>View order details to copy</summary><textarea readonly>${emailBody}</textarea></details>`);
+                    btn.textContent = 'Submit Order →';
+                    btn.disabled = false;
+                });
+        });
+    });
+</script>
 </body>
 </html>
