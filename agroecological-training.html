@@ -3,637 +3,283 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agroecological Training & Leadership Development | Plurinational Land Reform in CA</title>
+    <title>Political Education — PLRCAWG</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #3a3a6a;      
-            --secondary-color: #e71d36;     
-            --dark-color: #011627;         
-            --light-color: #f7f7f7;        
-            --accent-color: #ff9f1c;       
-            --accent-green: #8bc34a;      
-            --accent-red: #e53935;         
+            --primary-color: #3a3a6a;
+            --secondary-color: #e71d36;
+            --dark-color: #011627;
+            --light-color: #f7f7f7;
+            --accent-color: #ff9f1c;
+            --accent-green: #8bc34a;
         }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: var(--light-color);
-            color: var(--dark-color);
-            line-height: 1.6;
-        }
-        
-        header {
-            background: linear-gradient(135deg, var(--primary-color) 0%, #2a2a4a 100%);
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--light-color); color: var(--dark-color); line-height: 1.6; font-family: 'Barlow', sans-serif; }
+
+        .nav-top { background-color: var(--dark-color); padding: 0 2rem; display: flex; justify-content: flex-end; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .nav-top a { color: rgba(255,255,255,0.65); text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.5rem 0.9rem; transition: color 0.2s; }
+        .nav-top a:hover { color: white; }
+        .nav-top .lang-btn { background-color: var(--secondary-color); color: white; padding: 0.45rem 1rem; margin-left: 0.5rem; }
+        nav { background-color: var(--secondary-color); padding: 0; box-shadow: 0 3px 0 rgba(0,0,0,0.35); position: sticky; top: 0; z-index: 100; display: flex; align-items: stretch; }
+        .nav-brand { display: flex; align-items: center; padding: 0 1.5rem; background-color: var(--dark-color); flex-shrink: 0; text-decoration: none; border-right: 2px solid var(--accent-color); }
+        .nav-brand span { color: var(--accent-color); font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 0.95rem; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.2; max-width: 130px; }
+        .nav-main-links { display: flex; list-style: none; margin: 0; padding: 0; flex: 1; }
+        .nav-main-links > li { position: relative; }
+        .nav-main-links > li > a { color: white; text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: 0.08em; text-transform: uppercase; display: flex; align-items: center; padding: 0 1.1rem; height: 100%; min-height: 48px; transition: background-color 0.15s; position: relative; white-space: nowrap; }
+        .nav-main-links > li > a::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background-color: white; transform: scaleX(0); transition: transform 0.2s; }
+        .nav-main-links > li > a:hover, .nav-main-links > li > a.active { background-color: rgba(0,0,0,0.18); }
+        .nav-main-links > li > a.active::after, .nav-main-links > li > a:hover::after { transform: scaleX(1); }
+        .chevron { display: inline-block; margin-left: 5px; font-size: 0.65rem; transition: transform 0.2s; }
+        .mega-menu { display: none; position: absolute; top: 100%; left: 0; background-color: var(--dark-color); border-top: 3px solid var(--secondary-color); box-shadow: 0 6px 0 rgba(0,0,0,0.3); z-index: 200; padding: 1.5rem 2rem; min-width: 320px; white-space: normal; }
+        .mega-menu.wide { min-width: 480px; }
+        .mega-menu-label { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.4rem; }
+        .mega-menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.25rem 1.5rem; }
+        .mega-menu-grid.single-col { grid-template-columns: 1fr; }
+        .mega-menu a { color: rgba(255,255,255,0.82); text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: 0.04em; text-transform: uppercase; padding: 0.5rem 0.6rem; display: block; border-left: 3px solid transparent; transition: all 0.15s; }
+        .mega-menu a:hover { color: white; border-left-color: var(--secondary-color); padding-left: 0.9rem; background-color: rgba(255,255,255,0.04); }
+        .has-dropdown:hover .mega-menu { display: block; }
+        .has-dropdown:hover > a .chevron { transform: rotate(180deg); }
+        .nav-hamburger { display: none; }
+
+        /* ── HERO — deep purple, bold political ── */
+        .hero {
+            background: linear-gradient(160deg, #1a0a2e 0%, #011627 100%);
             color: white;
-            text-align: center;
-            padding: 2rem 1rem;
-            border-bottom: 4px solid var(--accent-color);
-        }
-        
-        .logo-container {
-            margin-bottom: 1.5rem;
-        }
-        
-        .logo {
-            max-width: 100%;
-            height: auto;
-            max-height: 150px;
-        }
-        
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        header p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        nav {
-            background-color: var(--dark-color);
-            padding: 1rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        
-        nav ul {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            flex-wrap: wrap;
-        }
-        
-        nav ul li {
-            margin: 0 1rem;
-        }
-        
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
-        
-        nav ul li a:hover {
-            color: var(--secondary-color);
-        }
-        
-        /* Dropdown Menu Styles */
-        .has-dropdown {
-            padding-bottom: 10px;
+            padding: 4rem 2rem 3rem;
             position: relative;
-        }
-        
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: var(--dark-color);
-            min-width: 250px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
-            border-radius: 5px;
-            margin-top: 0.5rem;
-            left: 50%;
-            transform: translateX(-50%);
             overflow: hidden;
-            padding-top: 10px;
+            border-bottom: 5px solid var(--primary-color);
         }
-        
-        .dropdown-content a {
-            color: white;
-            padding: 0.75rem 1rem;
-            text-decoration: none;
-            display: block;
-            text-align: left;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .dropdown-content a:last-child {
-            border-bottom: none;
-        }
-        
-        .dropdown-content a:hover {
-            background-color: rgba(255, 255, 255, 0.15);
-            color: var(--secondary-color);
-            padding-left: 1.25rem;
-        }
-        
-        .has-dropdown:hover .dropdown-content {
-            display: block;
-        }
-        
-        /* Create an invisible bridge between menu item and dropdown */
-        .has-dropdown > a::after {
+        .hero::before {
             content: "";
             position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 100%;
-            height: 10px;
-            background-color: transparent;
+            top: 0; right: 0; bottom: 0; width: 50%;
+            background: repeating-linear-gradient(-60deg, rgba(58,58,106,0.12) 0px, rgba(58,58,106,0.12) 2px, transparent 2px, transparent 18px);
+            pointer-events: none;
         }
-        
-        .language-toggle {
-            background-color: var(--secondary-color);
-            padding: 0.4rem 0.8rem;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-        
-        .language-toggle:hover {
-            background-color: #c91020;
-        }
-        
-        .page-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 3rem 1rem;
-        }
-        
-        .page-title {
-            color: var(--primary-color);
-            text-align: center;
-            margin-bottom: 2rem;
-            font-size: 2.5rem;
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-        
-        .page-title::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
-        }
-        
-        .content-section {
-            margin-bottom: 4rem;
-        }
-        
-        .section-title {
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
-            position: relative;
-            padding-bottom: 0.5rem;
-            display: inline-block;
-        }
-        
-        .section-title::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 80px;
-            height: 3px;
-            background: var(--secondary-color);
-        }
-        
-        .image-container {
-            margin: 2rem 0;
-            text-align: center;
-        }
-        
-        .image-container img {
-            max-width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        .image-caption {
-            margin-top: 1rem;
-            text-align: center;
-            font-style: italic;
-            color: #666;
-        }
-        
-        .back-to-home {
-            display: inline-block;
-            margin-top: 2rem;
-            padding: 0.75rem 1.5rem;
-            background-color: var(--primary-color);
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-        
-        .back-to-home:hover {
-            background-color: #2a2a50;
-        }
-        
-        .training-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-        
-        .training-card {
-            background-color: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-            border-top: 4px solid var(--accent-green);
-        }
-        
-        .training-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .training-card-content {
-            padding: 1.5rem;
-        }
-        
-        .training-card h3 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-        
-        .pillars-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-        
-        .pillar {
-            background-color: rgba(139, 195, 74, 0.1);
-            padding: 1.5rem;
-            border-radius: 8px;
-            border-left: 4px solid var(--accent-green);
-        }
-        
-        .pillar h3 {
-            color: var(--accent-green);
-            margin-bottom: 1rem;
-        }
-        
-        footer {
-            background: linear-gradient(135deg, var(--dark-color) 0%, #000 100%);
-            color: white;
-            text-align: center;
-            padding: 2rem 1rem;
-            border-top: 4px solid var(--accent-color);
-        }
-        
-        .social-links {
-            display: flex;
-            justify-content: center;
-            margin: 1.5rem 0;
-            gap: 1.5rem;
-        }
-        
-        .social-links a {
-            color: white;
-            font-size: 1.5rem;
-            transition: color 0.3s;
-        }
-        
-        .social-links a:hover {
-            color: var(--secondary-color);
-        }
-        
-        .click-indicator {
-            text-align: center;
-            color: var(--primary-color);
-            margin: 1rem 0;
-            font-size: 1.1rem;
-        }
-        
-        .clickable-image {
-            cursor: pointer;
-            position: relative;
-        }
-        
-        .clickable-image a {
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-        
-        .hover-effect {
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-        
-        .hover-effect:hover {
-            transform: scale(1.02);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-            border: 2px solid var(--accent-color);
-        }
-        
-        .clickable-image::after {
-            content: "🔍";
-            position: absolute;
-            right: 20px;
-            bottom: 50px;
-            background-color: var(--accent-color);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 1.2rem;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .clickable-image:hover::after {
-            opacity: 1;
-        }
-        
+        .hero-label { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: #a08fff; margin-bottom: 0.75rem; }
+        .hero h1 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 4rem; text-transform: uppercase; line-height: 1; max-width: 700px; margin-bottom: 1.25rem; }
+        .hero p { font-size: 1.1rem; max-width: 620px; color: rgba(255,255,255,0.78); border-left: 3px solid #a08fff; padding-left: 1rem; }
+
+        .content-section { max-width: 1100px; margin: 0 auto; padding: 3.5rem 2rem; }
+        .content-section h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 2.2rem; text-transform: uppercase; color: var(--primary-color); margin-bottom: 1.25rem; border-left: 5px solid var(--primary-color); padding-left: 1rem; }
+        .content-section p { font-size: 1.05rem; margin-bottom: 1.25rem; max-width: 780px; color: #222; }
+
+        .curriculum { background-color: var(--primary-color); padding: 3.5rem 2rem; }
+        .curriculum-inner { max-width: 1100px; margin: 0 auto; }
+        .curriculum-inner h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 2.2rem; text-transform: uppercase; color: white; margin-bottom: 2rem; border-left: 5px solid var(--secondary-color); padding-left: 1rem; }
+        .curriculum-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+        .curriculum-card { border-left: 3px solid var(--secondary-color); padding: 1.25rem 1.5rem; background: rgba(255,255,255,0.08); transition: transform 0.2s; }
+        .curriculum-card:hover { transform: translateX(5px); }
+        .curriculum-card h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.1rem; text-transform: uppercase; color: white; margin-bottom: 0.5rem; }
+        .curriculum-card p { font-size: 0.95rem; color: rgba(255,255,255,0.7); margin: 0; }
+
+        .signup-section { background: linear-gradient(135deg, #0d0d1a, #1a0a2e); padding: 4rem 2rem; }
+        .signup-inner { max-width: 680px; margin: 0 auto; text-align: center; }
+        .signup-inner h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 2.8rem; text-transform: uppercase; color: white; margin-bottom: 0.75rem; }
+        .signup-inner p { color: rgba(255,255,255,0.75); margin-bottom: 2rem; font-size: 1.05rem; }
+        .signup-form { display: flex; flex-direction: column; gap: 1rem; text-align: left; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .form-group label { display: block; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 0.4rem; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.75rem; background: rgba(255,255,255,0.08); border: 2px solid rgba(255,255,255,0.15); color: white; font-family: 'Barlow', sans-serif; font-size: 1rem; transition: border-color 0.2s; }
+        .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.35); }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: #a08fff; }
+        .form-group select option { background: var(--dark-color); color: white; }
+        .form-group textarea { min-height: 100px; resize: vertical; }
+        .submit-btn { background-color: var(--secondary-color); color: white; border: none; padding: 1rem 2rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.1rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: background-color 0.2s; align-self: flex-start; }
+        .submit-btn:hover { background-color: #c91020; }
+
+        footer { background: linear-gradient(135deg, var(--dark-color) 0%, #000 100%); color: white; text-align: center; padding: 2rem 1rem; border-top: 4px solid var(--accent-color); }
+        footer h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.5rem; }
+        footer p { color: rgba(255,255,255,0.6); font-size: 0.9rem; margin-top: 0.5rem; }
+        .social-links { display: flex; justify-content: center; margin: 1rem 0; gap: 1.5rem; }
+        .social-links a { color: white; font-size: 1.4rem; transition: color 0.2s; }
+        .social-links a:hover { color: var(--secondary-color); }
+
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 2rem;
-            }
-            
-            nav ul {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            nav ul li {
-                margin: 0.5rem 0;
-            }
-            
-            .dropdown-content {
-                position: static;
-                transform: none;
-                box-shadow: none;
-                margin-top: 0.5rem;
-                display: none;
-                width: 100%;
-                border-radius: 0;
-            }
-            
-            .has-dropdown:hover .dropdown-content {
-                display: none; /* Don't show on hover for mobile */
-            }
-            
-            .has-dropdown.active .dropdown-content {
-                display: block;
-            }
+            .hero h1 { font-size: 2.5rem; }
+            .form-row { grid-template-columns: 1fr; }
+            nav { flex-direction: column; }
+            .nav-brand { padding: 0.75rem 1rem; justify-content: center; }
+            .nav-main-links { flex-direction: column; display: none; }
+            .nav-main-links.open { display: flex; }
+            .nav-main-links > li > a { padding: 0.75rem 1rem; min-height: auto; }
+            .mega-menu { position: static; display: none !important; box-shadow: none; padding: 0.5rem 1rem 1rem 2rem; border-top: none; border-left: 3px solid var(--secondary-color); margin: 0 1rem 0.5rem; }
+            .has-dropdown.open .mega-menu { display: block !important; }
+            .mega-menu-grid { grid-template-columns: 1fr; }
+            .nav-hamburger { display: flex; align-items: center; background: none; border: none; color: white; font-size: 1.4rem; padding: 0.75rem 1rem; cursor: pointer; margin-left: auto; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <header>
-        <div class="logo-container">
-            <!-- Replace with your actual logo path -->
-            <img src="images/pluri-logo.jpg" alt="Plurinational Land Reform in CA Working Group Logo" class="logo">
-        </div>
-        <h1>Agroecological Training & Leadership Development</h1>
-        <p>Integrating technical farming knowledge with political education and community organizing</p>
-    </header>
-    
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="index.html#about">About Us</a></li>
+
+    <div class="nav-top">
+        <a href="index.html#get-involved">Contact</a>
+        <a href="agroecological-training-es.html" class="lang-btn">Español</a>
+    </div>
+
+    <nav id="main-nav">
+        <a href="index.html" class="nav-brand"><span>← PLRCAWG</span></a>
+        <button class="nav-hamburger" id="hamburger">☰ Menu</button>
+        <ul class="nav-main-links" id="nav-links">
+            
+            <li><a href="OurCompass.html">Theory of Change</a></li>
+            <li><a href="territorial_markets.html">Order Now ↗</a></li>
             <li class="has-dropdown">
-                <a href="#mission">Our Work</a>
-                <div class="dropdown-content">
-                    <a href="regional-mapping.html">Regional Mapping Analysis</a>
-                    <a href="absentee-landowner.html">Absentee Landownership Impact Analysis</a>
-                    <a href="parcel-identification.html">Parcel Identification & Acquisition Planning</a>
-                    <a href="public-leasing.html">Public Leasing Advocacy</a>
-                    <a href="suitability-analysis.html">Grazing & Farming Suitability</a>
-                    <a href="agroecological-training.html">Agroecological Training & Leadership Development</a>
+                <a href="#">Our Initiatives <span class="chevron">▼</span></a>
+                <div class="mega-menu wide">
+                    <div class="mega-menu-label">Initiatives</div>
+                    <div class="mega-menu-grid single-col">
+                        <a href="territorial_markets_about.html">Territorial Markets</a>
+                        <a href="engineering-brigades.html">Engineering Brigades</a>
+                        <a href="parcel-identification.html">Land Acquisition</a>
+                        <a href="agroecological-training.html">Political Education</a>
+                    </div>
                 </div>
             </li>
-            <li><a href="OurCompass.html">Our Compass</a></li>
-            <li><a href="for-students.html">For Students</a></li>
-            <li><a href="index.html#events">Events</a></li>
-            <li><a href="index.html#get-involved">Contact</a></li>
-            <li><a href="spanish.html" class="language-toggle">Español</a></li>
+            <li class="has-dropdown">
+                <a href="#">Land Reform School <span class="chevron">▼</span></a>
+                <div class="mega-menu">
+                    <div class="mega-menu-label">Programs</div>
+                    <div class="mega-menu-grid single-col">
+                        <a href="summer-school.html">Summer School</a>
+                        <a href="winter-school.html">Winter School</a>
+                    </div>
+                </div>
+            </li>
+            <li class="has-dropdown">
+                <a href="#">Join Us <span class="chevron">▼</span></a>
+                <div class="mega-menu">
+                    <div class="mega-menu-label">Chapters</div>
+                    <div class="mega-menu-grid single-col">
+                        <a href="join-general.html">General</a>
+                        <a href="join-bay-area.html">Bay Area</a>
+                        <a href="join-la.html">Los Angeles</a>
+                        <a href="join-san-diego.html">San Diego</a>
+                    </div>
+                </div>
+            </li>
         </ul>
     </nav>
-    
-    <div class="page-content">
-        <h1 class="page-title">Agroecological Training & Leadership Development</h1>
-        
-        <div class="content-section">
-            <p>Our agroecological training program integrates technical farming practices with political education and community organizing strategies. We recognize that successful land reform requires not just agricultural skills, but also the ability to navigate political systems, build community power, and develop sustainable economic models.</p>
-        </div>
-        
-        <div class="content-section">
-            <h2 class="section-title">Land-Based Management Approach</h2>
-            
-            <p>Our approach to agroecology begins with our detailed land suitability analysis, which informs how we design management plans tailored to specific ecological contexts. This science-based foundation ensures that our agricultural training is rooted in the unique characteristics of each landscape.</p>
-            
-            <div class="training-grid">
-    <div class="training-card">
-        <div class="training-card-content">
-            <h3>Ecological Farm Design</h3>
-            <p>Training in reading landscape patterns and designing agricultural systems that work with natural processes rather than against them. Includes mapping water flows, identifying ecological niches, and planning integrated production systems.</p>
-        </div>
-    </div>
-    
-    <div class="training-card">
-        <div class="training-card-content">
-            <h3>Soil Health & Management</h3>
-            <p>Techniques for assessing soil conditions, building organic matter, managing soil biology, and implementing erosion prevention. Emphasis on low-external-input methods accessible to resource-limited farmers.</p>
-        </div>
-    </div>
-    
-    <div class="training-card">
-        <div class="training-card-content">
-            <h3>Water Systems Design</h3>
-            <p>Training in water harvesting, conservation, and distribution systems appropriate to California's diverse microclimates. Includes strategies for drought resilience and efficient irrigation methods.</p>
-        </div>
-    </div>
-</div>
 
-<p>Our technical training emphasizes accessible, low-cost methods that reduce dependency on external inputs and build ecological resilience. We prioritize approaches that can be implemented by communities with limited resources but rich in traditional knowledge and labor capacity.</p>
-        </div>
-        
-        <div class="content-section">
-            <h2 class="section-title">The People's Agroecology Process</h2>
-            
-            <p>Our training approach draws from the People's Agroecology Process, which recognizes that agroecology is not just a set of farming techniques but a political, social, and economic movement. This framework emphasizes:</p>
-            
-            <p class="click-indicator"><strong>Click on the image below to view the full People's Agroecology document (PDF)</strong></p>
-            
-            <div class="image-container clickable-image">
-                <a href="https://climatejusticealliance.org/wp-content/uploads/2020/07/1132-People-Agroecology_ENGLISH_ONLINE-Single.pdf" target="_blank" rel="noopener noreferrer">
-                    <img src="images/PeoplesAgroecology.png" alt="People's Agroecology Process Workshop" class="hover-effect">
-                    <p class="image-caption">Participants in a People's Agroecology Process workshop discussing land rights and food sovereignty</p>
-                </a>
-            </div>
-            
-            <div class="pillars-container">
-                <div class="pillar">
-                    <h3>Political Education</h3>
-                    <p>Understanding the political economy of land and agriculture, including historical patterns of dispossession, current power structures in food systems, and strategies for policy change.</p>
-                </div>
-                
-                <div class="pillar">
-                    <h3>Collective Organization</h3>
-                    <p>Building democratic structures for collective decision-making, resource sharing, and cooperative land management. Includes training in cooperative governance models and conflict resolution.</p>
-                </div>
-                
-                <div class="pillar">
-                    <h3>Cultural Recovery</h3>
-                    <p>Reclaiming traditional agricultural practices, food ways, and cultural relationships to land that have been disrupted by colonization and industrial agriculture.</p>
-                </div>
-                
-                <div class="pillar">
-                    <h3>Economic Alternatives</h3>
-                    <p>Developing solidarity economies, cooperative markets, and alternative value chains that keep wealth within communities and fairly compensate agricultural labor.</p>
-                </div>
-            </div>
-            
-            <p>Through this holistic approach, participants develop not just farming skills but also the political analysis and organizational capacity needed to advance systemic change in land relationships.</p>
-        </div>
-        
-        <div class="content-section">
-            <h2 class="section-title">Understanding the Political Economy of Land</h2>
-            
-            <p>A crucial component of our training involves political education about the structures that shape land access and control in California. Participants learn about:</p>
-            
-            <ul>
-                <li>Historical processes of indigenous land dispossession and their ongoing impacts</li>
-                <li>The role of racial exclusion in shaping current land ownership patterns</li>
-                <li>How agricultural policy favors large-scale industrial production over small-scale agroecological farming</li>
-                <li>The influence of speculative investment and financialization on land markets</li>
-                <li>Key players in California's agricultural system, from large landowners to processing companies to policy makers</li>
-                <li>Successful examples of land reform and agroecological transitions from around the world</li>
-            </ul>
-            
-            <p>This political education helps participants understand their individual struggles for land access within broader systemic contexts, and identifies potential leverage points for collective action.</p>
-        </div>
-        
-        <div class="content-section">
-            <h2 class="section-title">Farmworker Consciousness-Raising on Agrarian Reform</h2>
-            
-            <p>A crucial component of our agroecological training is consciousness-raising among farmworkers about the principles and possibilities of comprehensive agrarian reform. We believe that technical agricultural skills must be paired with a deep understanding of land justice and the structural changes needed to create equitable food systems.</p>
-            
-            <p>Drawing from the experiences of agrarian movements across Latin America, we have developed educational materials that explain key concepts of integral and popular agrarian reform in accessible language. These materials explore:</p>
-            
-            <ul>
-                <li>The distinction between land (tierra) and territory (territorio) from indigenous and peasant perspectives</li>
-                <li>The importance of indigenous-peasant alliances in building political power</li>
-                <li>Pathways for identifying and reclaiming underutilized land</li>
-                <li>Community-based productive forces and solidarity economies</li>
-                <li>Democratic governance models for agricultural communities</li>
-            </ul>
-            
-            <p class="click-indicator"><strong>Click on the image below to view our full "Reforma Agraria Integral y Popular" guide (PDF, Spanish)</strong></p>
-            
-            <div class="image-container clickable-image">
-                <a href="documents/La Programa de la Reforma Agraria.pdf" target="_blank" rel="noopener noreferrer">
-                    <img src="images/ReformaAgraria_Cover.jpg" alt="Que significa la reforma agraria integral y popular?" class="hover-effect">
-                    <p class="image-caption">Our educational poster explaining the components of comprehensive and popular agrarian reform: Land and Territory, Scientific/Technical/Educational Training, Community-Popular Productive Forces, and Capacity Building for Popular Governance</p>
-                </a>
-            </div>
-            
-            <p>These consciousness-raising materials recognize that many farmworkers in California come from regions with strong agrarian reform histories and movements. By connecting with these cultural and political traditions, we help farmworkers see their current struggles in historical context and imagine alternatives to the current land system.</p>
-            
-            <p>Our workshops on agrarian reform consciousness include:</p>
-            
-            <ul>
-                <li><strong>History of Land Dispossession:</strong> Examining the colonial origins of current land distribution and the ongoing effects on indigenous and farming communities</li>
-                <li><strong>Comparative Land Reform Models:</strong> Learning from successful examples in Latin America and other regions</li>
-                <li><strong>Legal Frameworks:</strong> Understanding current land use policies in California and opportunities for reform</li>
-                <li><strong>Community Mapping:</strong> Identifying land in their regions with potential for reclamation and agricultural use</li>
-                <li><strong>Movement Building:</strong> Developing strategies for coalition building with indigenous communities, environmental groups, and policy advocates</li>
-            </ul>
-            
-            <p>This consciousness-raising work is conducted in multiple languages, with particular attention to indigenous languages from Mesoamerica and South America. We recognize the importance of linguistic and cultural accessibility in building truly inclusive movements for land justice.</p>
-        </div>
-        
-        <div class="content-section">
-            <h2 class="section-title">Community Organizing for Land Defense</h2>
-            
-            <p>Acquiring land is only the first step in a long-term process of building food sovereignty. Our training includes strategies for organizing communities to defend land rights and build sustainable agricultural livelihoods. Participants learn:</p>
-            
-            <ul>
-                <li>How to build coalitions with allied organizations and movements</li>
-                <li>Effective communication strategies for countering dominant narratives about land and agriculture</li>
-                <li>Legal tools and resources for protecting land rights</li>
-                <li>Participatory methods for community decision-making about land use</li>
-                <li>Strategies for navigating conflicts with powerful interests</li>
-                <li>Building intergenerational leadership and knowledge transmission</li>
-            </ul>
-            
-            <p>This organizing component is especially critical given the powerful interests that often oppose land reform and agroecological transitions. Communities need not just farming skills but political organizing capacity to successfully challenge entrenched power structures.</p>
-            
-            <div class="image-container">
-                <img src="images/Workshop.jpg" alt="Community Organizing Workshop">
-                <p class="image-caption">Community members developing organizing strategies for land defense and agroecological transition</p>
-            </div>
-        </div>
-        
-        <div class="content-section">
-            <h2 class="section-title">Training Formats and Accessibility</h2>
-            
-            <p>Our training is offered in multiple formats to meet the diverse needs of agricultural communities:</p>
-            
-            <ul>
-                <li><strong>Hands-on Field Workshops:</strong> Practical training sessions on working farms and lands</li>
-                <li><strong>Popular Education Sessions:</strong> Participatory learning that values participants' existing knowledge and experiences</li>
-                <li><strong>Farmer-to-Farmer Exchanges:</strong> Peer learning opportunities between experienced and new farmers</li>
-                <li><strong>Youth Education Programs:</strong> Specialized training for young people interested in agricultural careers</li>
-                <li><strong>Train-the-Trainer Programs:</strong> Building local capacity for ongoing education within communities</li>
-            </ul>
-            </div>
-            
-            <p>We are committed to making our training accessible to those who have been most marginalized within the current agricultural system, particularly farmworkers, indigenous communities, and black tenant farmers with limited access to land and resources.</p>
-        </div>
-        
-        <a href="index.html" class="back-to-home">Back to Home</a>
+    <div class="hero">
+        <div class="hero-label">Initiative 04 — Our Initiatives</div>
+        <h1>Political Education</h1>
+        <p>Developing organizers capable of replicating PLRCAWG's initiatives statewide — scaling the social movement infrastructure necessary for a genuine agrarian reform from the base.</p>
     </div>
-    
+
+    <div class="content-section">
+        <h2>Why Political Education?</h2>
+        <p>Technical tools and market infrastructure mean nothing without the organized political force to sustain and defend them. Political education is the engine that makes the other three initiatives scalable — it develops the organizers who can replicate territorial markets, engineering brigades, and land acquisition work in new communities.</p>
+        <p>Our approach rejects both top-down training models and purely spontaneous organizing. We develop structured curricula rooted in the real conditions facing campesin@ communities in California — connecting agroecology, political economy, land tenure history, and movement strategy into a coherent formation program.</p>
+        <p>The goal is not just informed individuals but capable organizers: people who can facilitate, teach, recruit, and build durable institutions in their own communities.</p>
+    </div>
+
+    <div class="curriculum">
+        <div class="curriculum-inner">
+            <h2>Curriculum Areas</h2>
+            <div class="curriculum-grid">
+                <div class="curriculum-card">
+                    <h3>Agrarian Political Economy</h3>
+                    <p>Understanding the historical and structural forces — monopoly capital, financialization of land, labor exploitation — that shape the conditions campesin@s face today.</p>
+                </div>
+                <div class="curriculum-card">
+                    <h3>Agroecology & Social Reproduction</h3>
+                    <p>Agroecology understood not as a science or methodology but as a living mode of social reproduction — the way campesin@ communities sustain and strengthen life itself through a particular set of social relations with land, labor, and each other.</p>
+                </div>
+                <div class="curriculum-card">
+                    <h3>Land Tenure & Legal Structures</h3>
+                    <p>How land is owned, controlled, and transferred in California — and the legal tools available to communities seeking to secure or reclaim tenure.</p>
+                </div>
+                <div class="curriculum-card">
+                    <h3>Movement History</h3>
+                    <p>Drawing from the experiences of indigenous-peasant movements in Bolivia, Guatemala, Chile, and Mesoamerica — the tactical lessons of plurinationalism in practice.</p>
+                </div>
+                <div class="curriculum-card">
+                    <h3>Organizing Strategy & Practice</h3>
+                    <p>Concrete skills: how to build coalitions, run meetings, develop new leaders, sustain organizations, and navigate conflict without dissolving.</p>
+                </div>
+                <div class="curriculum-card">
+                    <h3>Initiative Replication</h3>
+                    <p>Training organizers in the specific methods and structures of PLRCAWG's four initiatives — so they can plant them in new territories.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="signup-section">
+        <div class="signup-inner">
+            <h2>Join the Formation</h2>
+            <p>If you want to deepen your political understanding and become a more capable organizer, fill out this form. We run cohort-based formation programs and will be in touch about the next one in your region.</p>
+            <form class="signup-form" onsubmit="return false;">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input type="text" placeholder="First name">
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input type="text" placeholder="Last name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" placeholder="you@example.com">
+                </div>
+                <div class="form-group">
+                    <label>Region</label>
+                    <select id="region-select" onchange="toggleOtherRegion(this)">
+                        <option value="">Select your region</option>
+                        <option>Bay Area</option>
+                        <option>Los Angeles</option>
+                        <option>San Diego</option>
+                        <option>Inland Empire</option>
+                        <option>Central Valley</option>
+                        <option>Central Coast</option>
+                        <option>Northern California</option>
+                        <option>Imperial Valley</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div class="form-group" id="other-region-group" style="display:none;">
+                    <label>Please specify your region</label>
+                    <input type="text" placeholder="Enter your region...">
+                </div>
+                <div class="form-group">
+                    <label>Background / Areas of Interest / Organizing Experience</label>
+                    <textarea placeholder="Tell us about your community, your organizing experience, areas of interest, and what drew you to this work..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Apply →</button>
+            </form>
+        </div>
+    </div>
+
     <footer>
         <h3>Plurinational Land Reform in CA Working Group</h3>
         <p>Working on stolen Ohlone, Miwok, Yokuts, Chumash, Tongva, Cahuilla, Kumeyaay, Acjachemen, and many other indigenous lands</p>
-        
         <div class="social-links">
             <a href="https://instagram.com/plurinational.landreform_cawg" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
             <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
         </div>
-        
         <p>&copy; 2025 Plurinational Land Reform in CA Working Group. All rights reserved.</p>
     </footer>
 
     <script>
-        // Mobile dropdown toggle
-        document.addEventListener('DOMContentLoaded', function() {
-            const dropdownLinks = document.querySelectorAll('.has-dropdown > a');
-            
-            dropdownLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    if (window.innerWidth <= 768) {
-                        e.preventDefault();
-                        this.parentElement.classList.toggle('active');
-                    }
-                });
-            });
-            
-            // Ensure dropdown items work properly
-            const dropdownItems = document.querySelectorAll('.dropdown-content a');
-            dropdownItems.forEach(item => {
-                item.addEventListener('click', function(e) {
-                    // Allow normal navigation when clicking on dropdown items
-                    window.location.href = this.getAttribute('href');
-                });
+        document.getElementById('hamburger').addEventListener('click', function() {
+            document.getElementById('nav-links').classList.toggle('open');
+        });
+        document.querySelectorAll('.has-dropdown > a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) { e.preventDefault(); this.parentElement.classList.toggle('open'); }
             });
         });
+        function toggleOtherRegion(select) {
+            const otherGroup = document.getElementById('other-region-group');
+            otherGroup.style.display = select.value === 'Other' ? 'block' : 'none';
+        }
     </script>
 </body>
 </html>
