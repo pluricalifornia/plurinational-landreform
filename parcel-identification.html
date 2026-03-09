@@ -3,474 +3,493 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parcel Identification & Acquisition Planning | Plurinational Land Reform in CA</title>
+    <title>Land Acquisition — PLRCAWG</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #3a3a6a;      
-            --secondary-color: #e71d36;     
-            --dark-color: #011627;         
-            --light-color: #f7f7f7;        
-            --accent-color: #ff9f1c;       
-            --accent-green: #8bc34a;      
-            --accent-red: #e53935;         
+            --primary-color: #3a3a6a;
+            --secondary-color: #e71d36;
+            --dark-color: #011627;
+            --light-color: #f7f7f7;
+            --accent-color: #ff9f1c;
+            --accent-green: #8bc34a;
         }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: var(--light-color);
-            color: var(--dark-color);
-            line-height: 1.6;
-        }
-        
-        header {
-            background: linear-gradient(135deg, var(--primary-color) 0%, #2a2a4a 100%);
-            color: white;
-            text-align: center;
-            padding: 2rem 1rem;
-            border-bottom: 4px solid var(--accent-color);
-        }
-        
-        .logo-container {
-            margin-bottom: 1.5rem;
-        }
-        
-        .logo {
-            max-width: 100%;
-            height: auto;
-            max-height: 150px;
-        }
-        
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        header p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        nav {
-            background-color: var(--dark-color);
-            padding: 1rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        
-        nav ul {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            flex-wrap: wrap;
-        }
-        
-        nav ul li {
-            margin: 0 1rem;
-        }
-        
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
-        
-        nav ul li a:hover {
-            color: var(--secondary-color);
-        }
-        
-        /* Dropdown Menu Styles */
-        .has-dropdown {
-            padding-bottom: 10px;
-            position: relative;
-        }
-        
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: var(--dark-color);
-            min-width: 250px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
-            border-radius: 5px;
-            margin-top: 0.5rem;
-            left: 50%;
-            transform: translateX(-50%);
-            overflow: hidden;
-            padding-top: 10px;
-        }
-        
-        .dropdown-content a {
-            color: white;
-            padding: 0.75rem 1rem;
-            text-decoration: none;
-            display: block;
-            text-align: left;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .dropdown-content a:last-child {
-            border-bottom: none;
-        }
-        
-        .dropdown-content a:hover {
-            background-color: rgba(255, 255, 255, 0.15);
-            color: var(--secondary-color);
-            padding-left: 1.25rem;
-        }
-        
-        .has-dropdown:hover .dropdown-content {
-            display: block;
-        }
-        
-        /* Create an invisible bridge between menu item and dropdown */
-        .has-dropdown > a::after {
-            content: "";
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 100%;
-            height: 10px;
-            background-color: transparent;
-        }
-        
-        .language-toggle {
-            background-color: var(--secondary-color);
-            padding: 0.4rem 0.8rem;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-        
-        .language-toggle:hover {
-            background-color: #c91020;
-        }
-        
-        .page-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 3rem 1rem;
-        }
-        
-        .page-title {
-            color: var(--primary-color);
-            text-align: center;
-            margin-bottom: 2rem;
-            font-size: 2.5rem;
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-        
-        .page-title::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
-        }
-        
-        .content-section {
-            margin-bottom: 4rem;
-        }
-        
-        .section-title {
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
-            position: relative;
-            padding-bottom: 0.5rem;
-            display: inline-block;
-        }
-        
-        .section-title::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 80px;
-            height: 3px;
-            background: var(--secondary-color);
-        }
-        
-        .image-container {
-            margin: 2rem 0;
-            text-align: center;
-        }
-        
-        .image-container img {
-            max-width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        .image-caption {
-            margin-top: 1rem;
-            text-align: center;
-            font-style: italic;
-            color: #666;
-        }
-        
-        .back-to-home {
-            display: inline-block;
-            margin-top: 2rem;
-            padding: 0.75rem 1.5rem;
-            background-color: var(--primary-color);
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-        
-        .back-to-home:hover {
-            background-color: #2a2a50;
-        }
-        
-        .callout-box {
-            background-color: rgba(139, 195, 74, 0.1);
-            padding: 2rem;
-            border-radius: 8px;
-            border-left: 4px solid var(--accent-green);
-            margin: 2rem 0;
-        }
-        
-        .callout-box h3 {
-            color: var(--accent-green);
-            margin-bottom: 1rem;
-        }
-        
-        footer {
-            background: linear-gradient(135deg, var(--dark-color) 0%, #000 100%);
-            color: white;
-            text-align: center;
-            padding: 2rem 1rem;
-            border-top: 4px solid var(--accent-color);
-        }
-        
-        .social-links {
-            display: flex;
-            justify-content: center;
-            margin: 1.5rem 0;
-            gap: 1.5rem;
-        }
-        
-        .social-links a {
-            color: white;
-            font-size: 1.5rem;
-            transition: color 0.3s;
-        }
-        
-        .social-links a:hover {
-            color: var(--secondary-color);
-        }
-        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--light-color); color: var(--dark-color); line-height: 1.6; font-family: 'Barlow', sans-serif; }
+
+        .nav-top { background-color: var(--dark-color); padding: 0 2rem; display: flex; justify-content: flex-end; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .nav-top a { color: rgba(255,255,255,0.65); text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.5rem 0.9rem; transition: color 0.2s; }
+        .nav-top a:hover { color: white; }
+        .nav-top .lang-btn { background-color: var(--secondary-color); color: white; padding: 0.45rem 1rem; margin-left: 0.5rem; }
+        nav { background-color: var(--secondary-color); padding: 0; box-shadow: 0 3px 0 rgba(0,0,0,0.35); position: sticky; top: 0; z-index: 100; display: flex; align-items: stretch; }
+        .nav-brand { display: flex; align-items: center; padding: 0 1.5rem; background-color: var(--dark-color); flex-shrink: 0; text-decoration: none; border-right: 2px solid var(--accent-color); }
+        .nav-brand span { color: var(--accent-color); font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 0.95rem; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.2; max-width: 130px; }
+        .nav-main-links { display: flex; list-style: none; margin: 0; padding: 0; flex: 1; }
+        .nav-main-links > li { position: relative; }
+        .nav-main-links > li > a { color: white; text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: 0.08em; text-transform: uppercase; display: flex; align-items: center; padding: 0 1.1rem; height: 100%; min-height: 48px; transition: background-color 0.15s; position: relative; white-space: nowrap; }
+        .nav-main-links > li > a::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background-color: white; transform: scaleX(0); transition: transform 0.2s; }
+        .nav-main-links > li > a:hover, .nav-main-links > li > a.active { background-color: rgba(0,0,0,0.18); }
+        .nav-main-links > li > a.active::after, .nav-main-links > li > a:hover::after { transform: scaleX(1); }
+        .chevron { display: inline-block; margin-left: 5px; font-size: 0.65rem; transition: transform 0.2s; }
+        .mega-menu { display: none; position: absolute; top: 100%; left: 0; background-color: var(--dark-color); border-top: 3px solid var(--secondary-color); box-shadow: 0 6px 0 rgba(0,0,0,0.3); z-index: 200; padding: 1.5rem 2rem; min-width: 320px; white-space: normal; }
+        .mega-menu.wide { min-width: 480px; }
+        .mega-menu-label { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.4rem; }
+        .mega-menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.25rem 1.5rem; }
+        .mega-menu-grid.single-col { grid-template-columns: 1fr; }
+        .mega-menu a { color: rgba(255,255,255,0.82); text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: 0.04em; text-transform: uppercase; padding: 0.5rem 0.6rem; display: block; border-left: 3px solid transparent; transition: all 0.15s; }
+        .mega-menu a:hover { color: white; border-left-color: var(--secondary-color); padding-left: 0.9rem; background-color: rgba(255,255,255,0.04); }
+        .has-dropdown:hover .mega-menu { display: block; }
+        .has-dropdown:hover > a .chevron { transform: rotate(180deg); }
+        .nav-hamburger { display: none; }
+
+        /* HERO */
+        .hero { background: linear-gradient(160deg, #0a1f0a 0%, #011627 100%); color: white; padding: 4rem 2rem 3rem; position: relative; overflow: hidden; border-bottom: 5px solid var(--accent-green); }
+        .hero::before { content: ""; position: absolute; top: 0; right: 0; bottom: 0; width: 40%; background: repeating-linear-gradient(-30deg, rgba(139,195,74,0.05) 0px, rgba(139,195,74,0.05) 2px, transparent 2px, transparent 16px); pointer-events: none; }
+        .hero-label { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-green); margin-bottom: 0.75rem; }
+        .hero h1 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 4rem; text-transform: uppercase; line-height: 1; max-width: 700px; margin-bottom: 1.25rem; }
+        .hero p { font-size: 1.1rem; max-width: 640px; color: rgba(255,255,255,0.78); border-left: 3px solid var(--accent-green); padding-left: 1rem; }
+
+        /* PAGE ANCHOR NAV */
+        .page-nav { background-color: white; border-bottom: 2px solid #e0e0e0; padding: 0 2rem; display: flex; gap: 0; overflow-x: auto; }
+        .page-nav a { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; color: #555; text-decoration: none; padding: 0.85rem 1.25rem; border-bottom: 3px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+        .page-nav a:hover { color: var(--primary-color); border-bottom-color: var(--accent-green); }
+
+        /* SHARED SECTION STYLES */
+        .content-section { max-width: 1100px; margin: 0 auto; padding: 3.5rem 2rem; }
+        .content-section h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 2.2rem; text-transform: uppercase; color: var(--primary-color); margin-bottom: 1.25rem; border-left: 5px solid var(--accent-green); padding-left: 1rem; }
+        .content-section h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.3rem; text-transform: uppercase; color: var(--primary-color); margin: 2rem 0 0.75rem; }
+        .content-section p { font-size: 1.05rem; margin-bottom: 1.25rem; max-width: 780px; color: #222; }
+
+        .dark-section { background-color: var(--dark-color); padding: 3.5rem 2rem; }
+        .dark-section-inner { max-width: 1100px; margin: 0 auto; }
+        .dark-section h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 2.2rem; text-transform: uppercase; color: white; margin-bottom: 1.5rem; border-left: 5px solid var(--accent-green); padding-left: 1rem; }
+        .dark-section h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.2rem; text-transform: uppercase; color: var(--accent-green); margin: 2rem 0 0.75rem; }
+        .dark-section p { font-size: 1rem; color: rgba(255,255,255,0.75); margin-bottom: 1.1rem; max-width: 780px; }
+
+        .mid-section { background-color: var(--primary-color); padding: 3.5rem 2rem; }
+        .mid-section-inner { max-width: 1100px; margin: 0 auto; }
+        .mid-section h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 2.2rem; text-transform: uppercase; color: white; margin-bottom: 1.5rem; border-left: 5px solid var(--secondary-color); padding-left: 1rem; }
+        .mid-section h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.1rem; text-transform: uppercase; color: var(--accent-color); margin-bottom: 0.5rem; }
+        .mid-section p { font-size: 1rem; color: rgba(255,255,255,0.78); margin-bottom: 1rem; max-width: 780px; }
+
+        /* CARDS */
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; margin-top: 1.5rem; }
+        .card { border-left: 3px solid var(--accent-green); padding: 1.25rem 1.5rem; background: rgba(255,255,255,0.05); transition: transform 0.2s; }
+        .card:hover { transform: translateX(5px); }
+        .card h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.05rem; text-transform: uppercase; color: var(--accent-green); margin-bottom: 0.4rem; }
+        .card p { font-size: 0.93rem; color: rgba(255,255,255,0.72); margin: 0; }
+
+        /* POLICY PATHWAYS */
+        .pathway { border-left: 4px solid var(--accent-color); padding: 1.25rem 1.5rem; background: rgba(255,255,255,0.05); margin-bottom: 1.25rem; }
+        .pathway h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.1rem; text-transform: uppercase; color: var(--accent-color); margin-bottom: 0.5rem; }
+        .pathway p { font-size: 0.95rem; color: rgba(255,255,255,0.75); margin: 0; }
+
+        /* SERVE LIST */
+        .serve-list { list-style: none; margin: 1rem 0 1.5rem; }
+        .serve-list li { padding: 0.6rem 0.75rem; border-left: 3px solid var(--accent-green); margin-bottom: 0.5rem; background: rgba(255,255,255,0.04); font-size: 0.98rem; color: rgba(255,255,255,0.8); }
+
+        /* PROCESS STEPS */
+        .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.25rem; margin-top: 1.5rem; }
+        .process-step { background: rgba(255,255,255,0.04); padding: 1.25rem; border-bottom: 3px solid var(--accent-green); }
+        .step-num { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 2rem; color: var(--secondary-color); line-height: 1; margin-bottom: 0.4rem; }
+        .process-step h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.95rem; text-transform: uppercase; color: white; margin-bottom: 0.4rem; }
+        .process-step p { font-size: 0.88rem; color: rgba(255,255,255,0.62); margin: 0; }
+
+        /* BLOCKQUOTE */
+        blockquote { border-left: 4px solid var(--accent-green); padding: 1rem 1.5rem; margin: 1.5rem 0; background: rgba(255,255,255,0.04); font-style: italic; color: rgba(255,255,255,0.8); font-size: 1rem; max-width: 700px; }
+        blockquote cite { display: block; margin-top: 0.5rem; font-style: normal; font-size: 0.85rem; color: rgba(255,255,255,0.5); }
+
+        /* VALUE CHAIN GRID */
+        .intermediary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-top: 1.25rem; }
+        .intermediary { background: rgba(255,255,255,0.06); padding: 1rem; text-align: center; border-top: 3px solid var(--secondary-color); }
+        .intermediary h4 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 0.95rem; text-transform: uppercase; color: white; margin-bottom: 0.3rem; }
+        .intermediary p { font-size: 0.83rem; color: rgba(255,255,255,0.6); margin: 0; }
+
+        /* BULLET LIST (light bg) */
+        .bullet-list { list-style: none; margin: 0.5rem 0 1.5rem; }
+        .bullet-list li { padding: 0.5rem 0 0.5rem 1rem; border-left: 3px solid var(--secondary-color); margin-bottom: 0.5rem; color: #333; font-size: 1rem; }
+
+        /* SIGN UP */
+        .signup-section { background: linear-gradient(135deg, #0d200d, #011627); padding: 4rem 2rem; }
+        .signup-inner { max-width: 680px; margin: 0 auto; text-align: center; }
+        .signup-inner h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 2.8rem; text-transform: uppercase; color: white; margin-bottom: 0.75rem; }
+        .signup-inner > p { color: rgba(255,255,255,0.75); margin-bottom: 2rem; font-size: 1.05rem; }
+        .signup-form { display: flex; flex-direction: column; gap: 1rem; text-align: left; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .form-group label { display: block; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 0.4rem; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.75rem; background: rgba(255,255,255,0.08); border: 2px solid rgba(255,255,255,0.15); color: white; font-family: 'Barlow', sans-serif; font-size: 1rem; transition: border-color 0.2s; }
+        .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.35); }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--accent-green); }
+        .form-group select option { background: var(--dark-color); color: white; }
+        .form-group textarea { min-height: 110px; resize: vertical; }
+        .submit-btn { background-color: var(--accent-green); color: var(--dark-color); border: none; padding: 1rem 2rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.1rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: background-color 0.2s; align-self: flex-start; }
+        .submit-btn:hover { background-color: #6ea832; }
+
+        footer { background: linear-gradient(135deg, var(--dark-color) 0%, #000 100%); color: white; text-align: center; padding: 2rem 1rem; border-top: 4px solid var(--accent-color); }
+        footer h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.5rem; }
+        footer p { color: rgba(255,255,255,0.6); font-size: 0.9rem; margin-top: 0.5rem; }
+        .social-links { display: flex; justify-content: center; margin: 1rem 0; gap: 1.5rem; }
+        .social-links a { color: white; font-size: 1.4rem; transition: color 0.2s; }
+        .social-links a:hover { color: var(--secondary-color); }
+
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 2rem;
-            }
-            
-            nav ul {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            nav ul li {
-                margin: 0.5rem 0;
-            }
-            
-            .dropdown-content {
-                position: static;
-                transform: none;
-                box-shadow: none;
-                margin-top: 0.5rem;
-                display: none;
-                width: 100%;
-                border-radius: 0;
-            }
-            
-            .has-dropdown:hover .dropdown-content {
-                display: none; /* Don't show on hover for mobile */
-            }
-            
-            .has-dropdown.active .dropdown-content {
-                display: block;
-            }
+            .hero h1 { font-size: 2.5rem; }
+            .form-row { grid-template-columns: 1fr; }
+            nav { flex-direction: column; }
+            .nav-brand { padding: 0.75rem 1rem; justify-content: center; }
+            .nav-main-links { flex-direction: column; display: none; }
+            .nav-main-links.open { display: flex; }
+            .nav-main-links > li > a { padding: 0.75rem 1rem; min-height: auto; }
+            .mega-menu { position: static; display: none !important; box-shadow: none; padding: 0.5rem 1rem 1rem 2rem; border-top: none; border-left: 3px solid var(--secondary-color); margin: 0 1rem 0.5rem; }
+            .has-dropdown.open .mega-menu { display: block !important; }
+            .mega-menu-grid { grid-template-columns: 1fr; }
+            .nav-hamburger { display: flex; align-items: center; background: none; border: none; color: white; font-size: 1.4rem; padding: 0.75rem 1rem; cursor: pointer; margin-left: auto; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <header>
-        <div class="logo-container">
-            <!-- Replace with your actual logo path -->
-            <img src="images/pluri-logo.jpg" alt="Plurinational Land Reform in CA Working Group Logo" class="logo">
-        </div>
-        <h1>Parcel Identification & Acquisition Planning</h1>
-        <p>Providing strategic land identification services for landless communities</p>
-    </header>
-    
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="index.html#about">About Us</a></li>
+
+    <div class="nav-top">
+        <a href="index.html#get-involved">Contact</a>
+        <a href="parcel-identification-es.html" class="lang-btn">Español</a>
+    </div>
+
+    <nav id="main-nav">
+        <a href="index.html" class="nav-brand"><span>← PLRCAWG</span></a>
+        <button class="nav-hamburger" id="hamburger">☰ Menu</button>
+        <ul class="nav-main-links" id="nav-links">
+            
+            <li><a href="OurCompass.html">Theory of Change</a></li>
+            <li><a href="territorial_markets.html">Order Now ↗</a></li>
             <li class="has-dropdown">
-                <a href="#mission">Our Work</a>
-                <div class="dropdown-content">
-                    <a href="regional-mapping.html">Regional Mapping Analysis</a>
-                    <a href="absentee-landowner.html">Absentee Landownership Impact Analysis</a>
-                    <a href="parcel-identification.html">Parcel Identification & Acquisition Planning</a>
-                    <a href="public-leasing.html">Public Leasing Advocacy</a>
-                    <a href="suitability-analysis.html">Grazing & Farming Suitability</a>
-                    <a href="agroecological-training.html">Agroecological Training & Leadership Development</a>
+                <a href="#">Our Initiatives <span class="chevron">▼</span></a>
+                <div class="mega-menu wide">
+                    <div class="mega-menu-label">Initiatives</div>
+                    <div class="mega-menu-grid single-col">
+                        <a href="territorial_markets_about.html">Territorial Markets</a>
+                        <a href="engineering-brigades.html">Engineering Brigades</a>
+                        <a href="parcel-identification.html">Land Acquisition</a>
+                        <a href="agroecological-training.html">Political Education</a>
+                    </div>
                 </div>
             </li>
-            <li><a href="OurCompass.html">Our Compass</a></li>
-            <li><a href="for-students.html">For Students</a></li>
-            <li><a href="index.html#events">Events</a></li>
-            <li><a href="index.html#get-involved">Contact</a></li>
-            <li><a href="spanish.html" class="language-toggle">Español</a></li>
+            <li class="has-dropdown">
+                <a href="#">Land Reform School <span class="chevron">▼</span></a>
+                <div class="mega-menu">
+                    <div class="mega-menu-label">Programs</div>
+                    <div class="mega-menu-grid single-col">
+                        <a href="summer-school.html">Summer School</a>
+                        <a href="winter-school.html">Winter School</a>
+                    </div>
+                </div>
+            </li>
+            <li class="has-dropdown">
+                <a href="#">Join Us <span class="chevron">▼</span></a>
+                <div class="mega-menu">
+                    <div class="mega-menu-label">Chapters</div>
+                    <div class="mega-menu-grid single-col">
+                        <a href="join-general.html">General</a>
+                        <a href="join-bay-area.html">Bay Area</a>
+                        <a href="join-la.html">Los Angeles</a>
+                        <a href="join-san-diego.html">San Diego</a>
+                    </div>
+                </div>
+            </li>
         </ul>
     </nav>
-    
-    <div class="page-content">
-        <h1 class="page-title">Parcel Identification & Acquisition Planning</h1>
-        
-        <div class="content-section">
-            <p>Our parcel identification and acquisition planning work directly supports landless communities seeking to access agricultural land in California. We combine geospatial analysis, legal expertise, and community organizing to identify strategic parcels for acquisition and develop realistic pathways to ownership or access.</p>
-        </div>
-        
-        <div class="content-section">
-            <h2 class="section-title">Free Services for Landless Communities</h2>
-            
-            <div class="callout-box">
-                <h3>Who We Serve</h3>
-                <p>We provide these services at no cost to poor landless peoples and communities, including:</p>
-                <ul>
-                    <li>Tenant farmers seeking land ownership</li>
-                    <li>Farmworkers interested in transitioning to independent farming</li>
-                    <li>Federally recognized indigenous nations working to expand their land base</li>
-                    <li>Non-federally recognized indigenous nations seeking to regain ancestral territories</li>
-                    <li>Cooperative farming initiatives led by Black, Indigenous, and other people of color</li>
-                </ul>
-                <p><strong>Please reach out to us if your community needs support with land identification and acquisition planning.</strong></p>
-            </div>
-            
-            <p>Our approach is deeply collaborative. We work directly with community members to understand their specific needs, agricultural goals, and cultural relationships to land. Rather than imposing external solutions, we provide technical support that empowers communities to make their own informed decisions about land acquisition.</p>
-        </div>
-        
-        <div class="content-section">
-            <h2 class="section-title">Coachella Valley Initiative</h2>
-            
-            <div class="image-container">
-                <img src="images/Valle de Coachella.png" alt="Vamos hacia la Reforma Agraria Integral y Popular en la Valle de Coachella">
-                <p class="image-caption">"Vamos hacia la Reforma Agraria Integral y Popular en la Valle de Coachella" - Community planning document</p>
-            </div>
-            
-            <p>The Coachella Valley represents one of our primary focus areas for community-led parcel identification. This region exemplifies many of the challenges and opportunities faced by agricultural workers throughout California:</p>
-            
-            <ul>
-                <li>Large concentration of farmworker communities with deep agricultural knowledge</li>
-                <li>Significant presence of absentee landowners and corporate agricultural interests</li>
-                <li>Rising land prices due to development pressure and agricultural intensification</li>
-                <li>Complex water rights issues and environmental challenges</li>
-                <li>Indigenous communities with historical and ongoing relationships to the land</li>
-            </ul>
-            
-            <p>Our work in the Coachella Valley has focused on identifying:</p>
-            
-            <ul>
-                <li>Underutilized agricultural parcels suitable for small-scale, diversified farming</li>
-                <li>Land with secure water rights that could support agroecological practices</li>
-                <li>Publicly owned lands that could be transitioned to community agricultural use</li>
-                <li>Parcels suitable for cooperative ownership models</li>
-            </ul>
-        </div>
-        
-        <div class="content-section">
-            <h2 class="section-title">Our Collaborative Process</h2>
-            
-            <p>Our parcel identification and acquisition planning process typically includes:</p>
-            
-            <ol>
-                <li><strong>Community Needs Assessment:</strong> Working with community members to understand their specific land needs, agricultural goals, and capacity</li>
-                <li><strong>Regional Land Analysis:</strong> Using GIS and other tools to identify potential parcels based on community criteria</li>
-                <li><strong>Legal and Financial Analysis:</strong> Researching ownership, zoning, water rights, and potential acquisition pathways</li>
-                <li><strong>Acquisition Strategy Development:</strong> Collaboratively developing realistic plans for land acquisition through purchase, lease, partnership, or policy advocacy</li>
-                <li><strong>Funding Research:</strong> Identifying potential funding sources, including grants, loans, and innovative financing mechanisms</li>
-                <li><strong>Technical Support:</strong> Providing ongoing assistance throughout the acquisition process</li>
-            </ol>
-            
-            <p>While our primary focus is on supporting communities to acquire their own land, we recognize that full ownership is not always immediately achievable given California's extreme land prices. Our work therefore includes developing alternative models of land access, including:</p>
-            
-            <ul>
-                <li>Long-term secure leases with path-to-ownership provisions</li>
-                <li>Community land trust models</li>
-                <li>Cooperative ownership structures</li>
-                <li>Public land access agreements</li>
-                <li>Partnerships with supportive landowners</li>
-            </ul>
-        </div>
-        
-        <div class="content-section">
-            <h2 class="section-title">Contact Us for Support</h2>
-            
-            <p>If your community is seeking support with land identification and acquisition planning, please reach out to us. We are committed to providing these services at no cost to landless peoples and communities throughout California.</p>
-            
-            <p>While our capacity is limited, we prioritize working with those most impacted by historical and ongoing land dispossession, particularly Indigenous communities and farmworker communities seeking to transition to independent farming.</p>
-        </div>
-    
-                <li>Email: <a href="mailto:pluricalifornia@gmail.com">pluricalifornia@gmail.com</a></li>
-                <li>Instagram: <a href="https://instagram.com/plurinational.landreform_cawg">@plurinational.landreform_cawg</a></li>
-            </ul>
-        </section>
-        <a href="index.html" class="back-to-home">Back to Home</a>
+
+    <!-- HERO -->
+    <div class="hero">
+        <div class="hero-label">Initiative 03 — Our Initiatives</div>
+        <h1>Land Acquisition</h1>
+        <p>Aiding landless campesin@ communities in securing tenure through regional mapping, absentee landownership analysis, parcel identification, and public leasing advocacy — because land access is the foundation of all ecological and economic viability.</p>
     </div>
-    
+
+    <!-- PAGE ANCHOR NAV -->
+    <nav class="page-nav">
+        <a href="#foundation">Foundation</a>
+        <a href="#regional-mapping">Regional Mapping</a>
+        <a href="#absentee">Absentee Ownership</a>
+        <a href="#parcel-id">Parcel Identification</a>
+        <a href="#public-leasing">Public Leasing</a>
+        <a href="#get-support">Get Support</a>
+    </nav>
+
+    <!-- FOUNDATION -->
+    <div class="content-section" id="foundation">
+        <h2>Land Is the Foundation</h2>
+        <p>Without secure access to land, everything else collapses. Agroecological farming cannot be sustained across generations by farmers who have no tenure — who can be displaced at any time by rising rents, absentee landowners, or corporate buyouts.</p>
+        <p>The Land Acquisition initiative combines four integrated bodies of work: regional mapping to understand where and how land is held; absentee landownership analysis to document patterns of extraction; parcel identification to directly support landless communities seeking specific land; and public leasing advocacy to open alternative pathways through state and public land systems.</p>
+        <p>These are not separate research projects. They are coordinated tools in the service of one goal — putting land in the hands of the communities who will steward it with dignity and care.</p>
+    </div>
+
+    <!-- REGIONAL MAPPING -->
+    <div class="dark-section" id="regional-mapping">
+        <div class="dark-section-inner">
+            <h2>Regional Mapping Analysis</h2>
+            <p>Our regional mapping analysis focuses on understanding the complex relationships between land use, ownership, agricultural potential, and ecological systems across California. Using SSURGO datasets, farmland classification classes, land use datasets, and parcel data, we identify patterns that inform equitable land reform strategies and support communities in targeting specific acquisition pathways.</p>
+
+            <h3>Policy Pathways</h3>
+            <p>Our methodology identifies four distinct policy pathways for expanding land access to landless peoples:</p>
+
+            <div class="pathway">
+                <h3>Prime Farmland on Undeveloped Lands</h3>
+                <p>The state could adopt a land-use change policy cultivating unused, productive land — a policy applied worldwide when expanding access to landless populations. The Williamson Act already provides a legal and tax incentive basis; more robust reforms such as a social function of property clause could provide stronger foundations. Combining agroecology with newly opened lands creates economic opportunity for landless peoples while protecting ecological health.</p>
+            </div>
+            <div class="pathway">
+                <h3>Prime Farmland on Federally-Recognized Tribal Lands</h3>
+                <p>Many reservation lands are zoned as "conservation" and "recreation." Contemporary state tribal land buy-back funds and external foundations may provide capital to transform this land for enrolled tribal members — who have increasingly criticized "landback" transactions being restricted to conservation use.</p>
+            </div>
+            <div class="pathway">
+                <h3>Prime Farmland on Recreational & Open Space Lands</h3>
+                <p>These parcels require change in land use codes at the state, county, or city level. While politically challenging, this is not impossible — it requires coalition building and innovations in agroecological, communitarian use. Urban agriculture tax incentives and Williamson Act provisions can provide financial pathways. Ground leases with government-owned land can facilitate access for landless peoples seeking agricultural production.</p>
+            </div>
+            <div class="pathway">
+                <h3>Prime Farmland in Agricultural Use</h3>
+                <p>These parcels require negotiation with current private landowners — particularly those approaching retirement age. A supportive state government can help communities access acquisition funds and provide incentives to facilitate transitions from retiring private owners to community ownership.</p>
+            </div>
+
+            <h3>Unproductive Lands & Social Function of Property</h3>
+            <p>A key aspect of our mapping work identifies "unproductive lands" — parcels currently underutilized or managed in ways that do not fulfill their social and ecological potential. We draw on the concept of the <strong style="color:white;">social function of property</strong> — a legal doctrine recognized in many Latin American constitutions establishing that property ownership carries social obligations. This principle has been fundamental to legitimate land reform programs throughout the Americas.</p>
+            <div class="card-grid">
+                <div class="card"><h3>Fallow Absentee Land</h3><p>Absentee-owned parcels that remain fallow despite strong agricultural potential.</p></div>
+                <div class="card"><h3>Speculative Holdings</h3><p>Land held speculatively — driving up prices without productive or community use.</p></div>
+                <div class="card"><h3>Degraded Parcels</h3><p>Lands that could benefit from agroecological restoration and community stewardship.</p></div>
+                <div class="card"><h3>Exploitative Operations</h3><p>Corporate-owned lands operated through exploitative labor practices with no community benefit.</p></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ABSENTEE LANDOWNERSHIP -->
+    <div class="content-section" id="absentee">
+        <h2>Absentee Landownership Analysis</h2>
+        <p>Our absentee landownership tracking project investigates the relationship between land ownership patterns and economic outcomes in agricultural communities. We document how absentee ownership affects local economies, labor conditions, and environmental practices across California — with particular focus on the Western Coachella Valley, where we presented findings at the February 2025 California Agricultural Land Equity Task Force Meeting.</p>
+
+        <h3>Defining Absentee Landownership</h3>
+        <p>We define absentee landowners as individuals or entities who own agricultural land but do not reside in the community where the land is located, do not participate directly in its management, and primarily extract value from the land without contributing to local economic development or environmental stewardship. Key characteristics include:</p>
+        <ul class="bullet-list">
+            <li>Geographical distance between owner's residence and the owned land</li>
+            <li>Limited or no participation in day-to-day agricultural operations</li>
+            <li>Primarily economic relationship to the land — as opposed to cultural, historical, or ecological</li>
+            <li>Extraction of land value and agricultural profits from rural communities to urban centers and adjacent wealthy locations</li>
+        </ul>
+        <p>Our research has found that absentee ownership correlates with more exploitative labor practices, less investment in soil health and ecological stewardship, and reduced community economic benefits from agricultural production.</p>
+
+        <h3>Beyond Land Ownership: Value Chain Analysis</h3>
+        <p>Our research demonstrates that agrarian reform cannot focus solely on land ownership. The agricultural value chain includes multiple points where wealth is transferred away from those who work the land. Even when land is owned locally, the majority of agricultural value is often captured by non-local intermediaries — which is why Territorial Markets are a necessary complement to land acquisition work.</p>
+    </div>
+
+    <!-- VALUE CHAIN -->
+    <div class="mid-section">
+        <div class="mid-section-inner">
+            <h2>Points of Extraction in the Value Chain</h2>
+            <p>Comprehensive agrarian reform must address these intermediary relationships and create alternative value chains that retain wealth within farming communities — through cooperative processing, community-controlled distribution, direct producer-to-consumer relationships, and worker ownership of value-adding processes.</p>
+            <div class="intermediary-grid">
+                <div class="intermediary"><h4>Input Suppliers</h4><p>Control seeds, fertilizers, and equipment</p></div>
+                <div class="intermediary"><h4>Processors</h4><p>Transform raw agricultural products</p></div>
+                <div class="intermediary"><h4>Distributors</h4><p>Control market access and logistics</p></div>
+                <div class="intermediary"><h4>Retailers</h4><p>Capture significant portions of consumer food dollars</p></div>
+                <div class="intermediary"><h4>Financial Institutions</h4><p>Profit from agricultural financing and the assetization of farmland</p></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PARCEL IDENTIFICATION -->
+    <div class="dark-section" id="parcel-id">
+        <div class="dark-section-inner">
+            <h2>Parcel Identification & Acquisition Planning</h2>
+            <p>Our parcel identification work directly supports landless communities seeking to access agricultural land in California. We combine geospatial analysis, legal expertise, and community organizing to identify strategic parcels for acquisition and develop realistic pathways to ownership or access. <strong style="color:white;">All services are provided at no cost to landless peoples and communities.</strong></p>
+
+            <h3>Who We Serve</h3>
+            <ul class="serve-list">
+                <li>Tenant farmers seeking land ownership</li>
+                <li>Farmworkers interested in transitioning to independent farming</li>
+                <li>Federally recognized indigenous nations working to expand their land base</li>
+                <li>Non-federally recognized indigenous nations seeking to regain ancestral territories</li>
+                <li>Cooperative farming initiatives led by Black, Indigenous, and other peoples of color</li>
+            </ul>
+
+            <h3>Our Collaborative Process</h3>
+            <p>Our approach is deeply collaborative. Rather than imposing external solutions, we provide technical support that empowers communities to make their own informed decisions. The process typically includes:</p>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-num">01</div>
+                    <h3>Community Needs Assessment</h3>
+                    <p>Understanding land needs, agricultural goals, and organizational capacity of the community.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-num">02</div>
+                    <h3>Regional Land Analysis</h3>
+                    <p>Using GIS tools to identify potential parcels based on community criteria and agricultural suitability.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-num">03</div>
+                    <h3>Legal & Financial Analysis</h3>
+                    <p>Researching ownership, zoning, water rights, and potential acquisition pathways.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-num">04</div>
+                    <h3>Acquisition Strategy</h3>
+                    <p>Collaboratively developing realistic plans through purchase, lease, partnership, or policy advocacy.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-num">05</div>
+                    <h3>Funding Research</h3>
+                    <p>Identifying grants, loans, and innovative financing mechanisms suited to the community's situation.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-num">06</div>
+                    <h3>Ongoing Support</h3>
+                    <p>Providing technical assistance throughout the acquisition process, not just at the planning stage.</p>
+                </div>
+            </div>
+
+            <h3>Alternative Models of Land Access</h3>
+            <p>Full ownership is not always immediately achievable given California's extreme land prices. Our work includes developing alternative access models:</p>
+            <div class="card-grid">
+                <div class="card"><h3>Long-Term Secure Leases</h3><p>Leases with path-to-ownership provisions providing tenure security for agroecological investment.</p></div>
+                <div class="card"><h3>Community Land Trusts</h3><p>CLT models that permanently remove land from the speculative market while ensuring community access.</p></div>
+                <div class="card"><h3>Cooperative Ownership</h3><p>Cooperative structures that distribute ownership and governance among community members.</p></div>
+                <div class="card"><h3>Public Land Agreements</h3><p>Negotiated access to public lands through leasing, use agreements, and sustained advocacy.</p></div>
+            </div>
+
+            <h3>Focus: Coachella Valley</h3>
+            <p>The Coachella Valley is one of our primary focus areas for community-led parcel identification — exemplifying the challenges faced by agricultural workers throughout California. It contains large concentrations of farmworker communities with deep agricultural knowledge, significant absentee and corporate landholding, rising development pressure, complex water rights, and indigenous communities with historical and ongoing relationships to the land.</p>
+        </div>
+    </div>
+
+    <!-- PUBLIC LEASING -->
+    <div class="content-section" id="public-leasing">
+        <h2>Public Leasing Advocacy</h2>
+        <p>Given the extreme unaffordability of California's land market, public land leasing represents a critical pathway for expanding land access and promoting food sovereignty. Our public leasing advocacy develops policy frameworks and practical models for making public lands available to landless peoples for regenerative agriculture.</p>
+
+        <h3>Suitability Analysis of Public Lands</h3>
+        <p>Our suitability analysis identifies public lands that could support regenerative agriculture without compromising ecological integrity. We analyze soil quality and agricultural potential, water availability and rights, current ecological condition, current public use patterns, infrastructure and accessibility, proximity to potential stewards, and historical land relationships — particularly with indigenous communities.</p>
+
+        <h3>Indigenous Critiques of Fortress Conservation</h3>
+        <p>Our advocacy is informed by indigenous critiques of dominant conservation paradigms that have historically excluded human communities from their traditional lands in the name of preservation. In California, the creation of "wilderness" areas, parks, and protected lands has often involved the removal and exclusion of indigenous peoples who had stewarded these landscapes for millennia. Dominant conservation models often reinforce colonial relationships by creating artificial boundaries between humans and "nature," ignoring the role of indigenous land management in creating California's diverse ecosystems, and privileging recreational access for predominantly white and affluent users while excluding traditional land uses by indigenous and marginalized communities.</p>
+    </div>
+
+    <!-- CONSERVATION PARADIGMS -->
+    <div class="mid-section">
+        <div class="mid-section-inner">
+            <h2>Transforming Conservation Paradigms</h2>
+            <blockquote>
+                "The conservation movement, born from the settler-colonial imagination, created wilderness by removing Indigenous people from their lands. Now we face ecological crises precisely because of this separation of humans from the natural world."
+                <cite>— Indigenous environmental justice scholar</cite>
+            </blockquote>
+            <p>Our public leasing advocacy seeks to transcend Human/Nature divisions and recognize our role as ecological stewards who balance social reproduction and the ecosystems we are embedded in. The false dichotomy between environmental preservation and agriculture emerges from a colonial worldview — regenerative agricultural systems managed by communities with deep relationships to the land can enhance ecosystem function while producing food for human needs.</p>
+
+            <h2 style="margin-top: 2.5rem;">Usufructuary Rights & State Intervention</h2>
+            <p>We advocate for these policy changes to address the structural inequities of California's land market:</p>
+            <div class="card-grid">
+                <div class="card" style="border-left-color:var(--accent-color);">
+                    <h3 style="color:var(--accent-color);">Usufructuary Property Regimes</h3>
+                    <p>Development of usufructuary regimes on public lands granting rights to use and derive income from land with state-guaranteed tenure.</p>
+                </div>
+                <div class="card" style="border-left-color:var(--accent-color);">
+                    <h3 style="color:var(--accent-color);">Long-Term Secure Leases</h3>
+                    <p>20–90+ year leases providing sufficient tenure security for agroecological investment and intergenerational continuity.</p>
+                </div>
+                <div class="card" style="border-left-color:var(--accent-color);">
+                    <h3 style="color:var(--accent-color);">Prioritized Access</h3>
+                    <p>Prioritization for historically marginalized communities — indigenous peoples, farmworkers, Black tenants, and other landless rural communities with their geographic specifications.</p>
+                </div>
+                <div class="card" style="border-left-color:var(--accent-color);">
+                    <h3 style="color:var(--accent-color);">Cooperative Leasing</h3>
+                    <p>Cooperative lease arrangements supporting collective land management and integration of traditional ecological knowledge and contemporary agroecological practices.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SIGN UP -->
+    <div class="signup-section" id="get-support">
+        <div class="signup-inner">
+            <h2>Request Support or Get Involved</h2>
+            <p>Whether your community needs direct land acquisition support, or you want to contribute as a researcher, legal worker, or fundraiser — reach out. Services are provided at no cost to landless peoples and communities.</p>
+            <form class="signup-form" onsubmit="return false;">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input type="text" placeholder="First name">
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input type="text" placeholder="Last name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" placeholder="you@example.com">
+                </div>
+                <div class="form-group">
+                    <label>Region</label>
+                    <select id="region-select" onchange="toggleOtherRegion(this)">
+                        <option value="">Select your region</option>
+                        <option>Bay Area</option>
+                        <option>Los Angeles</option>
+                        <option>San Diego</option>
+                        <option>Inland Empire</option>
+                        <option>Central Valley</option>
+                        <option>Coachella Valley</option>
+                        <option>Central Coast</option>
+                        <option>Northern California</option>
+                        <option>Imperial Valley</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div class="form-group" id="other-region-group" style="display:none;">
+                    <label>Please specify your region</label>
+                    <input type="text" placeholder="Enter your region...">
+                </div>
+                <div class="form-group">
+                    <label>I am reaching out as a...</label>
+                    <select>
+                        <option value="">Select your role</option>
+                        <option>Landless Farmer / Farmworker</option>
+                        <option>Indigenous Community Member</option>
+                        <option>Cooperative / Community Organization</option>
+                        <option>GIS / Mapping Researcher</option>
+                        <option>Legal Worker / Researcher</option>
+                        <option>Fundraiser / Donor</option>
+                        <option>Community Organizer</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Tell us about your situation or how you'd like to contribute</label>
+                    <textarea placeholder="Describe your community's land situation, your skills, areas of interest, or how you'd like to get involved..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Get In Touch →</button>
+            </form>
+        </div>
+    </div>
+
     <footer>
         <h3>Plurinational Land Reform in CA Working Group</h3>
         <p>Working on stolen Ohlone, Miwok, Yokuts, Chumash, Tongva, Cahuilla, Kumeyaay, Acjachemen, and many other indigenous lands</p>
-        
         <div class="social-links">
             <a href="https://instagram.com/plurinational.landreform_cawg" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
             <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
         </div>
-        
         <p>&copy; 2025 Plurinational Land Reform in CA Working Group. All rights reserved.</p>
     </footer>
 
     <script>
-        // Mobile dropdown toggle
-        document.addEventListener('DOMContentLoaded', function() {
-            const dropdownLinks = document.querySelectorAll('.has-dropdown > a');
-            
-            dropdownLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    if (window.innerWidth <= 768) {
-                        e.preventDefault();
-                        this.parentElement.classList.toggle('active');
-                    }
-                });
-            });
-            
-            // Ensure dropdown items work properly
-            const dropdownItems = document.querySelectorAll('.dropdown-content a');
-            dropdownItems.forEach(item => {
-                item.addEventListener('click', function(e) {
-                    // Allow normal navigation when clicking on dropdown items
-                    window.location.href = this.getAttribute('href');
-                });
+        document.getElementById('hamburger').addEventListener('click', function() {
+            document.getElementById('nav-links').classList.toggle('open');
+        });
+        document.querySelectorAll('.has-dropdown > a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) { e.preventDefault(); this.parentElement.classList.toggle('open'); }
             });
         });
+        function toggleOtherRegion(select) {
+            document.getElementById('other-region-group').style.display = select.value === 'Other' ? 'block' : 'none';
+        }
     </script>
 </body>
 </html>
