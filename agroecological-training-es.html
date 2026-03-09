@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educación Política — PLRCAWG</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3a3a6a;
+            --secondary-color: #e71d36;
+            --dark-color: #011627;
+            --light-color: #f7f7f7;
+            --accent-color: #ff9f1c;
+            --accent-green: #8bc34a;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--light-color); color: var(--dark-color); line-height: 1.6; font-family: 'Barlow', sans-serif; }
+
+        .nav-top { background-color: var(--dark-color); padding: 0 2rem; display: flex; justify-content: flex-end; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .nav-top a { color: rgba(255,255,255,0.65); text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.5rem 0.9rem; transition: color 0.2s; }
+        .nav-top a:hover { color: white; }
+        .nav-top .lang-btn { background-color: var(--secondary-color); color: white; padding: 0.45rem 1rem; margin-left: 0.5rem; }
+        nav { background-color: var(--secondary-color); padding: 0; box-shadow: 0 3px 0 rgba(0,0,0,0.35); position: sticky; top: 0; z-index: 100; display: flex; align-items: stretch; }
+        .nav-brand { display: flex; align-items: center; padding: 0 1.5rem; background-color: var(--dark-color); flex-shrink: 0; text-decoration: none; border-right: 2px solid var(--accent-color); }
+        .nav-brand span { color: var(--accent-color); font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 0.95rem; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.2; max-width: 130px; }
+        .nav-main-links { display: flex; list-style: none; margin: 0; padding: 0; flex: 1; }
+        .nav-main-links > li { position: relative; }
+        .nav-main-links > li > a { color: white; text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: 0.08em; text-transform: uppercase; display: flex; align-items: center; padding: 0 1.1rem; height: 100%; min-height: 48px; transition: background-color 0.15s; position: relative; white-space: nowrap; }
+        .nav-main-links > li > a::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background-color: white; transform: scaleX(0); transition: transform 0.2s; }
+        .nav-main-links > li > a:hover, .nav-main-links > li > a.active { background-color: rgba(0,0,0,0.18); }
+        .nav-main-links > li > a.active::after, .nav-main-links > li > a:hover::after { transform: scaleX(1); }
+        .chevron { display: inline-block; margin-left: 5px; font-size: 0.65rem; transition: transform 0.2s; }
+        .mega-menu { display: none; position: absolute; top: 100%; left: 0; background-color: var(--dark-color); border-top: 3px solid var(--secondary-color); box-shadow: 0 6px 0 rgba(0,0,0,0.3); z-index: 200; padding: 1.5rem 2rem; min-width: 320px; white-space: normal; }
+        .mega-menu.wide { min-width: 480px; }
+        .mega-menu-label { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.4rem; }
+        .mega-menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.25rem 1.5rem; }
+        .mega-menu-grid.single-col { grid-template-columns: 1fr; }
+        .mega-menu a { color: rgba(255,255,255,0.82); text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: 0.04em; text-transform: uppercase; padding: 0.5rem 0.6rem; display: block; border-left: 3px solid transparent; transition: all 0.15s; }
+        .mega-menu a:hover { color: white; border-left-color: var(--secondary-color); padding-left: 0.9rem; background-color: rgba(255,255,255,0.04); }
+        .has-dropdown:hover .mega-menu { display: block; }
+        .has-dropdown:hover > a .chevron { transform: rotate(180deg); }
+        .nav-hamburger { display: none; }
+
+        /* ── HERO — deep purple, bold political ── */
+        .hero {
+            background: linear-gradient(160deg, #1a0a2e 0%, #011627 100%);
+            color: white;
+            padding: 4rem 2rem 3rem;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 5px solid var(--primary-color);
+        }
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0; right: 0; bottom: 0; width: 50%;
+            background: repeating-linear-gradient(-60deg, rgba(58,58,106,0.12) 0px, rgba(58,58,106,0.12) 2px, transparent 2px, transparent 18px);
+            pointer-events: none;
+        }
+        .hero-label { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: #a08fff; margin-bottom: 0.75rem; }
+        .hero h1 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 4rem; text-transform: uppercase; line-height: 1; max-width: 700px; margin-bottom: 1.25rem; }
+        .hero p { font-size: 1.1rem; max-width: 620px; color: rgba(255,255,255,0.78); border-left: 3px solid #a08fff; padding-left: 1rem; }
+
+        .content-section { max-width: 1100px; margin: 0 auto; padding: 3.5rem 2rem; }
+        .content-section h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 2.2rem; text-transform: uppercase; color: var(--primary-color); margin-bottom: 1.25rem; border-left: 5px solid var(--primary-color); padding-left: 1rem; }
+        .content-section p { font-size: 1.05rem; margin-bottom: 1.25rem; max-width: 780px; color: #222; }
+
+        .curriculum { background-color: var(--primary-color); padding: 3.5rem 2rem; }
+        .curriculum-inner { max-width: 1100px; margin: 0 auto; }
+        .curriculum-inner h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 2.2rem; text-transform: uppercase; color: white; margin-bottom: 2rem; border-left: 5px solid var(--secondary-color); padding-left: 1rem; }
+        .curriculum-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+        .curriculum-card { border-left: 3px solid var(--secondary-color); padding: 1.25rem 1.5rem; background: rgba(255,255,255,0.08); transition: transform 0.2s; }
+        .curriculum-card:hover { transform: translateX(5px); }
+        .curriculum-card h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.1rem; text-transform: uppercase; color: white; margin-bottom: 0.5rem; }
+        .curriculum-card p { font-size: 0.95rem; color: rgba(255,255,255,0.7); margin: 0; }
+
+        .signup-section { background: linear-gradient(135deg, #0d0d1a, #1a0a2e); padding: 4rem 2rem; }
+        .signup-inner { max-width: 680px; margin: 0 auto; text-align: center; }
+        .signup-inner h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 2.8rem; text-transform: uppercase; color: white; margin-bottom: 0.75rem; }
+        .signup-inner p { color: rgba(255,255,255,0.75); margin-bottom: 2rem; font-size: 1.05rem; }
+        .signup-form { display: flex; flex-direction: column; gap: 1rem; text-align: left; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .form-group label { display: block; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 0.4rem; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.75rem; background: rgba(255,255,255,0.08); border: 2px solid rgba(255,255,255,0.15); color: white; font-family: 'Barlow', sans-serif; font-size: 1rem; transition: border-color 0.2s; }
+        .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.35); }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: #a08fff; }
+        .form-group select option { background: var(--dark-color); color: white; }
+        .form-group textarea { min-height: 100px; resize: vertical; }
+        .submit-btn { background-color: var(--secondary-color); color: white; border: none; padding: 1rem 2rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.1rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: background-color 0.2s; align-self: flex-start; }
+        .submit-btn:hover { background-color: #c91020; }
+
+        footer { background: linear-gradient(135deg, var(--dark-color) 0%, #000 100%); color: white; text-align: center; padding: 2rem 1rem; border-top: 4px solid var(--accent-color); }
+        footer h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.5rem; }
+        footer p { color: rgba(255,255,255,0.6); font-size: 0.9rem; margin-top: 0.5rem; }
+        .social-links { display: flex; justify-content: center; margin: 1rem 0; gap: 1.5rem; }
+        .social-links a { color: white; font-size: 1.4rem; transition: color 0.2s; }
+        .social-links a:hover { color: var(--secondary-color); }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .form-row { grid-template-columns: 1fr; }
+            nav { flex-direction: column; }
+            .nav-brand { padding: 0.75rem 1rem; justify-content: center; }
+            .nav-main-links { flex-direction: column; display: none; }
+            .nav-main-links.open { display: flex; }
+            .nav-main-links > li > a { padding: 0.75rem 1rem; min-height: auto; }
+            .mega-menu { position: static; display: none !important; box-shadow: none; padding: 0.5rem 1rem 1rem 2rem; border-top: none; border-left: 3px solid var(--secondary-color); margin: 0 1rem 0.5rem; }
+            .has-dropdown.open .mega-menu { display: block !important; }
+            .mega-menu-grid { grid-template-columns: 1fr; }
+            .nav-hamburger { display: flex; align-items: center; background: none; border: none; color: white; font-size: 1.4rem; padding: 0.75rem 1rem; cursor: pointer; margin-left: auto; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-top">
+        <a href="agroecological-training.html">English</a>
+        <a href="agroecological-training.html" class="lang-btn">English</a>
+    </div>
+    <nav id="main-nav">
+        <a href="index-es.html" class="nav-brand"><span>← PLRCAWG</span></a>
+        <button class="nav-hamburger" id="hamburger">☰ Menú</button>
+        <ul class="nav-main-links" id="nav-links">
+            <li><a href="OurCompass-es.html">Teoría del Cambio</a></li>
+            <li><a href="territorial_markets.html">Pedir Ahora ↗</a></li>
+            <li class="has-dropdown">
+                <a href="#">Nuestras Iniciativas <span class="chevron">▼</span></a>
+                <div class="mega-menu wide">
+                    <div class="mega-menu-label">Iniciativas</div>
+                    <div class="mega-menu-grid single-col">
+                        <a href="territorial_markets_about-es.html">Mercados Territoriales</a>
+                        <a href="engineering-brigades-es.html">Brigadas de Ingeniería</a>
+                        <a href="parcel-identification-es.html">Adquisición de Tierras</a>
+                        <a href="agroecological-training-es.html">Educación Política</a>
+                    </div>
+                </div>
+            </li>
+            <li class="has-dropdown">
+                <a href="#">Escuela de Reforma Agraria <span class="chevron">▼</span></a>
+                <div class="mega-menu">
+                    <div class="mega-menu-label">Programas</div>
+                    <div class="mega-menu-grid single-col">
+                        <a href="summer-school-es.html">Escuela de Verano</a>
+                        <a href="winter-school-es.html">Escuela de Invierno</a>
+                    </div>
+                </div>
+            </li>
+            <li class="has-dropdown">
+                <a href="#">Únete <span class="chevron">▼</span></a>
+                <div class="mega-menu">
+                    <div class="mega-menu-label">Capítulos</div>
+                    <div class="mega-menu-grid single-col">
+                        <a href="join-general-es.html">General</a>
+                        <a href="join-bay-area-es.html">Área de la Bahía</a>
+                        <a href="join-la-es.html">Los Ángeles</a>
+                        <a href="join-san-diego-es.html">San Diego</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <div class="hero">
+        <div class="hero-label">Iniciativa 04 — Nuestras Iniciativas</div>
+        <h1>Educación Política</h1>
+        <p>Formación arraigada en la economía política agraria, la historia de los movimientos y la agroecología como modo de reproducción social — construyendo los organizadores que llevan este trabajo adelante.</p>
+    </div>
+    <div class="content-section">
+        <h2>¿Por Qué Educación Política?</h2>
+        <p>La infraestructura sin formación es frágil. Los Mercados Territoriales, las Brigadas de Ingeniería y la Adquisición de Tierras pueden construir capacidad material real — pero solo los organizadores que entienden la lógica política de ese trabajo pueden replicarlo, defenderlo contra la cooptación y adaptarlo a nuevos territorios.</p>
+        <p>La Educación Política es la iniciativa que convierte las otras tres en replicables. Está fundamentada en la lección del instrumento político: que la formación sostenida de liderazgo comunitario es lo que construye poder duradero. No basta con hacer el trabajo — hay que entender por qué funciona, cómo se conecta con la lucha más amplia y cómo se extiende.</p>
+        <p>Nuestros programas de educación política no son académicos. Son espacios de formación para organizadores activos — personas que están participando en o construyendo activamente el trabajo de PLRCAWG y quieren profundizar su comprensión política y capacidad de organización.</p>
+    </div>
+
+    <div class="focus-areas">
+        <div class="focus-inner">
+            <h2>Áreas Curriculares</h2>
+            <div class="focus-grid">
+                <div class="focus-card">
+                    <h3>Economía Política Agraria</h3>
+                    <p>Cómo la agricultura industrial domina la tierra, los mercados y los insumos de California — y qué infraestructura alternativa interrumpe ese dominio.</p>
+                </div>
+                <div class="focus-card">
+                    <h3>Agroecología y Reproducción Social</h3>
+                    <p>La agroecología no como metodología de certificación sino como modo viviente de reproducción social — las relaciones sociales campesin@s con la tierra, el trabajo y la comunidad que sostienen la vida misma.</p>
+                </div>
+                <div class="focus-card">
+                    <h3>Tenencia de la Tierra y Estructuras Legales</h3>
+                    <p>Cómo funciona la propiedad de la tierra en California, dónde existen las vías para la tenencia colectiva y cómo la función social de la propiedad fundamenta el trabajo de adquisición de tierras.</p>
+                </div>
+                <div class="focus-card">
+                    <h3>Historia del Movimiento</h3>
+                    <p>Lecciones de movimientos agrarios plurinacionales en Bolivia, Guatemala, Chile y Mesoamérica — qué condiciones organizativas e ideológicas determinaron el éxito o el fracaso.</p>
+                </div>
+                <div class="focus-card">
+                    <h3>Estrategia y Práctica de Organización</h3>
+                    <p>Cómo construir base, construir coaliciones y traducir el poder popular en cambio estructural — incluyendo cómo defender los movimientos contra la cooptación y el NGO-ismo.</p>
+                </div>
+                <div class="focus-card">
+                    <h3>Replicación de Iniciativas</h3>
+                    <p>La lógica operativa de las cuatro iniciativas — cómo se conectan, cómo se adaptan a nuevos territorios y cómo los organizadores las plantan en nuevas comunidades.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="signup-section">
+        <div class="signup-inner">
+            <h2>Únete a la Formación</h2>
+            <p>Nuestros programas de educación política están abiertos a organizadores activos en PLRCAWG y sus comunidades socias. Cuéntanos sobre ti y tu trabajo.</p>
+            <form class="signup-form" onsubmit="return false;">
+                <div class="form-row">
+                    <div class="form-group"><label>Nombre</label><input type="text" placeholder="Nombre"></div>
+                    <div class="form-group"><label>Apellido</label><input type="text" placeholder="Apellido"></div>
+                </div>
+                <div class="form-group"><label>Correo Electrónico</label><input type="email" placeholder="tu@correo.com"></div>
+                <div class="form-group">
+                    <label>Región</label>
+                    <select onchange="var el=document.getElementById('other-r'); if(el) el.style.display=this.value==='Other'?'block':'none'">
+                        <option value="">Selecciona tu región</option>
+                        <option>Bay Area / Northern Central Coast</option>
+                        <option>Los Angeles / Southern Central Coast</option>
+                        <option>San Diego</option>
+                        <option>Inland Empire</option>
+                        <option>Central Valley</option>
+                        <option>Central Coast</option>
+                        <option>Northern California</option>
+                        <option>Imperial Valley</option>
+                        <option>Other</option>
+                    </select>
+                    <input type="text" id="other-r" style="display:none;margin-top:0.5rem;width:100%;padding:0.75rem;background:rgba(255,255,255,0.1);border:2px solid rgba(255,255,255,0.2);color:white;font-family:Barlow,sans-serif;" placeholder="Tu región">
+                </div>
+                <div class="form-group"><label>Antecedentes, Áreas de Interés y Experiencia de Organización</label><textarea placeholder="Cuéntanos sobre tu trabajo actual, las iniciativas con las que estás conectado y lo que esperas profundizar..."></textarea></div>
+                <button type="submit" class="submit-btn">Únete a la Formación &#8594;</button>
+            </form>
+        </div>
+    </div>
+    <footer>
+        <h3>Grupo de Trabajo por la Reforma Agraria Plurinacional en CA</h3>
+        <p>Trabajando en tierras robadas de los pueblos Ohlone, Miwok, Yokuts, Chumash, Tongva, Cahuilla, Kumeyaay, Acjachemen y muchos otros pueblos indígenas</p>
+        <div class="social-links">
+            <a href="https://instagram.com/plurinational.landreform_cawg" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p>&copy; 2025 Grupo de Trabajo por la Reforma Agraria Plurinacional en CA. Todos los derechos reservados.</p>
+    </footer>
+    <script>
+        document.getElementById('hamburger').addEventListener('click', function() {
+            document.getElementById('nav-links').classList.toggle('open');
+        });
+        document.querySelectorAll('.has-dropdown > a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) { e.preventDefault(); this.parentElement.classList.toggle('open'); }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Únete — San Diego — PLRCAWG</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary-color:#3a3a6a; --secondary-color:#e71d36; --dark-color:#011627; --light-color:#f7f7f7; --accent-color:#ff9f1c; --accent-green:#8bc34a; }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { background-color:var(--light-color); color:var(--dark-color); line-height:1.6; font-family:'Barlow',sans-serif; }
+        .nav-top { background-color:var(--dark-color); padding:0 2rem; display:flex; justify-content:flex-end; align-items:center; border-bottom:1px solid rgba(255,255,255,0.08); }
+        .nav-top a { color:rgba(255,255,255,0.65); text-decoration:none; font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:0.8rem; letter-spacing:0.1em; text-transform:uppercase; padding:0.5rem 0.9rem; transition:color 0.2s; }
+        .nav-top a:hover { color:white; }
+        .nav-top .lang-btn { background-color:var(--secondary-color); color:white; padding:0.45rem 1rem; margin-left:0.5rem; }
+        nav { background-color:var(--secondary-color); padding:0; box-shadow:0 3px 0 rgba(0,0,0,0.35); position:sticky; top:0; z-index:100; display:flex; align-items:stretch; }
+        .nav-brand { display:flex; align-items:center; padding:0 1.5rem; background-color:var(--dark-color); flex-shrink:0; text-decoration:none; border-right:2px solid var(--accent-color); }
+        .nav-brand span { color:var(--accent-color); font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:0.95rem; letter-spacing:0.08em; text-transform:uppercase; line-height:1.2; max-width:130px; }
+        .nav-main-links { display:flex; list-style:none; margin:0; padding:0; flex:1; }
+        .nav-main-links > li { position:relative; }
+        .nav-main-links > li > a { color:white; text-decoration:none; font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1rem; letter-spacing:0.08em; text-transform:uppercase; display:flex; align-items:center; padding:0 1.1rem; height:100%; min-height:48px; transition:background-color 0.15s; position:relative; white-space:nowrap; }
+        .nav-main-links > li > a::after { content:''; position:absolute; bottom:0; left:0; right:0; height:3px; background-color:white; transform:scaleX(0); transition:transform 0.2s; }
+        .nav-main-links > li > a:hover,.nav-main-links > li > a.active { background-color:rgba(0,0,0,0.18); }
+        .nav-main-links > li > a.active::after,.nav-main-links > li > a:hover::after { transform:scaleX(1); }
+        .chevron { display:inline-block; margin-left:5px; font-size:0.65rem; transition:transform 0.2s; }
+        .mega-menu { display:none; position:absolute; top:100%; left:0; background-color:var(--dark-color); border-top:3px solid var(--secondary-color); box-shadow:0 6px 0 rgba(0,0,0,0.3); z-index:200; padding:1.5rem 2rem; min-width:260px; }
+        .mega-menu.wide { min-width:480px; }
+        .mega-menu-label { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:0.75rem; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:0.4rem; }
+        .mega-menu-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.25rem 1.5rem; }
+        .mega-menu-grid.single-col { grid-template-columns:1fr; }
+        .mega-menu a { color:rgba(255,255,255,0.82); text-decoration:none; font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1rem; letter-spacing:0.04em; text-transform:uppercase; padding:0.5rem 0.6rem; display:block; border-left:3px solid transparent; transition:all 0.15s; }
+        .mega-menu a:hover { color:white; border-left-color:var(--secondary-color); padding-left:0.9rem; background-color:rgba(255,255,255,0.04); }
+        .has-dropdown:hover .mega-menu { display:block; }
+        .has-dropdown:hover > a .chevron { transform:rotate(180deg); }
+        .nav-hamburger { display:none; }
+        .hero { background-color:var(--dark-color); color:white; padding:4rem 2rem 3rem; position:relative; overflow:hidden; border-bottom:5px solid var(--secondary-color); }
+        .hero::before { content:""; position:absolute; top:0; right:0; bottom:0; width:45%; background:repeating-linear-gradient(-45deg,rgba(231,29,54,0.06) 0px,rgba(231,29,54,0.06) 2px,transparent 2px,transparent 12px); pointer-events:none; }
+        .hero-label { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:0.8rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--secondary-color); margin-bottom:0.75rem; }
+        .hero h1 { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:4rem; text-transform:uppercase; line-height:1; max-width:700px; margin-bottom:1.25rem; }
+        .hero p { font-size:1.1rem; max-width:620px; color:rgba(255,255,255,0.78); border-left:3px solid var(--secondary-color); padding-left:1rem; }
+        .content-section { max-width:1100px; margin:0 auto; padding:3.5rem 2rem; }
+        .content-section h2 { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:2.2rem; text-transform:uppercase; color:var(--primary-color); margin-bottom:1.25rem; border-left:5px solid var(--secondary-color); padding-left:1rem; }
+        .content-section p { font-size:1.05rem; margin-bottom:1.25rem; max-width:780px; color:#222; }
+        .expect-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.25rem; margin-top:1.5rem; }
+        .expect-card { background:white; border-left:4px solid var(--secondary-color); padding:1.5rem; box-shadow:3px 3px 0 rgba(0,0,0,0.06); }
+        .expect-card h3 { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:1.1rem; text-transform:uppercase; color:var(--dark-color); margin-bottom:0.5rem; }
+        .expect-card p { font-size:0.93rem; color:#444; margin:0; }
+        .chapter-links { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1rem; margin-top:1.5rem; }
+        .chapter-link { display:block; background:var(--primary-color); color:white; text-decoration:none; font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:1.1rem; text-transform:uppercase; letter-spacing:0.06em; padding:1.25rem 1.5rem; border-bottom:4px solid transparent; transition:border-color 0.2s,background 0.2s; }
+        .chapter-link:hover { background:#2a2a5a; border-bottom-color:var(--accent-color); }
+        .chapter-link span { display:block; font-family:'Barlow',sans-serif; font-weight:400; font-size:0.85rem; text-transform:none; letter-spacing:0; color:rgba(255,255,255,0.6); margin-top:0.3rem; }
+        .signup-section { background:linear-gradient(135deg,var(--primary-color),#2a2a4a); padding:4rem 2rem; }
+        .signup-inner { max-width:680px; margin:0 auto; text-align:center; }
+        .signup-inner h2 { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:2.8rem; text-transform:uppercase; color:white; margin-bottom:0.75rem; }
+        .signup-inner > p { color:rgba(255,255,255,0.75); margin-bottom:2rem; font-size:1.05rem; }
+        .signup-form { display:flex; flex-direction:column; gap:1rem; text-align:left; }
+        .form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+        .form-group label { display:block; font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:0.85rem; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.7); margin-bottom:0.4rem; }
+        .form-group input,.form-group select,.form-group textarea { width:100%; padding:0.75rem; background:rgba(255,255,255,0.1); border:2px solid rgba(255,255,255,0.2); color:white; font-family:'Barlow',sans-serif; font-size:1rem; transition:border-color 0.2s; }
+        .form-group input::placeholder,.form-group textarea::placeholder { color:rgba(255,255,255,0.4); }
+        .form-group input:focus,.form-group select:focus,.form-group textarea:focus { outline:none; border-color:var(--secondary-color); }
+        .form-group select option { background:var(--dark-color); color:white; }
+        .form-group textarea { min-height:110px; resize:vertical; }
+        .submit-btn { background-color:var(--secondary-color); color:white; border:none; padding:1rem 2rem; font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:1.1rem; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; transition:background-color 0.2s; align-self:flex-start; }
+        .submit-btn:hover { background-color:#c91020; }
+        .other-field { display:none; margin-top:0.5rem; }
+        footer { background:linear-gradient(135deg,var(--dark-color) 0%,#000 100%); color:white; text-align:center; padding:2rem 1rem; border-top:4px solid var(--accent-color); }
+        footer h3 { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:1.3rem; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:0.5rem; }
+        footer p { color:rgba(255,255,255,0.6); font-size:0.9rem; margin-top:0.5rem; }
+        .social-links { display:flex; justify-content:center; margin:1rem 0; gap:1.5rem; }
+        .social-links a { color:white; font-size:1.4rem; transition:color 0.2s; }
+        .social-links a:hover { color:var(--secondary-color); }
+        @media(max-width:768px){.hero h1{font-size:2.5rem;}.form-row{grid-template-columns:1fr;}nav{flex-direction:column;}.nav-brand{padding:0.75rem 1rem;justify-content:center;}.nav-main-links{flex-direction:column;display:none;}.nav-main-links.open{display:flex;}.nav-main-links>li>a{padding:0.75rem 1rem;min-height:auto;}.mega-menu{position:static;display:none!important;box-shadow:none;padding:0.5rem 1rem 1rem 2rem;border-top:none;border-left:3px solid var(--secondary-color);margin:0 1rem 0.5rem;}.has-dropdown.open .mega-menu{display:block!important;}.mega-menu-grid{grid-template-columns:1fr;}.nav-hamburger{display:flex;align-items:center;background:none;border:none;color:white;font-size:1.4rem;padding:0.75rem 1rem;cursor:pointer;margin-left:auto;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;}}
+</style>
+</head>
+<body>
+    <div class="nav-top">
+        <a href="join-san-diego.html">English</a>
+        <a href="join-san-diego.html" class="lang-btn">English</a>
+    </div>
+    <nav id="main-nav">
+        <a href="index-es.html" class="nav-brand"><span>← PLRCAWG</span></a>
+        <button class="nav-hamburger" id="hamburger">☰ Menú</button>
+        <ul class="nav-main-links" id="nav-links">
+            <li><a href="OurCompass-es.html">Teoría del Cambio</a></li>
+            <li><a href="territorial_markets.html">Pedir Ahora ↗</a></li>
+            <li class="has-dropdown">
+                <a href="#">Nuestras Iniciativas <span class="chevron">▼</span></a>
+                <div class="mega-menu wide">
+                    <div class="mega-menu-label">Iniciativas</div>
+                    <div class="mega-menu-grid single-col">
+                        <a href="territorial_markets_about-es.html">Mercados Territoriales</a>
+                        <a href="engineering-brigades-es.html">Brigadas de Ingeniería</a>
+                        <a href="parcel-identification-es.html">Adquisición de Tierras</a>
+                        <a href="agroecological-training-es.html">Educación Política</a>
+                    </div>
+                </div>
+            </li>
+            <li class="has-dropdown">
+                <a href="#">Escuela de Reforma Agraria <span class="chevron">▼</span></a>
+                <div class="mega-menu">
+                    <div class="mega-menu-label">Programas</div>
+                    <div class="mega-menu-grid single-col">
+                        <a href="summer-school-es.html">Escuela de Verano</a>
+                        <a href="winter-school-es.html">Escuela de Invierno</a>
+                    </div>
+                </div>
+            </li>
+            <li class="has-dropdown">
+                <a href="#">Únete <span class="chevron">▼</span></a>
+                <div class="mega-menu">
+                    <div class="mega-menu-label">Capítulos</div>
+                    <div class="mega-menu-grid single-col">
+                        <a href="join-general-es.html">General</a>
+                        <a href="join-bay-area-es.html">Área de la Bahía</a>
+                        <a href="join-la-es.html">Los Ángeles</a>
+                        <a href="join-san-diego-es.html">San Diego</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="hero">
+        <div class="hero-label">Únete — San Diego</div>
+        <h1>Capítulo de San Diego</h1>
+        <p>Organizando en la región agrícola fronteriza más al sur de California — construyendo el Club de Compradores de San Diego y sentando las bases para un capítulo en formación.</p>
+    </div>
+
+    <div class="content-section">
+        <h2>Capítulo de San Diego</h2>
+        <p>El capítulo de San Diego es el nodo más al sur de la red estatal de PLRCAWG — organizando en una de las regiones agrícolas fronterizas más importantes de California. El Condado de San Diego alberga algunas de las producciones de cultivos especiales de mayor valor del estado junto con patrones extremos de concentración de tierras, propiedad ausente y precariedad de los trabajadores agrícolas.</p>
+        <p>El Club de Compradores de San Diego está actualmente en formación — construyendo la base organizada de consumidores que anclará el Mercado Territorial de la región. Este capítulo está en formación temprana y busca activamente organizadores, investigadores, agricultores y miembros de la comunidad para ayudar a construirlo desde cero.</p>
+        <h2 style="margin-top:2.5rem;">Construyendo en Este Capítulo</h2>
+        <div class="expect-grid">
+            <div class="expect-card"><h3>Club de Compradores de San Diego</h3><p>En formación — construyendo la base organizada de consumidores para anclar el Mercado Territorial de San Diego. Buscamos grupos comunitarios, cooperativas, redes de ayuda mutua y organizaciones de inquilinos para unirse.</p></div>
+            <div class="expect-card"><h3>Investigación de Adquisición de Tierras</h3><p>Mapeo de patrones de tierra agrícola en el Condado de San Diego — identificando parcelas con propietarios ausentes y vías hacia la tenencia colectiva campesin@ en la región fronteriza.</p></div>
+            <div class="expect-card"><h3>Brigada de Ingeniería</h3><p>Aún sin proyecto activo. Buscamos estudiantes de universidades de San Diego y trabajadores técnicos interesados en lanzar el primer proyecto de Brigada en esta región.</p></div>
+            <div class="expect-card"><h3>Educación Política</h3><p>Sesiones de formación que conectan a los organizadores de San Diego con el currículo estatal — incluyendo la historia de los movimientos agrarios fronterizos y la organización campesina de Baja California.</p></div>
+        </div>
+    </div>
+
+    <div class="signup-section">
+        <div class="signup-inner">
+            <h2>Únete al Capítulo de San Diego</h2>
+            <p>Cuéntanos sobre ti. Este capítulo está formándose ahora — tu participación da forma a lo que se convierte.</p>
+            <form class="signup-form" onsubmit="handleSubmit(event)">
+                <div class="form-row">
+                    <div class="form-group"><label>Nombre</label><input type="text" placeholder="Nombre"></div>
+                    <div class="form-group"><label>Apellido</label><input type="text" placeholder="Apellido"></div>
+                </div>
+                <div class="form-group"><label>Correo Electrónico</label><input type="email" placeholder="tu@correo.com"></div>
+                <div class="form-group">
+                    <label>Sub-región</label>
+                    <select>
+                        <option value="">Selecciona área</option>
+                        <option>Central San Diego</option>
+                        <option>North County</option>
+                        <option>East County</option>
+                        <option>South Bay / Chula Vista / National City</option>
+                        <option>Imperial Valley</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>¿Cómo te gustaría contribuir?</label>
+                    <select>
+                        <option value="">Selecciona tu rol</option>
+                        <option>Consumer / Buyers Club Member</option>
+                        <option>Campesin@ Farmer / Producer</option>
+                        <option>Engineering / Technical (Brigade)</option>
+                        <option>Researcher / Land Mapping</option>
+                        <option>Organizer / Community Outreach</option>
+                        <option>Political Education</option>
+                        <option>Not sure yet</option>
+                    </select>
+                </div>
+                <div class="form-group"><label>¿Algo más que debamos saber?</label><textarea placeholder="Antecedentes, habilidades, preguntas..."></textarea></div>
+                <button type="submit" class="submit-btn">Involúcrate &#8594;</button>
+            </form>
+        </div>
+    </div>
+    <footer>
+        <h3>Grupo de Trabajo por la Reforma Agraria Plurinacional en CA</h3>
+        <p>Trabajando en tierras robadas de los pueblos Ohlone, Miwok, Yokuts, Chumash, Tongva, Cahuilla, Kumeyaay, Acjachemen y muchos otros pueblos indígenas</p>
+        <div class="social-links">
+            <a href="https://instagram.com/plurinational.landreform_cawg" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p>&copy; 2025 Grupo de Trabajo por la Reforma Agraria Plurinacional en CA. Todos los derechos reservados.</p>
+    </footer>
+    <script>
+        
+        async function handleSubmit(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('.submit-btn');
+            btn.textContent = 'Enviando...';
+            btn.disabled = true;
+
+            const firstName = e.target.querySelector('input[placeholder="Nombre"]').value.trim();
+            const lastName  = e.target.querySelector('input[placeholder="Apellido"]').value.trim();
+            const email     = e.target.querySelector('input[type="email"]').value.trim();
+            const selects   = e.target.querySelectorAll('select');
+            const region    = selects[0] ? selects[0].value : '';
+            const role      = selects[1] ? selects[1].value : '';
+            const notes     = e.target.querySelector('textarea').value.trim();
+
+            const fields = {};
+            if (firstName || lastName) fields["fld1RHxCtLObBfxuC"] = (firstName + ' ' + lastName).trim();
+            if (email)  fields["fldB23hZznYwLMAy7"] = email;
+            if (region) fields["flduEtkOJpKJWGeEq"] = region;
+            if (role)   fields["fldj7vLEnGHEZnlWT"] = role;
+            if (notes)  fields["fldUssKsKxX5VFDOr"] = notes;
+            fields["fldEB1OGH35eFJLKG"] = "San Diego";
+            fields["fld1eOsK7F0OIYKGo"] = "Únete — San Diego (ES)";
+            fields["fldl8ulWOL06ZmUAe"] = new Date().toISOString();
+
+            try {
+                const res = await fetch(
+                    "https://api.airtable.com/v0/appYGSDd2qxK7RY21/tble6Nhq8ryhicz05",
+                    {
+                        method: "POST",
+                        headers: {
+                            "Authorization": "Bearer patvWIQE1K2FQ6EuK.c09fadadab5f6a36fd0d5b754798631d20ba607b4f07b3fc255db177aa4c4a6a",
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({ fields })
+                    }
+                );
+                if (res.ok) {
+                    btn.textContent = '¡Enviado!';
+                    btn.style.backgroundColor = '#8bc34a';
+                    e.target.reset();
+                } else {
+                    throw new Error('Request failed');
+                }
+            } catch(err) {
+                btn.textContent = 'Error — intenta de nuevo';
+                btn.style.backgroundColor = '#ff9f1c';
+                btn.disabled = false;
+            }
+        }
+
+        document.getElementById('hamburger').addEventListener('click', function() { document.getElementById('nav-links').classList.toggle('open'); });
+        document.querySelectorAll('.has-dropdown > a').forEach(link => { link.addEventListener('click', function(e) { if (window.innerWidth <= 768) { e.preventDefault(); this.parentElement.classList.toggle('open'); } }); });
+    </script>
+</body>
+</html>

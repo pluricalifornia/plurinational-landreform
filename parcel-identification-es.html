@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adquisición de Tierras — PLRCAWG</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3a3a6a;
+            --secondary-color: #e71d36;
+            --dark-color: #011627;
+            --light-color: #f7f7f7;
+            --accent-color: #ff9f1c;
+            --accent-green: #8bc34a;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--light-color); color: var(--dark-color); line-height: 1.6; font-family: 'Barlow', sans-serif; }
+
+        .nav-top { background-color: var(--dark-color); padding: 0 2rem; display: flex; justify-content: flex-end; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .nav-top a { color: rgba(255,255,255,0.65); text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.5rem 0.9rem; transition: color 0.2s; }
+        .nav-top a:hover { color: white; }
+        .nav-top .lang-btn { background-color: var(--secondary-color); color: white; padding: 0.45rem 1rem; margin-left: 0.5rem; }
+        nav { background-color: var(--secondary-color); padding: 0; box-shadow: 0 3px 0 rgba(0,0,0,0.35); position: sticky; top: 0; z-index: 100; display: flex; align-items: stretch; }
+        .nav-brand { display: flex; align-items: center; padding: 0 1.5rem; background-color: var(--dark-color); flex-shrink: 0; text-decoration: none; border-right: 2px solid var(--accent-color); }
+        .nav-brand span { color: var(--accent-color); font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 0.95rem; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.2; max-width: 130px; }
+        .nav-main-links { display: flex; list-style: none; margin: 0; padding: 0; flex: 1; }
+        .nav-main-links > li { position: relative; }
+        .nav-main-links > li > a { color: white; text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: 0.08em; text-transform: uppercase; display: flex; align-items: center; padding: 0 1.1rem; height: 100%; min-height: 48px; transition: background-color 0.15s; position: relative; white-space: nowrap; }
+        .nav-main-links > li > a::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background-color: white; transform: scaleX(0); transition: transform 0.2s; }
+        .nav-main-links > li > a:hover, .nav-main-links > li > a.active { background-color: rgba(0,0,0,0.18); }
+        .nav-main-links > li > a.active::after, .nav-main-links > li > a:hover::after { transform: scaleX(1); }
+        .chevron { display: inline-block; margin-left: 5px; font-size: 0.65rem; transition: transform 0.2s; }
+        .mega-menu { display: none; position: absolute; top: 100%; left: 0; background-color: var(--dark-color); border-top: 3px solid var(--secondary-color); box-shadow: 0 6px 0 rgba(0,0,0,0.3); z-index: 200; padding: 1.5rem 2rem; min-width: 320px; white-space: normal; }
+        .mega-menu.wide { min-width: 480px; }
+        .mega-menu-label { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.4rem; }
+        .mega-menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.25rem 1.5rem; }
+        .mega-menu-grid.single-col { grid-template-columns: 1fr; }
+        .mega-menu a { color: rgba(255,255,255,0.82); text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: 0.04em; text-transform: uppercase; padding: 0.5rem 0.6rem; display: block; border-left: 3px solid transparent; transition: all 0.15s; }
+        .mega-menu a:hover { color: white; border-left-color: var(--secondary-color); padding-left: 0.9rem; background-color: rgba(255,255,255,0.04); }
+        .has-dropdown:hover .mega-menu { display: block; }
+        .has-dropdown:hover > a .chevron { transform: rotate(180deg); }
+        .nav-hamburger { display: none; }
+
+        /* HERO */
+        .hero { background: linear-gradient(160deg, #0a1f0a 0%, #011627 100%); color: white; padding: 4rem 2rem 3rem; position: relative; overflow: hidden; border-bottom: 5px solid var(--accent-green); }
+        .hero::before { content: ""; position: absolute; top: 0; right: 0; bottom: 0; width: 40%; background: repeating-linear-gradient(-30deg, rgba(139,195,74,0.05) 0px, rgba(139,195,74,0.05) 2px, transparent 2px, transparent 16px); pointer-events: none; }
+        .hero-label { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-green); margin-bottom: 0.75rem; }
+        .hero h1 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 4rem; text-transform: uppercase; line-height: 1; max-width: 700px; margin-bottom: 1.25rem; }
+        .hero p { font-size: 1.1rem; max-width: 640px; color: rgba(255,255,255,0.78); border-left: 3px solid var(--accent-green); padding-left: 1rem; }
+
+        /* PAGE ANCHOR NAV */
+        .page-nav { background-color: white; border-bottom: 2px solid #e0e0e0; padding: 0 2rem; display: flex; gap: 0; overflow-x: auto; }
+        .page-nav a { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; color: #555; text-decoration: none; padding: 0.85rem 1.25rem; border-bottom: 3px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+        .page-nav a:hover { color: var(--primary-color); border-bottom-color: var(--accent-green); }
+
+        /* SHARED SECTION STYLES */
+        .content-section { max-width: 1100px; margin: 0 auto; padding: 3.5rem 2rem; }
+        .content-section h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 2.2rem; text-transform: uppercase; color: var(--primary-color); margin-bottom: 1.25rem; border-left: 5px solid var(--accent-green); padding-left: 1rem; }
+        .content-section h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.3rem; text-transform: uppercase; color: var(--primary-color); margin: 2rem 0 0.75rem; }
+        .content-section p { font-size: 1.05rem; margin-bottom: 1.25rem; max-width: 780px; color: #222; }
+
+        .dark-section { background-color: var(--dark-color); padding: 3.5rem 2rem; }
+        .dark-section-inner { max-width: 1100px; margin: 0 auto; }
+        .dark-section h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 2.2rem; text-transform: uppercase; color: white; margin-bottom: 1.5rem; border-left: 5px solid var(--accent-green); padding-left: 1rem; }
+        .dark-section h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.2rem; text-transform: uppercase; color: var(--accent-green); margin: 2rem 0 0.75rem; }
+        .dark-section p { font-size: 1rem; color: rgba(255,255,255,0.75); margin-bottom: 1.1rem; max-width: 780px; }
+
+        .mid-section { background-color: var(--primary-color); padding: 3.5rem 2rem; }
+        .mid-section-inner { max-width: 1100px; margin: 0 auto; }
+        .mid-section h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 2.2rem; text-transform: uppercase; color: white; margin-bottom: 1.5rem; border-left: 5px solid var(--secondary-color); padding-left: 1rem; }
+        .mid-section h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.1rem; text-transform: uppercase; color: var(--accent-color); margin-bottom: 0.5rem; }
+        .mid-section p { font-size: 1rem; color: rgba(255,255,255,0.78); margin-bottom: 1rem; max-width: 780px; }
+
+        /* CARDS */
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; margin-top: 1.5rem; }
+        .card { border-left: 3px solid var(--accent-green); padding: 1.25rem 1.5rem; background: rgba(255,255,255,0.05); transition: transform 0.2s; }
+        .card:hover { transform: translateX(5px); }
+        .card h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.05rem; text-transform: uppercase; color: var(--accent-green); margin-bottom: 0.4rem; }
+        .card p { font-size: 0.93rem; color: rgba(255,255,255,0.72); margin: 0; }
+
+        /* POLICY PATHWAYS */
+        .pathway { border-left: 4px solid var(--accent-color); padding: 1.25rem 1.5rem; background: rgba(255,255,255,0.05); margin-bottom: 1.25rem; }
+        .pathway h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.1rem; text-transform: uppercase; color: var(--accent-color); margin-bottom: 0.5rem; }
+        .pathway p { font-size: 0.95rem; color: rgba(255,255,255,0.75); margin: 0; }
+
+        /* SERVE LIST */
+        .serve-list { list-style: none; margin: 1rem 0 1.5rem; }
+        .serve-list li { padding: 0.6rem 0.75rem; border-left: 3px solid var(--accent-green); margin-bottom: 0.5rem; background: rgba(255,255,255,0.04); font-size: 0.98rem; color: rgba(255,255,255,0.8); }
+
+        /* PROCESS STEPS */
+        .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.25rem; margin-top: 1.5rem; }
+        .process-step { background: rgba(255,255,255,0.04); padding: 1.25rem; border-bottom: 3px solid var(--accent-green); }
+        .step-num { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 2rem; color: var(--secondary-color); line-height: 1; margin-bottom: 0.4rem; }
+        .process-step h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.95rem; text-transform: uppercase; color: white; margin-bottom: 0.4rem; }
+        .process-step p { font-size: 0.88rem; color: rgba(255,255,255,0.62); margin: 0; }
+
+        /* BLOCKQUOTE */
+        blockquote { border-left: 4px solid var(--accent-green); padding: 1rem 1.5rem; margin: 1.5rem 0; background: rgba(255,255,255,0.04); font-style: italic; color: rgba(255,255,255,0.8); font-size: 1rem; max-width: 700px; }
+        blockquote cite { display: block; margin-top: 0.5rem; font-style: normal; font-size: 0.85rem; color: rgba(255,255,255,0.5); }
+
+        /* VALUE CHAIN GRID */
+        .intermediary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-top: 1.25rem; }
+        .intermediary { background: rgba(255,255,255,0.06); padding: 1rem; text-align: center; border-top: 3px solid var(--secondary-color); }
+        .intermediary h4 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 0.95rem; text-transform: uppercase; color: white; margin-bottom: 0.3rem; }
+        .intermediary p { font-size: 0.83rem; color: rgba(255,255,255,0.6); margin: 0; }
+
+        /* BULLET LIST (light bg) */
+        .bullet-list { list-style: none; margin: 0.5rem 0 1.5rem; }
+        .bullet-list li { padding: 0.5rem 0 0.5rem 1rem; border-left: 3px solid var(--secondary-color); margin-bottom: 0.5rem; color: #333; font-size: 1rem; }
+
+        /* SIGN UP */
+        .signup-section { background: linear-gradient(135deg, #0d200d, #011627); padding: 4rem 2rem; }
+        .signup-inner { max-width: 680px; margin: 0 auto; text-align: center; }
+        .signup-inner h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 2.8rem; text-transform: uppercase; color: white; margin-bottom: 0.75rem; }
+        .signup-inner > p { color: rgba(255,255,255,0.75); margin-bottom: 2rem; font-size: 1.05rem; }
+        .signup-form { display: flex; flex-direction: column; gap: 1rem; text-align: left; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .form-group label { display: block; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 0.4rem; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.75rem; background: rgba(255,255,255,0.08); border: 2px solid rgba(255,255,255,0.15); color: white; font-family: 'Barlow', sans-serif; font-size: 1rem; transition: border-color 0.2s; }
+        .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.35); }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--accent-green); }
+        .form-group select option { background: var(--dark-color); color: white; }
+        .form-group textarea { min-height: 110px; resize: vertical; }
+        .submit-btn { background-color: var(--accent-green); color: var(--dark-color); border: none; padding: 1rem 2rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.1rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: background-color 0.2s; align-self: flex-start; }
+        .submit-btn:hover { background-color: #6ea832; }
+
+        footer { background: linear-gradient(135deg, var(--dark-color) 0%, #000 100%); color: white; text-align: center; padding: 2rem 1rem; border-top: 4px solid var(--accent-color); }
+        footer h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.5rem; }
+        footer p { color: rgba(255,255,255,0.6); font-size: 0.9rem; margin-top: 0.5rem; }
+        .social-links { display: flex; justify-content: center; margin: 1rem 0; gap: 1.5rem; }
+        .social-links a { color: white; font-size: 1.4rem; transition: color 0.2s; }
+        .social-links a:hover { color: var(--secondary-color); }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .form-row { grid-template-columns: 1fr; }
+            nav { flex-direction: column; }
+            .nav-brand { padding: 0.75rem 1rem; justify-content: center; }
+            .nav-main-links { flex-direction: column; display: none; }
+            .nav-main-links.open { display: flex; }
+            .nav-main-links > li > a { padding: 0.75rem 1rem; min-height: auto; }
+            .mega-menu { position: static; display: none !important; box-shadow: none; padding: 0.5rem 1rem 1rem 2rem; border-top: none; border-left: 3px solid var(--secondary-color); margin: 0 1rem 0.5rem; }
+            .has-dropdown.open .mega-menu { display: block !important; }
+            .mega-menu-grid { grid-template-columns: 1fr; }
+            .nav-hamburger { display: flex; align-items: center; background: none; border: none; color: white; font-size: 1.4rem; padding: 0.75rem 1rem; cursor: pointer; margin-left: auto; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-top">
+        <a href="parcel-identification.html">English</a>
+        <a href="parcel-identification.html" class="lang-btn">English</a>
+    </div>
+    <nav id="main-nav">
+        <a href="index-es.html" class="nav-brand"><span>← PLRCAWG</span></a>
+        <button class="nav-hamburger" id="hamburger">☰ Menú</button>
+        <ul class="nav-main-links" id="nav-links">
+            <li><a href="OurCompass-es.html">Teoría del Cambio</a></li>
+            <li><a href="territorial_markets.html">Pedir Ahora ↗</a></li>
+            <li class="has-dropdown">
+                <a href="#">Nuestras Iniciativas <span class="chevron">▼</span></a>
+                <div class="mega-menu wide">
+                    <div class="mega-menu-label">Iniciativas</div>
+                    <div class="mega-menu-grid single-col">
+                        <a href="territorial_markets_about-es.html">Mercados Territoriales</a>
+                        <a href="engineering-brigades-es.html">Brigadas de Ingeniería</a>
+                        <a href="parcel-identification-es.html">Adquisición de Tierras</a>
+                        <a href="agroecological-training-es.html">Educación Política</a>
+                    </div>
+                </div>
+            </li>
+            <li class="has-dropdown">
+                <a href="#">Escuela de Reforma Agraria <span class="chevron">▼</span></a>
+                <div class="mega-menu">
+                    <div class="mega-menu-label">Programas</div>
+                    <div class="mega-menu-grid single-col">
+                        <a href="summer-school-es.html">Escuela de Verano</a>
+                        <a href="winter-school-es.html">Escuela de Invierno</a>
+                    </div>
+                </div>
+            </li>
+            <li class="has-dropdown">
+                <a href="#">Únete <span class="chevron">▼</span></a>
+                <div class="mega-menu">
+                    <div class="mega-menu-label">Capítulos</div>
+                    <div class="mega-menu-grid single-col">
+                        <a href="join-general-es.html">General</a>
+                        <a href="join-bay-area-es.html">Área de la Bahía</a>
+                        <a href="join-la-es.html">Los Ángeles</a>
+                        <a href="join-san-diego-es.html">San Diego</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <div class="hero">
+        <div class="hero-label">Iniciativa 03 — Nuestras Iniciativas</div>
+        <h1>Adquisición de Tierras</h1>
+        <p>Mapeo de patrones territoriales, análisis de propiedad ausente y construcción de vías hacia la tenencia colectiva campesin@ — poniendo la tierra en manos de quienes la cultivan.</p>
+    </div>
+
+    <nav class="page-nav">
+        <a href="#foundation">Fundamentos</a>
+        <a href="#mapping">Mapeo Regional</a>
+        <a href="#absentee">Propiedad Ausente</a>
+        <a href="#parcels">Identificación de Parcelas</a>
+        <a href="#leasing">Arrendamiento Público</a>
+        <a href="#support">Obtener Apoyo</a>
+    </nav>
+
+    <div class="content-section" id="foundation">
+        <h2>La Tierra Como Fundamento</h2>
+        <p>La viabilidad campesin@ no puede construirse sobre un arrendamiento precario o sobre tierras controladas por propietarios ausentes. Sin tenencia segura de la tierra, todos los demás esfuerzos — mercados, herramientas, formación — permanecen vulnerables. La adquisición de tierras es la iniciativa que construye el fundamento territorial del que dependen las demás.</p>
+        <p>El trabajo de adquisición de tierras de PLRCAWG opera en cuatro áreas integradas: mapeo regional de patrones agrícolas de la tierra, análisis de propiedad ausente, identificación colaborativa de parcelas y defensa del arrendamiento público. Juntas, estas áreas construyen la base de conocimiento y la capacidad legal que permite a las comunidades campesin@s identificar, acceder y eventualmente asegurar tierras fuera de los circuitos de especulación corporativa.</p>
+    </div>
+
+    <div class="dark-section" id="mapping">
+        <div class="dark-section-inner">
+            <h2>Mapeo Regional</h2>
+            <p>El mapeo regional sistematiza el conocimiento sobre qué tierras agrícolas existen, quién las controla y qué vías hacia la reforma son posibles en cada territorio. Utilizamos datos del SSURGO del Servicio de Conservación de Recursos Naturales para caracterizar la capacidad agrícola por condado — identificando tierras con potencial agrícola activo o latente que actualmente se mantienen de manera especulativa o subutilizada.</p>
+            <p>Nuestro análisis de políticas identifica cuatro categorías de tierras con potencial para la reforma:</p>
+            <div class="concept-grid" style="margin-top:1.5rem;">
+                <div class="concept-card"><h3>Tierras No Desarrolladas</h3><p>Tierras agrícolas sin desarrollar que permanecen sin uso productivo, mantenidas para apreciación especulativa o como reserva para futura urbanización.</p></div>
+                <div class="concept-card"><h3>Tierras Tribales</h3><p>Tierras con reclamos indígenas complejos o en proceso de repatriación — donde la reforma agraria intersecta con la descolonización y la soberanía territorial indígena.</p></div>
+                <div class="concept-card"><h3>Espacios Recreativos y Abiertos</h3><p>Tierras públicas y privadas de conservación con producción agrícola limitada donde las vías de acceso podrían apoyar la agricultura comunitaria.</p></div>
+                <div class="concept-card"><h3>Tierras Agrícolas Activas</h3><p>Tierras en producción activa donde los patrones de propiedad, los contratos de arrendamiento y las estructuras de la cadena de valor revelan oportunidades para la transición a la gestión colectiva.</p></div>
+            </div>
+            <h3>La Función Social de la Propiedad</h3>
+            <p>El mapeo regional fundamenta el argumento político para la reforma: la función social de la propiedad — un principio reconocido en muchas constituciones latinoamericanas — establece que la propiedad de la tierra conlleva obligaciones sociales. Las tierras que permanecen improductivas, se mantienen especulativamente o se gestionan de manera destructiva pueden someterse legítimamente a reforma. Este principio informa tanto nuestra investigación como nuestra defensa.</p>
+        </div>
+    </div>
+
+    <div class="content-section" id="absentee">
+        <h2>Análisis de Propiedad Ausente</h2>
+        <p>Los propietarios ausentes son quienes poseen tierras agrícolas sin participar en su gestión productiva — obteniendo valor a través del arrendamiento, la especulación o el control de activos sin contribuir a la viabilidad de las comunidades agrícolas que trabajan esas tierras. El análisis de propiedad ausente mapea estos patrones para identificar dónde la concentración de la propiedad desvinculada de la producción activa crea las condiciones para la reforma.</p>
+        <p>Nuestro trabajo en el Valle de Coachella — presentado ante la Fuerza de Tarea sobre Equidad de Tierras Agrícolas de California en febrero de 2025 — demostró cómo el análisis de propiedad ausente puede revelar los circuitos de extracción que operan a través de la cadena de valor agrícola: desde proveedores de insumos y procesadores hasta distribuidores, minoristas e instituciones financieras.</p>
+
+        <div class="mid-section" style="margin:2rem -2rem; padding:2rem;">
+            <div class="mid-section-inner">
+                <h2>Cinco Puntos de Extracción</h2>
+                <div class="concept-grid">
+                    <div class="concept-card"><h3>Proveedores de Insumos</h3><p>Semillas, fertilizantes y pesticidas controlados por corporaciones que capturan valor antes de que comience la producción.</p></div>
+                    <div class="concept-card"><h3>Procesadores</h3><p>Instalaciones de procesamiento controladas corporativamente que dictan los precios y condiciones a los agricultores que no tienen alternativas.</p></div>
+                    <div class="concept-card"><h3>Distribuidores</h3><p>Intermediarios que capturan márgenes entre productores y minoristas — a menudo propiedad de las mismas corporaciones que controlan otros puntos de la cadena.</p></div>
+                    <div class="concept-card"><h3>Minoristas</h3><p>Cadenas de supermercados que controlan el acceso al mercado y pueden dictar condiciones a pequeños productores sin poder de negociación.</p></div>
+                    <div class="concept-card"><h3>Instituciones Financieras</h3><p>Bancos y fondos de inversión que financian operaciones agrícolas en condiciones que transfieren riesgo a los agricultores mientras capturan retornos estables.</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dark-section" id="parcels">
+        <div class="dark-section-inner">
+            <h2>Identificación Colaborativa de Parcelas</h2>
+            <p>El trabajo de identificación de parcelas de PLRCAWG es gratuito para las comunidades a las que servimos. No cobramos a los agricultores, organizaciones o comunidades por el apoyo en la investigación y la identificación de tierras — este servicio es parte de nuestra función de infraestructura como grupo de trabajo.</p>
+            <h3>A Quiénes Servimos</h3>
+            <p>Trabajamos con agricultores campesin@s que buscan estabilizar su situación de tenencia de tierras; comunidades que quieren establecer granjas colectivas o en fideicomiso comunitario; organizaciones de vivienda y arrendatarios que buscan integrar el acceso a la tierra con la organización de la vivienda; grupos de estudiantes que realizan investigación y mapeo de tierras; y socios del movimiento que construyen análisis territorial en nuevas regiones.</p>
+            <h3>Proceso Colaborativo</h3>
+            <div class="steps" style="margin-top:1rem;">
+                <div class="step"><div class="step-num">01</div><h3>Evaluación de Necesidades</h3><p>Entender los requisitos específicos de la comunidad: tamaño, ubicación, usos del suelo, plazo y estructura de tenencia deseada.</p></div>
+                <div class="step"><div class="step-num">02</div><h3>Análisis de Datos</h3><p>Cruzar datos del SSURGO, registros de propiedad del condado, registros de arrendamiento y mapeo de uso del suelo para identificar parcelas candidatas.</p></div>
+                <div class="step"><div class="step-num">03</div><h3>Investigación de Propiedad</h3><p>Investigar estructuras de propiedad, cargas, historial de arrendamiento y vínculos corporativos de los propietarios para evaluar la viabilidad de acceso.</p></div>
+                <div class="step"><div class="step-num">04</div><h3>Evaluación Legal</h3><p>Identificar vías legales: compra, arrendamiento a largo plazo, fideicomiso de tierras, donación, adquisición pública u otros mecanismos de acceso.</p></div>
+                <div class="step"><div class="step-num">05</div><h3>Informe Comunitario</h3><p>Presentar los hallazgos a la comunidad solicitante con análisis claro de las opciones, los riesgos y los pasos recomendados.</p></div>
+                <div class="step"><div class="step-num">06</div><h3>Apoyo Continuo</h3><p>Proporcionar apoyo continuo en la investigación, defensa y navegación legal a medida que avanza el proceso de acceso a la tierra.</p></div>
+            </div>
+            <h3>Modelos Alternativos de Acceso a la Tierra</h3>
+            <p>No toda adquisición de tierras requiere propiedad directa. Trabajamos con cuatro modelos alternativos de acceso dependiendo de las condiciones y capacidades de la comunidad: fideicomisos de tierras comunitarias que separan la propiedad del uso; arrendamientos a largo plazo con condiciones de estabilidad y control comunitario; cooperativas de tierras donde múltiples agricultores poseen y gestionan colectivamente; y arrendamientos públicos de tierras del estado o del condado para uso agrícola.</p>
+        </div>
+    </div>
+
+    <div class="content-section" id="leasing">
+        <h2>Arrendamiento Público y Conservación</h2>
+        <p>Las tierras públicas — propiedad del estado, el condado o los distritos de conservación — representan una vía subutilizada para el acceso campesin@ a la tierra. Nuestro trabajo de análisis de idoneidad identifica tierras públicas con capacidad agrícola que actualmente no están en uso productivo, y construye el caso de defensa para su arrendamiento a comunidades campesin@s con condiciones de tenencia estable.</p>
+        <p>Este trabajo requiere un compromiso crítico con el paradigma de conservación dominante — que a menudo trata la exclusión de los humanos como condición necesaria para la salud ecológica. Desafiamos este marco, siguiendo a académicos indígenas y campesin@s que demuestran que la gestión agrícola con base en la comunidad puede ser ecológicamente beneficiosa y culturalmente arraigada a la vez.</p>
+
+        <div class="mid-section" style="margin:2rem -2rem; padding:2rem;">
+            <div class="mid-section-inner">
+                <h2>Más Allá de la Conservación de Fortaleza</h2>
+                <div class="concept-grid">
+                    <div class="concept-card"><h3>Usufructo Comunitario</h3><p>El derecho de uso y disfrute de la tierra sin plena propiedad — una forma de acceso reconocida en muchos sistemas legales que puede proporcionar tenencia estable sin necesidad de compra.</p></div>
+                    <div class="concept-card"><h3>Custodia Indígena</h3><p>Reconocimiento de que los pueblos indígenas han gestionado la tierra productiva y ecológicamente durante milenios — que la gestión comunitaria no es antagonista a la conservación sino a menudo su fundamento.</p></div>
+                    <div class="concept-card"><h3>Defensa de Políticas</h3><p>Trabajo con distritos de conservación, agencias estatales e instituciones académicas para desarrollar marcos de arrendamiento que prioricen el acceso campesin@ a las tierras públicas.</p></div>
+                    <div class="concept-card"><h3>Análisis Territorial</h3><p>Mapeo de tierras públicas a escala regional para identificar parcelas con capacidad agrícola, historial de uso apropiado y accesibilidad para comunidades campesin@s objetivo.</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="signup-section" id="support">
+        <div class="signup-inner">
+            <h2>Obtener Apoyo</h2>
+            <p>Si eres agricultor, organización o comunidad que busca apoyo en la investigación de tierras, identificación de parcelas o navegación legal, llena este formulario. Nuestros servicios de identificación de parcelas son gratuitos.</p>
+            <form class="signup-form" onsubmit="return false;">
+                <div class="form-row">
+                    <div class="form-group"><label>Nombre</label><input type="text" placeholder="Nombre"></div>
+                    <div class="form-group"><label>Apellido</label><input type="text" placeholder="Apellido"></div>
+                </div>
+                <div class="form-group"><label>Correo Electrónico</label><input type="email" placeholder="tu@correo.com"></div>
+                <div class="form-group">
+                    <label>Región</label>
+                    <select>
+                        <option value="">Selecciona tu región</option>
+                        <option>Bay Area / Northern Central Coast</option>
+                        <option>Los Angeles / Southern Central Coast</option>
+                        <option>San Diego</option>
+                        <option>Coachella Valley / Inland Empire</option>
+                        <option>Central Valley</option>
+                        <option>Central Coast</option>
+                        <option>Northern California</option>
+                        <option>Imperial Valley</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Rol</label>
+                    <select>
+                        <option value="">Selecciona tu rol</option>
+                        <option>Campesin@ Farmer seeking land</option>
+                        <option>Community organization</option>
+                        <option>Indigenous land rights organization</option>
+                        <option>Housing / tenant organization</option>
+                        <option>Student researcher</option>
+                        <option>Legal / policy advocate</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div class="form-group"><label>Cuéntanos sobre tus necesidades de tierra</label><textarea placeholder="Describe lo que estás buscando: tamaño, ubicación, uso previsto, cronograma..."></textarea></div>
+                <button type="submit" class="submit-btn">Solicitar Apoyo &#8594;</button>
+            </form>
+        </div>
+    </div>
+    <footer>
+        <h3>Grupo de Trabajo por la Reforma Agraria Plurinacional en CA</h3>
+        <p>Trabajando en tierras robadas de los pueblos Ohlone, Miwok, Yokuts, Chumash, Tongva, Cahuilla, Kumeyaay, Acjachemen y muchos otros pueblos indígenas</p>
+        <div class="social-links">
+            <a href="https://instagram.com/plurinational.landreform_cawg" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p>&copy; 2025 Grupo de Trabajo por la Reforma Agraria Plurinacional en CA. Todos los derechos reservados.</p>
+    </footer>
+    <script>
+        document.getElementById('hamburger').addEventListener('click', function() {
+            document.getElementById('nav-links').classList.toggle('open');
+        });
+        document.querySelectorAll('.has-dropdown > a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) { e.preventDefault(); this.parentElement.classList.toggle('open'); }
+            });
+        });
+    </script>
+</body>
+</html>
