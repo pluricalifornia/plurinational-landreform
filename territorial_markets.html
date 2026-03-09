@@ -16,45 +16,38 @@
             --green:   #8bc34a;
         }
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        html { font-size: 16px; }
         body { background: var(--light); color: #1a1a2e; font-family: 'Barlow', sans-serif; font-size: 1rem; line-height: 1.7; }
 
-        /* ── NAV TOP ── */
+        /* NAV TOP */
         .nav-top { background: var(--dark); display: flex; justify-content: flex-end; align-items: center; padding: 0 2rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
         .nav-top a { color: rgba(255,255,255,0.6); text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.5rem 0.85rem; transition: color 0.2s; }
         .nav-top a:hover { color: #fff; }
         .nav-top .lang-btn { background: var(--orange); color: var(--dark); padding: 0.4rem 1rem; margin-left: 0.4rem; font-weight: 900; }
-        .nav-top .lang-btn:hover { background: #e08a10; }
 
-        /* ── MAIN NAV ── */
+        /* MAIN NAV */
         nav { background: var(--red); position: sticky; top: 0; z-index: 100; display: flex; align-items: stretch; box-shadow: 0 3px 0 rgba(0,0,0,0.3); }
         .nav-brand { display: flex; align-items: center; padding: 0 1.5rem; background: var(--dark); text-decoration: none; border-right: 2px solid var(--orange); flex-shrink: 0; }
         .nav-brand span { color: var(--orange); font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 0.9rem; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.2; max-width: 130px; }
         .nav-main-links { display: flex; list-style: none; }
         .nav-main-links > li { position: relative; }
-        .nav-main-links > li > a { color: #fff; text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: 0.07em; text-transform: uppercase; display: flex; align-items: center; padding: 0 1.1rem; height: 100%; min-height: 46px; position: relative; white-space: nowrap; transition: background 0.15s; }
-        .nav-main-links > li > a::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: #fff; transform: scaleX(0); transition: transform 0.2s; }
+        .nav-main-links > li > a { color: #fff; text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: 0.07em; text-transform: uppercase; display: flex; align-items: center; padding: 0 1.1rem; height: 100%; min-height: 46px; white-space: nowrap; transition: background 0.15s; }
         .nav-main-links > li > a:hover, .nav-main-links > li > a.active { background: rgba(0,0,0,0.18); }
-        .nav-main-links > li > a:hover::after, .nav-main-links > li > a.active::after { transform: scaleX(1); }
         .chevron { display: inline-block; margin-left: 4px; font-size: 0.6rem; transition: transform 0.2s; }
-        .mega-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--dark); border-top: 3px solid var(--red); box-shadow: 0 6px 0 rgba(0,0,0,0.25); z-index: 200; padding: 1.25rem 1.75rem; min-width: 280px; }
-        .mega-menu.wide { min-width: 440px; }
+        .mega-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--dark); border-top: 3px solid var(--red); box-shadow: 0 6px 0 rgba(0,0,0,0.25); z-index: 200; padding: 1.25rem 1.75rem; min-width: 240px; }
         .mega-menu-label { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 0.6rem; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.35rem; }
-        .mega-menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.15rem 1.25rem; }
-        .mega-menu-grid.single-col { grid-template-columns: 1fr; }
         .mega-menu a { color: rgba(255,255,255,0.8); text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.97rem; letter-spacing: 0.04em; text-transform: uppercase; padding: 0.45rem 0.55rem; display: block; border-left: 3px solid transparent; transition: all 0.12s; }
-        .mega-menu a:hover { color: #fff; border-left-color: var(--red); padding-left: 0.85rem; background: rgba(255,255,255,0.03); }
+        .mega-menu a:hover { color: #fff; border-left-color: var(--red); padding-left: 0.85rem; }
         .has-dropdown:hover .mega-menu { display: block; }
         .has-dropdown:hover > a .chevron { transform: rotate(180deg); }
-        .nav-hamburger { display: none; }
+        .nav-hamburger { display: none; background: none; border: none; color: #fff; font-size: 1.3rem; padding: 0.7rem 1rem; cursor: pointer; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; margin-left: auto; }
 
-        /* ── HERO ── */
-        .hero { background: var(--dark); color: #fff; padding: 3.5rem 2rem 3rem; position: relative; overflow: hidden; border-bottom: 5px solid var(--red); }
+        /* HERO */
+        .hero { background: var(--dark); color: #fff; padding: 3.5rem 2rem 3rem; border-bottom: 5px solid var(--red); position: relative; overflow: hidden; }
         .hero::before { content: ""; position: absolute; top: 0; right: 0; bottom: 0; width: 45%; background: repeating-linear-gradient(-45deg, rgba(231,29,54,0.055) 0px, rgba(231,29,54,0.055) 2px, transparent 2px, transparent 14px); pointer-events: none; }
         .hero-inner { max-width: 1100px; margin: 0 auto; }
         .hero-eyebrow { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.75rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--red); margin-bottom: 0.75rem; }
-        .hero h1 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(2.8rem, 6vw, 4.5rem); text-transform: uppercase; line-height: 1; letter-spacing: 0.01em; margin-bottom: 1.25rem; max-width: 700px; }
-        .hero-sub { font-size: 1.05rem; line-height: 1.65; color: rgba(255,255,255,0.72); border-left: 3px solid var(--red); padding-left: 1rem; max-width: 580px; }
+        .hero h1 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(2.8rem, 6vw, 4.5rem); text-transform: uppercase; line-height: 1; margin-bottom: 1.25rem; }
+        .hero-sub { font-size: 1.05rem; color: rgba(255,255,255,0.72); border-left: 3px solid var(--red); padding-left: 1rem; max-width: 580px; }
         .hero-actions { display: flex; gap: 1rem; margin-top: 1.75rem; flex-wrap: wrap; }
         .hero-btn { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.75rem 1.75rem; text-decoration: none; display: inline-block; transition: background 0.18s; }
         .hero-btn-primary { background: var(--red); color: #fff; }
@@ -62,159 +55,120 @@
         .hero-btn-secondary { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.35); }
         .hero-btn-secondary:hover { border-color: #fff; }
 
-        /* ── LAYOUT SYSTEM ── */
-        .section-wrap { max-width: 1100px; margin: 0 auto; padding: 3.5rem 2rem; }
-        .dark-band { background: var(--dark); }
-        .dark-band .section-wrap { color: #fff; }
-        .light-band { background: var(--light); }
-        .white-band { background: #fff; }
-
-        /* ── PRODUCT CATALOGUE ── */
+        /* PRODUCT CATALOGUE */
+        .catalogue-wrap { background: #fff; }
         .catalogue-header { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem 1rem; }
-        .catalogue-header h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 2rem; text-transform: uppercase; color: var(--primary); margin-bottom: 0.5rem; border-left: 5px solid var(--red); padding-left: 1rem; }
-        .catalogue-header p { font-size: 1rem; color: #444; line-height: 1.65; margin-top: 0.75rem; padding-left: 1.3rem; }
-
-        .search-filter-bar { max-width: 1100px; margin: 0 auto; padding: 1rem 2rem 1.5rem; display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
-        .product-search { flex: 1; min-width: 200px; max-width: 340px; padding: 0.6rem 1rem; border: 2px solid #ccc; font-family: 'Barlow', sans-serif; font-size: 0.95rem; background: #fff; transition: border-color 0.2s; }
+        .catalogue-header h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 2rem; text-transform: uppercase; color: var(--primary); border-left: 5px solid var(--red); padding-left: 1rem; }
+        .catalogue-header p { font-size: 1rem; color: #555; margin-top: 0.75rem; padding-left: 1.3rem; }
+        .search-filter-bar { max-width: 1100px; margin: 0 auto; padding: 1rem 2rem 1.5rem; display: flex; flex-wrap: wrap; gap: 0.65rem; align-items: center; }
+        .product-search { flex: 1; min-width: 180px; max-width: 320px; padding: 0.55rem 0.9rem; border: 2px solid #ccc; font-family: 'Barlow', sans-serif; font-size: 0.95rem; }
         .product-search:focus { outline: none; border-color: var(--red); }
-        .filter-btn { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.45rem 0.9rem; border: 2px solid var(--primary); color: var(--primary); background: transparent; cursor: pointer; transition: all 0.15s; }
+        .filter-btn { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.42rem 0.85rem; border: 2px solid var(--primary); color: var(--primary); background: transparent; cursor: pointer; transition: all 0.15s; }
         .filter-btn:hover { background: var(--primary); color: #fff; }
         .filter-btn.active { background: var(--red); border-color: var(--red); color: #fff; }
-
-        .products-grid { max-width: 1100px; margin: 0 auto; padding: 0 2rem 3rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.25rem; }
-        .product-card { background: #fff; border-top: 4px solid var(--red); box-shadow: 4px 4px 0 rgba(0,0,0,0.07); transition: transform 0.18s; }
+        .products-grid { max-width: 1100px; margin: 0 auto; padding: 0 2rem 3rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(255px, 1fr)); gap: 1.1rem; }
+        .product-card { background: #fff; border-top: 4px solid var(--red); box-shadow: 3px 3px 0 rgba(0,0,0,0.07); display: flex; flex-direction: column; transition: transform 0.18s; }
         .product-card:hover { transform: translateY(-3px); }
-        .product-card-head { background: var(--dark); padding: 1rem 1.25rem; }
-        .product-card-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.1rem; text-transform: uppercase; color: #fff; line-height: 1.1; }
-        .product-card-cat { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-top: 0.2rem; }
-        .product-card-body { padding: 1.1rem 1.25rem; }
-        .price-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.65rem; }
-        .price-ind { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.25rem; color: var(--primary); }
-        .price-ind-label { font-size: 0.78rem; color: #888; font-family: 'Barlow Condensed', sans-serif; letter-spacing: 0.06em; text-transform: uppercase; }
-        .bulk-box { background: var(--light); border-left: 3px solid var(--orange); padding: 0.6rem 0.85rem; }
-        .bulk-box-label { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--red); margin-bottom: 0.25rem; }
-        .bulk-box-price { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.1rem; color: var(--orange); }
-        .size-row { font-size: 0.88rem; color: #333; margin: 0.18rem 0; }
+        .pc-head { background: var(--dark); padding: 0.9rem 1.1rem; }
+        .pc-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.05rem; text-transform: uppercase; color: #fff; line-height: 1.1; }
+        .pc-cat { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-top: 0.15rem; }
+        .pc-body { padding: 1rem 1.1rem; flex: 1; }
+        .price-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.6rem; }
+        .price-ind { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.2rem; color: var(--primary); }
+        .price-ind-label { font-size: 0.75rem; color: #999; font-family: 'Barlow Condensed', sans-serif; text-transform: uppercase; }
+        .bulk-box { background: var(--light); border-left: 3px solid var(--orange); padding: 0.55rem 0.8rem; }
+        .bulk-label { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.67rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--red); margin-bottom: 0.2rem; }
+        .bulk-price { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.05rem; color: var(--orange); }
+        .size-row { font-size: 0.87rem; color: #333; margin: 0.15rem 0; }
         .size-row strong { color: var(--red); }
+        .pc-foot { padding: 0.75rem 1.1rem; border-top: 1px solid #eee; }
+        .add-to-order-btn { width: 100%; background: var(--dark); color: #fff; border: none; padding: 0.55rem 1rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 0.88rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: background 0.15s; }
+        .add-to-order-btn:hover { background: var(--red); }
+        .add-to-order-btn.added { background: var(--green); }
 
-        /* ── ORDER FORM ── */
+        /* ORDER FORM */
         .order-band { background: linear-gradient(135deg, var(--primary), #252545); padding: 4rem 2rem; }
         .order-inner { max-width: 900px; margin: 0 auto; }
-        .order-band h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 2.4rem; text-transform: uppercase; color: #fff; margin-bottom: 0.5rem; }
-        .order-band > .order-inner > p { color: rgba(255,255,255,0.7); font-size: 1rem; line-height: 1.65; margin-bottom: 2.5rem; }
-
-        .order-form { display: flex; flex-direction: column; gap: 0; }
+        .order-inner > h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 2.4rem; text-transform: uppercase; color: #fff; margin-bottom: 0.5rem; }
+        .order-inner > p { color: rgba(255,255,255,0.7); margin-bottom: 2.5rem; }
         .form-section { background: rgba(255,255,255,0.06); border-left: 4px solid var(--red); padding: 2rem; margin-bottom: 1.25rem; }
         .form-section h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 0.07em; color: #fff; margin-bottom: 1.5rem; }
         .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-        .form-grid.single { grid-template-columns: 1fr; }
         .form-group { display: flex; flex-direction: column; gap: 0.35rem; }
         .form-group label { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.6); }
         .form-group input, .form-group select, .form-group textarea { padding: 0.7rem 0.9rem; background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.18); color: #fff; font-family: 'Barlow', sans-serif; font-size: 0.97rem; transition: border-color 0.2s; }
         .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.3); }
         .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--red); }
         .form-group select option { background: var(--dark); color: #fff; }
-        .form-group textarea { min-height: 90px; resize: vertical; }
+        .form-group textarea { min-height: 80px; resize: vertical; }
 
-        /* SNAP special */
-        .snap-box { background: rgba(139,195,74,0.12); border: 2px solid var(--green); padding: 1.5rem 2rem; margin-bottom: 1.25rem; }
+        /* SNAP */
+        .snap-box { background: rgba(139,195,74,0.1); border: 2px solid var(--green); padding: 1.5rem 2rem; margin-bottom: 1.25rem; }
         .snap-toggle-row { display: flex; align-items: center; gap: 1.25rem; margin-bottom: 0.75rem; }
-        .snap-toggle-row label { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green); }
+        .snap-toggle-label { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green); }
         .switch { position: relative; display: inline-block; width: 54px; height: 30px; flex-shrink: 0; }
         .switch input { opacity: 0; width: 0; height: 0; }
         .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255,255,255,0.15); transition: .3s; border-radius: 30px; }
-        .slider:before { position: absolute; content: ""; height: 22px; width: 22px; left: 4px; bottom: 4px; background: #fff; transition: .3s; border-radius: 50%; }
+        .slider::before { position: absolute; content: ""; height: 22px; width: 22px; left: 4px; bottom: 4px; background: #fff; transition: .3s; border-radius: 50%; }
         input:checked + .slider { background: var(--green); }
-        input:checked + .slider:before { transform: translateX(24px); }
-        .snap-desc { font-size: 0.92rem; color: rgba(255,255,255,0.65); line-height: 1.6; }
+        input:checked + .slider::before { transform: translateX(24px); }
+        .snap-desc { font-size: 0.92rem; color: rgba(255,255,255,0.65); }
         .custom-items-box { display: none; margin-top: 1.25rem; background: rgba(255,255,255,0.06); border-left: 3px solid var(--orange); padding: 1.25rem 1.5rem; }
         .custom-items-box.active { display: block; }
         .custom-items-box h4 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1rem; text-transform: uppercase; color: var(--orange); margin-bottom: 0.75rem; }
 
-        /* order items */
-        .order-items-container { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1rem; }
+        /* ORDER ITEMS */
+        .order-items-list { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1rem; }
         .order-item { background: rgba(255,255,255,0.08); padding: 1.25rem; display: grid; grid-template-columns: 2fr 1fr 1fr auto; gap: 1rem; align-items: end; }
-        .order-item .remove-btn { background: transparent; border: 2px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.6); padding: 0.55rem 0.75rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: all 0.15s; align-self: end; }
-        .order-item .remove-btn:hover { border-color: var(--red); color: #fff; background: var(--red); }
+        .remove-btn { background: transparent; border: 2px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.6); padding: 0.55rem 0.75rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: all 0.15s; align-self: end; white-space: nowrap; }
+        .remove-btn:hover { border-color: var(--red); color: #fff; background: var(--red); }
         .add-item-btn { background: transparent; border: 2px solid var(--green); color: var(--green); padding: 0.6rem 1.25rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: all 0.15s; }
         .add-item-btn:hover { background: var(--green); color: var(--dark); }
 
-        /* product search dropdown in order form */
-        .product-search-wrapper { position: relative; }
-        .product-select-button { width: 100%; padding: 0.7rem 0.9rem; background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.18); color: rgba(255,255,255,0.7); font-family: 'Barlow', sans-serif; font-size: 0.97rem; text-align: left; cursor: pointer; transition: border-color 0.2s; }
-        .product-select-button.has-selection { color: #fff; }
-        .product-select-button:hover { border-color: rgba(255,255,255,0.5); }
-        .product-search-input { display: none; width: 100%; padding: 0.7rem 0.9rem; background: rgba(255,255,255,0.15); border: 2px solid var(--red); color: #fff; font-family: 'Barlow', sans-serif; font-size: 0.97rem; margin-bottom: 0; }
-        .product-search-input::placeholder { color: rgba(255,255,255,0.4); }
-        .product-search-input:focus { outline: none; }
-        .product-search-input.active { display: block; }
-        .product-select-hidden { display: none; }
-        .product-dropdown { display: none; position: absolute; top: 100%; left: 0; right: 0; max-height: 200px; overflow-y: auto; background: #0d2235; border: 2px solid var(--red); z-index: 500; box-shadow: 0 6px 20px rgba(0,0,0,0.4); }
-        .product-dropdown.active { display: block; }
-        .product-dropdown-item { padding: 0.65rem 0.9rem; cursor: pointer; border-bottom: 1px solid rgba(255,255,255,0.06); transition: background 0.12s; }
-        .product-dropdown-item:hover { background: rgba(231,29,54,0.15); }
-        .product-dropdown-item strong { display: block; font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 0.95rem; text-transform: uppercase; color: #fff; }
-        .product-dropdown-item small { color: rgba(255,255,255,0.45); font-size: 0.82rem; }
-        .product-info-display { display: none; margin-top: 0.5rem; padding: 0.6rem 0.85rem; background: rgba(255,255,255,0.06); border-left: 3px solid var(--orange); font-size: 0.88rem; color: rgba(255,255,255,0.7); line-height: 1.5; }
-        .product-info-display.active { display: block; }
+        /* PRODUCT SEARCH DROPDOWN (in order form) */
+        .psw { position: relative; }
+        .ps-btn { width: 100%; padding: 0.7rem 0.9rem; background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.18); color: rgba(255,255,255,0.6); font-family: 'Barlow', sans-serif; font-size: 0.97rem; text-align: left; cursor: pointer; transition: border-color 0.2s; }
+        .ps-btn.selected { color: #fff; }
+        .ps-btn:hover { border-color: rgba(255,255,255,0.5); }
+        .ps-input { display: none; width: 100%; padding: 0.7rem 0.9rem; background: rgba(255,255,255,0.15); border: 2px solid var(--red); color: #fff; font-family: 'Barlow', sans-serif; font-size: 0.97rem; }
+        .ps-input::placeholder { color: rgba(255,255,255,0.4); }
+        .ps-input:focus { outline: none; }
+        .ps-input.open { display: block; }
+        .ps-hidden { display: none; }
+        .ps-dropdown { display: none; position: absolute; top: 100%; left: 0; right: 0; max-height: 200px; overflow-y: auto; background: #0d2235; border: 2px solid var(--red); z-index: 500; box-shadow: 0 6px 20px rgba(0,0,0,0.4); }
+        .ps-dropdown.open { display: block; }
+        .ps-item { padding: 0.65rem 0.9rem; cursor: pointer; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .ps-item:hover { background: rgba(231,29,54,0.15); }
+        .ps-item strong { display: block; font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 0.95rem; text-transform: uppercase; color: #fff; }
+        .ps-item small { color: rgba(255,255,255,0.45); font-size: 0.82rem; }
+        .ps-info { display: none; margin-top: 0.5rem; padding: 0.6rem 0.85rem; background: rgba(255,255,255,0.06); border-left: 3px solid var(--orange); font-size: 0.88rem; color: rgba(255,255,255,0.7); line-height: 1.5; }
+        .ps-info.open { display: block; }
 
-        /* form actions */
+        /* FORM ACTIONS */
         .form-actions { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1.75rem 2rem; background: rgba(255,255,255,0.04); border-left: 4px solid var(--orange); }
         .order-total { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.4rem; text-transform: uppercase; color: #fff; }
         .order-total span { color: var(--orange); }
         .submit-btn { background: var(--red); color: #fff; border: none; padding: 1rem 2.5rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.1rem; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.18s; }
         .submit-btn:hover { background: #c41020; }
 
-        /* feedback messages */
+        /* MESSAGES */
         .msg { padding: 1.25rem 1.5rem; margin-bottom: 1.25rem; font-size: 0.97rem; line-height: 1.6; }
         .msg-success { background: rgba(139,195,74,0.18); border-left: 4px solid var(--green); color: #fff; }
         .msg-error { background: rgba(231,29,54,0.15); border-left: 4px solid var(--red); color: #fff; }
         .msg textarea { width: 100%; height: 150px; margin-top: 0.75rem; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2); color: #fff; font-family: monospace; font-size: 0.82rem; padding: 0.5rem; }
-        .msg details summary { cursor: pointer; color: var(--orange); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-top: 0.75rem; }
-
-        /* backup contact */
-        .backup-contact { background: rgba(255,255,255,0.05); border-left: 3px solid rgba(255,255,255,0.2); padding: 1.25rem 1.5rem; margin-top: 2rem; font-size: 0.93rem; color: rgba(255,255,255,0.65); line-height: 1.65; }
+        .msg details summary { cursor: pointer; color: var(--orange); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; text-transform: uppercase; margin-top: 0.75rem; }
+        .backup-contact { background: rgba(255,255,255,0.05); border-left: 3px solid rgba(255,255,255,0.2); padding: 1.25rem 1.5rem; margin-top: 2rem; font-size: 0.93rem; color: rgba(255,255,255,0.65); }
         .backup-contact a { color: var(--orange); text-decoration: none; font-weight: 600; }
-        .backup-contact a:hover { text-decoration: underline; }
 
-        /* ── ADD TO ORDER BUTTON ── */
-        .product-card-foot { padding: 0.85rem 1.25rem; border-top: 1px solid #eee; }
-        .add-to-order-btn {
-            width: 100%;
-            background: var(--dark);
-            color: #fff;
-            border: none;
-            padding: 0.6rem 1rem;
-            font-family: 'Barlow Condensed', sans-serif;
-            font-weight: 900;
-            font-size: 0.88rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: background 0.15s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.4rem;
-        }
-        .add-to-order-btn:hover { background: var(--red); }
-        .add-to-order-btn.added { background: var(--green); }
-        /* flash animation on the order section header when item added */
-        @keyframes flash-border {
-            0%   { border-left-color: var(--green); }
-            100% { border-left-color: var(--red); }
-        }
-        .flash { animation: flash-border 0.6s ease-out; }
-
-        /* ── FOOTER ── */
+        /* FOOTER */
         footer { background: linear-gradient(135deg, var(--dark), #000); color: #fff; text-align: center; padding: 2rem 1rem; border-top: 4px solid var(--orange); }
-        footer h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem; }
+        footer h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.2rem; text-transform: uppercase; margin-bottom: 0.4rem; }
         footer p { color: rgba(255,255,255,0.55); font-size: 0.88rem; margin-top: 0.4rem; }
         .social-links { display: flex; justify-content: center; gap: 1.25rem; margin: 0.9rem 0; }
         .social-links a { color: #fff; font-size: 1.3rem; transition: color 0.2s; }
         .social-links a:hover { color: var(--red); }
 
-        /* ── MOBILE ── */
+        /* MOBILE */
         @media (max-width: 820px) {
             nav { flex-direction: column; }
             .nav-brand { padding: 0.7rem 1rem; justify-content: center; }
@@ -223,8 +177,7 @@
             .nav-main-links > li > a { padding: 0.7rem 1rem; min-height: auto; }
             .mega-menu { position: static; display: none !important; box-shadow: none; padding: 0.4rem 0.9rem 0.9rem 1.75rem; border-top: none; border-left: 3px solid var(--red); margin: 0 0.9rem 0.4rem; }
             .has-dropdown.open .mega-menu { display: block !important; }
-            .mega-menu-grid { grid-template-columns: 1fr; }
-            .nav-hamburger { display: flex; align-items: center; background: none; border: none; color: #fff; font-size: 1.3rem; padding: 0.7rem 1rem; cursor: pointer; margin-left: auto; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; }
+            .nav-hamburger { display: flex; }
             .form-grid { grid-template-columns: 1fr; }
             .order-item { grid-template-columns: 1fr; gap: 0.6rem; }
             .form-actions { flex-direction: column; align-items: stretch; }
@@ -236,649 +189,734 @@
 </head>
 <body>
 
-    <!-- TOP BAR -->
-    <div class="nav-top">
-        <a href="index.html#get-involved">Contact</a>
-        <a href="spanish.html" class="lang-btn">Español</a>
-    </div>
+<div class="nav-top">
+    <a href="index.html#get-involved">Contact</a>
+    <a href="spanish.html" class="lang-btn">Español</a>
+</div>
 
-    <!-- MAIN NAV -->
-    <nav id="main-nav">
-        <a href="index.html" class="nav-brand"><span>← PLRCAWG</span></a>
-        <button class="nav-hamburger" id="hamburger">☰ Menu</button>
-        <ul class="nav-main-links" id="nav-links">
-            <li><a href="OurCompass.html">Theory of Change</a></li>
-            <li><a href="territorial_markets.html" class="active">Order Now ↗</a></li>
-            <li class="has-dropdown">
-                <a href="#">Our Initiatives <span class="chevron">▼</span></a>
-                <div class="mega-menu wide">
-                    <div class="mega-menu-label">Initiatives</div>
-                    <div class="mega-menu-grid single-col">
-                        <a href="territorial_markets_about.html">Territorial Markets</a>
-                        <a href="engineering-brigades.html">Engineering Brigades</a>
-                        <a href="parcel-identification.html">Land Acquisition</a>
-                        <a href="agroecological-training.html">Political Education</a>
-                    </div>
-                </div>
-            </li>
-            <li class="has-dropdown">
-                <a href="#">Land Reform School <span class="chevron">▼</span></a>
-                <div class="mega-menu">
-                    <div class="mega-menu-label">Programs</div>
-                    <div class="mega-menu-grid single-col">
-                        <a href="summer-school.html">Summer School</a>
-                        <a href="winter-school.html">Winter School</a>
-                    </div>
-                </div>
-            </li>
-            <li class="has-dropdown">
-                <a href="#">Join Us <span class="chevron">▼</span></a>
-                <div class="mega-menu">
-                    <div class="mega-menu-label">Chapters</div>
-                    <div class="mega-menu-grid single-col">
-                        <a href="join-general.html">General</a>
-                        <a href="join-bay-area.html">Bay Area</a>
-                        <a href="join-la.html">Los Angeles</a>
-                        <a href="join-san-diego.html">San Diego</a>
-                    </div>
-                </div>
-            </li>
-        </ul>
-    </nav>
-
-    <!-- HERO -->
-    <div class="hero">
-        <div class="hero-inner">
-            <p class="hero-eyebrow">Territorial Markets — Order Directly</p>
-            <h1>Order Now</h1>
-            <p class="hero-sub">Fresh produce from the <strong style="color:#fff">Coalición de Pequeños Agricultores</strong> — majority farmworker-to-farmer, organic producers across San Benito, Santa Clara, Santa Cruz, and Monterey Counties.</p>
-            <div class="hero-actions">
-                <a href="#products" class="hero-btn hero-btn-secondary">Browse Products ↓</a>
-                <a href="#order" class="hero-btn hero-btn-primary">Place Order →</a>
+<nav id="main-nav">
+    <a href="index.html" class="nav-brand"><span>← PLRCAWG</span></a>
+    <button class="nav-hamburger" id="hamburger">☰ Menu</button>
+    <ul class="nav-main-links" id="nav-links">
+        <li><a href="OurCompass.html">Theory of Change</a></li>
+        <li><a href="territorial_markets.html" class="active">Order Now ↗</a></li>
+        <li class="has-dropdown">
+            <a href="#">Our Initiatives <span class="chevron">▼</span></a>
+            <div class="mega-menu">
+                <div class="mega-menu-label">Initiatives</div>
+                <a href="territorial_markets_about.html">Territorial Markets</a>
+                <a href="engineering-brigades.html">Engineering Brigades</a>
+                <a href="parcel-identification.html">Land Acquisition</a>
+                <a href="agroecological-training.html">Political Education</a>
             </div>
+        </li>
+        <li class="has-dropdown">
+            <a href="#">Land Reform School <span class="chevron">▼</span></a>
+            <div class="mega-menu">
+                <div class="mega-menu-label">Programs</div>
+                <a href="summer-school.html">Summer School</a>
+                <a href="winter-school.html">Winter School</a>
+            </div>
+        </li>
+        <li class="has-dropdown">
+            <a href="#">Join Us <span class="chevron">▼</span></a>
+            <div class="mega-menu">
+                <div class="mega-menu-label">Chapters</div>
+                <a href="join-general.html">General</a>
+                <a href="join-bay-area.html">Bay Area</a>
+                <a href="join-la.html">Los Angeles</a>
+                <a href="join-san-diego.html">San Diego</a>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+<div class="hero">
+    <div class="hero-inner">
+        <p class="hero-eyebrow">Territorial Markets — Order Directly</p>
+        <h1>Order Now</h1>
+        <p class="hero-sub">Fresh produce from the <strong style="color:#fff">Coalición de Pequeños Agricultores</strong> — majority farmworker-to-farmer, organic producers across San Benito, Santa Clara, Santa Cruz, and Monterey Counties.</p>
+        <div class="hero-actions">
+            <a href="#products" class="hero-btn hero-btn-secondary">Browse Products ↓</a>
+            <a href="#order" class="hero-btn hero-btn-primary">Place Order →</a>
         </div>
     </div>
+</div>
 
-    <!-- PRODUCT CATALOGUE -->
-    <div class="white-band" id="products">
-        <div class="catalogue-header">
-            <h2>Available Products</h2>
-            <p>All produce is grown by small campesin@ farmers. Individual pricing for single-household orders; bulk pricing for cooperatives, unions, and community formations.</p>
-        </div>
-
-        <div class="search-filter-bar">
-            <input type="text" id="productSearch" class="product-search" placeholder="Search products..." oninput="searchProducts()">
-            <button class="filter-btn active" onclick="filterProducts('all', event)">All</button>
-            <button class="filter-btn" onclick="filterProducts('vegetables', event)">Vegetables</button>
-            <button class="filter-btn" onclick="filterProducts('peppers', event)">Peppers</button>
-            <button class="filter-btn" onclick="filterProducts('herbs', event)">Herbs</button>
-            <button class="filter-btn" onclick="filterProducts('greens', event)">Greens</button>
-            <button class="filter-btn" onclick="filterProducts('fruits', event)">Fruits</button>
-            <button class="filter-btn" onclick="filterProducts('salsas', event)">Salsas</button>
-            <button class="filter-btn" onclick="filterProducts('squashes', event)">Squashes</button>
-            <button class="filter-btn" onclick="filterProducts('misc', event)">Misc</button>
-        </div>
-
-        <div class="products-grid" id="productsGrid">
-            <!-- populated by JS -->
-        </div>
+<div class="catalogue-wrap" id="products">
+    <div class="catalogue-header">
+        <h2>Available Products</h2>
+        <p>All produce grown by small campesin@ farmers. Individual pricing for single-household orders; bulk pricing for cooperatives, unions, and community formations.</p>
     </div>
+    <div class="search-filter-bar">
+        <input type="text" id="productSearch" class="product-search" placeholder="Search products...">
+        <button class="filter-btn active" data-cat="all">All</button>
+        <button class="filter-btn" data-cat="vegetables">Vegetables</button>
+        <button class="filter-btn" data-cat="peppers">Peppers</button>
+        <button class="filter-btn" data-cat="herbs">Herbs</button>
+        <button class="filter-btn" data-cat="greens">Greens</button>
+        <button class="filter-btn" data-cat="fruits">Fruits</button>
+        <button class="filter-btn" data-cat="salsas">Salsas</button>
+        <button class="filter-btn" data-cat="squashes">Squashes</button>
+        <button class="filter-btn" data-cat="misc">Misc</button>
+    </div>
+    <div class="products-grid" id="productsGrid"></div>
+</div>
 
-    <!-- ORDER FORM -->
-    <div class="order-band" id="order">
-        <div class="order-inner">
-            <h2>Place Your Order</h2>
-            <p>Fill out the form below. Orders are reviewed within 48 hours — you'll receive confirmation and coordination details by email. For SNAP recipients, enable the SNAP Special toggle to order at no cost.</p>
+<div class="order-band" id="order">
+    <div class="order-inner">
+        <h2>Place Your Order</h2>
+        <p>Fill out the form below. Orders are reviewed within 48 hours — you'll receive confirmation and coordination details by email.</p>
 
-            <form id="orderForm" class="order-form" action="https://formspree.io/f/mrbygllj" method="POST">
-                <input type="hidden" name="_subject" value="New Territorial Markets Order">
-                <input type="hidden" name="_next" value="https://pluricalifornia.github.io/plurinational-landreform/territorial_markets.html?submitted=true">
-                <input type="hidden" id="orderDataField" name="order_details" value="">
+        <form id="orderForm" action="https://formspree.io/f/mrbygllj" method="POST">
+            <input type="hidden" name="_subject" value="New Territorial Markets Order">
+            <input type="hidden" name="_next" value="https://pluricalifornia.github.io/plurinational-landreform/territorial_markets.html?submitted=true">
+            <input type="hidden" id="orderDataField" name="order_details" value="">
 
-                <!-- ORGANIZATION INFO -->
-                <div class="form-section">
-                    <h3>Organization Information</h3>
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label for="orgName">Organization / Group Name *</label>
-                            <input type="text" id="orgName" name="orgName" required placeholder="e.g. Stanford Eating Clubs Co-op">
-                        </div>
-                        <div class="form-group">
-                            <label for="orgType">Organization Type *</label>
-                            <select id="orgType" name="orgType" required>
-                                <option value="">Select type</option>
-                                <option value="student-cooperative">Student Cooperative</option>
-                                <option value="tenant-union">Tenant Union</option>
-                                <option value="community-formation">Community Formation</option>
-                                <option value="mutual-aid">Mutual Aid Group</option>
-                                <option value="food-coop">Food Cooperative</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="contactName">Contact Person *</label>
-                            <input type="text" id="contactName" name="contactName" required placeholder="Full name">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email *</label>
-                            <input type="email" id="email" name="email" required placeholder="you@example.com">
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone (optional)</label>
-                            <input type="tel" id="phone" name="phone" placeholder="(415) 000-0000">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- SNAP SPECIAL -->
-                <div class="snap-box">
-                    <div class="snap-toggle-row">
-                        <label for="snapSpecial">SNAP Special</label>
-                        <label class="switch">
-                            <input type="checkbox" id="snapSpecial" name="snapSpecial" onchange="toggleSnapSpecial()">
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-                    <p class="snap-desc">When enabled, all products are available at no charge for eligible SNAP recipients — ensuring equitable access to fresh local produce regardless of income.</p>
-                    <div class="custom-items-box" id="customItemsContainer">
-                        <h4>Request Custom Items</h4>
-                        <p style="font-size:0.9rem;color:rgba(255,255,255,0.6);margin-bottom:0.85rem">Don't see what you need? Let us know and we'll source from our farmer network.</p>
-                        <div class="form-group">
-                            <label for="customItems">Custom Items Requested</label>
-                            <textarea id="customItems" name="customItems" rows="4" placeholder="e.g. Asian greens, specialty peppers, rice, beans, canned goods..."></textarea>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ORDER DETAILS -->
-                <div class="form-section">
-                    <h3>Order Details</h3>
-                    <div class="order-items-container" id="orderItems">
-                        <!-- populated by JS -->
-                    </div>
-                    <button type="button" class="add-item-btn" onclick="addOrderItem()">+ Add Another Product</button>
-                </div>
-
-                <!-- DELIVERY -->
-                <div class="form-section">
-                    <h3>Delivery &amp; Pickup</h3>
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label for="deliveryMethod">Preferred Method *</label>
-                            <select id="deliveryMethod" name="deliveryMethod" required>
-                                <option value="">Select method</option>
-                                <option value="farm-pickup">Farm Pickup</option>
-                                <option value="stanford-delivery">Stanford Area Delivery</option>
-                                <option value="east-palo-alto-delivery">East Palo Alto Delivery</option>
-                                <option value="san-francisco-delivery">San Francisco Delivery</option>
-                                <option value="east-bay-delivery">East Bay Delivery</option>
-                                <option value="peninsula-delivery">Peninsula Delivery</option>
-                                <option value="coordinate-pickup">Coordinate Group Pickup</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="preferredDate">Preferred Date</label>
-                            <input type="date" id="preferredDate" name="preferredDate">
-                        </div>
-                        <div class="form-group" style="grid-column:1/-1">
-                            <label for="address">Delivery Address (if applicable)</label>
-                            <textarea id="address" name="address" rows="2" placeholder="Street address, city, zip"></textarea>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- NOTES -->
-                <div class="form-section">
-                    <h3>Additional Notes</h3>
+            <div class="form-section">
+                <h3>Organization Information</h3>
+                <div class="form-grid">
                     <div class="form-group">
-                        <label for="specialRequests">Special Requests</label>
-                        <textarea id="specialRequests" name="specialRequests" rows="3" placeholder="Substitutions, accessibility needs, recurring order info..."></textarea>
+                        <label for="orgName">Organization / Group Name *</label>
+                        <input type="text" id="orgName" name="orgName" required placeholder="e.g. Stanford Eating Clubs Co-op">
+                    </div>
+                    <div class="form-group">
+                        <label for="orgType">Organization Type *</label>
+                        <select id="orgType" name="orgType" required>
+                            <option value="">Select type</option>
+                            <option value="student-cooperative">Student Cooperative</option>
+                            <option value="tenant-union">Tenant Union</option>
+                            <option value="community-formation">Community Formation</option>
+                            <option value="mutual-aid">Mutual Aid Group</option>
+                            <option value="food-coop">Food Cooperative</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactName">Contact Person *</label>
+                        <input type="text" id="contactName" name="contactName" required placeholder="Full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required placeholder="you@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone (optional)</label>
+                        <input type="tel" id="phone" name="phone" placeholder="(415) 000-0000">
                     </div>
                 </div>
-
-                <!-- SUBMIT -->
-                <div class="form-actions">
-                    <div class="order-total" id="orderTotal">Estimated Total: <span>$0.00</span></div>
-                    <button type="submit" class="submit-btn">Submit Order →</button>
-                </div>
-            </form>
-
-            <div class="backup-contact">
-                <strong style="color:#fff">Alternative:</strong> Email us directly at <a href="mailto:pluricalifornia@gmail.com">pluricalifornia@gmail.com</a> with your order details. Orders are confirmed within 48 hours.
             </div>
+
+            <div class="snap-box">
+                <div class="snap-toggle-row">
+                    <span class="snap-toggle-label">SNAP Special</span>
+                    <label class="switch">
+                        <input type="checkbox" id="snapSpecial" name="snapSpecial">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <p class="snap-desc">When enabled, all products are available at no charge for eligible SNAP recipients.</p>
+                <div class="custom-items-box" id="customItemsBox">
+                    <h4>Request Custom Items</h4>
+                    <p style="font-size:0.9rem;color:rgba(255,255,255,0.6);margin-bottom:0.85rem">Don't see what you need? Let us know and we'll source from our farmer network.</p>
+                    <div class="form-group">
+                        <label for="customItems">Custom Items</label>
+                        <textarea id="customItems" name="customItems" rows="3" placeholder="e.g. Asian greens, rice, beans, canned goods..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>Order Details</h3>
+                <div class="order-items-list" id="orderItemsList"></div>
+                <button type="button" class="add-item-btn" id="addItemBtn">+ Add Another Product</button>
+            </div>
+
+            <div class="form-section">
+                <h3>Delivery &amp; Pickup</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="deliveryMethod">Preferred Method *</label>
+                        <select id="deliveryMethod" name="deliveryMethod" required>
+                            <option value="">Select method</option>
+                            <option value="farm-pickup">Farm Pickup</option>
+                            <option value="stanford-delivery">Stanford Area Delivery</option>
+                            <option value="east-palo-alto-delivery">East Palo Alto Delivery</option>
+                            <option value="san-francisco-delivery">San Francisco Delivery</option>
+                            <option value="east-bay-delivery">East Bay Delivery</option>
+                            <option value="peninsula-delivery">Peninsula Delivery</option>
+                            <option value="coordinate-pickup">Coordinate Group Pickup</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="preferredDate">Preferred Date</label>
+                        <input type="date" id="preferredDate" name="preferredDate">
+                    </div>
+                    <div class="form-group" style="grid-column:1/-1">
+                        <label for="address">Delivery Address (if applicable)</label>
+                        <textarea id="address" name="address" rows="2" placeholder="Street address, city, zip"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>Additional Notes</h3>
+                <div class="form-group">
+                    <label for="specialRequests">Special Requests</label>
+                    <textarea id="specialRequests" name="specialRequests" rows="3" placeholder="Substitutions, accessibility needs, recurring order info..."></textarea>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <div class="order-total" id="orderTotal">Estimated Total: <span>$0.00</span></div>
+                <button type="submit" class="submit-btn" id="submitBtn">Submit Order →</button>
+            </div>
+        </form>
+
+        <div class="backup-contact">
+            <strong style="color:#fff">Alternative:</strong> Email <a href="mailto:pluricalifornia@gmail.com">pluricalifornia@gmail.com</a> with your order details. Confirmed within 48 hours.
         </div>
     </div>
+</div>
 
-    <!-- FOOTER -->
-    <footer>
-        <h3>Plurinational Land Reform in CA Working Group</h3>
-        <p>Working on stolen Ohlone, Miwok, Yokuts, Chumash, Tongva, Cahuilla, Kumeyaay, Acjachemen, and many other indigenous lands</p>
-        <div class="social-links">
-            <a href="https://instagram.com/plurinational.landreform_cawg" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        </div>
-        <p>&copy; 2025 Plurinational Land Reform in CA Working Group. All rights reserved.</p>
-    </footer>
+<footer>
+    <h3>Plurinational Land Reform in CA Working Group</h3>
+    <p>Working on stolen Ohlone, Miwok, Yokuts, Chumash, Tongva, Cahuilla, Kumeyaay, Acjachemen, and many other indigenous lands</p>
+    <div class="social-links">
+        <a href="https://instagram.com/plurinational.landreform_cawg" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    </div>
+    <p>&copy; 2025 Plurinational Land Reform in CA Working Group. All rights reserved.</p>
+</footer>
 
 <script>
+(function() {
+    'use strict';
+
     // ── NAV ──────────────────────────────────────────────────────────────────
     document.getElementById('hamburger').addEventListener('click', function() {
         document.getElementById('nav-links').classList.toggle('open');
     });
-    document.querySelectorAll('.has-dropdown > a').forEach(link => {
+    document.querySelectorAll('.has-dropdown > a').forEach(function(link) {
         link.addEventListener('click', function(e) {
-            if (window.innerWidth <= 820) { e.preventDefault(); this.parentElement.classList.toggle('open'); }
+            if (window.innerWidth <= 820) {
+                e.preventDefault();
+                this.parentElement.classList.toggle('open');
+            }
         });
     });
 
-    // ── PRODUCTS DATA ─────────────────────────────────────────────────────────
-    const products = [
-        { name: "Broccoli (Green)", category: "vegetables", individual: 3.00, individualDisplay: "$3.00/lb", bulk: 60.00, bulkDisplay: "$60.00 (20 lb)", bulkQty: 20 },
-        { name: "Cauliflower", category: "vegetables", individual: 3.00, individualDisplay: "$3.00/lb", bulk: 60.00, bulkDisplay: "$60.00 (20 lb)", bulkQty: 20 },
-        { name: "Celery", category: "vegetables", individual: 2.50, individualDisplay: "$2.50/pz", bulk: 60.00, bulkDisplay: "$60.00 (24 ct)", bulkQty: 24 },
-        { name: "Romaine Lettuce", category: "greens", individual: 2.50, individualDisplay: "$2.50/pz", bulk: 60.00, bulkDisplay: "$60.00 (24 ct)", bulkQty: 24 },
-        { name: "Onions (Yellow)", category: "vegetables", individual: 1.50, individualDisplay: "$1.50/lb", bulk: 30.00, bulkDisplay: "$30.00 (20 lb)", bulkQty: 20 },
-        { name: "Broccolini", category: "vegetables", individual: 3.00, individualDisplay: "$3.00/lb", bulk: 60.00, bulkDisplay: "$60.00 (20 lb)", bulkQty: 20 },
-        { name: "Maiz Pinto", category: "vegetables", individual: 1.50, individualDisplay: "$1.50/lb", bulk: 30.00, bulkDisplay: "$30.00 (20 pz)", bulkQty: 20 },
-        { name: "Carrots", category: "vegetables", individual: 2.00, individualDisplay: "$2.00/bunch", bulk: 48.00, bulkDisplay: "$48.00 (24 bunch)", bulkQty: 24 },
-        { name: "Beets", category: "vegetables", individual: 2.00, individualDisplay: "$2.00/bunch", bulk: 48.00, bulkDisplay: "$48.00 (24 bunch)", bulkQty: 24 },
-        { name: "Chard", category: "greens", individual: 2.00, individualDisplay: "$2.00/bunch", bulk: 48.00, bulkDisplay: "$48.00 (24 bunch)", bulkQty: 24 },
-        { name: "Kale (Lacinato Green)", category: "greens", individual: 2.00, individualDisplay: "$2.00/bunch", bulk: 48.00, bulkDisplay: "$48.00 (24 bunch)", bulkQty: 24 },
-        { name: "Kale (Red)", category: "greens", individual: 2.00, individualDisplay: "$2.00/bunch", bulk: 48.00, bulkDisplay: "$48.00 (24 bunch)", bulkQty: 24 },
-        { name: "Cabbage (Green)", category: "greens", individual: 1.50, individualDisplay: "$1.50/lb", bulk: 52.50, bulkDisplay: "$52.50 (35 lb)", bulkQty: 35 },
-        { name: "Cabbage (Red)", category: "greens", individual: 1.50, individualDisplay: "$1.50/lb", bulk: 52.50, bulkDisplay: "$52.50 (35 lb)", bulkQty: 35 },
-        { name: "Strawberries", category: "fruits", individual: 3.50, individualDisplay: "$3.50/basket", bulk: 35.00, bulkDisplay: "$35.00 (12 baskets)", bulkQty: 12 },
-        { name: "Blackberries", category: "fruits", individual: 4.00, individualDisplay: "$4.00/basket", bulk: 45.00, bulkDisplay: "$45.00 (12 baskets)", bulkQty: 12 },
-        { name: "Delicata Squash", category: "squashes", individual: 2.00, individualDisplay: "$2.00/lb", bulk: 40.00, bulkDisplay: "$40.00 (20 lbs)", bulkQty: 20 },
-        { name: "Acorn Squash", category: "squashes", individual: 2.00, individualDisplay: "$2.00/lb", bulk: 40.00, bulkDisplay: "$40.00 (20 lbs)", bulkQty: 20 },
-        { name: "Spaghetti Squash", category: "squashes", individual: 2.00, individualDisplay: "$2.00/lb", bulk: 40.00, bulkDisplay: "$40.00 (20 lbs)", bulkQty: 20 },
-        { name: "Garlic", category: "misc", individual: 6.00, individualDisplay: "$6.00/lb", bulk: 30.00, bulkDisplay: "$30.00 (5 lb)", bulkQty: 5 },
-        { name: "Honey (16 Oz.)", category: "misc", individual: 20.00, individualDisplay: "$20/pz", bulk: 60.00, bulkDisplay: "$60.00 (3 pz)", bulkQty: 3 },
-        { name: "Lavender", category: "misc", individual: 7.00, individualDisplay: "$7.00/bunch", bulk: 70.00, bulkDisplay: "$70.00 (10 bunches)", bulkQty: 10 },
-        { name: "Cilantro", category: "herbs", individual: 1.50, individualDisplay: "$1.50/bunch", bulk: 15.00, bulkDisplay: "$15.00 (10 bunches)", bulkQty: 10 },
-        { name: "Parsley", category: "herbs", individual: 1.50, individualDisplay: "$1.50/bunch", bulk: 15.00, bulkDisplay: "$15.00 (10 bunches)", bulkQty: 10 },
-        { name: "Radishes", category: "misc", individual: 1.50, individualDisplay: "$1.50/bunch", bulk: 30.00, bulkDisplay: "$30.00 (20 bunches)", bulkQty: 20 },
-        { name: "Eggs", category: "misc", individual: 10.00, individualDisplay: "$10/dozen", bulk: 100.00, bulkDisplay: "$100.00 (10 dozens)", bulkQty: 10 },
-        { name: "Handmade Tortilla Packs", category: "misc", individual: 10.00, individualDisplay: "$10/dozen", bulk: 100.00, bulkDisplay: "$100.00 (10 dozens)", bulkQty: 10 },
-        { name: "Salsa Roja", category: "salsas", individual: 0, individualDisplay: "By Size", bulk: 0, bulkDisplay: "See sizes", bulkQty: 1, hasSizes: true, sizes: [
-            { size: "8 oz", price: 5.00 }, { size: "16 oz", price: 8.00 }, { size: "32 oz", price: 15.00 }, { size: "64 oz", price: 25.00 }
-        ]},
-        { name: "Salsa Verde", category: "salsas", individual: 0, individualDisplay: "By Size", bulk: 0, bulkDisplay: "See sizes", bulkQty: 1, hasSizes: true, sizes: [
-            { size: "8 oz", price: 5.00 }, { size: "16 oz", price: 8.00 }, { size: "32 oz", price: 15.00 }, { size: "64 oz", price: 25.00 }
-        ]},
-        { name: "Tomato Sauce", category: "salsas", individual: 0, individualDisplay: "By Size", bulk: 0, bulkDisplay: "See sizes", bulkQty: 1, hasSizes: true, sizes: [
-            { size: "16 oz", price: 8.00 }, { size: "32 oz", price: 15.00 }, { size: "64 oz", price: 25.00 }
-        ]}
+    // ── PRODUCTS ─────────────────────────────────────────────────────────────
+    var products = [
+        { name: "Broccoli (Green)",       category: "vegetables", individual: 3.00,  indDisplay: "$3.00/lb",      bulk: 60.00,  bulkDisplay: "$60.00 (20 lb)" },
+        { name: "Cauliflower",            category: "vegetables", individual: 3.00,  indDisplay: "$3.00/lb",      bulk: 60.00,  bulkDisplay: "$60.00 (20 lb)" },
+        { name: "Celery",                 category: "vegetables", individual: 2.50,  indDisplay: "$2.50/pz",      bulk: 60.00,  bulkDisplay: "$60.00 (24 ct)" },
+        { name: "Romaine Lettuce",        category: "greens",     individual: 2.50,  indDisplay: "$2.50/pz",      bulk: 60.00,  bulkDisplay: "$60.00 (24 ct)" },
+        { name: "Onions (Yellow)",        category: "vegetables", individual: 1.50,  indDisplay: "$1.50/lb",      bulk: 30.00,  bulkDisplay: "$30.00 (20 lb)" },
+        { name: "Broccolini",             category: "vegetables", individual: 3.00,  indDisplay: "$3.00/lb",      bulk: 60.00,  bulkDisplay: "$60.00 (20 lb)" },
+        { name: "Maiz Pinto",             category: "vegetables", individual: 1.50,  indDisplay: "$1.50/lb",      bulk: 30.00,  bulkDisplay: "$30.00 (20 pz)" },
+        { name: "Carrots",                category: "vegetables", individual: 2.00,  indDisplay: "$2.00/bunch",   bulk: 48.00,  bulkDisplay: "$48.00 (24 bunch)" },
+        { name: "Beets",                  category: "vegetables", individual: 2.00,  indDisplay: "$2.00/bunch",   bulk: 48.00,  bulkDisplay: "$48.00 (24 bunch)" },
+        { name: "Chard",                  category: "greens",     individual: 2.00,  indDisplay: "$2.00/bunch",   bulk: 48.00,  bulkDisplay: "$48.00 (24 bunch)" },
+        { name: "Kale (Lacinato Green)",  category: "greens",     individual: 2.00,  indDisplay: "$2.00/bunch",   bulk: 48.00,  bulkDisplay: "$48.00 (24 bunch)" },
+        { name: "Kale (Red)",             category: "greens",     individual: 2.00,  indDisplay: "$2.00/bunch",   bulk: 48.00,  bulkDisplay: "$48.00 (24 bunch)" },
+        { name: "Cabbage (Green)",        category: "greens",     individual: 1.50,  indDisplay: "$1.50/lb",      bulk: 52.50,  bulkDisplay: "$52.50 (35 lb)" },
+        { name: "Cabbage (Red)",          category: "greens",     individual: 1.50,  indDisplay: "$1.50/lb",      bulk: 52.50,  bulkDisplay: "$52.50 (35 lb)" },
+        { name: "Strawberries",           category: "fruits",     individual: 3.50,  indDisplay: "$3.50/basket",  bulk: 35.00,  bulkDisplay: "$35.00 (12 baskets)" },
+        { name: "Blackberries",           category: "fruits",     individual: 4.00,  indDisplay: "$4.00/basket",  bulk: 45.00,  bulkDisplay: "$45.00 (12 baskets)" },
+        { name: "Delicata Squash",        category: "squashes",   individual: 2.00,  indDisplay: "$2.00/lb",      bulk: 40.00,  bulkDisplay: "$40.00 (20 lbs)" },
+        { name: "Acorn Squash",           category: "squashes",   individual: 2.00,  indDisplay: "$2.00/lb",      bulk: 40.00,  bulkDisplay: "$40.00 (20 lbs)" },
+        { name: "Spaghetti Squash",       category: "squashes",   individual: 2.00,  indDisplay: "$2.00/lb",      bulk: 40.00,  bulkDisplay: "$40.00 (20 lbs)" },
+        { name: "Garlic",                 category: "misc",       individual: 6.00,  indDisplay: "$6.00/lb",      bulk: 30.00,  bulkDisplay: "$30.00 (5 lb)" },
+        { name: "Honey (16 Oz.)",         category: "misc",       individual: 20.00, indDisplay: "$20/pz",        bulk: 60.00,  bulkDisplay: "$60.00 (3 pz)" },
+        { name: "Lavender",               category: "misc",       individual: 7.00,  indDisplay: "$7.00/bunch",   bulk: 70.00,  bulkDisplay: "$70.00 (10 bunches)" },
+        { name: "Cilantro",               category: "herbs",      individual: 1.50,  indDisplay: "$1.50/bunch",   bulk: 15.00,  bulkDisplay: "$15.00 (10 bunches)" },
+        { name: "Parsley",                category: "herbs",      individual: 1.50,  indDisplay: "$1.50/bunch",   bulk: 15.00,  bulkDisplay: "$15.00 (10 bunches)" },
+        { name: "Radishes",               category: "misc",       individual: 1.50,  indDisplay: "$1.50/bunch",   bulk: 30.00,  bulkDisplay: "$30.00 (20 bunches)" },
+        { name: "Eggs",                   category: "misc",       individual: 10.00, indDisplay: "$10/dozen",     bulk: 100.00, bulkDisplay: "$100.00 (10 dozens)" },
+        { name: "Handmade Tortilla Packs",category: "misc",       individual: 10.00, indDisplay: "$10/dozen",     bulk: 100.00, bulkDisplay: "$100.00 (10 dozens)" },
+        { name: "Salsa Roja",   category: "salsas", individual: 0, indDisplay: "By Size", bulk: 0, bulkDisplay: "See sizes", hasSizes: true,
+          sizes: [{size:"8 oz",price:5},{size:"16 oz",price:8},{size:"32 oz",price:15},{size:"64 oz",price:25}] },
+        { name: "Salsa Verde",  category: "salsas", individual: 0, indDisplay: "By Size", bulk: 0, bulkDisplay: "See sizes", hasSizes: true,
+          sizes: [{size:"8 oz",price:5},{size:"16 oz",price:8},{size:"32 oz",price:15},{size:"64 oz",price:25}] },
+        { name: "Tomato Sauce", category: "salsas", individual: 0, indDisplay: "By Size", bulk: 0, bulkDisplay: "See sizes", hasSizes: true,
+          sizes: [{size:"16 oz",price:8},{size:"32 oz",price:15},{size:"64 oz",price:25}] }
     ];
 
-    // ── SNAP ─────────────────────────────────────────────────────────────────
-    let isSnapSpecial = false;
-    window.toggleSnapSpecial = function() {
-        isSnapSpecial = document.getElementById('snapSpecial').checked;
-        document.getElementById('customItemsContainer').classList.toggle('active', isSnapSpecial);
-        calculateTotal();
-    };
-
-    // ── PRODUCT CATALOGUE RENDER ──────────────────────────────────────────────
-    function createProductCard(product) {
-        if (product.hasSizes) {
-            const indSizes = product.sizes.map(s => `<div class="size-row">${s.size}: <strong>$${s.price.toFixed(2)}</strong></div>`).join('');
-            const bulkSizes = product.sizes.map(s => `<div class="size-row">${s.size}: <strong>$${(s.price*3).toFixed(2)}</strong> (3-pack)</div>`).join('');
-            return `<div class="product-card" data-category="${product.category}">
-                <div class="product-card-head"><div class="product-card-name">${product.name}</div><div class="product-card-cat">${product.category}</div></div>
-                <div class="product-card-body">
-                    <div style="margin-bottom:0.75rem"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:#888;margin-bottom:0.35rem">Individual</div>${indSizes}</div>
-                    <div class="bulk-box"><div class="bulk-box-label">Bulk (3-packs)</div>${bulkSizes}</div>
-                </div></div>`;
+    // ── RENDER PRODUCT CARDS ─────────────────────────────────────────────────
+    function renderProducts(list) {
+        var grid = document.getElementById('productsGrid');
+        if (!list) list = products;
+        if (list.length === 0) {
+            grid.innerHTML = '<p style="color:#888;padding:2rem">No products found.</p>';
+            return;
         }
-        return `<div class="product-card" data-category="${product.category}">
-            <div class="product-card-head"><div class="product-card-name">${product.name}</div><div class="product-card-cat">${product.category}</div></div>
-            <div class="product-card-body">
-                <div class="price-row"><span class="price-ind">${product.individualDisplay}</span><span class="price-ind-label">Individual</span></div>
-                <div class="bulk-box"><div class="bulk-box-label">Bulk Pricing</div><div class="bulk-box-price">${product.bulkDisplay}</div></div>
-            </div>
-            <div class="product-card-foot">
-                <button type="button" class="add-to-order-btn" onclick="addProductToOrder('${product.name.replace(/'/g, "\\'")}', this)">+ Add to Order</button>
-            </div></div>`;
+        var html = '';
+        for (var i = 0; i < list.length; i++) {
+            var p = list[i];
+            var bodyHtml = '';
+            if (p.hasSizes) {
+                var indRows = '', bulkRows = '';
+                for (var s = 0; s < p.sizes.length; s++) {
+                    indRows  += '<div class="size-row">' + p.sizes[s].size + ': <strong>$' + p.sizes[s].price.toFixed(2) + '</strong></div>';
+                    bulkRows += '<div class="size-row">' + p.sizes[s].size + ': <strong>$' + (p.sizes[s].price * 3).toFixed(2) + '</strong> (3-pack)</div>';
+                }
+                bodyHtml = '<div style="margin-bottom:0.6rem"><div style="font-family:\'Barlow Condensed\',sans-serif;font-weight:700;font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:#888;margin-bottom:0.25rem">Individual</div>' + indRows + '</div>'
+                         + '<div class="bulk-box"><div class="bulk-label">Bulk (3-packs)</div>' + bulkRows + '</div>';
+            } else {
+                bodyHtml = '<div class="price-row"><span class="price-ind">' + p.indDisplay + '</span><span class="price-ind-label">Individual</span></div>'
+                         + '<div class="bulk-box"><div class="bulk-label">Bulk Pricing</div><div class="bulk-price">' + p.bulkDisplay + '</div></div>';
+            }
+            html += '<div class="product-card">'
+                  + '<div class="pc-head"><div class="pc-name">' + p.name + '</div><div class="pc-cat">' + p.category + '</div></div>'
+                  + '<div class="pc-body">' + bodyHtml + '</div>'
+                  + '<div class="pc-foot"><button type="button" class="add-to-order-btn" data-name="' + p.name + '">+ Add to Order</button></div>'
+                  + '</div>';
+        }
+        grid.innerHTML = html;
+        // Attach click listeners to Add to Order buttons
+        var btns = grid.querySelectorAll('.add-to-order-btn');
+        for (var b = 0; b < btns.length; b++) {
+            btns[b].addEventListener('click', handleAddToOrder);
+        }
     }
 
-    function renderProducts(list = products) {
-        document.getElementById('productsGrid').innerHTML = list.map(createProductCard).join('');
-    }
+    // ── FILTER / SEARCH ───────────────────────────────────────────────────────
+    document.querySelectorAll('.filter-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
+            this.classList.add('active');
+            document.getElementById('productSearch').value = '';
+            var cat = this.getAttribute('data-cat');
+            renderProducts(cat === 'all' ? null : products.filter(function(p) { return p.category === cat; }));
+        });
+    });
 
-    window.filterProducts = function(cat, e) {
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        if (e && e.target) e.target.classList.add('active');
-        document.getElementById('productSearch').value = '';
-        renderProducts(cat === 'all' ? products : products.filter(p => p.category === cat));
-    };
+    document.getElementById('productSearch').addEventListener('input', function() {
+        var q = this.value.toLowerCase().trim();
+        document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
+        if (!q) {
+            document.querySelector('.filter-btn[data-cat="all"]').classList.add('active');
+            renderProducts(null);
+        } else {
+            renderProducts(products.filter(function(p) {
+                return p.name.toLowerCase().indexOf(q) > -1 || p.category.toLowerCase().indexOf(q) > -1;
+            }));
+        }
+    });
 
-    window.searchProducts = function() {
-        const q = document.getElementById('productSearch').value.toLowerCase().trim();
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        if (!q) { document.querySelector('.filter-btn').classList.add('active'); renderProducts(); return; }
-        renderProducts(products.filter(p => p.name.toLowerCase().includes(q) || p.category.toLowerCase().includes(q)));
-    };
+    // ── SNAP ─────────────────────────────────────────────────────────────────
+    var isSnap = false;
+    document.getElementById('snapSpecial').addEventListener('change', function() {
+        isSnap = this.checked;
+        document.getElementById('customItemsBox').classList.toggle('active', isSnap);
+        calculateTotal();
+    });
 
     // ── ORDER ITEMS ───────────────────────────────────────────────────────────
-    let orderItemCount = 0;
+    var itemCount = 0;
 
-    window.addOrderItem = function() {
-        orderItemCount++;
-        const id = orderItemCount;
-        const productOptions = products.map(p => `<option value="${p.name}">${p.name}</option>`).join('');
-        const div = document.createElement('div');
+    function addOrderItem(preselect) {
+        itemCount++;
+        var id = itemCount;
+        var div = document.createElement('div');
         div.className = 'order-item';
-        div.id = `orderItem-${id}`;
-        div.innerHTML = `
-            <div class="form-group">
-                <label>Product</label>
-                <div class="product-search-wrapper" id="searchWrapper-${id}">
-                    <button type="button" class="product-select-button" id="productSelectButton-${id}" onclick="toggleProductDropdown(${id})">Select Product</button>
-                    <input type="text" class="product-search-input" id="productSearchInput-${id}" placeholder="Type to search..." oninput="filterProductDropdown(${id})">
-                    <select name="product" id="productSelect-${id}" class="product-select-hidden" required>
-                        <option value="">Select Product</option>${productOptions}
-                    </select>
-                    <div class="product-dropdown" id="productDropdown-${id}"></div>
-                </div>
-                <div class="product-info-display" id="productInfo-${id}"></div>
-            </div>
-            <div class="form-group" id="quantityGroup-${id}">
-                <label>Quantity</label>
-                <input type="number" name="quantity" min="1" value="1" onchange="calculateTotal()">
-            </div>
-            <div class="form-group" id="pricingGroup-${id}">
-                <label>Pricing</label>
-                <select name="pricing" data-item-id="${id}" onchange="updatePricingType(${id}); calculateTotal()" required>
-                    <option value="">Select Pricing</option>
-                    <option value="individual">Individual</option>
-                    <option value="bulk">Bulk</option>
-                </select>
-            </div>
-            <button type="button" class="remove-btn" onclick="removeOrderItem(${id})">✕ Remove</button>`;
-        document.getElementById('orderItems').appendChild(div);
-    };
+        div.id = 'oi-' + id;
 
-    // Add product directly from catalogue card
-    window.addProductToOrder = function(productName, btn) {
-        // Add a new order item and pre-select the product
-        addOrderItem();
-        const id = orderItemCount;
-
-        // Pre-select the product after the DOM has updated
-        setTimeout(() => {
-            selectProductFromDropdown(id, productName);
-            // Scroll to the order section
-            document.getElementById('order').scrollIntoView({ behavior: 'smooth', block: 'start' });
-            // Flash the order section header
-            const orderSection = document.querySelector('#order .order-inner .form-section');
-            if (orderSection) {
-                orderSection.classList.remove('flash');
-                void orderSection.offsetWidth; // reflow
-                orderSection.classList.add('flash');
-                setTimeout(() => orderSection.classList.remove('flash'), 700);
-            }
-            // Visual feedback on the button
-            btn.textContent = '✓ Added';
-            btn.classList.add('added');
-            setTimeout(() => {
-                btn.textContent = '+ Add to Order';
-                btn.classList.remove('added');
-            }, 1500);
-        }, 50);
-    };
-
-    window.removeOrderItem = function(id) {
-        const el = document.getElementById(`orderItem-${id}`);
-        if (el) { el.remove(); calculateTotal(); }
-    };
-
-    window.toggleProductDropdown = function(id) {
-        const dd = document.getElementById(`productDropdown-${id}`);
-        const inp = document.getElementById(`productSearchInput-${id}`);
-        // close others
-        document.querySelectorAll('.product-dropdown').forEach(d => { if (d.id !== `productDropdown-${id}`) d.classList.remove('active'); });
-        document.querySelectorAll('.product-search-input').forEach(i => { if (i.id !== `productSearchInput-${id}`) { i.classList.remove('active'); i.value=''; } });
-        if (!dd.classList.contains('active')) { inp.classList.add('active'); inp.focus(); filterProductDropdown(id); }
-        else { dd.classList.remove('active'); inp.classList.remove('active'); inp.value=''; }
-    };
-
-    window.filterProductDropdown = function(id) {
-        const inp = document.getElementById(`productSearchInput-${id}`);
-        const dd  = document.getElementById(`productDropdown-${id}`);
-        if (!inp || !dd) return;
-        const q = inp.value.toLowerCase().trim();
-        const filtered = q ? products.filter(p => p.name.toLowerCase().includes(q) || p.category.toLowerCase().includes(q)) : products;
-        if (filtered.length) {
-            dd.innerHTML = filtered.map(p =>
-                `<div class="product-dropdown-item" onclick="selectProductFromDropdown(${id}, '${p.name.replace(/'/g,"\\'")}')">
-                    <strong>${p.name}</strong>
-                    <small>${p.category} — ${p.individualDisplay}</small>
-                </div>`).join('');
-            dd.classList.add('active');
-        } else {
-            dd.innerHTML = '<div class="product-dropdown-item"><small>No products found</small></div>';
-            dd.classList.add('active');
+        // Build product options for hidden select
+        var opts = '<option value="">Select product</option>';
+        for (var i = 0; i < products.length; i++) {
+            opts += '<option value="' + products[i].name + '">' + products[i].name + '</option>';
         }
-    };
 
-    window.selectProductFromDropdown = function(id, name) {
-        const btn  = document.getElementById(`productSelectButton-${id}`);
-        const sel  = document.getElementById(`productSelect-${id}`);
-        const inp  = document.getElementById(`productSearchInput-${id}`);
-        const dd   = document.getElementById(`productDropdown-${id}`);
-        const info = document.getElementById(`productInfo-${id}`);
+        div.innerHTML =
+            '<div class="form-group">' +
+                '<label>Product</label>' +
+                '<div class="psw" id="psw-' + id + '">' +
+                    '<button type="button" class="ps-btn" id="ps-btn-' + id + '">Select Product</button>' +
+                    '<input type="text" class="ps-input" id="ps-input-' + id + '" placeholder="Type to search...">' +
+                    '<select name="product" id="ps-sel-' + id + '" class="ps-hidden">' + opts + '</select>' +
+                    '<div class="ps-dropdown" id="ps-dd-' + id + '"></div>' +
+                '</div>' +
+                '<div class="ps-info" id="ps-info-' + id + '"></div>' +
+            '</div>' +
+            '<div class="form-group" id="qty-grp-' + id + '">' +
+                '<label>Quantity</label>' +
+                '<input type="number" name="quantity" min="1" value="1">' +
+            '</div>' +
+            '<div class="form-group" id="pricing-grp-' + id + '">' +
+                '<label>Pricing</label>' +
+                '<select name="pricing">' +
+                    '<option value="">Select</option>' +
+                    '<option value="individual">Individual</option>' +
+                    '<option value="bulk">Bulk</option>' +
+                '</select>' +
+            '</div>' +
+            '<button type="button" class="remove-btn" data-id="' + id + '">✕ Remove</button>';
+
+        document.getElementById('orderItemsList').appendChild(div);
+
+        // Wire up the product search dropdown for this item
+        wireProductSearch(id);
+
+        // Wire remove button
+        div.querySelector('.remove-btn').addEventListener('click', function() {
+            var rid = this.getAttribute('data-id');
+            var el = document.getElementById('oi-' + rid);
+            if (el) { el.remove(); calculateTotal(); }
+        });
+
+        // Wire pricing change
+        div.querySelector('select[name="pricing"]').addEventListener('change', calculateTotal);
+        div.querySelector('input[name="quantity"]').addEventListener('change', calculateTotal);
+
+        // Preselect a product if requested
+        if (preselect) {
+            setTimeout(function() { selectProduct(id, preselect); }, 30);
+        }
+    }
+
+    function wireProductSearch(id) {
+        var btn   = document.getElementById('ps-btn-' + id);
+        var inp   = document.getElementById('ps-input-' + id);
+        var dd    = document.getElementById('ps-dd-' + id);
+
+        function openDropdown() {
+            // Close all others
+            document.querySelectorAll('.ps-input.open').forEach(function(el) {
+                if (el.id !== 'ps-input-' + id) { el.classList.remove('open'); el.value = ''; }
+            });
+            document.querySelectorAll('.ps-dropdown.open').forEach(function(el) {
+                if (el.id !== 'ps-dd-' + id) el.classList.remove('open');
+            });
+            inp.classList.add('open');
+            inp.focus();
+            populateDropdown(id, '');
+        }
+
+        function closeDropdown() {
+            inp.classList.remove('open');
+            inp.value = '';
+            dd.classList.remove('open');
+        }
+
+        btn.addEventListener('click', function() {
+            if (inp.classList.contains('open')) { closeDropdown(); } else { openDropdown(); }
+        });
+
+        inp.addEventListener('input', function() { populateDropdown(id, this.value); });
+
+        inp.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeDropdown();
+        });
+    }
+
+    function populateDropdown(id, query) {
+        var dd = document.getElementById('ps-dd-' + id);
+        var q = query.toLowerCase().trim();
+        var list = q ? products.filter(function(p) {
+            return p.name.toLowerCase().indexOf(q) > -1 || p.category.toLowerCase().indexOf(q) > -1;
+        }) : products;
+
+        if (list.length === 0) {
+            dd.innerHTML = '<div class="ps-item"><small>No products found</small></div>';
+        } else {
+            var html = '';
+            for (var i = 0; i < list.length; i++) {
+                html += '<div class="ps-item" data-name="' + list[i].name + '" data-id="' + id + '">'
+                      + '<strong>' + list[i].name + '</strong>'
+                      + '<small>' + list[i].category + ' — ' + list[i].indDisplay + '</small>'
+                      + '</div>';
+            }
+            dd.innerHTML = html;
+            dd.querySelectorAll('.ps-item[data-name]').forEach(function(item) {
+                item.addEventListener('click', function() {
+                    selectProduct(this.getAttribute('data-id'), this.getAttribute('data-name'));
+                });
+            });
+        }
+        dd.classList.add('open');
+    }
+
+    function selectProduct(id, name) {
+        var btn  = document.getElementById('ps-btn-' + id);
+        var sel  = document.getElementById('ps-sel-' + id);
+        var inp  = document.getElementById('ps-input-' + id);
+        var dd   = document.getElementById('ps-dd-' + id);
+        var info = document.getElementById('ps-info-' + id);
+
         btn.textContent = name;
-        btn.classList.add('has-selection');
+        btn.classList.add('selected');
         sel.value = name;
-        dd.classList.remove('active');
-        inp.classList.remove('active');
+        inp.classList.remove('open');
         inp.value = '';
-        // Show product info
-        const product = products.find(p => p.name === name);
+        dd.classList.remove('open');
+
+        var product = products.filter(function(p) { return p.name === name; })[0];
         if (product) {
             if (product.hasSizes) {
-                info.innerHTML = product.sizes.map(s => `${s.size}: $${s.price.toFixed(2)} individual / $${(s.price*3).toFixed(2)} bulk (3-pack)`).join(' &nbsp;·&nbsp; ');
+                var txt = '';
+                for (var s = 0; s < product.sizes.length; s++) {
+                    txt += product.sizes[s].size + ': $' + product.sizes[s].price.toFixed(2) + ' ind / $' + (product.sizes[s].price * 3).toFixed(2) + ' bulk';
+                    if (s < product.sizes.length - 1) txt += ' &nbsp;·&nbsp; ';
+                }
+                info.innerHTML = txt;
             } else {
-                info.innerHTML = `Individual: <strong>${product.individualDisplay}</strong> &nbsp;·&nbsp; Bulk: <strong>${product.bulkDisplay}</strong>`;
+                info.innerHTML = 'Individual: <strong>' + product.indDisplay + '</strong> &nbsp;·&nbsp; Bulk: <strong>' + product.bulkDisplay + '</strong>';
             }
-            info.classList.add('active');
+            info.classList.add('open');
         }
-        window.updateOrderItem(id);
-    };
 
-    window.updateOrderItem = function(id) {
-        const item = document.getElementById(`orderItem-${id}`);
-        if (!item) return;
-        const sel = item.querySelector('select[name="product"]');
-        if (!sel || !sel.value) return;
-        const product = products.find(p => p.name === sel.value);
-        const pricingGroup = document.getElementById(`pricingGroup-${id}`);
-        const quantityGroup = document.getElementById(`quantityGroup-${id}`);
+        // Update pricing group for salsa products
+        var pricingGrp = document.getElementById('pricing-grp-' + id);
+        var qtyGrp     = document.getElementById('qty-grp-' + id);
         if (product && product.hasSizes) {
-            pricingGroup.innerHTML = `
-                <label>Order Type</label>
-                <select name="pricing" data-item-id="${id}" onchange="updateSizeOptions(${id}); calculateTotal()" required>
-                    <option value="">Select type</option>
-                    <option value="individual">Individual</option>
-                    <option value="bulk">Bulk (3-packs)</option>
-                </select>`;
-            let sg = document.getElementById(`sizeGroup-${id}`);
-            if (!sg) {
-                sg = document.createElement('div');
-                sg.className = 'form-group';
-                sg.id = `sizeGroup-${id}`;
-                sg.style.display = 'none';
-                pricingGroup.parentNode.insertBefore(sg, pricingGroup.nextSibling);
+            pricingGrp.innerHTML =
+                '<label>Order Type</label>' +
+                '<select name="pricing" id="pricing-sel-' + id + '">' +
+                    '<option value="">Select type</option>' +
+                    '<option value="individual">Individual</option>' +
+                    '<option value="bulk">Bulk (3-packs)</option>' +
+                '</select>';
+            // Add size group
+            var sizeGrpId = 'size-grp-' + id;
+            var existing = document.getElementById(sizeGrpId);
+            if (!existing) {
+                var sizeGrp = document.createElement('div');
+                sizeGrp.className = 'form-group';
+                sizeGrp.id = sizeGrpId;
+                sizeGrp.style.display = 'none';
+                pricingGrp.parentNode.insertBefore(sizeGrp, pricingGrp.nextSibling);
             }
-            sg.innerHTML = `<label>Size</label><select name="size" onchange="calculateTotal()" required disabled><option value="">Select type first</option></select>`;
+            var pricingSel = document.getElementById('pricing-sel-' + id);
+            if (pricingSel) {
+                pricingSel.addEventListener('change', function() { updateSizeOptions(id); calculateTotal(); });
+            }
         } else {
-            pricingGroup.innerHTML = `
-                <label>Pricing</label>
-                <select name="pricing" data-item-id="${id}" onchange="calculateTotal()" required>
-                    <option value="">Select</option>
-                    <option value="individual">Individual</option>
-                    <option value="bulk">Bulk</option>
-                </select>`;
-            const sg = document.getElementById(`sizeGroup-${id}`);
-            if (sg) sg.remove();
+            var oldSizeGrp = document.getElementById('size-grp-' + id);
+            if (oldSizeGrp) oldSizeGrp.remove();
+            pricingGrp.innerHTML =
+                '<label>Pricing</label>' +
+                '<select name="pricing">' +
+                    '<option value="">Select</option>' +
+                    '<option value="individual">Individual</option>' +
+                    '<option value="bulk">Bulk</option>' +
+                '</select>';
+            pricingGrp.querySelector('select').addEventListener('change', calculateTotal);
         }
+        qtyGrp.querySelector('input').addEventListener('change', calculateTotal);
         calculateTotal();
-    };
+    }
 
-    window.updateSizeOptions = function(id) {
-        const item = document.getElementById(`orderItem-${id}`);
-        const sel  = item.querySelector('select[name="product"]');
-        const pricing = item.querySelector('select[name="pricing"]').value;
-        const sg   = document.getElementById(`sizeGroup-${id}`);
-        const quantityGroup = document.getElementById(`quantityGroup-${id}`);
-        if (!sel || !pricing || !sg) return;
-        const product = products.find(p => p.name === sel.value);
-        if (product && product.hasSizes) {
-            const sizeSelect = sg.querySelector('select[name="size"]');
-            sizeSelect.disabled = false;
-            if (pricing === 'individual') {
-                sizeSelect.innerHTML = `<option value="">Select size</option>` + product.sizes.map(s => `<option value="${s.size}">${s.size} — $${s.price.toFixed(2)}</option>`).join('');
-                quantityGroup.querySelector('label').textContent = 'Qty (units)';
-            } else {
-                sizeSelect.innerHTML = `<option value="">Select size</option>` + product.sizes.map(s => `<option value="${s.size}">${s.size} — $${(s.price*3).toFixed(2)} (3-pack)</option>`).join('');
-                quantityGroup.querySelector('label').textContent = 'Qty (3-packs)';
+    function updateSizeOptions(id) {
+        var item     = document.getElementById('oi-' + id);
+        var pricingSel = document.getElementById('pricing-sel-' + id);
+        var sizeGrp  = document.getElementById('size-grp-' + id);
+        if (!item || !pricingSel || !sizeGrp) return;
+        var selEl    = document.getElementById('ps-sel-' + id);
+        var pname    = selEl ? selEl.value : '';
+        var product  = products.filter(function(p) { return p.name === pname; })[0];
+        var ptype    = pricingSel.value;
+        if (!product || !product.hasSizes || !ptype) return;
+        var opts = '<option value="">Select size</option>';
+        for (var s = 0; s < product.sizes.length; s++) {
+            var sz = product.sizes[s];
+            var label = ptype === 'individual'
+                ? sz.size + ' — $' + sz.price.toFixed(2)
+                : sz.size + ' — $' + (sz.price * 3).toFixed(2) + ' (3-pack)';
+            opts += '<option value="' + sz.size + '">' + label + '</option>';
+        }
+        sizeGrp.innerHTML = '<label>Size</label><select name="size">' + opts + '</select>';
+        sizeGrp.querySelector('select').addEventListener('change', calculateTotal);
+        sizeGrp.style.display = 'flex';
+        document.getElementById('qty-grp-' + id).querySelector('label').textContent =
+            ptype === 'individual' ? 'Qty (units)' : 'Qty (3-packs)';
+    }
+
+    // Close dropdowns on outside click
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.psw')) {
+            document.querySelectorAll('.ps-input.open').forEach(function(el) { el.classList.remove('open'); el.value = ''; });
+            document.querySelectorAll('.ps-dropdown.open').forEach(function(el) { el.classList.remove('open'); });
+        }
+    });
+
+    // Add item button
+    document.getElementById('addItemBtn').addEventListener('click', function() { addOrderItem(null); });
+
+    // ── ADD TO ORDER FROM CATALOGUE ───────────────────────────────────────────
+    function handleAddToOrder(e) {
+        var btn  = e.currentTarget;
+        var name = btn.getAttribute('data-name');
+
+        // Find an existing empty row to fill
+        var targetId = null;
+        var rows = document.querySelectorAll('.order-item');
+        for (var r = 0; r < rows.length; r++) {
+            var rowId  = rows[r].id.replace('oi-', '');
+            var rowSel = document.getElementById('ps-sel-' + rowId);
+            if (rowSel && rowSel.value === '') { targetId = rowId; break; }
+        }
+
+        if (targetId !== null) {
+            selectProduct(targetId, name);
+        } else {
+            addOrderItem(name);
+        }
+
+        // Scroll to order section
+        document.getElementById('order').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        // Flash the row
+        setTimeout(function() {
+            var resolvedId = targetId !== null ? targetId : itemCount;
+            var row = document.getElementById('oi-' + resolvedId);
+            if (row) {
+                row.style.transition = 'background 0.15s';
+                row.style.background = 'rgba(139,195,74,0.2)';
+                setTimeout(function() { row.style.background = ''; }, 900);
             }
-            sg.style.display = 'flex';
-        }
-        calculateTotal();
-    };
+        }, 80);
 
-    window.updatePricingType = function(id) { calculateTotal(); };
+        // Button feedback
+        btn.textContent = '✓ Added';
+        btn.classList.add('added');
+        setTimeout(function() {
+            btn.textContent = '+ Add to Order';
+            btn.classList.remove('added');
+        }, 1500);
+    }
 
-    // ── TOTAL CALC ────────────────────────────────────────────────────────────
+    // ── CALCULATE TOTAL ───────────────────────────────────────────────────────
     function calculateTotal() {
-        if (isSnapSpecial) {
+        if (isSnap) {
             document.getElementById('orderTotal').innerHTML = 'Estimated Total: <span>$0.00 (SNAP)</span>';
             return;
         }
-        let total = 0;
-        document.querySelectorAll('.order-item').forEach(item => {
-            const id = item.id.replace('orderItem-','');
-            const sel = document.getElementById(`productSelect-${id}`);
-            const qtyInput = item.querySelector('input[name="quantity"]');
-            const pricingSelect = item.querySelector('select[name="pricing"]');
-            if (!sel || !sel.value || !qtyInput || !pricingSelect || !pricingSelect.value) return;
-            const qty = parseInt(qtyInput.value) || 0;
-            const pricing = pricingSelect.value;
-            const product = products.find(p => p.name === sel.value);
-            if (!product || !qty) return;
+        var total = 0;
+        var rows = document.querySelectorAll('.order-item');
+        for (var r = 0; r < rows.length; r++) {
+            var rowId   = rows[r].id.replace('oi-', '');
+            var selEl   = document.getElementById('ps-sel-' + rowId);
+            var qtyEl   = rows[r].querySelector('input[name="quantity"]');
+            var priceEl = rows[r].querySelector('select[name="pricing"]');
+            if (!selEl || !selEl.value || !qtyEl || !priceEl || !priceEl.value) continue;
+            var product = products.filter(function(p) { return p.name === selEl.value; })[0];
+            var qty     = parseInt(qtyEl.value) || 0;
+            var pricing = priceEl.value;
+            if (!product || !qty) continue;
             if (product.hasSizes) {
-                const ss = item.querySelector('select[name="size"]');
-                if (ss && ss.value) {
-                    const sz = product.sizes.find(s => s.size === ss.value);
+                var sizeEl = rows[r].querySelector('select[name="size"]');
+                if (sizeEl && sizeEl.value) {
+                    var sz = product.sizes.filter(function(s) { return s.size === sizeEl.value; })[0];
                     if (sz) total += pricing === 'individual' ? sz.price * qty : sz.price * 3 * qty;
                 }
             } else {
                 total += pricing === 'individual' ? product.individual * qty : product.bulk * qty;
             }
-        });
-        document.getElementById('orderTotal').innerHTML = `Estimated Total: <span>$${total.toFixed(2)}</span>`;
+        }
+        document.getElementById('orderTotal').innerHTML = 'Estimated Total: <span>$' + total.toFixed(2) + '</span>';
     }
 
-    // close dropdowns when clicking outside
-    document.addEventListener('click', function(e) {
-        if (!e.target.closest('.product-search-wrapper')) {
-            document.querySelectorAll('.product-dropdown').forEach(d => d.classList.remove('active'));
-            document.querySelectorAll('.product-search-input').forEach(i => { i.classList.remove('active'); i.value=''; });
-        }
-    });
-
     // ── FORM SUBMIT ───────────────────────────────────────────────────────────
-    function generateOrderData() {
-        const formData = new FormData(document.getElementById('orderForm'));
-        const orderItems = [];
-        document.querySelectorAll('.order-item').forEach(item => {
-            const id = item.id.replace('orderItem-','');
-            const sel = document.getElementById(`productSelect-${id}`);
-            const qtyInput = item.querySelector('input[name="quantity"]');
-            const pricingSelect = item.querySelector('select[name="pricing"]');
-            if (!sel || !sel.value || !qtyInput || !pricingSelect) return;
-            const productName = sel.value;
-            const quantity = parseInt(qtyInput.value) || 0;
-            const pricing = pricingSelect.value;
-            if (!productName || !quantity || !pricing) return;
-            const product = products.find(p => p.name === productName);
-            let itemTotal = 0, pricingDisplay = pricing;
-            if (!isSnapSpecial && product) {
+    document.getElementById('orderForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        var orderItems = [];
+        var rows = document.querySelectorAll('.order-item');
+        for (var r = 0; r < rows.length; r++) {
+            var rowId   = rows[r].id.replace('oi-', '');
+            var selEl   = document.getElementById('ps-sel-' + rowId);
+            var qtyEl   = rows[r].querySelector('input[name="quantity"]');
+            var priceEl = rows[r].querySelector('select[name="pricing"]');
+            if (!selEl || !selEl.value || !qtyEl || !priceEl || !priceEl.value) continue;
+            var product = products.filter(function(p) { return p.name === selEl.value; })[0];
+            var qty     = parseInt(qtyEl.value) || 0;
+            var pricing = priceEl.value;
+            if (!product || !qty) continue;
+            var itemTotal = 0, pricingDisplay = pricing;
+            if (!isSnap) {
                 if (product.hasSizes) {
-                    const ss = item.querySelector('select[name="size"]');
-                    if (ss && ss.value) {
-                        const sz = product.sizes.find(s => s.size === ss.value);
+                    var sizeEl = rows[r].querySelector('select[name="size"]');
+                    if (sizeEl && sizeEl.value) {
+                        var sz = product.sizes.filter(function(s) { return s.size === sizeEl.value; })[0];
                         if (sz) {
-                            pricingDisplay = pricing === 'individual' ? `${sz.size} (Individual)` : `${sz.size} (Bulk 3-pack)`;
-                            itemTotal = pricing === 'individual' ? sz.price * quantity : sz.price * 3 * quantity;
+                            pricingDisplay = pricing === 'individual' ? sz.size + ' (Individual)' : sz.size + ' (Bulk 3-pack)';
+                            itemTotal = pricing === 'individual' ? sz.price * qty : sz.price * 3 * qty;
                         }
                     }
                 } else {
-                    itemTotal = pricing === 'individual' ? product.individual * quantity : product.bulk * quantity;
+                    itemTotal = pricing === 'individual' ? product.individual * qty : product.bulk * qty;
                 }
             }
-            orderItems.push({ product: productName, quantity, pricing: pricingDisplay, itemTotal });
-        });
-        return {
-            timestamp: new Date().toISOString(),
-            orderNumber: 'TM-' + Date.now(),
-            snapSpecial: isSnapSpecial,
-            customItems: formData.get('customItems'),
-            organization: { name: formData.get('orgName'), type: formData.get('orgType'), contactPerson: formData.get('contactName'), email: formData.get('email'), phone: formData.get('phone') },
-            orderItems,
-            delivery: { method: formData.get('deliveryMethod'), preferredDate: formData.get('preferredDate'), address: formData.get('address') },
-            specialRequests: formData.get('specialRequests'),
-            estimatedTotal: isSnapSpecial ? 0 : orderItems.reduce((s, i) => s + i.itemTotal, 0)
-        };
-    }
+            orderItems.push({ product: selEl.value, quantity: qty, pricing: pricingDisplay, itemTotal: itemTotal });
+        }
+        if (orderItems.length === 0) { showMsg('error', 'Please add at least one product to your order.'); return; }
 
-    function formatOrderForEmail(o) {
-        return `NEW TERRITORIAL MARKETS ORDER\n=============================\nOrder Number: ${o.orderNumber}\nDate: ${new Date(o.timestamp).toLocaleString()}\nOrder Type: ${o.snapSpecial ? 'SNAP SPECIAL - FREE ORDER' : 'Regular Order'}\n\nORGANIZATION:\n- Name: ${o.organization.name}\n- Type: ${o.organization.type}\n- Contact: ${o.organization.contactPerson}\n- Email: ${o.organization.email}\n- Phone: ${o.organization.phone||'Not provided'}\n\nORDER DETAILS:\n${o.orderItems.map(i=>`- ${i.product}: ${i.quantity} units (${i.pricing}) - $${i.itemTotal.toFixed(2)}`).join('\n')}${o.customItems?'\n\nCUSTOM ITEMS:\n'+o.customItems:''}\n\nDELIVERY:\n- Method: ${o.delivery.method}\n- Preferred Date: ${o.delivery.preferredDate||'Not specified'}\n- Address: ${o.delivery.address||'Not provided'}\n\nSPECIAL REQUESTS:\n${o.specialRequests||'None'}\n\nESTIMATED TOTAL: $${o.estimatedTotal.toFixed(2)}${o.snapSpecial?' (SNAP SPECIAL - FREE)':''}`;
-    }
+        var orderNum = 'TM-' + Date.now();
+        var formData = new FormData(this);
+        var emailLines = [
+            'NEW TERRITORIAL MARKETS ORDER', '===========================',
+            'Order: ' + orderNum, 'Date: ' + new Date().toLocaleString(),
+            'Type: ' + (isSnap ? 'SNAP SPECIAL - FREE' : 'Regular'),
+            '', 'ORGANIZATION:',
+            '- Name: ' + (formData.get('orgName') || ''),
+            '- Type: ' + (formData.get('orgType') || ''),
+            '- Contact: ' + (formData.get('contactName') || ''),
+            '- Email: ' + (formData.get('email') || ''),
+            '- Phone: ' + (formData.get('phone') || 'N/A'),
+            '', 'ORDER ITEMS:'
+        ];
+        var grandTotal = 0;
+        for (var i = 0; i < orderItems.length; i++) {
+            emailLines.push('- ' + orderItems[i].product + ': ' + orderItems[i].quantity + ' (' + orderItems[i].pricing + ') $' + orderItems[i].itemTotal.toFixed(2));
+            grandTotal += orderItems[i].itemTotal;
+        }
+        if (formData.get('customItems')) emailLines.push('', 'CUSTOM ITEMS:', formData.get('customItems'));
+        emailLines.push('', 'DELIVERY:', '- Method: ' + (formData.get('deliveryMethod') || ''), '- Date: ' + (formData.get('preferredDate') || 'N/A'), '- Address: ' + (formData.get('address') || 'N/A'));
+        emailLines.push('', 'NOTES: ' + (formData.get('specialRequests') || 'None'));
+        emailLines.push('', 'TOTAL: $' + (isSnap ? '0.00 (SNAP SPECIAL)' : grandTotal.toFixed(2)));
+        var emailBody = emailLines.join('\n');
+        document.getElementById('orderDataField').value = emailBody;
+
+        var submitBtn = document.getElementById('submitBtn');
+        submitBtn.textContent = 'Submitting...';
+        submitBtn.disabled = true;
+
+        fetch(this.action, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } })
+            .then(function(res) {
+                if (res.ok) {
+                    showMsg('success', '<strong>Order submitted!</strong> Order #' + orderNum + '<br>We\'ll respond within 48 hours with confirmation and pickup/delivery details.<br><small>Thank you for supporting the Coalición!</small>');
+                    document.getElementById('orderForm').reset();
+                    document.getElementById('orderItemsList').innerHTML = '';
+                    itemCount = 0;
+                    calculateTotal();
+                    setTimeout(function() { addOrderItem(null); }, 600);
+                    submitBtn.textContent = 'Submitted ✓';
+                    submitBtn.style.background = 'var(--green)';
+                } else { throw new Error('failed'); }
+            })
+            .catch(function() {
+                showMsg('error', 'There was an error. Please try again or email us at <a href="mailto:pluricalifornia@gmail.com" style="color:var(--orange)">pluricalifornia@gmail.com</a><details><summary>View order details</summary><textarea readonly>' + emailBody + '</textarea></details>');
+                submitBtn.textContent = 'Submit Order →';
+                submitBtn.disabled = false;
+            });
+    });
 
     function showMsg(type, html) {
-        document.querySelectorAll('.msg').forEach(m => m.remove());
-        const d = document.createElement('div');
-        d.className = `msg msg-${type}`;
+        document.querySelectorAll('.msg').forEach(function(m) { m.remove(); });
+        var d = document.createElement('div');
+        d.className = 'msg msg-' + type;
         d.innerHTML = html;
-        document.getElementById('orderForm').parentNode.insertBefore(d, document.getElementById('orderForm'));
-        setTimeout(() => d.remove(), 12000);
+        var form = document.getElementById('orderForm');
+        form.parentNode.insertBefore(d, form);
+        setTimeout(function() { if (d.parentNode) d.remove(); }, 14000);
     }
 
-    document.addEventListener('DOMContentLoaded', function() {
-        renderProducts();
-        setTimeout(() => addOrderItem(), 100);
+    // ── INIT ─────────────────────────────────────────────────────────────────
+    renderProducts(null);
+    addOrderItem(null);
 
-        document.getElementById('orderForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const orderData = generateOrderData();
-            if (orderData.orderItems.length === 0) { showMsg('error', 'Please add at least one product to your order.'); return; }
-            const emailBody = formatOrderForEmail(orderData);
-            document.getElementById('orderDataField').value = emailBody;
-            const btn = this.querySelector('.submit-btn');
-            btn.textContent = 'Submitting...';
-            btn.disabled = true;
-            fetch(this.action, { method: 'POST', body: new FormData(this), headers: { 'Accept': 'application/json' } })
-                .then(r => {
-                    if (r.ok) {
-                        showMsg('success', `<strong>Order submitted!</strong> Order #${orderData.orderNumber}<br>We'll respond within 48 hours with confirmation and pickup/delivery details.<br><small>Thank you for supporting territorial markets and the Coalición!</small>`);
-                        this.reset();
-                        document.getElementById('orderItems').innerHTML = '';
-                        orderItemCount = 0;
-                        calculateTotal();
-                        setTimeout(() => addOrderItem(), 800);
-                        btn.textContent = 'Submitted ✓';
-                        btn.style.background = 'var(--green)';
-                    } else { throw new Error('failed'); }
-                })
-                .catch(() => {
-                    showMsg('error', `There was an error submitting your order. Please try again or email us directly at <a href="mailto:pluricalifornia@gmail.com" style="color:var(--orange)">pluricalifornia@gmail.com</a><details><summary>View order details to copy</summary><textarea readonly>${emailBody}</textarea></details>`);
-                    btn.textContent = 'Submit Order →';
-                    btn.disabled = false;
-                });
-        });
-    });
+})();
 </script>
+
 </body>
 </html>
