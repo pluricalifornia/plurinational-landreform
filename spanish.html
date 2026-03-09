@@ -3,573 +3,240 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grupo de Trabajo de Reforma Agraria Plurinacional en CA</title>
-    <style>
-        :root {
-            --primary-color: #3a3a6a;        /* Dark purple/blue from the logo text */
-            --secondary-color: #e71d36;      /* Red from the Wiphala pattern */
-            --dark-color: #011627;           /* Dark blue/black from Wiphala */
-            --light-color: #f7f7f7;          /* Off-white background */
-            --accent-color: #ff9f1c;         /* Orange from Wiphala pattern */
-            --accent-green: #8bc34a;         /* Green from the quail */
-            --accent-red: #e53935;           /* Red from the bear */
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: var(--light-color);
-            color: var(--dark-color);
-            line-height: 1.6;
-        }
-        
-        header {
-            background: linear-gradient(135deg, var(--primary-color) 0%, #2a2a4a 100%);
-            color: white;
-            text-align: center;
-            padding: 2rem 1rem;
-            border-bottom: 4px solid var(--accent-color);
-        }
-        
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        header p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        nav {
-            background-color: var(--dark-color);
-            padding: 1rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        
-        nav ul {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            flex-wrap: wrap;
-        }
-        
-        nav ul li {
-            margin: 0 1rem;
-            position: relative;
-        }
-        
-        /* Ensure the dropdown list item has proper spacing */
-        .has-dropdown {
-            padding-bottom: 10px;
-        }
-        
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s;
-            display: block;
-            padding: 0.5rem 0;
-        }
-        
-        nav ul li a:hover {
-            color: var(--secondary-color);
-        }
-        
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: var(--dark-color);
-            min-width: 250px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
-            border-radius: 5px;
-            margin-top: 0.5rem;
-            left: 50%;
-            transform: translateX(-50%);
-            overflow: hidden; /* Ensures the hover background stays within rounded corners */
-            padding-top: 10px; /* Create space for hover transition */
-        }
-        
-        .dropdown-content a {
-            color: white;
-            padding: 0.75rem 1rem;
-            text-decoration: none;
-            display: block;
-            text-align: left;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .dropdown-content a:last-child {
-            border-bottom: none;
-        }
-        
-        .dropdown-content a:hover {
-            background-color: rgba(255, 255, 255, 0.15);
-            color: var(--secondary-color);
-            padding-left: 1.25rem; /* Indent on hover for visual feedback */
-        }
-        
-        .has-dropdown:hover .dropdown-content {
-            display: block;
-        }
-        
-        /* Create an invisible bridge between menu item and dropdown */
-        .has-dropdown > a::after {
-            content: "";
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 100%;
-            height: 10px;
-            background-color: transparent;
-        }
-        
-        .language-toggle {
-            background-color: var(--secondary-color);
-            padding: 0.4rem 0.8rem;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-        
-        .language-toggle:hover {
-            background-color: #c91020;
-        }
-        
-        section {
-            padding: 3rem 1rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 2rem;
-            color: var(--primary-color);
-            font-size: 2rem;
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-        
-        .section-title::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
-        }
-        
-        .about-content {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 2rem;
-        }
-        
-        .about-text {
-            flex: 1;
-            min-width: 300px;
-        }
-        
-        .about-text p {
-            margin-bottom: 1.5rem;
-        }
-        
-        .about-text p:last-child {
-            margin-bottom: 0;
-        }
-        
-        .about-image {
-            flex: 1;
-            min-width: 300px;
-            text-align: center;
-        }
-        
-        .about-image img {
-            max-width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        
-        .mission-principles {
-            background: linear-gradient(135deg, var(--primary-color) 0%, #2a2a4a 100%);
-            color: white;
-            padding: 3rem 1rem;
-        }
-        
-        .mission-principles .section-title {
-            color: white;
-        }
-        
-        .principles-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .principle-card {
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 1.5rem;
-            border-radius: 10px;
-            transition: transform 0.3s;
-            border-left: 4px solid var(--accent-color);
-        }
-        
-        .principle-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .principle-card h3 {
-            margin-bottom: 1rem;
-            color: var(--accent-color);
-        }
-        
-        .read-more {
-            display: inline-block;
-            margin-top: 1rem;
-            color: var(--secondary-color);
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
-        
-        .read-more:hover {
-            color: var(--accent-color);
-            text-decoration: underline;
-        }
-        
-        .events-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .event-card {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        
-        .event-image {
-            height: 200px;
-            overflow: hidden;
-        }
-        
-        .event-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .event-details {
-            padding: 1.5rem;
-        }
-        
-        .event-date {
-            color: var(--secondary-color);
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-        
-        .event-card h3 {
-            margin-bottom: 1rem;
-        }
-        
-        .event-info {
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid #eee;
-        }
-        
-        .event-info p {
-            margin-bottom: 0.5rem;
-        }
-        
-        .get-involved {
-            background: linear-gradient(45deg, var(--accent-green) 0%, var(--accent-color) 100%);
-            padding: 3rem 1rem;
-            text-align: center;
-        }
-        
-        .get-involved .section-title {
-            color: var(--dark-color);
-        }
-        
-        .contact-form {
-            max-width: 600px;
-            margin: 2rem auto 0;
-            background-color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: left;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-        }
-        
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-        
-        .form-group textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        button {
-            background-color: var(--secondary-color);
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            font-size: 1rem;
-            font-weight: bold;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        
-        button:hover {
-            background-color: #c91020;
-        }
-        
-        footer {
-            background: linear-gradient(135deg, var(--dark-color) 0%, #000 100%);
-            color: white;
-            text-align: center;
-            padding: 2rem 1rem;
-            border-top: 4px solid var(--accent-color);
-        }
-        
-        .social-links {
-            display: flex;
-            justify-content: center;
-            margin: 1.5rem 0;
-            gap: 1.5rem;
-        }
-        
-        .social-links a {
-            color: white;
-            font-size: 1.5rem;
-            transition: color 0.3s;
-        }
-        
-        .social-links a:hover {
-            color: var(--secondary-color);
-        }
-        
-        /* Mobile-specific dropdown adjustments */
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2rem;
-            }
-            
-            nav ul {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            nav ul li {
-                margin: 0.5rem 0;
-            }
-            
-            .dropdown-content {
-                position: static;
-                transform: none;
-                box-shadow: none;
-                margin-top: 0.5rem;
-                display: none;
-                width: 100%;
-                border-radius: 0;
-            }
-            
-            .has-dropdown:hover .dropdown-content {
-                display: none; /* Don't show on hover for mobile */
-            }
-            
-            .has-dropdown.active .dropdown-content {
-                display: block;
-            }
-            
-            .dropdown-content a:hover {
-                padding-left: 1.5rem; /* Slightly more indent on mobile */
-            }
-        }
-    </style>
+    <title>Inicio en Español — PLRCAWG</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root{--primary-color:#3a3a6a;--secondary-color:#e71d36;--dark-color:#011627;--light-color:#f7f7f7;--accent-color:#ff9f1c;--accent-green:#8bc34a;}
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background-color:var(--light-color);color:var(--dark-color);line-height:1.6;font-family:'Barlow',sans-serif;}
+        .nav-top{background-color:var(--dark-color);padding:0 2rem;display:flex;justify-content:flex-end;align-items:center;border-bottom:1px solid rgba(255,255,255,0.08);}
+        .nav-top a{color:rgba(255,255,255,0.65);text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.5rem 0.9rem;transition:color 0.2s;}
+        .nav-top a:hover{color:white;}
+        .nav-top .lang-btn{background-color:var(--accent-color);color:var(--dark-color);padding:0.45rem 1rem;margin-left:0.5rem;font-weight:900;}
+        nav{background-color:var(--secondary-color);padding:0;box-shadow:0 3px 0 rgba(0,0,0,0.35);position:sticky;top:0;z-index:100;display:flex;align-items:stretch;}
+        .nav-brand{display:flex;align-items:center;padding:0 1.5rem;background-color:var(--dark-color);flex-shrink:0;text-decoration:none;border-right:2px solid var(--accent-color);}
+        .nav-brand span{color:var(--accent-color);font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:0.95rem;letter-spacing:0.08em;text-transform:uppercase;line-height:1.2;max-width:130px;}
+        .nav-main-links{display:flex;list-style:none;margin:0;padding:0;flex:1;}
+        .nav-main-links>li{position:relative;}
+        .nav-main-links>li>a{color:white;text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;letter-spacing:0.08em;text-transform:uppercase;display:flex;align-items:center;padding:0 1.1rem;height:100%;min-height:48px;transition:background-color 0.15s;position:relative;white-space:nowrap;}
+        .nav-main-links>li>a::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background-color:white;transform:scaleX(0);transition:transform 0.2s;}
+        .nav-main-links>li>a:hover,.nav-main-links>li>a.active{background-color:rgba(0,0,0,0.18);}
+        .nav-main-links>li>a.active::after,.nav-main-links>li>a:hover::after{transform:scaleX(1);}
+        .chevron{display:inline-block;margin-left:5px;font-size:0.65rem;transition:transform 0.2s;}
+        .mega-menu{display:none;position:absolute;top:100%;left:0;background-color:var(--dark-color);border-top:3px solid var(--secondary-color);box-shadow:0 6px 0 rgba(0,0,0,0.3);z-index:200;padding:1.5rem 2rem;min-width:280px;}
+        .mega-menu.wide{min-width:480px;}
+        .mega-menu-label{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:0.75rem;border-bottom:1px solid rgba(255,255,255,0.1);padding-bottom:0.4rem;}
+        .mega-menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.25rem 1.5rem;}
+        .mega-menu-grid.single-col{grid-template-columns:1fr;}
+        .mega-menu a{color:rgba(255,255,255,0.82);text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;letter-spacing:0.04em;text-transform:uppercase;padding:0.5rem 0.6rem;display:block;border-left:3px solid transparent;transition:all 0.15s;}
+        .mega-menu a:hover{color:white;border-left-color:var(--secondary-color);padding-left:0.9rem;background-color:rgba(255,255,255,0.04);}
+        .has-dropdown:hover .mega-menu{display:block;}
+        .has-dropdown:hover>a .chevron{transform:rotate(180deg);}
+        .nav-hamburger{display:none;}
+        .hero{background-color:var(--dark-color);color:white;padding:4rem 2rem 3rem;position:relative;overflow:hidden;border-bottom:5px solid var(--secondary-color);}
+        .hero::before{content:"";position:absolute;top:0;right:0;bottom:0;width:45%;background:repeating-linear-gradient(-45deg,rgba(231,29,54,0.06) 0px,rgba(231,29,54,0.06) 2px,transparent 2px,transparent 12px);pointer-events:none;}
+        .hero-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.8rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--secondary-color);margin-bottom:0.75rem;}
+        .hero h1{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:4rem;text-transform:uppercase;line-height:1;max-width:700px;margin-bottom:1.25rem;}
+        .hero p{font-size:1.1rem;max-width:640px;color:rgba(255,255,255,0.78);border-left:3px solid var(--secondary-color);padding-left:1rem;}
+        .content-section{max-width:1100px;margin:0 auto;padding:3.5rem 2rem;}
+        .content-section h2{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.2rem;text-transform:uppercase;color:var(--primary-color);margin-bottom:1.25rem;border-left:5px solid var(--secondary-color);padding-left:1rem;}
+        .content-section h3{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.3rem;text-transform:uppercase;color:var(--primary-color);margin:2rem 0 0.75rem;}
+        .content-section p{font-size:1.05rem;margin-bottom:1.25rem;max-width:780px;color:#222;}
+        .dark-section{background-color:var(--dark-color);padding:3.5rem 2rem;}
+        .dark-section-inner{max-width:1100px;margin:0 auto;}
+        .dark-section h2{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.2rem;text-transform:uppercase;color:white;margin-bottom:1.5rem;border-left:5px solid var(--secondary-color);padding-left:1rem;}
+        .dark-section h3{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.2rem;text-transform:uppercase;color:var(--accent-color);margin:2rem 0 0.65rem;}
+        .dark-section p{font-size:1rem;color:rgba(255,255,255,0.78);margin-bottom:1.1rem;max-width:780px;}
+        .mid-section{background-color:var(--primary-color);padding:3.5rem 2rem;}
+        .mid-section-inner{max-width:1100px;margin:0 auto;}
+        .mid-section h2{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.2rem;text-transform:uppercase;color:white;margin-bottom:1.5rem;border-left:5px solid var(--accent-color);padding-left:1rem;}
+        .mid-section h3{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.15rem;text-transform:uppercase;color:var(--accent-color);margin:1.75rem 0 0.6rem;}
+        .mid-section p{font-size:1rem;color:rgba(255,255,255,0.78);margin-bottom:1rem;max-width:780px;}
+        .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;margin-top:1.5rem;}
+        .card{background:rgba(255,255,255,0.05);border-left:4px solid var(--secondary-color);padding:1.5rem;transition:transform 0.2s;}
+        .card:hover{transform:translateX(5px);}
+        .card h3{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.1rem;text-transform:uppercase;color:white;margin-bottom:0.5rem;}
+        .card p{font-size:0.93rem;color:rgba(255,255,255,0.72);margin:0;}
+        .card-light{background:white;border-left:4px solid var(--secondary-color);padding:1.5rem;box-shadow:3px 3px 0 rgba(0,0,0,0.06);}
+        .card-light h3{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.1rem;text-transform:uppercase;color:var(--dark-color);margin-bottom:0.5rem;}
+        .card-light p{font-size:0.93rem;color:#444;margin:0;}
+        .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;}
+        .step{border-left:3px solid var(--accent-color);padding:1rem 1.25rem;background:rgba(255,255,255,0.05);}
+        .step-num{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.5rem;color:var(--secondary-color);line-height:1;margin-bottom:0.4rem;}
+        .step h3{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;text-transform:uppercase;letter-spacing:0.05em;color:white;margin-bottom:0.5rem;}
+        .step p{font-size:0.95rem;color:rgba(255,255,255,0.72);margin:0;}
+        .project-card{background:white;border-top:5px solid var(--accent-color);box-shadow:5px 5px 0 rgba(0,0,0,0.08);padding:2rem;position:relative;margin-bottom:1.5rem;}
+        .project-region{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:white;background-color:var(--secondary-color);padding:0.25rem 0.6rem;margin-bottom:1rem;}
+        .project-card h3{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.5rem;text-transform:uppercase;color:var(--dark-color);line-height:1.1;margin-bottom:0.75rem;}
+        .project-card p{font-size:1rem;color:#333;margin-bottom:1rem;line-height:1.65;}
+        .project-status{position:absolute;top:1.5rem;right:1.5rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent-green);border:2px solid var(--accent-green);padding:0.2rem 0.5rem;}
+        .partner-tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:1rem;padding-top:0.85rem;border-top:1px solid #eee;}
+        .partner-tag{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.82rem;text-transform:uppercase;color:var(--primary-color);border:2px solid var(--primary-color);padding:0.15rem 0.55rem;}
+        .collab-section{background-color:var(--light-color);padding:3.5rem 2rem;}
+        .collab-inner{max-width:1100px;margin:0 auto;}
+        .collab-inner>h2{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.2rem;text-transform:uppercase;color:var(--primary-color);margin-bottom:0.5rem;border-left:5px solid var(--secondary-color);padding-left:1rem;}
+        .collab-inner>p{font-size:1.05rem;color:#444;margin:0.75rem 0 2.5rem;max-width:680px;}
+        .collab-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.25rem;}
+        .collab-card{background:white;border-left:4px solid var(--secondary-color);padding:1.5rem;box-shadow:3px 3px 0 rgba(0,0,0,0.06);position:relative;}
+        .collab-card.emergent{border-left-color:var(--accent-color);opacity:0.9;}
+        .collab-status{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.5rem;position:absolute;top:1.25rem;right:1.25rem;}
+        .collab-status.active{color:var(--accent-green);border:2px solid var(--accent-green);}
+        .collab-status.emergent{color:var(--accent-color);border:2px solid var(--accent-color);}
+        .collab-card h4{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.2rem;text-transform:uppercase;color:var(--dark-color);margin-bottom:0.5rem;padding-right:5rem;line-height:1.2;}
+        .collab-card p{font-size:0.95rem;color:#333;margin-bottom:0.9rem;line-height:1.65;}
+        .collab-orgs{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:1rem;padding-top:0.85rem;border-top:1px solid #eee;}
+        .org-tag{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.82rem;text-transform:uppercase;color:var(--primary-color);border:2px solid var(--primary-color);padding:0.15rem 0.55rem;}
+        .org-tag.anchor{background-color:var(--primary-color);color:white;}
+        .region-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.25rem;}
+        .region-badge{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;color:white;background-color:var(--dark-color);padding:0.3rem 0.75rem;white-space:nowrap;}
+        .region-header h3{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.3rem;text-transform:uppercase;color:var(--primary-color);margin:0;}
+        .emergent-divider{display:flex;align-items:center;gap:1rem;margin:3rem 0 1.5rem;}
+        .emergent-divider-line{flex:1;height:2px;background:linear-gradient(to right,var(--accent-color),transparent);}
+        .emergent-divider span{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:0.8rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent-color);white-space:nowrap;}
+        .signup-section{background:linear-gradient(135deg,var(--primary-color),#2a2a4a);padding:4rem 2rem;}
+        .signup-inner{max-width:680px;margin:0 auto;text-align:center;}
+        .signup-inner h2{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.8rem;text-transform:uppercase;color:white;margin-bottom:0.75rem;}
+        .signup-inner>p{color:rgba(255,255,255,0.75);margin-bottom:2rem;font-size:1.05rem;}
+        .signup-form{display:flex;flex-direction:column;gap:1rem;text-align:left;}
+        .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+        .form-group label{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-bottom:0.4rem;}
+        .form-group input,.form-group select,.form-group textarea{width:100%;padding:0.75rem;background:rgba(255,255,255,0.1);border:2px solid rgba(255,255,255,0.2);color:white;font-family:'Barlow',sans-serif;font-size:1rem;transition:border-color 0.2s;}
+        .form-group input::placeholder,.form-group textarea::placeholder{color:rgba(255,255,255,0.4);}
+        .form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--secondary-color);}
+        .form-group select option{background:var(--dark-color);color:white;}
+        .form-group textarea{min-height:110px;resize:vertical;}
+        .submit-btn{background-color:var(--secondary-color);color:white;border:none;padding:1rem 2rem;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.1rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:background-color 0.2s;align-self:flex-start;}
+        .submit-btn:hover{background-color:#c91020;}
+        .other-field{display:none;margin-top:0.5rem;}
+        .chapter-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:1.5rem;}
+        .chapter-link{display:block;background:var(--primary-color);color:white;text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.1rem;text-transform:uppercase;letter-spacing:0.06em;padding:1.25rem 1.5rem;border-bottom:4px solid transparent;transition:border-color 0.2s,background 0.2s;}
+        .chapter-link:hover{background:#2a2a5a;border-bottom-color:var(--accent-color);}
+        .chapter-link span{display:block;font-family:'Barlow',sans-serif;font-weight:400;font-size:0.85rem;text-transform:none;letter-spacing:0;color:rgba(255,255,255,0.6);margin-top:0.3rem;}
+        footer{background:linear-gradient(135deg,var(--dark-color) 0%,#000 100%);color:white;text-align:center;padding:2rem 1rem;border-top:4px solid var(--accent-color);}
+        footer h3{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.3rem;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.5rem;}
+        footer p{color:rgba(255,255,255,0.6);font-size:0.9rem;margin-top:0.5rem;}
+        .social-links{display:flex;justify-content:center;margin:1rem 0;gap:1.5rem;}
+        .social-links a{color:white;font-size:1.4rem;transition:color 0.2s;}
+        .social-links a:hover{color:var(--secondary-color);}
+        @media(max-width:768px){.hero h1{font-size:2.5rem;}.form-row{grid-template-columns:1fr;}nav{flex-direction:column;}.nav-brand{padding:0.75rem 1rem;justify-content:center;}.nav-main-links{flex-direction:column;display:none;}.nav-main-links.open{display:flex;}.nav-main-links>li>a{padding:0.75rem 1rem;min-height:auto;}.mega-menu{position:static;display:none!important;box-shadow:none;padding:0.5rem 1rem 1rem 2rem;border-top:none;border-left:3px solid var(--secondary-color);margin:0 1rem 0.5rem;}.has-dropdown.open .mega-menu{display:block!important;}.mega-menu-grid{grid-template-columns:1fr;}.nav-hamburger{display:flex;align-items:center;background:none;border:none;color:white;font-size:1.4rem;padding:0.75rem 1rem;cursor:pointer;margin-left:auto;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;}}
+</style>
 </head>
 <body>
-    <header>
-        <h1>Grupo de Trabajo para la Reforma Agraria Plurinacional en CA</h1>
-        <p>Desarrollando herramientas geoespaciales, financieras y legales para avanzar en la reforma agraria en California</p>
-    </header>
-    
-    <nav>
-        <ul>
-            <li><a href="#about">Sobre Nosotros</a></li>
-            <li><a href="spanish_Compass.html">Nuestra Brújula</a></li>
+    <div class="nav-top">
+        <a href="index.html#get-involved">Contacto</a>
+        <a href="index.html" class="lang-btn">English</a>
+    </div>
+    <nav id="main-nav">
+        <a href="spanish.html" class="nav-brand"><span>← PLRCAWG</span></a>
+        <button class="nav-hamburger" id="hamburger">☰ Menu</button>
+        <ul class="nav-main-links" id="nav-links">
+            <li><a href="OurCompass-es.html">Teoría del Cambio</a></li>
+            <li><a href="territorial_markets.html">Ordenar Ahora ↗</a></li>
             <li class="has-dropdown">
-                <a href="#mission">Nuestro Trabajo</a>
-                <div class="dropdown-content">
-                    <a href="spanish_regional.html">Análisis de Mapeo Regional</a>
-                    <a href="spanish_absentee.html">Análisis de Impacto de Propietarios Ausentes</a>
-                    <a href="spanish_identification.html">Identificación de Parcelas y Planificación de Adquisición</a>
-                    <a href="spanish_leasing.html">Promoción de Arrendamiento Público</a>
-                    <a href="spanish_suitability.html">Aptitud para Pastoreo y Agricultura</a>
-                    <a href="spanish_agroecology.html">Formación Agroecológica y Desarrollo de Liderazgo</a>
-                </div>
-            </li>
-             <li><a href="spanish_students.html">Para Estudiantes</a></li>
-            <li><a href="#events">Eventos</a></li>
-            <li><a href="#get-involved">Contacto</a></li>
-            <li><a href="index.html" class="language-toggle">English</a></li>
-        </ul>
-    </nav>
-    
-    <section id="about">
-        <h2 class="section-title">Sobre Nosotros</h2>
-        <div class="about-content">
-            <div class="about-text">
-                <p>El Grupo de Trabajo para la Reforma Agraria Plurinacional en CA surgió en 2023 como un colectivo de base de estudiantes e investigadores que busca cerrar la brecha entre las clases trabajadoras (agrícolas) y profesionales. Se inspira en las innovaciones tácticas y las lecciones que los movimientos indígena-campesinos basados en Bolivia, Guatemala y Chile han experimentado para avanzar en lo que han acuñado como "plurinacionalismo". Puedes aprender más sobre este concepto en nuestra sección <a href="spanish_Compass.html">Nuestra Brújula</a>.</p>
-                
-                <p>Buscamos aplicar estas lecciones al contexto de California ayudando a las personas sin tierra en la identificación, adquisición y gestión cooperativa de tierras. En particular, buscamos crear coaliciones entre pequeños agricultores, agricultores arrendatarios, trabajadores agrícolas que buscan convertirse en nuevos agricultores y pueblos indígenas que buscan autonomía territorial. En términos más breves, la creación de una alianza y movimiento indígena-campesino.</p>
-                
-                <p>Esperamos no ser simplemente un brazo de investigación para organizaciones comunitarias, sino también una incubadora para la infraestructura necesaria del movimiento social que implemente efectivamente un programa de reforma agraria en el estado de California. Esto puede abarcar desde mapeo, adquisición de tierras, desarrollo de liderazgo, capacitación organizativa y educación agroecológica. Siempre estamos abiertos a la colaboración y al diálogo, ¡y animamos a cualquier persona a ponerse en contacto!</p>
-            </div>
-            <div class="about-image">
-                <img src="images/pluri-logo.jpg" alt="Logo del Grupo de Trabajo para la Reforma Agraria Plurinacional - Mapa de California con patrón Wiphala, codorniz, amapolas y oso">
-            </div>
-        </div>
-    </section>
-    
-    <section class="mission-principles" id="mission">
-        <h2 class="section-title">Nuestro Trabajo</h2>
-        <p>Imaginamos una California que centre a las personas trabajadoras en su búsqueda de asegurar una vida digna para ellos y sus seres queridos. ¡Una reforma agraria desde la base!</p>
-        
-        <div class="principles-list">
-            <div class="principle-card">
-                <h3>Análisis de Mapeo Regional</h3>
-                <p>Análisis geoespacial integral de tierras agrícolas de primera calidad a través de varios códigos de uso de la tierra, acuerdos de tenencia y condiciones ecológicas en las diversas regiones de California.</p>
-                <a href="spanish_regional.html" class="read-more">Más Información</a>
-            </div>
-            <div class="principle-card">
-                <h3>Análisis de Impacto de Propietarios Ausentes</h3>
-                <p>Identificación y documentación de patrones de propiedad ausente y análisis de sus impactos económicos, sociales y ecológicos en las comunidades locales.</p>
-                <a href="spanish_absentee.html" class="read-more">Más Información</a>
-            </div>
-            <div class="principle-card">
-                <h3>Identificación de Parcelas y Planificación de Adquisición</h3>
-                <p>Evaluación estratégica e identificación de parcelas potenciales para su adquisición por comunidades indígenas, trabajadores agrícolas y otras iniciativas dirigidas por la comunidad.</p>
-                <a href="spanish_identification.html" class="read-more">Más Información</a>
-            </div>
-            <div class="principle-card">
-                <h3>Promoción de Arrendamiento Público</h3>
-                <p>Desarrollo de marcos de políticas y promoción de programas de arrendamiento de tierras públicas que prioricen la agricultura regenerativa y las prácticas de administración indígena.</p>
-                <a href="spanish_leasing.html" class="read-more">Más Información</a>
-            </div>
-            <div class="principle-card">
-                <h3>Aptitud para Pastoreo y Agricultura</h3>
-                <p>Realización de evaluaciones detalladas de la aptitud de la tierra para diversas prácticas de pastoreo y agricultura con énfasis en métodos tradicionales y agroecológicos.</p>
-                <a href="spanish_suitability.html" class="read-more">Más Información</a>
-            </div>
-            <div class="principle-card">
-                <h3>Formación Agroecológica y Desarrollo de Liderazgo</h3>
-                <p>Proporcionar educación holística que conecte las prácticas agrícolas con la comprensión de la economía política y las estrategias de organización para la protección de la tierra.</p>
-                <a href="spanish_agroecology.html" class="read-more">Más Información</a>
-            </div>
-        </div>
-    </section>
-    
-    <section id="events">
-        <h2 class="section-title">Próximos Eventos</h2>
-        <div class="events-list">
-            <div class="event-card">
-                <div class="event-image">
-                    <img src="images/MonthlyRADD.jpg" alt="Reunión Mensual RADD">
-                </div>
-                <div class="event-details">
-                    <div class="event-date">Próxima Reunión: 9 de abril</div>
-                    <h3>Reunión Mensual RADD</h3>
-                    <p>La Cena y Discusión de Agroecología Radical (RADD) organiza reuniones mensuales donde nuestro grupo de trabajo participa como una organización integrada dentro de esta coalición más amplia. Es un evento de comida compartida (no te preocupes si no puedes traer nada).</p>
-                    <p>Las discusiones en estas reuniones van desde crear nuevas amistades hasta organizar capacitaciones y educación política sobre la lucha por la tierra. ¡Ven y únete a la comunidad!</p>
-                    <div class="event-info">
-                        <p><strong>Hora:</strong> 6:00 PM - 9:00 PM</p>
-                        <p><strong>Ubicación:</strong> Granja Gill Tract, Berkeley, California</p>
+                <a href="#">Nuestras Iniciativas <span class="chevron">▼</span></a>
+                <div class="mega-menu wide">
+                    <div class="mega-menu-label">Iniciativas</div>
+                    <div class="mega-menu-grid single-col">
+                        <a href="territorial_markets_about-es.html">Mercados Territoriales</a>
+                        <a href="engineering-brigades-es.html">Brigadas de Ingeniería</a>
+                        <a href="parcel-identification-es.html">Adquisición de Tierras</a>
+                        <a href="agroecological-training-es.html">Educación Política</a>
                     </div>
                 </div>
+            </li>
+            <li class="has-dropdown">
+                <a href="#">Escuela de Reforma Agraria <span class="chevron">▼</span></a>
+                <div class="mega-menu">
+                    <div class="mega-menu-label">Programas</div>
+                    <div class="mega-menu-grid single-col">
+                        <a href="summer-school.html">Escuela de Verano</a>
+                        <a href="winter-school.html">Escuela de Invierno</a>
+                    </div>
+                </div>
+            </li>
+            <li class="has-dropdown">
+                <a href="#">Únete <span class="chevron">▼</span></a>
+                <div class="mega-menu">
+                    <div class="mega-menu-label">Capítulos</div>
+                    <div class="mega-menu-grid single-col">
+                        <a href="join-general-es.html">General</a>
+                        <a href="join-bay-area-es.html">Área de la Bahía</a>
+                        <a href="join-la-es.html">Los Ángeles</a>
+                        <a href="join-san-diego-es.html">San Diego</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <header style="background:var(--dark-color);color:white;padding:4rem 2rem 3rem;position:relative;overflow:hidden;border-bottom:5px solid var(--secondary-color);">
+        <div style="position:absolute;top:0;right:0;bottom:0;width:45%;background:repeating-linear-gradient(-45deg,rgba(231,29,54,0.06) 0px,rgba(231,29,54,0.06) 2px,transparent 2px,transparent 12px);pointer-events:none;"></div>
+        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.8rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--secondary-color);margin-bottom:0.75rem;">Reforma Agraria Plurinacional en California</p>
+        <h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:3.5rem;text-transform:uppercase;line-height:1;max-width:750px;margin-bottom:1.25rem;">Grupo de Trabajo por la Reforma Agraria Plurinacional en California</h1>
+        <p style="font-size:1.1rem;max-width:640px;color:rgba(255,255,255,0.78);border-left:3px solid var(--secondary-color);padding-left:1rem;">Un colectivo de base de jóvenes organizadores, investigadores y estudiantes construyendo la viabilidad campesina en todo California</p>
+    </header>
+
+    <section style="max-width:1100px;margin:0 auto;padding:3.5rem 2rem;" id="about">
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.2rem;text-transform:uppercase;color:var(--primary-color);margin-bottom:1.25rem;border-left:5px solid var(--secondary-color);padding-left:1rem;">Quiénes Somos</h2>
+        <p style="font-size:1.05rem;margin-bottom:1.25rem;max-width:780px;color:#222;">El Grupo de Trabajo por la Reforma Agraria Plurinacional en California (PLRCAWG) es un colectivo de base de jóvenes organizadores, investigadores y estudiantes que trabaja para construir la viabilidad campesina en todo California. Nuestro análisis ambiental se centra en la dominación de la agricultura industrial sobre el sistema alimentario de California — a través del control monopólico de los mercados, la tierra y los insumos — que empuja a los campesinos pequeños y diversificados hacia la monocultura o los expulsa de la agricultura por completo.</p>
+        <p style="font-size:1.05rem;margin-bottom:1.25rem;max-width:780px;color:#222;">Desafiamos esto construyendo la infraestructura colectiva que hace económicamente viable la producción agroecológica. En lugar de buscar soluciones tecnocráticas, centramos la viabilidad campesina y la tenencia de la tierra como fundamento de la salud ecológica — reconociendo que los pequeños agricultores con acceso seguro a la tierra e ingresos dignos son quienes mejor pueden sostener prácticas agroecológicas a través de las generaciones.</p>
+        <p style="font-size:1.05rem;margin-bottom:1.25rem;max-width:780px;color:#222;">La agroecología, tal como la practican nuestros socios campesinos, no es un producto o metodología a replicar — es un modo vivo de reproducción social que inherentemente protege el suelo, el agua y la biodiversidad cuando las comunidades tienen el poder de practicarla en sus propios términos. Nuestra colaboración directa con socios como la Coalición de Pequeños Agricultores y Líderes Campesinas garantiza que las comunidades que realizan este trabajo ecológico sean quienes definan su dirección. Puede conocer más sobre nuestro marco político en nuestra sección <a href="OurCompass-es.html">Teoría del Cambio</a>.</p>
+    </section>
+
+    <section style="background:var(--dark-color);padding:3.5rem 2rem;" id="iniciativas">
+        <div style="max-width:1100px;margin:0 auto;">
+            <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.2rem;text-transform:uppercase;color:white;margin-bottom:1rem;border-left:5px solid var(--secondary-color);padding-left:1rem;">Nuestras Iniciativas</h2>
+            <p style="font-size:1.05rem;color:rgba(255,255,255,0.78);margin-bottom:2rem;max-width:780px;">Invertimos en infraestructura de movimiento social — en lugar de intervenciones de mercado o tecnológicas — para hacer colectivamente viable la producción agroecológica. Cuando los campesinos permanecen en la tierra, cuando se asegura la tenencia, y cuando la agricultura agroecológica se vuelve económicamente viable a través de la coordinación colectiva, los resultados ambientales siguen como consecuencia natural de las comunidades sosteniéndose con dignidad.</p>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;">
+                <div style="background:rgba(255,255,255,0.05);border-left:4px solid var(--secondary-color);padding:1.5rem;">
+                    <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.2rem;text-transform:uppercase;color:white;margin-bottom:0.5rem;"><a href="territorial_markets_about-es.html" style="color:white;text-decoration:none;">Mercados Territoriales</a></h3>
+                    <p style="font-size:0.95rem;color:rgba(255,255,255,0.72);">Coordinando compras colectivas entre bases organizadas de consumidores y coaliciones de pequeños agricultores — creando relaciones de mercado estables y equitativas que hacen viable la producción agroecológica.</p>
+                </div>
+                <div style="background:rgba(255,255,255,0.05);border-left:4px solid var(--accent-color);padding:1.5rem;">
+                    <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.2rem;text-transform:uppercase;color:white;margin-bottom:0.5rem;"><a href="engineering-brigades-es.html" style="color:white;text-decoration:none;">Brigadas de Ingeniería</a></h3>
+                    <p style="font-size:0.95rem;color:rgba(255,255,255,0.72);">Reduciendo costos de producción y diseñando herramientas construidas específicamente para la agricultura agroecológica — poniendo la capacidad técnica directamente en manos de las comunidades campesinas.</p>
+                </div>
+                <div style="background:rgba(255,255,255,0.05);border-left:4px solid var(--accent-green);padding:1.5rem;">
+                    <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.2rem;text-transform:uppercase;color:white;margin-bottom:0.5rem;"><a href="parcel-identification-es.html" style="color:white;text-decoration:none;">Adquisición de Tierras</a></h3>
+                    <p style="font-size:0.95rem;color:rgba(255,255,255,0.72);">Apoyando a comunidades sin tierra en asegurar la tenencia mediante investigación, apoyo legal y recaudación de fondos — porque el acceso a la tierra es el fundamento de la viabilidad campesina y la salud ecológica.</p>
+                </div>
+                <div style="background:rgba(255,255,255,0.05);border-left:4px solid #a08fff;padding:1.5rem;">
+                    <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.2rem;text-transform:uppercase;color:white;margin-bottom:0.5rem;"><a href="agroecological-training-es.html" style="color:white;text-decoration:none;">Educación Política</a></h3>
+                    <p style="font-size:0.95rem;color:rgba(255,255,255,0.72);">Formando organizadores capaces de replicar estas iniciativas en todo el estado — escalando la infraestructura de movimiento social necesaria para una verdadera reforma agraria desde la base.</p>
+                </div>
             </div>
         </div>
     </section>
-    
-    <section class="get-involved" id="get-involved">
-        <h2 class="section-title">Contacto</h2>
-        <p>Para socios, contacto para consultas, ayuda y colaboraciones. Para personas interesadas en unirse a nuestro colectivo, ¡hay muchas formas de contribuir con tus habilidades, recursos y energía! Correo electrónico: <a href="mailto:pluricalifornia@gmail.com">pluricalifornia@gmail.com</a></li></p>
-        
-        </div>
+
+    <section style="max-width:1100px;margin:0 auto;padding:3.5rem 2rem;" id="contacto">
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.2rem;text-transform:uppercase;color:var(--primary-color);margin-bottom:1.25rem;border-left:5px solid var(--secondary-color);padding-left:1rem;">Contacto</h2>
+        <p style="font-size:1.05rem;margin-bottom:1.25rem;max-width:780px;color:#222;">Para socios, consultas, apoyo y colaboraciones. Para personas interesadas en unirse a nuestro colectivo, hay muchas formas de contribuir con sus habilidades, recursos y energía. Correo electrónico: <a href="mailto:plurinationallandreform@gmail.com">plurinationallandreform@gmail.com</a></p>
+        <a href="join-general-es.html" style="display:inline-block;background:var(--secondary-color);color:white;text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.1rem;text-transform:uppercase;letter-spacing:0.08em;padding:1rem 2rem;margin-top:0.5rem;">Únete al Colectivo →</a>
     </section>
-    
+
     <footer>
-        <h3>Grupo de Trabajo para la Reforma Agraria Plurinacional en CA</h3>
-        <p>Trabajando en tierras robadas de Ohlone, Miwok, Yokuts, Chumash, Tongva, Cahuilla, Kumeyaay, Acjachemen y muchos otros pueblos indígenas</p>
-        
+        <h3>Grupo de Trabajo por la Reforma Agraria Plurinacional en California</h3>
+        <p>Trabajamos en territorios robados de los pueblos Ohlone, Miwok, Yokuts, Chumash, Tongva, Cahuilla, Kumeyaay, Acjachemen y muchos otros pueblos indígenas</p>
         <div class="social-links">
             <a href="https://instagram.com/plurinational.landreform_cawg" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
         </div>
-        
-        <p>&copy; 2025 Grupo de Trabajo para la Reforma Agraria Plurinacional en CA. Todos los derechos reservados.</p>
+        <p>&copy; 2025 Grupo de Trabajo por la Reforma Agraria Plurinacional en California. Todos los derechos reservados.</p>
     </footer>
-
     <script>
-        // Mobile dropdown toggle
-        document.addEventListener('DOMContentLoaded', function() {
-            const dropdownLinks = document.querySelectorAll('.has-dropdown > a');
-            
-            dropdownLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    if (window.innerWidth <= 768) {
-                        e.preventDefault();
-                        this.parentElement.classList.toggle('active');
-                    }
-                });
-            });
-            
-            // Ensure dropdown items work properly
-            const dropdownItems = document.querySelectorAll('.dropdown-content a');
-            dropdownItems.forEach(item => {
-                item.addEventListener('click', function(e) {
-                    // Allow normal navigation when clicking on dropdown items
-                    window.location.href = this.getAttribute('href');
-                });
+        document.getElementById('hamburger').addEventListener('click', function() {
+            document.getElementById('nav-links').classList.toggle('open');
+        });
+        document.querySelectorAll('.has-dropdown > a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) { e.preventDefault(); this.parentElement.classList.toggle('open'); }
             });
         });
+        function toggleOther(id) {
+            var el = document.getElementById(id);
+            if (el) el.style.display = el.style.display === 'block' ? 'none' : 'block';
+        }
+        
     </script>
 </body>
 </html>
