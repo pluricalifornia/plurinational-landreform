@@ -21,7 +21,7 @@
         .nav-top { background-color: var(--dark-color); padding: 0 2rem; display: flex; justify-content: flex-end; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.08); }
         .nav-top a { color: rgba(255,255,255,0.65); text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.5rem 0.9rem; transition: color 0.2s; }
         .nav-top a:hover { color: white; }
-        .nav-top .lang-btn { background-color: var(--secondary-color); color: white; padding: 0.45rem 1rem; margin-left: 0.5rem; }
+        .nav-top .lang-btn { background-color: var(--accent-color); color: var(--dark-color) !important; padding: 0.45rem 1rem; margin-left: 0.5rem; font-weight: 900; }
         nav { background-color: var(--secondary-color); padding: 0; box-shadow: 0 3px 0 rgba(0,0,0,0.35); position: sticky; top: 0; z-index: 100; display: flex; align-items: stretch; }
         .nav-brand { display: flex; align-items: center; padding: 0 1.5rem; background-color: var(--dark-color); flex-shrink: 0; text-decoration: none; border-right: 2px solid var(--accent-color); }
         .nav-brand span { color: var(--accent-color); font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 0.95rem; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.2; max-width: 130px; }
@@ -74,7 +74,7 @@
         .curriculum-card { border-left: 3px solid var(--secondary-color); padding: 1.25rem 1.5rem; background: rgba(255,255,255,0.08); transition: transform 0.2s; }
         .curriculum-card:hover { transform: translateX(5px); }
         .curriculum-card h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.1rem; text-transform: uppercase; color: white; margin-bottom: 0.5rem; }
-        .curriculum-card p { font-size: 0.95rem; color: rgba(255,255,255,0.7); margin: 0; }
+        .curriculum-card p { font-size: 0.95rem; color: rgba(255,255,255,0.88); margin: 0; }
 
         .signup-section { background: linear-gradient(135deg, #0d0d1a, #1a0a2e); padding: 4rem 2rem; }
         .signup-inner { max-width: 680px; margin: 0 auto; text-align: center; }
@@ -82,10 +82,12 @@
         .signup-inner p { color: rgba(255,255,255,0.75); margin-bottom: 2rem; font-size: 1.05rem; }
         .signup-form { display: flex; flex-direction: column; gap: 1rem; text-align: left; }
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-        .form-group label { display: block; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 0.4rem; }
-        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.75rem; background: rgba(255,255,255,0.08); border: 2px solid rgba(255,255,255,0.15); color: white; font-family: 'Barlow', sans-serif; font-size: 1rem; transition: border-color 0.2s; }
-        .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.35); }
+        .form-group label { display: block; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.9); margin-bottom: 0.4rem; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.75rem; background: #100820; border: 2px solid rgba(255,255,255,0.3); color: #fff; font-family: 'Barlow', sans-serif; font-size: 1rem; transition: border-color 0.2s; }
+        .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.5); }
         .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: #a08fff; }
+        .form-group select option { background: #100820; color: #fff; }
+        .submit-btn:disabled { opacity: 0.65; cursor: not-allowed; }
         .form-group select option { background: var(--dark-color); color: white; }
         .form-group textarea { min-height: 100px; resize: vertical; }
         .submit-btn { background-color: var(--secondary-color); color: white; border: none; padding: 1rem 2rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.1rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: background-color 0.2s; align-self: flex-start; }
@@ -213,7 +215,7 @@
         <div class="signup-inner">
             <h2>Join the Formation</h2>
             <p>If you want to deepen your political understanding and become a more capable organizer, fill out this form. We run cohort-based formation programs and will be in touch about the next one in your region.</p>
-            <form class="signup-form" onsubmit="return false;">
+            <form class="signup-form" onsubmit="handleSubmit(event)">
                 <div class="form-row">
                     <div class="form-group">
                         <label>First Name</label>
@@ -226,7 +228,7 @@
                 </div>
                 <div class="form-group">
                     <label>Email</label>
-                    <input type="email" placeholder="you@example.com">
+                    <input type="email" placeholder="you@example.com" required>
                 </div>
                 <div class="form-group">
                     <label>Region</label>
@@ -267,19 +269,62 @@
         <p>&copy; 2025 Plurinational Land Reform in CA Working Group. All rights reserved.</p>
     </footer>
 
+    
     <script>
+    (function() {
         document.getElementById('hamburger').addEventListener('click', function() {
             document.getElementById('nav-links').classList.toggle('open');
         });
-        document.querySelectorAll('.has-dropdown > a').forEach(link => {
+        document.querySelectorAll('.has-dropdown > a').forEach(function(link) {
             link.addEventListener('click', function(e) {
                 if (window.innerWidth <= 768) { e.preventDefault(); this.parentElement.classList.toggle('open'); }
             });
         });
-        function toggleOtherRegion(select) {
-            const otherGroup = document.getElementById('other-region-group');
-            otherGroup.style.display = select.value === 'Other' ? 'block' : 'none';
+    })();
+
+    function toggleOtherRegion(select) {
+        var otherGroup = document.getElementById('other-region-group');
+        if (otherGroup) otherGroup.style.display = select.value === 'Other' ? 'block' : 'none';
+    }
+
+    async function handleSubmit(e) {
+        e.preventDefault();
+        var btn = e.target.querySelector('.submit-btn');
+        btn.textContent = 'Sending...'; btn.disabled = true;
+        var inputs = e.target.querySelectorAll('input[type=text]');
+        var firstName = inputs[0] ? inputs[0].value.trim() : '';
+        var lastName  = inputs[1] ? inputs[1].value.trim() : '';
+        var email     = e.target.querySelector('input[type=email]').value.trim();
+        var regionSelect = document.getElementById('region-select');
+        var region = regionSelect ? regionSelect.value : '';
+        // If "Other", grab custom text
+        if (region === 'Other') {
+            var otherInput = document.querySelector('#other-region-group input');
+            if (otherInput && otherInput.value.trim()) region = otherInput.value.trim();
         }
+        var notes = e.target.querySelector('textarea').value.trim();
+        var fields = {};
+        if (firstName || lastName) fields["fld1RHxCtLObBfxuC"] = (firstName + ' ' + lastName).trim();
+        if (email)  fields["fldB23hZznYwLMAy7"] = email;
+        if (region) fields["flduEtkOJpKJWGeEq"] = region;
+        if (notes)  fields["fldUssKsKxX5VFDOr"] = notes;
+        fields["fldEB1OGH35eFJLKG"] = "General";
+        fields["fld1eOsK7F0OIYKGo"]  = "Political Education";
+        fields["fldl8ulWOL06ZmUAe"]  = new Date().toISOString();
+        try {
+            var res = await fetch("https://api.airtable.com/v0/appYGSDd2qxK7RY21/tble6Nhq8ryhicz05", {
+                method: "POST",
+                headers: { "Authorization": "Bearer patvWIQE1K2FQ6EuK.c09fadadab5f6a36fd0d5b754798631d20ba607b4f07b3fc255db177aa4c4a6a", "Content-Type": "application/json" },
+                body: JSON.stringify({ fields, typecast: true })
+            });
+            if (res.ok) { btn.textContent = 'Submitted ✓'; btn.style.background = '#8bc34a'; btn.style.color = '#011627'; e.target.reset(); document.getElementById('other-region-group').style.display='none'; }
+            else { throw new Error(); }
+        } catch(err) {
+            btn.textContent = 'Error — try again';
+            btn.style.background = 'var(--secondary-color)';
+            btn.disabled = false;
+        }
+    }
     </script>
 </body>
 </html>
