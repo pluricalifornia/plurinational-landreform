@@ -258,6 +258,9 @@
         <button class="filter-btn" data-cat="fruits">Fruits</button>
         <button class="filter-btn" data-cat="salsas">Salsas</button>
         <button class="filter-btn" data-cat="squashes">Squashes</button>
+        <button class="filter-btn" data-cat="roots">Roots</button>
+        <button class="filter-btn" data-cat="beans">Beans</button>
+        <button class="filter-btn" data-cat="flowers">Flowers</button>
         <button class="filter-btn" data-cat="misc">Misc</button>
     </div>
     <div class="products-grid" id="productsGrid"></div>
@@ -374,7 +377,7 @@
         </form>
 
         <div class="backup-contact">
-            <strong style="color:#fff">Alternative:</strong> Email <a href="mailto:pluricalifornia@gmail.com">pluricalifornia@gmail.com</a> with your order details. Confirmed within 48 hours.
+            <strong style="color:#fff">Alternative:</strong> Email <a href="/cdn-cgi/l/email-protection#21514d54534842404d48474e534f484061464c40484d0f424e4c"><span class="__cf_email__" data-cfemail="11617d64637872707d78777e637f787051767c70787d3f727e7c">[email&#160;protected]</span></a> with your order details. Confirmed within 48 hours.
         </div>
     </div>
 </div>
@@ -388,7 +391,7 @@
     <p>&copy; 2025 Plurinational Land Reform in CA Working Group. All rights reserved.</p>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 (function() {
     'use strict';
 
@@ -413,9 +416,7 @@
         { name: "Romaine Lettuce",        category: "greens",     individual: 2.50,  indDisplay: "$2.50/pz",      bulk: 60.00,  bulkDisplay: "$60.00 (24 ct)" },
         { name: "Onions (Yellow)",        category: "vegetables", individual: 1.50,  indDisplay: "$1.50/lb",      bulk: 30.00,  bulkDisplay: "$30.00 (20 lb)" },
         { name: "Broccolini",             category: "vegetables", individual: 3.00,  indDisplay: "$3.00/lb",      bulk: 60.00,  bulkDisplay: "$60.00 (20 lb)" },
-        { name: "Maiz Pinto",             category: "vegetables", individual: 1.50,  indDisplay: "$1.50/lb",      bulk: 30.00,  bulkDisplay: "$30.00 (20 pz)" },
-        { name: "Carrots",                category: "vegetables", individual: 2.00,  indDisplay: "$2.00/bunch",   bulk: 48.00,  bulkDisplay: "$48.00 (24 bunch)" },
-        { name: "Beets",                  category: "vegetables", individual: 2.00,  indDisplay: "$2.00/bunch",   bulk: 48.00,  bulkDisplay: "$48.00 (24 bunch)" },
+        { name: "Beets",                  category: "roots", individual: 2.00,  indDisplay: "$2.00/bunch",   bulk: 48.00,  bulkDisplay: "$48.00 (24 bunch)" },
         { name: "Chard",                  category: "greens",     individual: 2.00,  indDisplay: "$2.00/bunch",   bulk: 48.00,  bulkDisplay: "$48.00 (24 bunch)" },
         { name: "Kale (Lacinato Green)",  category: "greens",     individual: 2.00,  indDisplay: "$2.00/bunch",   bulk: 48.00,  bulkDisplay: "$48.00 (24 bunch)" },
         { name: "Kale (Red)",             category: "greens",     individual: 2.00,  indDisplay: "$2.00/bunch",   bulk: 48.00,  bulkDisplay: "$48.00 (24 bunch)" },
@@ -424,14 +425,13 @@
         { name: "Strawberries",           category: "fruits",     individual: 3.50,  indDisplay: "$3.50/basket",  bulk: 35.00,  bulkDisplay: "$35.00 (12 baskets)" },
         { name: "Blackberries",           category: "fruits",     individual: 4.00,  indDisplay: "$4.00/basket",  bulk: 45.00,  bulkDisplay: "$45.00 (12 baskets)" },
         { name: "Delicata Squash",        category: "squashes",   individual: 2.00,  indDisplay: "$2.00/lb",      bulk: 40.00,  bulkDisplay: "$40.00 (20 lbs)" },
-        { name: "Acorn Squash",           category: "squashes",   individual: 2.00,  indDisplay: "$2.00/lb",      bulk: 40.00,  bulkDisplay: "$40.00 (20 lbs)" },
         { name: "Spaghetti Squash",       category: "squashes",   individual: 2.00,  indDisplay: "$2.00/lb",      bulk: 40.00,  bulkDisplay: "$40.00 (20 lbs)" },
-        { name: "Garlic",                 category: "misc",       individual: 6.00,  indDisplay: "$6.00/lb",      bulk: 30.00,  bulkDisplay: "$30.00 (5 lb)" },
+        { name: "Garlic",                 category: "herbs",       individual: 6.00,  indDisplay: "$6.00/lb",      bulk: 30.00,  bulkDisplay: "$30.00 (5 lb)" },
         { name: "Honey (16 Oz.)",         category: "misc",       individual: 20.00, indDisplay: "$20/pz",        bulk: 60.00,  bulkDisplay: "$60.00 (3 pz)" },
-        { name: "Lavender",               category: "misc",       individual: 7.00,  indDisplay: "$7.00/bunch",   bulk: 70.00,  bulkDisplay: "$70.00 (10 bunches)" },
+        { name: "Lavender",               category: "flowers",       individual: 7.00,  indDisplay: "$7.00/bunch",   bulk: 70.00,  bulkDisplay: "$70.00 (10 bunches)" },
         { name: "Cilantro",               category: "herbs",      individual: 1.50,  indDisplay: "$1.50/bunch",   bulk: 15.00,  bulkDisplay: "$15.00 (10 bunches)" },
         { name: "Parsley",                category: "herbs",      individual: 1.50,  indDisplay: "$1.50/bunch",   bulk: 15.00,  bulkDisplay: "$15.00 (10 bunches)" },
-        { name: "Radishes",               category: "misc",       individual: 1.50,  indDisplay: "$1.50/bunch",   bulk: 30.00,  bulkDisplay: "$30.00 (20 bunches)" },
+        { name: "Radishes",               category: "roots",       individual: 1.50,  indDisplay: "$1.50/bunch",   bulk: 30.00,  bulkDisplay: "$30.00 (20 bunches)" },
         { name: "Eggs",                   category: "misc",       individual: 10.00, indDisplay: "$10/dozen",     bulk: 100.00, bulkDisplay: "$100.00 (10 dozens)" },
         { name: "Handmade Tortilla Packs",category: "misc",       individual: 10.00, indDisplay: "$10/dozen",     bulk: 100.00, bulkDisplay: "$100.00 (10 dozens)" },
         { name: "Salsa Roja",   category: "salsas", individual: 0, indDisplay: "By Size", bulk: 0, bulkDisplay: "See sizes", hasSizes: true,
@@ -439,7 +439,23 @@
         { name: "Salsa Verde",  category: "salsas", individual: 0, indDisplay: "By Size", bulk: 0, bulkDisplay: "See sizes", hasSizes: true,
           sizes: [{size:"8 oz",price:5},{size:"16 oz",price:8},{size:"32 oz",price:15},{size:"64 oz",price:25}] },
         { name: "Tomato Sauce", category: "salsas", individual: 0, indDisplay: "By Size", bulk: 0, bulkDisplay: "See sizes", hasSizes: true,
-          sizes: [{size:"16 oz",price:8},{size:"32 oz",price:15},{size:"64 oz",price:25}] }
+          sizes: [{size:"16 oz",price:8},{size:"32 oz",price:15},{size:"64 oz",price:25}] },
+        { name: "Fennel",                 category: "herbs", individual: 3.00,  indDisplay: "$3.00/pz",      bulk: 54.00,  bulkDisplay: "$54.00 (18 pz)" },
+        { name: "Dill",                   category: "herbs",      individual: 2.00,  indDisplay: "$2.00/bunch",   bulk: 20.00,  bulkDisplay: "$20.00 (10 bunch)" },
+        { name: "Leeks",                  category: "herbs", individual: 3.00,  indDisplay: "$3.00/bunch",   bulk: 30.00,  bulkDisplay: "$30.00 (10 bunch)" },
+        { name: "Spring Onion",           category: "roots", individual: 1.50,  indDisplay: "$1.50/bunch",   bulk: 15.00,  bulkDisplay: "$15.00 (10 bunch)" },
+        { name: "Green Onion",            category: "herbs", individual: 1.50,  indDisplay: "$1.50/bunch",   bulk: 15.00,  bulkDisplay: "$15.00 (10 bunch)" },
+        { name: "Purple Onion (3 per bunch)", category: "roots", individual: 2.50, indDisplay: "$2.50/bunch", bulk: 50.00, bulkDisplay: "$50.00 (20 bunch)" },
+        { name: "Red Onion (3 per bunch)",    category: "roots", individual: 2.00, indDisplay: "$2.00/bunch", bulk: 40.00, bulkDisplay: "$40.00 (20 bunch)" },
+        { name: "White Onion (3 per bunch)",  category: "roots", individual: 2.50, indDisplay: "$2.50/bunch", bulk: 50.00, bulkDisplay: "$50.00 (20 bunch)" },
+        { name: "Fresh Snap Peas",        category: "beans", individual: 4.00,  indDisplay: "$4.00/lb",      bulk: 80.00,  bulkDisplay: "$80.00 (20 lbs)" },
+        { name: "Fresh Fava Beans",       category: "beans", individual: 4.00,  indDisplay: "$4.00/lb",      bulk: 80.00,  bulkDisplay: "$80.00 (20 lbs)" },
+        { name: "Maya Chives (Cebollin)", category: "herbs",      individual: 2.00,  indDisplay: "$2.00/bunch",   bulk: 20.00,  bulkDisplay: "$20.00 (10 bunch)" },
+        { name: "Mustard Greens",         category: "greens",     individual: 2.50,  indDisplay: "$2.50/bunch",   bulk: 60.00,  bulkDisplay: "$60.00 (24 bunch)" },
+        { name: "Zutano Avocados",        category: "fruits",     individual: 2.50,  indDisplay: "$2.50/pz",      bulk: 25.00,  bulkDisplay: "$25.00 (12 pz)" },
+        { name: "Red Potatoes",            category: "roots",      individual: 2.00,  indDisplay: "$2.00/lb",      bulk: 100.00, bulkDisplay: "$100.00 (50 lbs)" },
+        { name: "Yukon Gold Potatoes",     category: "roots",      individual: 2.00,  indDisplay: "$2.00/lb",      bulk: 100.00, bulkDisplay: "$100.00 (50 lbs)" },
+        { name: "Nopales",                category: "misc", individual: 3.00,  indDisplay: "$3.00/lb",      bulk: 15.00,  bulkDisplay: "$15.00 (5 lbs)" }
     ];
 
     // ── RENDER PRODUCT CARDS ─────────────────────────────────────────────────
@@ -911,12 +927,15 @@
         setTimeout(function() { if (d.parentNode) d.remove(); }, 14000);
     }
 
-    // ── INIT ─────────────────────────────────────────────────────────────────
+    // ── INIT ──────────────────────────────────────────────────────────────────
     renderProducts(null);
     addOrderItem(null);
 
+    // Check for submission redirect
+    if (window.location.search.indexOf('submitted=true') > -1) {
+        showMsg('success', '<strong>Order submitted!</strong><br>We\'ll respond within 48 hours. Thank you for supporting the Coalición!');
+    }
 })();
 </script>
-
 </body>
 </html>
