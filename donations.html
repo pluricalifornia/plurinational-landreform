@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donations &amp; Fundraisers — PLRCAWG</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary-color: #3a3a6a; --secondary-color: #e71d36; --dark-color: #011627; --light-color: #f7f7f7; --accent-color: #ff9f1c; --accent-green: #8bc34a; --crimson: #8b1a1a; --gold: #c9a227; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--light-color); color: var(--dark-color); line-height: 1.6; font-family: 'Barlow', sans-serif; }
+                /* ── TOP BAR ── */
+        .nav-top { background-color: var(--dark-color); padding: 0 2rem; display: flex; justify-content: flex-end; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .nav-top a { color: rgba(255,255,255,0.65); text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.5rem 0.9rem; transition: color 0.2s; }
+        .nav-top a:hover { color: white; }
+        .nav-top .lang-btn { background-color: var(--accent-color); color: var(--dark-color) !important; padding: 0.45rem 1rem; margin-left: 0.5rem; font-weight: 900; }
+
+        /* ── MAIN NAV ── */
+        nav { background-color: var(--secondary-color); padding: 0; box-shadow: 0 3px 0 rgba(0,0,0,0.35); position: sticky; top: 0; z-index: 100; display: flex; align-items: stretch; }
+        .nav-brand { display: flex; align-items: center; padding: 0 1.5rem; background-color: var(--dark-color); flex-shrink: 0; text-decoration: none; border-right: 2px solid var(--accent-color); }
+        .nav-brand span { color: var(--accent-color); font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 0.95rem; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.2; max-width: 130px; }
+        .nav-main-links { display: flex; list-style: none; margin: 0; padding: 0; flex: 1; }
+        .nav-main-links > li { position: relative; }
+        .nav-main-links > li > a { color: white; text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: 0.08em; text-transform: uppercase; display: flex; align-items: center; padding: 0 1.1rem; height: 100%; min-height: 48px; transition: background-color 0.15s; position: relative; white-space: nowrap; }
+        .nav-main-links > li > a::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background-color: white; transform: scaleX(0); transition: transform 0.2s; }
+        .nav-main-links > li > a:hover, .nav-main-links > li > a.active { background-color: rgba(0,0,0,0.18); }
+        .nav-main-links > li > a.active::after, .nav-main-links > li > a:hover::after { transform: scaleX(1); }
+        .chevron { display: inline-block; margin-left: 5px; font-size: 0.65rem; transition: transform 0.2s; }
+        .mega-menu { display: none; position: absolute; top: 100%; left: 0; background-color: var(--dark-color); border-top: 3px solid var(--secondary-color); box-shadow: 0 6px 0 rgba(0,0,0,0.3); z-index: 200; padding: 1.5rem 2rem; min-width: 320px; white-space: normal; }
+        .mega-menu-label { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.4rem; }
+        .mega-menu-grid.single-col { display: grid; grid-template-columns: 1fr; }
+        .mega-menu a { color: rgba(255,255,255,0.82); text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: 0.04em; text-transform: uppercase; padding: 0.5rem 0.6rem; display: block; border-left: 3px solid transparent; transition: all 0.15s; }
+        .mega-menu a:hover { color: white; border-left-color: var(--secondary-color); padding-left: 0.9rem; background-color: rgba(255,255,255,0.04); }
+        .has-dropdown:hover .mega-menu { display: block; }
+        .has-dropdown:hover > a .chevron { transform: rotate(180deg); }
+        .nav-hamburger { display: none; }
+
+
+        /* HERO */
+        .hero { background: linear-gradient(160deg, var(--crimson) 0%, #3a0a0a 60%, var(--dark-color) 100%); color: white; padding: 4rem 2rem 3rem; position: relative; overflow: hidden; border-bottom: 5px solid var(--gold); }
+        .hero::before { content: ""; position: absolute; top: 0; right: 0; bottom: 0; width: 50%; background: repeating-linear-gradient(-45deg, rgba(201,162,39,0.06) 0px, rgba(201,162,39,0.06) 2px, transparent 2px, transparent 14px); pointer-events: none; }
+        .hero-label { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+        .hero h1 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(2.4rem, 5vw, 3.8rem); text-transform: uppercase; line-height: 1.02; max-width: 820px; margin-bottom: 1.25rem; }
+        .hero p { font-size: 1.1rem; max-width: 650px; color: rgba(255,255,255,0.82); border-left: 3px solid var(--gold); padding-left: 1rem; line-height: 1.65; margin-bottom: 0.75rem; }
+        .hero p strong { color: var(--gold); }
+
+        /* MANIFESTO BAND */
+        .manifesto-band { background: white; padding: 3.5rem 2rem; }
+        .manifesto-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+        .manifesto-inner h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 2.2rem; text-transform: uppercase; color: var(--primary-color); margin-bottom: 1.25rem; border-left: 5px solid var(--gold); padding-left: 1rem; }
+        .manifesto-inner p { font-size: 1.05rem; margin-bottom: 1.1rem; color: #222; line-height: 1.72; max-width: 560px; }
+        .manifesto-inner p strong { color: var(--crimson); }
+        .manifesto-inner p:last-child { margin-bottom: 0; }
+
+        /* FUNDING MODEL BAND */
+        .model-band { background-color: var(--dark-color); padding: 3.5rem 2rem; }
+        .model-inner { max-width: 1100px; margin: 0 auto; }
+        .model-inner h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 2.2rem; text-transform: uppercase; color: white; margin-bottom: 2rem; border-left: 5px solid var(--gold); padding-left: 1rem; }
+        .model-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.4rem; }
+        .model-card { border-left: 3px solid var(--gold); padding: 1.25rem 1.5rem; background: rgba(255,255,255,0.05); transition: transform 0.2s; }
+        .model-card:hover { transform: translateX(5px); }
+        .model-card h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.1rem; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+        .model-card p { font-size: 0.95rem; color: rgba(255,255,255,0.88); margin: 0; line-height: 1.6; }
+
+        /* CAMPAIGNS SECTION */
+        .campaigns-section { background-color: var(--light-color); padding: 3.5rem 2rem; }
+        .campaigns-inner { max-width: 1100px; margin: 0 auto; }
+        .campaigns-inner > h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 2.2rem; text-transform: uppercase; color: var(--primary-color); margin-bottom: 0.5rem; border-left: 5px solid var(--secondary-color); padding-left: 1rem; }
+        .campaigns-inner > p { font-size: 1.05rem; color: #444; margin: 0.75rem 0 2.5rem; max-width: 700px; }
+        .campaign-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+        .campaign-card { background: white; border-top: 5px solid var(--secondary-color); box-shadow: 4px 4px 0 rgba(0,0,0,0.07); padding: 1.75rem; display: flex; flex-direction: column; }
+        .campaign-card.gold-top { border-top-color: var(--gold); }
+        .campaign-card.green-top { border-top-color: var(--accent-green); }
+        .c-label { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: white; background-color: var(--secondary-color); display: inline-block; padding: 0.2rem 0.55rem; margin-bottom: 0.85rem; width: fit-content; }
+        .c-label.gold { background-color: var(--gold); color: var(--dark-color); }
+        .c-label.green { background-color: var(--accent-green); color: var(--dark-color); }
+        .campaign-card h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.35rem; text-transform: uppercase; color: var(--dark-color); line-height: 1.15; margin-bottom: 0.75rem; }
+        .campaign-card p { font-size: 0.97rem; color: #444; line-height: 1.65; flex: 1; margin-bottom: 1.5rem; }
+        .view-btn { display: inline-block; font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.8rem 1.5rem; text-decoration: none; transition: all 0.18s; margin-top: auto; text-align: center; }
+        .view-btn.red { background: var(--secondary-color); color: white; }
+        .view-btn.red:hover { background: #c91020; }
+        .view-btn.gold { background: var(--gold); color: var(--dark-color); }
+        .view-btn.gold:hover { background: #b08a1e; }
+        .view-btn.green { background: var(--accent-green); color: var(--dark-color); }
+        .view-btn.green:hover { background: #6ea832; }
+
+        /* PARTNERS */
+        .partners-section { background: linear-gradient(160deg, var(--crimson) 0%, #2a0808 100%); padding: 4rem 2rem; }
+        .partners-inner { max-width: 1100px; margin: 0 auto; text-align: center; }
+        .partners-inner h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 3rem; text-transform: uppercase; color: white; margin-bottom: 0.35rem; }
+        .gracias-sub { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.9rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 2.5rem; }
+        .partner-logos { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 0.85rem 1.25rem; margin-bottom: 3rem; }
+        .p-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.06em; color: rgba(255,255,255,0.82); border: 2px solid rgba(255,255,255,0.2); padding: 0.45rem 1rem; }
+        .p-name.hl { border-color: var(--gold); color: var(--gold); }
+        .slogan { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(1.8rem, 4vw, 2.8rem); text-transform: uppercase; color: white; letter-spacing: 0.03em; line-height: 1.15; }
+        .slogan em { color: var(--gold); font-style: normal; }
+
+        /* SIGNUP */
+        .signup-section { background: linear-gradient(135deg, #2a0808, #011627); padding: 4rem 2rem; }
+        .signup-inner { max-width: 680px; margin: 0 auto; text-align: center; }
+        .signup-inner h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 2.8rem; text-transform: uppercase; color: white; margin-bottom: 0.75rem; }
+        .signup-inner > p { color: rgba(255,255,255,0.8); margin-bottom: 2rem; font-size: 1.05rem; }
+        .signup-form { display: flex; flex-direction: column; gap: 1rem; text-align: left; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .form-group label { display: block; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.9); margin-bottom: 0.4rem; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.75rem; background: #1a0808; border: 2px solid rgba(255,255,255,0.3); color: #fff; font-family: 'Barlow', sans-serif; font-size: 1rem; transition: border-color 0.2s; }
+        .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.5); }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--gold); }
+        .form-group select option { background: #1a0808; color: #fff; }
+        .form-group textarea { min-height: 100px; resize: vertical; }
+        .submit-btn { background-color: var(--gold); color: var(--dark-color); border: none; padding: 1rem 2rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.1rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: background-color 0.2s; align-self: flex-start; }
+        .submit-btn:hover { background-color: #b08a1e; }
+        .submit-btn:disabled { opacity: 0.65; cursor: not-allowed; }
+        footer { background: linear-gradient(135deg, var(--dark-color) 0%, #000 100%); color: white; text-align: center; padding: 2rem 1rem; border-top: 4px solid var(--accent-color); }
+        footer h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.5rem; }
+        footer p { color: rgba(255,255,255,0.6); font-size: 0.9rem; margin-top: 0.5rem; }
+        .social-links { display: flex; justify-content: center; margin: 1rem 0; gap: 1.5rem; }
+        .social-links a { color: white; font-size: 1.4rem; transition: color 0.2s; }
+        .social-links a:hover { color: var(--secondary-color); }
+        @media (max-width: 820px) {
+            .manifesto-inner { grid-template-columns: 1fr; gap: 2rem; }
+            .campaign-cards { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            nav { flex-direction: column; } .nav-brand { padding: 0.75rem 1rem; justify-content: center; }
+            .nav-main-links { flex-direction: column; display: none; }
+            .nav-main-links.open { display: flex; }
+            .nav-main-links > li > a { padding: 0.75rem 1rem; min-height: auto; }
+            .mega-menu { position: static; display: none !important; box-shadow: none; padding: 0.5rem 1rem 1rem 2rem; border-top: none; border-left: 3px solid var(--secondary-color); margin: 0 1rem 0.5rem; }
+            .has-dropdown.open .mega-menu { display: block !important; }
+            .mega-menu-grid { grid-template-columns: 1fr; }
+            .nav-hamburger { display: flex; align-items: center; background: none; border: none; color: white; font-size: 1.4rem; padding: 0.75rem 1rem; cursor: pointer; margin-left: auto; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+        }
+    
+        /* GET INVOLVED BAND */
+        .get-involved-band { background-color: #fff; padding: 0; }
+        .gi-inner { display: grid; grid-template-columns: 1fr 1fr; }
+        .gi-block { padding: 3.5rem 3rem; background: #fff; border-right: 1px solid #e8e8e4; }
+        .gi-block-dark { background: var(--dark-color); border-right: none; }
+        .gi-eyebrow { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--secondary-color); margin-bottom: 0.6rem; }
+        .gi-block h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.75rem; text-transform: uppercase; color: var(--primary-color); margin-bottom: 1rem; border-left: 5px solid var(--secondary-color); padding-left: 1rem; line-height: 1.1; }
+        .gi-block-dark h2 { color: #fff; border-left-color: var(--gold); }
+        .gi-block p { font-size: 0.98rem; color: #333; margin-bottom: 0.9rem; line-height: 1.68; }
+        .gi-block p strong { color: var(--crimson); }
+        .gi-block-dark p { color: rgba(255,255,255,0.82); }
+        .gi-block-dark p strong { color: #fff; }
+        .gi-note { font-size: 0.9rem !important; color: rgba(255,255,255,0.6) !important; border-left: 3px solid var(--gold); padding-left: 0.9rem; font-style: italic; }
+        .gi-form { display: flex; flex-direction: column; gap: 0.85rem; margin-top: 1.5rem; }
+        .gi-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; }
+        .gi-group label { display: block; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: #555; margin-bottom: 0.35rem; }
+        .gi-block-dark .gi-group label { color: rgba(255,255,255,0.75); }
+        .gi-group input, .gi-group select, .gi-group textarea { width: 100%; padding: 0.65rem 0.85rem; background: #f7f7f5; border: 2px solid #ddd; color: #111; font-family: 'Barlow', sans-serif; font-size: 0.97rem; transition: border-color 0.2s; }
+        .gi-group input:focus, .gi-group select:focus, .gi-group textarea:focus { outline: none; border-color: var(--secondary-color); }
+        .gi-group input::placeholder, .gi-group textarea::placeholder { color: #aaa; }
+        .gi-group select option { background: #fff; color: #111; }
+        .dark-form .gi-group input, .dark-form .gi-group select, .dark-form .gi-group textarea { background: #0a2035; border-color: rgba(255,255,255,0.2); color: #fff; }
+        .dark-form .gi-group input:focus, .dark-form .gi-group select:focus, .dark-form .gi-group textarea:focus { border-color: var(--gold); }
+        .dark-form .gi-group input::placeholder, .dark-form .gi-group textarea::placeholder { color: rgba(255,255,255,0.4); }
+        .dark-form .gi-group select option { background: #0a2035; color: #fff; }
+        .gi-group textarea { min-height: 90px; resize: vertical; }
+        .gi-btn { background: var(--secondary-color); color: white; border: none; padding: 0.9rem 1.75rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1rem; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.18s; align-self: flex-start; }
+        .gi-btn:hover { background: #c91020; }
+        .gi-btn:disabled { opacity: 0.65; cursor: not-allowed; }
+        .gold-btn { background: var(--gold) !important; color: var(--dark-color) !important; }
+        .gold-btn:hover { background: #b08a1e !important; }
+        @media (max-width: 820px) {
+            .gi-inner { grid-template-columns: 1fr; }
+            .gi-block { border-right: none; border-bottom: 1px solid #e8e8e4; padding: 2.5rem 1.5rem; }
+            .gi-form-row { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="nav-top">
+        <a href="index.html#get-involved">Contact</a>
+        <a href="#" class="lang-btn">Español</a>
+    </div>
+    <nav id="main-nav">
+        <a href="index.html" class="nav-brand"><span>← PLRCAWG</span></a>
+        <button class="nav-hamburger" id="hamburger">☰ Menu</button>
+        <ul class="nav-main-links" id="nav-links">
+            <li><a href="OurCompass.html">Theory of Change</a></li>
+            <li><a href="territorial_markets.html">Order Now ↗</a></li>
+            <li class="has-dropdown"><a href="#">Our Initiatives <span class="chevron">▼</span></a>
+                <div class="mega-menu"><div class="mega-menu-label">Initiatives</div>
+                <div class="mega-menu-grid single-col">
+                    <a href="territorial_markets_about.html">Territorial Markets</a>
+                    <a href="engineering-brigades.html">Engineering Brigades</a>
+                    <a href="parcel-identification.html">Land Acquisition</a>
+                    <a href="agroecological-training.html">Political Education</a>
+                </div></div></li>
+            <li class="has-dropdown"><a href="#">Land Reform School <span class="chevron">▼</span></a>
+                <div class="mega-menu"><div class="mega-menu-label">Programs</div>
+                <div class="mega-menu-grid single-col">
+                    <a href="summer-school.html">Summer School</a>
+                    <a href="winter-school.html">Winter School</a>
+                </div></div></li>
+            <li class="has-dropdown"><a href="#">Join Us <span class="chevron">▼</span></a>
+                <div class="mega-menu"><div class="mega-menu-label">Chapters</div>
+                <div class="mega-menu-grid single-col">
+                    <a href="join-general.html">General</a>
+                    <a href="join-bay-area.html">Bay Area</a>
+                    <a href="join-la.html">Los Angeles</a>
+                    <a href="join-san-diego.html">San Diego</a>
+                </div></div></li>
+            <li class="has-dropdown"><a href="donations.html" class="active">Donate <span class="chevron">▼</span></a>
+                <div class="mega-menu"><div class="mega-menu-label">Fundraisers</div>
+                <div class="mega-menu-grid single-col">
+                    <a href="donations-territorial-markets.html">Territorial Markets</a>
+                    <a href="donations-engineering-brigades.html">Engineering Brigades</a>
+                    <a href="donations-centro-campesino.html">Centro Campesino</a>
+                </div></div></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <div class="hero">
+        <div class="hero-label">Support Our Work — Three Active Fundraisers</div>
+        <h1>Donations &amp; Fundraisers</h1>
+        <p>PLRCAWG builds organizing infrastructure through a combination of <strong>membership-based community power, grassroots fundraising, and strategic grant partnerships</strong>. We believe the financial base of our work must grow from the communities we organize with — and we are building that base through multiple, complementary avenues.</p>
+        <p>Select a campaign below to learn more and find donation links.</p>
+    </div>
+
+    <!-- RESOURCING PHILOSOPHY -->
+    <div class="manifesto-band">
+        <div class="manifesto-inner">
+            <div>
+                <h2>Our Approach to Resourcing</h2>
+                <p>We are not a nonprofit, and we don't aspire to be one. Our primary financial base is built through <strong>membership power</strong> — most concretely demonstrated through the buyers' club structure, where the collective purchasing commitments of organized communities directly fund the work. This is the model we center and want to scale.</p>
+                <p>At the same time, we are actively exploring grant proposals to help add <strong>staff capacity</strong> for intensive organizing initiatives, as well as concrete infrastructural investments: cooler space, processing equipment, trucks, communications infrastructure, and travel that our volunteer teams cannot sustain alone.</p>
+                <p>We are grateful to <strong>Polo's Pantry</strong> for fiscally sponsoring us — giving us the ability to pursue grants together and, hopefully, gain real institutional investment into our communities through <strong>community-owned assets and infrastructure</strong> that make these initiatives more sustainable over the long term.</p>
+                <p>Because we are not a nonprofit, we also heavily emphasize resourcing through <strong>people's creativity and culture</strong> — fundraiser parties, concerts, flea markets, art prints, and food vending that are woven into the fabric of our movement rather than separated from it.</p>
+                <p>We are also open to being <strong>contracted to lead research projects, deliver political education workshops, or provide technical expertise</strong> for organizations and institutions that want to invest in this work. These engagements allow us to be fairly compensated — and to redirect those funds directly toward campesin@ communities and the organizing initiatives they sustain.</p>
+            </div>
+            <div>
+                <h2>How We Fundraise</h2>
+                <p>Our fundraising strategy reflects our organizing values: broad participation, community accountability, and multiple entry points for contribution.</p>
+                <p><strong>Buyers' clubs &amp; membership dues</strong> — the foundation of our financial model. When organized communities commit to collective purchasing, they create the stable economic base that sustains our matching funds and operations.</p>
+                <p><strong>Community events</strong> — fundraiser parties, concerts, and festivals that build relationships while building our budget. Music, food, and movement all at once.</p>
+                <p><strong>Flea markets &amp; vending</strong> — setting up tables at flea markets and community events, vending food and goods with proceeds going directly to campaigns.</p>
+                <p><strong>Prints &amp; art</strong> — producing and selling political art, posters, and prints that are both cultural artifacts and a means of resourcing the work.</p>
+                <p><strong>Recurring dues</strong> — weekly and monthly contributions from individual supporters who want to sustain the work over the long term.</p>
+                <p><strong>Grant partnerships</strong> — pursued alongside Polo's Pantry as fiscal sponsor, targeting investments in community-owned assets and staff capacity rather than operational dependency.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- FUNDING MODEL CARDS -->
+    <div class="model-band">
+        <div class="model-inner">
+            <h2>Our Resourcing Principles</h2>
+            <div class="model-grid">
+                <div class="model-card">
+                    <h3>Membership-Based Power First</h3>
+                    <p>The buyers' club structure is our primary model — collective purchasing commitments from organized communities are the most durable financial foundation we can build.</p>
+                </div>
+                <div class="model-card">
+                    <h3>Grants for Infrastructure, Not Dependency</h3>
+                    <p>We pursue grants selectively — for coolers, trucks, processing equipment, staff capacity, and community-owned assets that strengthen our initiatives, not for operational funding that creates institutional dependency.</p>
+                </div>
+                <div class="model-card">
+                    <h3>Polo's Pantry Fiscal Sponsorship</h3>
+                    <p>We are grateful to Polo's Pantry for fiscally sponsoring PLRCAWG — opening doors to grant funding and allowing us to pursue real institutional investment in community-owned infrastructure together.</p>
+                </div>
+                <div class="model-card">
+                    <h3>Culture Is Infrastructure</h3>
+                    <p>Because we are not a nonprofit, we emphasize people's creativity heavily. Fundraiser parties, art prints, concerts, and flea markets aren't just tactics — they're how we build relationships and resources simultaneously.</p>
+                </div>
+                <div class="model-card">
+                    <h3>Recurring Community Contributions</h3>
+                    <p>Weekly and monthly dues from supporters build the organizational resilience to sustain intensive work — and keep our financial base accountable to the communities we organize with, not to outside funders.</p>
+                </div>
+                <div class="model-card">
+                    <h3>Community-Owned Assets as the Goal</h3>
+                    <p>Whether through grants, dues, or events, our aim is the same — concrete assets owned by communities: cooler space, land, processing capacity, and tools that make our organizing infrastructure sustainable and self-sufficient.</p>
+                </div>
+                <div class="model-card">
+                    <h3>Contracted Research &amp; Workshops</h3>
+                    <p>We are open to contracted engagements for research, workshops, and political education — fairly compensated work whose proceeds are redistributed directly toward campesin@ communities.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- THREE CAMPAIGNS -->
+    <div class="campaigns-section">
+        <div class="campaigns-inner">
+            <h2>Active Campaigns</h2>
+            <p>Three campaigns currently open. Click each one to read the full context, see regional details, and find donation links.</p>
+            <div class="campaign-cards">
+                <div class="campaign-card">
+                    <div class="c-label">Campaign 01</div>
+                    <h3>Desde Campo a Barrio — Territorial Markets</h3>
+                    <p>Matching funds for direct-farm bulk purchases for working-class buyers' clubs across the Bay Area and Los Angeles — connecting organized consumer communities with small campesin@ producers outside corporate supply chains. Includes campaigns for Dawah Delivery, Polo's Pantry, and Bay Area buyers' clubs.</p>
+                    <a href="donations-territorial-markets.html" class="view-btn red">View Campaign →</a>
+                </div>
+                <div class="campaign-card gold-top">
+                    <div class="c-label gold">Campaign 02</div>
+                    <h3>Engineering Brigades — Solar Cold Storage Trailer</h3>
+                    <p>Help transform a trailer into a collective, solar-powered cold storage unit for the Coalición de Pequeños Agricultores — eliminating cooler rental fees and giving campesin@ farmers infrastructure they own and control. Led by Tech for Liberation at Stanford.</p>
+                    <a href="donations-engineering-brigades.html" class="view-btn gold">View Campaign →</a>
+                </div>
+                <div class="campaign-card green-top">
+                    <div class="c-label green">Campaign 03 — Goal: $30,000</div>
+                    <h3>Centro Campesino — Land Acquisition &amp; Political Education</h3>
+                    <p>Fundraising campaign for an Agroecological Training School &amp; Landless Workers' Trust modeled after the IALA network — giving workers across the food chain access to land and training for worker ownership of food production. $4,447 raised toward a $30,000 goal.</p>
+                    <a href="donations-centro-campesino.html" class="view-btn green">View Campaign →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CO-ORGANIZE + CONTRACTED WORK -->
+    <div class="get-involved-band">
+        <div class="gi-inner">
+
+            <!-- CO-ORGANIZER -->
+            <div class="gi-block">
+                <div class="gi-eyebrow">Get Involved &mdash; Events &amp; Benefits</div>
+                <h2>Co-Organize a Fundraiser, Benefit, or Art/Music Event</h2>
+                <p>One of our most important resourcing avenues is community-organized events &mdash; parties, concerts, flea markets, food vending pop-ups, art shows, and music benefits. If you have skills, a platform, a venue, or simply the energy to organize something, we want to build with you.</p>
+                <p>Tell us what you can bring and your region, and we'll connect you with the local organizing effort.</p>
+                <form class="gi-form" onsubmit="handleCoOrganizer(event)">
+                    <div class="gi-form-row">
+                        <div class="gi-group"><label>First Name</label><input type="text" placeholder="First name"></div>
+                        <div class="gi-group"><label>Last Name</label><input type="text" placeholder="Last name"></div>
+                    </div>
+                    <div class="gi-group"><label>Email</label><input type="email" placeholder="you@example.com" required></div>
+                    <div class="gi-group"><label>Region</label>
+                        <select>
+                            <option value="">Select your region</option>
+                            <option>Bay Area / Northern Central Coast</option>
+                            <option>Los Angeles / Southern Central Coast</option>
+                            <option>San Diego</option>
+                            <option>Inland Empire</option>
+                            <option>Central Valley</option>
+                            <option>Northern California</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="gi-group"><label>What can you contribute?</label>
+                        <select>
+                            <option value="">Select your role</option>
+                            <option>Music / DJ / Live Performance</option>
+                            <option>Visual Art / Prints / Illustration</option>
+                            <option>Food Vending / Catering</option>
+                            <option>Event Planning / Logistics</option>
+                            <option>Venue / Space</option>
+                            <option>Flea Market / Merchandise</option>
+                            <option>Photography / Videography</option>
+                            <option>Promotion / Social Media</option>
+                            <option>Multiple / Other</option>
+                        </select>
+                    </div>
+                    <div class="gi-group"><label>Tell us more</label>
+                        <textarea placeholder="Describe what you'd like to organize, your experience, upcoming availability, or any ideas you have for a benefit event..."></textarea>
+                    </div>
+                    <button type="submit" class="gi-btn">Sign Up to Co-Organize &#8594;</button>
+                </form>
+            </div>
+
+            <!-- CONTRACTED WORK -->
+            <div class="gi-block gi-block-dark">
+                <div class="gi-eyebrow" style="color:var(--gold);">Get Involved &mdash; Research &amp; Workshops</div>
+                <h2>Contract Us for Research or Political Education</h2>
+                <p>PLRCAWG is open to contracted engagements with <strong>institutions, universities, policy organizations, and allied formations</strong> seeking research expertise, political education facilitation, or community mapping work.</p>
+                <p>We bring deep experience in agroecological analysis, absentee landownership research, food system political economy, agrarian reform history, and popular education. We are fairly compensated for this work &mdash; and <strong>all contracted funds are redistributed directly toward campesin@ communities</strong> and the organizing initiatives they sustain.</p>
+                <p class="gi-note">All contracted proceeds are redistributed directly toward campesin@ communities and the organizing initiatives they sustain — not retained as organizational overhead.</p>
+                <form class="gi-form dark-form" onsubmit="handleContract(event)">
+                    <div class="gi-form-row">
+                        <div class="gi-group"><label>Your Name</label><input type="text" placeholder="Full name"></div>
+                        <div class="gi-group"><label>Organization</label><input type="text" placeholder="Institution or organization name"></div>
+                    </div>
+                    <div class="gi-group"><label>Email</label><input type="email" placeholder="you@institution.org" required></div>
+                    <div class="gi-group"><label>Type of Engagement</label>
+                        <select>
+                            <option value="">Select engagement type</option>
+                            <option>Research Project / Land Analysis</option>
+                            <option>Political Education Workshop</option>
+                            <option>Community Mapping / GIS Analysis</option>
+                            <option>Curriculum Development</option>
+                            <option>Speaking / Panel Participation</option>
+                            <option>Consulting / Strategic Advising</option>
+                            <option>Multiple / Other</option>
+                        </select>
+                    </div>
+                    <div class="gi-group"><label>Approximate Budget Range</label>
+                        <select>
+                            <option value="">Select range</option>
+                            <option>Under $1,000</option>
+                            <option>$1,000 &ndash; $5,000</option>
+                            <option>$5,000 &ndash; $15,000</option>
+                            <option>$15,000 &ndash; $50,000</option>
+                            <option>$50,000+</option>
+                            <option>To be discussed</option>
+                        </select>
+                    </div>
+                    <div class="gi-group"><label>Describe the engagement</label>
+                        <textarea placeholder="Tell us about your organization, what you're looking for, timeline, and how you see this work connecting to communities on the ground..."></textarea>
+                    </div>
+                    <button type="submit" class="gi-btn gold-btn">Submit Inquiry &#8594;</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- PARTNERS -->
+    <div class="partners-section">
+        <div class="partners-inner">
+            <h2>¡Gracias!</h2>
+            <p class="gracias-sub">To all partner organizations making this work possible</p>
+            <div class="partner-logos">
+                <span class="p-name hl">PLRCAWG</span>
+                <span class="p-name">Polo's Pantry</span>
+                <span class="p-name hl">Coalición de Pequeños Agricultores</span>
+                <span class="p-name">Saticoy Food Hub</span>
+                <span class="p-name hl">Dawah Delivery</span>
+                <span class="p-name">LA Tenants Union</span>
+                <span class="p-name">Technology for Liberation</span>
+                <span class="p-name">SEIU Local 2007</span>
+                <span class="p-name">Stanford Students for Worker's Rights</span>
+            </div>
+            <p class="slogan">¡Vamos hacia la <em>reforma agraria integral y popular!</em></p>
+        </div>
+    </div>
+
+    <div class="signup-section">
+        <div class="signup-inner">
+            <h2>Stay Connected</h2>
+            <p>Sign up to receive updates on all campaigns and how to get involved — including upcoming fundraiser events near you.</p>
+            <form class="signup-form" onsubmit="handleSubmit(event)">
+                <div class="form-row">
+                    <div class="form-group"><label>First Name</label><input type="text" placeholder="First name"></div>
+                    <div class="form-group"><label>Last Name</label><input type="text" placeholder="Last name"></div>
+                </div>
+                <div class="form-group"><label>Email</label><input type="email" placeholder="you@example.com" required></div>
+                <div class="form-group"><label>Region</label><select><option value="">Select your region</option>
+                    <option>Bay Area / Northern Central Coast</option><option>Los Angeles / Southern Central Coast</option>
+                    <option>San Diego</option><option>Inland Empire</option><option>Central Valley</option>
+                    <option>Northern California</option><option>Other</option></select></div>
+                <div class="form-group"><label>How do you want to help?</label><select><option value="">Select your role</option>
+                    <option>Donate / Financial Support</option><option>Attend / Help Organize Fundraiser Events</option>
+                    <option>Join a Buyers' Club</option><option>Small Farmer / Campesin@</option>
+                    <option>Engineering / Technical Skills</option><option>Community Organization</option>
+                    <option>Volunteer / Logistics</option><option>Other</option></select></div>
+                <div class="form-group"><label>Anything else?</label>
+                    <textarea placeholder="Tell us about your community, how you'd like to participate, or upcoming fundraiser ideas..."></textarea></div>
+                <button type="submit" class="submit-btn">Submit →</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <h3>Plurinational Land Reform in CA Working Group</h3>
+        <p>Working on stolen Ohlone, Miwok, Yokuts, Chumash, Tongva, Cahuilla, Kumeyaay, Acjachemen, and many other indigenous lands</p>
+        <div class="social-links"><a href="https://instagram.com/plurinational.landreform_cawg" aria-label="Instagram"><i class="fab fa-instagram"></i></a></div>
+        <p>&copy; 2025 Plurinational Land Reform in CA Working Group. All rights reserved.</p>
+    </footer>
+
+    <script>
+    (function() {
+        document.getElementById('hamburger').addEventListener('click', function() {
+            document.getElementById('nav-links').classList.toggle('open');
+        });
+        document.querySelectorAll('.has-dropdown > a').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) { e.preventDefault(); this.parentElement.classList.toggle('open'); }
+            });
+        });
+    })();
+    async function handleSubmit(e) {
+        e.preventDefault();
+        var btn = e.target.querySelector('.submit-btn');
+        btn.textContent = 'Sending...'; btn.disabled = true;
+        var inputs = e.target.querySelectorAll('input[type=text]');
+        var firstName = inputs[0] ? inputs[0].value.trim() : '';
+        var lastName  = inputs[1] ? inputs[1].value.trim() : '';
+        var email     = e.target.querySelector('input[type=email]').value.trim();
+        var selects   = e.target.querySelectorAll('select');
+        var region    = selects[0] ? selects[0].value : '';
+        var role      = selects[1] ? selects[1].value : '';
+        var notes     = e.target.querySelector('textarea').value.trim();
+        var fields = {};
+        if (firstName || lastName) fields["fld1RHxCtLObBfxuC"] = (firstName + ' ' + lastName).trim();
+        if (email)  fields["fldB23hZznYwLMAy7"] = email;
+        if (region) fields["flduEtkOJpKJWGeEq"] = region;
+        if (role)   fields["fldj7vLEnGHEZnlWT"] = role;
+        if (notes)  fields["fldUssKsKxX5VFDOr"] = notes;
+        fields["fldEB1OGH35eFJLKG"] = "General";
+        fields["fld1eOsK7F0OIYKGo"]  = "Donations Hub";
+        fields["fldl8ulWOL06ZmUAe"]  = new Date().toISOString();
+        try {
+            var res = await fetch("https://api.airtable.com/v0/appYGSDd2qxK7RY21/tble6Nhq8ryhicz05", {
+                method: "POST",
+                headers: { "Authorization": "Bearer patvWIQE1K2FQ6EuK.c09fadadab5f6a36fd0d5b754798631d20ba607b4f07b3fc255db177aa4c4a6a", "Content-Type": "application/json" },
+                body: JSON.stringify({ fields, typecast: true })
+            });
+            if (res.ok) { btn.textContent = 'Submitted ✓'; btn.style.background = '#8bc34a'; btn.style.color = '#011627'; e.target.reset(); }
+            else { throw new Error(); }
+        } catch(err) {
+            btn.textContent = 'Error — try again';
+            btn.style.background = 'var(--secondary-color)';
+            btn.disabled = false;
+        }
+    }
+
+    async function handleCoOrganizer(e) {
+        e.preventDefault();
+        var btn = e.target.querySelector('.gi-btn');
+        btn.textContent = 'Sending...'; btn.disabled = true;
+        var inputs = e.target.querySelectorAll('input[type=text]');
+        var firstName = inputs[0] ? inputs[0].value.trim() : '';
+        var lastName  = inputs[1] ? inputs[1].value.trim() : '';
+        var email     = e.target.querySelector('input[type=email]').value.trim();
+        var selects   = e.target.querySelectorAll('select');
+        var region    = selects[0] ? selects[0].value : '';
+        var role      = selects[1] ? selects[1].value : '';
+        var notes     = e.target.querySelector('textarea').value.trim();
+        var fields = {};
+        if (firstName || lastName) fields["fld1RHxCtLObBfxuC"] = (firstName + ' ' + lastName).trim();
+        if (email)  fields["fldB23hZznYwLMAy7"] = email;
+        if (region) fields["flduEtkOJpKJWGeEq"] = region;
+        if (role)   fields["fldj7vLEnGHEZnlWT"] = role;
+        if (notes)  fields["fldUssKsKxX5VFDOr"] = notes;
+        fields["fldEB1OGH35eFJLKG"] = "General";
+        fields["fld1eOsK7F0OIYKGo"]  = "Co-Organizer / Fundraiser Benefits";
+        fields["fldl8ulWOL06ZmUAe"]  = new Date().toISOString();
+        try {
+            var res = await fetch("https://api.airtable.com/v0/appYGSDd2qxK7RY21/tble6Nhq8ryhicz05", {
+                method: "POST",
+                headers: { "Authorization": "Bearer patvWIQE1K2FQ6EuK.c09fadadab5f6a36fd0d5b754798631d20ba607b4f07b3fc255db177aa4c4a6a", "Content-Type": "application/json" },
+                body: JSON.stringify({ fields, typecast: true })
+            });
+            if (res.ok) { btn.textContent = 'Submitted ✓'; btn.style.background = '#8bc34a'; btn.style.color = '#011627'; e.target.reset(); }
+            else { throw new Error(); }
+        } catch(err) {
+            btn.textContent = 'Error — try again';
+            btn.style.background = 'var(--secondary-color)';
+            btn.disabled = false;
+        }
+    }
+
+    async function handleContract(e) {
+        e.preventDefault();
+        var btn = e.target.querySelector('.gi-btn');
+        btn.textContent = 'Sending...'; btn.disabled = true;
+        var inputs = e.target.querySelectorAll('input[type=text]');
+        var name    = inputs[0] ? inputs[0].value.trim() : '';
+        var org     = inputs[1] ? inputs[1].value.trim() : '';
+        var email   = e.target.querySelector('input[type=email]').value.trim();
+        var selects = e.target.querySelectorAll('select');
+        var engType = selects[0] ? selects[0].value : '';
+        var budget  = selects[1] ? selects[1].value : '';
+        var notes   = e.target.querySelector('textarea').value.trim();
+        var notesStr = (org ? 'Org: ' + org + '\n' : '') + (budget ? 'Budget: ' + budget + '\n' : '') + (notes ? notes : '');
+        var fields = {};
+        if (name)     fields["fld1RHxCtLObBfxuC"] = name;
+        if (email)    fields["fldB23hZznYwLMAy7"] = email;
+        if (engType)  fields["fldj7vLEnGHEZnlWT"] = engType;
+        if (notesStr) fields["fldUssKsKxX5VFDOr"] = notesStr;
+        fields["fldEB1OGH35eFJLKG"] = "General";
+        fields["fld1eOsK7F0OIYKGo"]  = "Contracted Research / Workshop Inquiry";
+        fields["fldl8ulWOL06ZmUAe"]  = new Date().toISOString();
+        try {
+            var res = await fetch("https://api.airtable.com/v0/appYGSDd2qxK7RY21/tble6Nhq8ryhicz05", {
+                method: "POST",
+                headers: { "Authorization": "Bearer patvWIQE1K2FQ6EuK.c09fadadab5f6a36fd0d5b754798631d20ba607b4f07b3fc255db177aa4c4a6a", "Content-Type": "application/json" },
+                body: JSON.stringify({ fields, typecast: true })
+            });
+            if (res.ok) { btn.textContent = 'Submitted ✓'; btn.style.background = '#8bc34a'; btn.style.color = '#011627'; e.target.reset(); }
+            else { throw new Error(); }
+        } catch(err) {
+            btn.textContent = 'Error — try again';
+            btn.style.background = 'var(--secondary-color)';
+            btn.disabled = false;
+        }
+    }
+    </script>
+</body>
+</html>
