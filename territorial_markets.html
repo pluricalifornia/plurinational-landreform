@@ -411,59 +411,59 @@
     // ── PRODUCTS ─────────────────────────────────────────────────────────────
     var products = [
         // ── VEGETABLES ────────────────────────────────────────────────────────
-        { name: "Beets",                  category: "vegetables", individual: 2.50,  indDisplay: "$2.50/bunch",   bulk: 45.00,  bulkDisplay: "$45.00 (24 bunch · $1.67/bunch)" },
+        { name: "Artichokes",             category: "vegetables", individual: 2.49,  indDisplay: "$2.49/pz",      noBulk: true },
+        { name: "Beets",                  category: "vegetables", individual: 2.50,  indDisplay: "$2.50/bunch",   bulk: 45.00,  bulkDisplay: "$45.00 (24 bunch · $1.88/bunch)" },
+        { name: "Bok Choy",               category: "vegetables", individual: 2.50,  indDisplay: "$2.50/pz",      bulk: 45.00,  bulkDisplay: "$45.00 (24 pz · $1.88/pz)" },
         { name: "Broccoli (Green)",       category: "vegetables", individual: 3.00,  indDisplay: "$3.00/lb",      bulk: 50.00,  bulkDisplay: "$50.00 (20 lb · $2.50/lb)" },
-        { name: "Broccolini",             category: "vegetables", individual: 3.00,  indDisplay: "$3.00/lb",      bulk: 50.00,  bulkDisplay: "$50.00 (20 lb · $2.50/lb)" },
-        { name: "Carrots",                category: "vegetables", individual: 2.00,  indDisplay: "$2.00/bunch",   bulk: 45.00,  bulkDisplay: "$45.00 (24 bunch · $1.67/bunch)" },
-        { name: "Cauliflower",            category: "vegetables", individual: 3.00,  indDisplay: "$3.00/lb",      bulk: 50.00,  bulkDisplay: "$50.00 (20 lb · $2.50/lb)" },
+        { name: "Broccoli (Purple)",      category: "vegetables", individual: 3.00,  indDisplay: "$3.00/lb",      bulk: 50.00,  bulkDisplay: "$50.00 (20 lb · $2.50/lb)" },
+        { name: "Broccolini (Green)",     category: "vegetables", individual: 3.00,  indDisplay: "$3.00/lb",      bulk: 50.00,  bulkDisplay: "$50.00 (20 lb · $2.50/lb)" },
+        { name: "Broccolini (Purple)",    category: "vegetables", individual: 3.00,  indDisplay: "$3.00/lb",      bulk: 50.00,  bulkDisplay: "$50.00 (20 lb · $2.50/lb)" },
+        { name: "Carrots",                category: "vegetables", individual: 2.00,  indDisplay: "$2.00/bunch",   bulk: 45.00,  bulkDisplay: "$45.00 (24 bunch · $1.88/bunch)" },
+        { name: "Rainbow Carrots",        category: "vegetables", individual: 2.00,  indDisplay: "$2.00/bunch",   bulk: 45.00,  bulkDisplay: "$45.00 (24 bunch · $1.88/bunch)" },
         { name: "Celery",                 category: "vegetables", individual: 2.50,  indDisplay: "$2.50/pz",      bulk: 40.00,  bulkDisplay: "$40.00 (24 ct · $1.67/pz)" },
         { name: "Fennel",                 category: "vegetables", individual: 3.00,  indDisplay: "$3.00/pz",      bulk: 40.00,  bulkDisplay: "$40.00 (24 pz · $1.67/pz)" },
         { name: "Fresh Fava Beans",       category: "vegetables", individual: 3.00,  indDisplay: "$3.00/lb",      bulk: 50.00,  bulkDisplay: "$50.00 (25 lbs · $2.00/lb)" },
         { name: "Fresh Snap Peas",        category: "vegetables", individual: 4.00,  indDisplay: "$4.00/lb",      bulk: 35.00,  bulkDisplay: "$35.00 (10 lbs · $3.50/lb)" },
-        { name: "Green Onion",            category: "vegetables", individual: 2.00,  indDisplay: "$2.00/bunch",   bulk: 30.00,  bulkDisplay: "$30.00 (24 bunch · $1.25/bunch)" },
+        { name: "Green Zucchini",         category: "vegetables", individual: 2.29,  indDisplay: "$2.29/lb",      noBulk: true },
+        { name: "Yellow Zucchini",        category: "vegetables", individual: 2.29,  indDisplay: "$2.29/lb",      noBulk: true },
         { name: "Leeks",                  category: "vegetables", individual: 2.00,  indDisplay: "$2.00/pz",      bulk: 36.00,  bulkDisplay: "$36.00 (24 pz · $1.50/pz)" },
         { name: "Nopales",                category: "vegetables", individual: 3.00,  indDisplay: "$3.00/lb",      bulk: 50.00,  bulkDisplay: "$50.00 (20 lbs · $2.50/lb)" },
         { name: "Onions (Yellow)",        category: "vegetables", individual: 1.50,  indDisplay: "$1.50/lb",      bulk: 25.00,  bulkDisplay: "$25.00 (20 lb · $1.25/lb)" },
-        { name: "White Onion (3 per bunch)", category: "vegetables", individual: 2.50, indDisplay: "$2.50/bunch", noBulk: true },
-        { name: "Purple Onion (3 per bunch)", category: "vegetables", individual: 2.50, indDisplay: "$2.50/bunch", noBulk: true },
+        { name: "White Onion",            category: "vegetables", individual: 2.00,  indDisplay: "$2.00/lb",      bulk: 25.00,  bulkDisplay: "$25.00 (20 lb · $1.25/lb)" },
+        { name: "Purple Onion",           category: "vegetables", individual: 2.00,  indDisplay: "$2.00/lb",      bulk: 25.00,  bulkDisplay: "$25.00 (20 lb · $1.25/lb)" },
         { name: "Red Onion",              category: "vegetables", individual: 2.00,  indDisplay: "$2.00/lb",      bulk: 25.00,  bulkDisplay: "$25.00 (20 lb · $1.25/lb)" },
-        { name: "Spring Onion",           category: "vegetables", individual: 2.00,  indDisplay: "$2.00/bunch",   bulk: 36.00,  bulkDisplay: "$36.00 (24 bunch · $1.50/bunch)" },
-        { name: "Green Garlic",           category: "vegetables", individual: 3.00,  indDisplay: "$3.00/bunch",   bulk: 50.00,  bulkDisplay: "$50.00 (24 bunch · $2.08/bunch)" },
 
         // ── GREENS ────────────────────────────────────────────────────────────
+        { name: "Arugula",                category: "greens",     individual: 3.00,  indDisplay: "$3.00/lb (16 oz)", noBulk: true },
+        { name: "Butter Lettuce",         category: "greens",     individual: 3.29,  indDisplay: "$3.29/bunch",   noBulk: true },
         { name: "Cabbage (Green)",        category: "greens",     individual: 3.00,  indDisplay: "$3.00/pz",      bulk: 35.00,  bulkDisplay: "$35.00 (35 lb · $1.00/lb)" },
         { name: "Cabbage (Red)",          category: "greens",     individual: 3.00,  indDisplay: "$3.00/pz",      bulk: 35.00,  bulkDisplay: "$35.00 (35 lb · $1.00/lb)" },
-        { name: "Chard (Green)",          category: "greens",     individual: 2.50,  indDisplay: "$2.50/bunch",   bulk: 45.00,  bulkDisplay: "$45.00 (24 bunch · $1.67/bunch)" },
-        { name: "Rainbow Chard",          category: "greens",     individual: 2.50,  indDisplay: "$2.50/bunch",   bulk: 45.00,  bulkDisplay: "$45.00 (24 bunch · $1.67/bunch)" },
-        { name: "Kale (Lacinato Green)",  category: "greens",     individual: 2.50,  indDisplay: "$2.50/bunch",   bulk: 45.00,  bulkDisplay: "$45.00 (24 bunch · $1.67/bunch)" },
-        { name: "Dino Kale",              category: "greens",     individual: 2.50,  indDisplay: "$2.50/bunch",   bulk: 45.00,  bulkDisplay: "$45.00 (24 bunch · $1.67/bunch)" },
-        { name: "Kale (Red)",             category: "greens",     individual: 2.50,  indDisplay: "$2.50/bunch",   bulk: 45.00,  bulkDisplay: "$45.00 (24 bunch · $1.67/bunch)" },
-        { name: "Mustard Greens",         category: "greens",     individual: 2.50,  indDisplay: "$2.50/bunch",   noBulk: true },
-        { name: "Collard Greens",         category: "greens",     individual: 2.50,  indDisplay: "$2.50/pz",      bulk: 45.00,  bulkDisplay: "$45.00 (24 bunch · $1.67/pz)" },
+        { name: "Chard (Green)",          category: "greens",     individual: 2.50,  indDisplay: "$2.50/bunch",   bulk: 45.00,  bulkDisplay: "$45.00 (24 bunch · $1.88/bunch)" },
+        { name: "Rainbow Chard",          category: "greens",     individual: 2.50,  indDisplay: "$2.50/bunch",   bulk: 45.00,  bulkDisplay: "$45.00 (24 bunch · $1.88/bunch)" },
+        { name: "Kale (Lacinato/Dino)",   category: "greens",     individual: 2.50,  indDisplay: "$2.50/bunch",   bulk: 45.00,  bulkDisplay: "$45.00 (24 bunch · $1.88/bunch)" },
+        { name: "Kale (Red)",             category: "greens",     individual: 2.50,  indDisplay: "$2.50/bunch",   bulk: 45.00,  bulkDisplay: "$45.00 (24 bunch · $1.88/bunch)" },
+        { name: "Curly Kale",             category: "greens",     individual: 2.50,  indDisplay: "$2.50/bunch",   bulk: 45.00,  bulkDisplay: "$45.00 (24 bunch · $1.88/bunch)" },
+        { name: "Mustard Greens",         category: "greens",     individual: 2.29,  indDisplay: "$2.29/bunch",   noBulk: true },
+        { name: "Collard Greens",         category: "greens",     individual: 2.50,  indDisplay: "$2.50/bunch",   bulk: 45.00,  bulkDisplay: "$45.00 (24 bunch · $1.88/bunch)" },
         { name: "Green Leaf Lettuce",     category: "greens",     individual: 2.00,  indDisplay: "$2.00/pz",      bulk: 36.00,  bulkDisplay: "$36.00 (24 pz · $1.50/pz)" },
         { name: "Red Leaf Lettuce",       category: "greens",     individual: 2.00,  indDisplay: "$2.00/pz",      bulk: 36.00,  bulkDisplay: "$36.00 (24 pz · $1.50/pz)" },
-        { name: "Little Gem Lettuce",     category: "greens",     individual: 2.00,  indDisplay: "$2.00/pz",      bulk: 36.00,  bulkDisplay: "$36.00 (24 pz · $1.50/pz)" },
-        { name: "Romaine Lettuce",        category: "greens",     individual: 2.50,  indDisplay: "$2.50/pz",      bulk: 45.00,  bulkDisplay: "$45.00 (24 pz · $1.67/pz)" },
-
-        // ── SQUASHES ──────────────────────────────────────────────────────────
-        { name: "Delicata Squash",        category: "squashes",   individual: 2.00,  indDisplay: "$2.00/lb",      bulk: 40.00,  bulkDisplay: "$40.00 (22 lbs · $1.82/lb)" },
-        { name: "Spaghetti Squash",       category: "squashes",   individual: 2.00,  indDisplay: "$2.00/lb",      bulk: 40.00,  bulkDisplay: "$40.00 (22 lbs · $1.82/lb)" },
+        { name: "Romaine Lettuce",        category: "greens",     individual: 2.50,  indDisplay: "$2.50/pz",      bulk: 45.00,  bulkDisplay: "$45.00 (24 pz · $1.88/pz)" },
 
         // ── ROOTS ─────────────────────────────────────────────────────────────
         { name: "Red Potatoes",           category: "roots",      individual: 2.00,  indDisplay: "$2.00/lb",      bulk: 40.00,  bulkDisplay: "$40.00 (25 lbs · $1.60/lb)" },
-        { name: "Yukon Gold Potatoes",    category: "roots",      individual: 2.00,  indDisplay: "$2.00/lb",      bulk: 40.00,  bulkDisplay: "$40.00 (25 lbs · $1.60/lb)" },
+        { name: "Yellow Potatoes",        category: "roots",      individual: 2.00,  indDisplay: "$2.00/lb",      bulk: 40.00,  bulkDisplay: "$40.00 (25 lbs · $1.60/lb)" },
 
         // ── FRUITS ────────────────────────────────────────────────────────────
         { name: "Blackberries",           category: "fruits",     individual: 4.50,  indDisplay: "$4.50/basket",  bulk: 40.00,  bulkDisplay: "$40.00 (12 baskets · $3.33/basket)" },
-        { name: "Strawberries (Basket)",  category: "fruits",     individual: 5.00,  indDisplay: "$5.00/basket",  bulk: 35.00,  bulkDisplay: "$35.00 (8 baskets · $4.34/basket)" },
+        { name: "Strawberries (Basket)",  category: "fruits",     individual: 5.00,  indDisplay: "$5.00/basket",  bulk: 35.00,  bulkDisplay: "$35.00 (8 × 1-lb baskets · $4.38/basket)" },
         { name: "Strawberries (Pint)",    category: "fruits",     individual: 3.00,  indDisplay: "$3.00/pint",    bulk: 35.00,  bulkDisplay: "$35.00 (12 pints · $2.92/pint)" },
-        { name: "Zutano Avocados",        category: "fruits",     individual: 2.50,  indDisplay: "$2.50/pz",      noBulk: true },
+        { name: "Zutano Avocados",        category: "fruits",     individual: 2.49,  indDisplay: "$2.49/pz",      noBulk: true },
 
         // ── HERBS ─────────────────────────────────────────────────────────────
         { name: "Cilantro",               category: "herbs",      individual: 1.50,  indDisplay: "$1.50/bunch",   bulk: 30.00,  bulkDisplay: "$30.00 (30 bunch · $1.00/bunch)" },
-        { name: "Dill",                   category: "herbs",      individual: 2.00,  indDisplay: "$2.00/bunch",   bulk: 30.00,  bulkDisplay: "$30.00 (30 bunch · $1.00/bunch)" },
-        { name: "Maya Chives (Cebollin)", category: "herbs",      individual: 2.00,  indDisplay: "$2.00/bunch",   bulk: 30.00,  bulkDisplay: "$30.00 (30 bunch · $1.00/bunch)" },
         { name: "Parsley",                category: "herbs",      individual: 1.50,  indDisplay: "$1.50/bunch",   bulk: 30.00,  bulkDisplay: "$30.00 (30 bunch · $1.00/bunch)" },
+        { name: "Spring Onion",           category: "herbs",      individual: 2.00,  indDisplay: "$2.00/bunch",   bulk: 36.00,  bulkDisplay: "$36.00 (24 bunch · $1.50/bunch)" },
+        { name: "Green Garlic",           category: "herbs",      individual: 3.00,  indDisplay: "$3.00/bunch",   bulk: 50.00,  bulkDisplay: "$50.00 (24 bunch · $2.08/bunch)" },
 
         // ── SALSAS ────────────────────────────────────────────────────────────
         { name: "Salsa Roja",   category: "salsas", individual: 0, indDisplay: "By Size", bulk: 0, bulkDisplay: "See sizes", hasSizes: true,
@@ -473,13 +473,17 @@
         { name: "Tomato Sauce", category: "salsas", individual: 0, indDisplay: "By Size", bulk: 0, bulkDisplay: "See sizes", hasSizes: true,
           sizes: [{size:"16 oz",price:8},{size:"32 oz",price:15},{size:"64 oz",price:25}] },
 
+        // ── FLOWERS ───────────────────────────────────────────────────────────
+        { name: "Sunflowers",             category: "flowers",    individual: 6.00,  indDisplay: "$6.00 (4-flower bunch)", noBulk: true },
+        { name: "Snapdragons",            category: "flowers",    individual: 6.00,  indDisplay: "$6.00 (7-flower bunch)", noBulk: true },
+        { name: "Campesina Mix",          category: "flowers",    individual: 5.00,  indDisplay: "$5.00/bunch",   noBulk: true },
+        { name: "Lavender",               category: "flowers",    individual: 7.00,  indDisplay: "$7.00/bunch",   bulk: 50.00,  bulkDisplay: "$50.00 (10 bunch · $5.00/bunch)" },
+
         // ── MISC ──────────────────────────────────────────────────────────────
         { name: "Eggs",                   category: "misc",       individual: 10.00, indDisplay: "$10.00/dozen",  noBulk: true },
         { name: "Garlic",                 category: "misc",       individual: 6.00,  indDisplay: "$6.00/lb",      bulk: 100.00, bulkDisplay: "$100.00 (20 lb · $5.00/lb)" },
         { name: "Handmade Tortilla Packs",category: "misc",       individual: 10.00, indDisplay: "$10.00/dozen",  noBulk: true },
-        { name: "Honey (16 Oz.)",         category: "misc",       individual: 20.00, indDisplay: "$20.00/pz",     noBulk: true },
-        { name: "Lavender",               category: "misc",       individual: 7.00,  indDisplay: "$7.00/bunch",   bulk: 50.00,  bulkDisplay: "$50.00 (10 bunch · $5.00/bunch)" },
-        { name: "Radishes",               category: "misc",       individual: 2.50,  indDisplay: "$2.50/bunch",   bulk: 45.00,  bulkDisplay: "$45.00 (24 bunch · $1.88/bunch)" }
+        { name: "Honey (16 Oz.)",         category: "misc",       individual: 20.00, indDisplay: "$20.00/pz",     noBulk: true }
     ];
 
     // ── RENDER PRODUCT CARDS ─────────────────────────────────────────────────
