@@ -54,6 +54,14 @@
         .hero-btn-primary:hover { background: #c41020; }
         .hero-btn-secondary { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.35); }
         .hero-btn-secondary:hover { border-color: #fff; }
+        .hero-bc { margin-top: 2rem; padding-top: 1.25rem; border-top: 1px solid rgba(255,255,255,0.12); }
+        .hero-bc-label { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange); margin-bottom: 0.7rem; }
+        .hero-bc-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .hero-bc-btn { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 0.95rem; letter-spacing: 0.07em; text-transform: uppercase; padding: 0.65rem 1.4rem; text-decoration: none; display: inline-block; color: #fff; border-left: 5px solid; background: rgba(255,255,255,0.07); transition: background 0.15s; }
+        .hero-bc-btn:hover { background: rgba(255,255,255,0.16); }
+        .hero-bc-btn.coord { border-left-color: #4a8a5c; }
+        .hero-bc-btn.member { border-left-color: #a8342a; }
+        .hero-bc-btn small { display: block; font-family: 'Barlow', sans-serif; font-weight: 400; font-size: 0.72rem; letter-spacing: 0.02em; text-transform: none; color: rgba(255,255,255,0.6); margin-top: 0.15rem; }
 
         /* PRODUCT CATALOGUE */
         .catalogue-wrap { background: #fff; }
@@ -269,6 +277,13 @@
         <div class="hero-actions">
             <a href="#products" class="hero-btn hero-btn-secondary">Browse Products ↓</a>
             <a href="#order" class="hero-btn hero-btn-primary">Place Order →</a>
+        </div>
+        <div class="hero-bc">
+            <p class="hero-bc-label">Buyers Club Network</p>
+            <div class="hero-bc-actions">
+                <a href="aggregate-order-form.html" class="hero-bc-btn coord">Buyer Club Coordinator Submission<small>Club-level totals — coordinators only</small></a>
+                <a href="member-order-form.html" class="hero-bc-btn member">Member Voting Submission<small>Cast your individual order into the pool</small></a>
+            </div>
         </div>
     </div>
 </div>
