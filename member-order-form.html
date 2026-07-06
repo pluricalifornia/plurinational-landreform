@@ -89,6 +89,28 @@
   button.submit{font:700 16px 'Archivo',sans-serif;letter-spacing:.04em;text-transform:uppercase;background:var(--marigold);color:var(--ink);border:2px solid #B37E12;padding:12px 26px;cursor:pointer}
   button.submit:hover{background:#D69A2E}
   button.submit:disabled{opacity:.55;cursor:wait}
+  details.examples{border:1px solid var(--line);background:#fff;margin-top:28px}
+  details.examples summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:10px;padding:14px 20px;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;background:#F4EFE1;border-left:5px solid var(--marigold)}
+  details.examples summary::-webkit-details-marker{display:none}
+  details.examples summary::before{content:'\25B8';font-size:14px;transition:transform .15s}
+  details.examples[open] summary::before{transform:rotate(90deg)}
+  .exgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:16px 20px 20px}
+  @media(max-width:760px){.exgrid{grid-template-columns:1fr}}
+  .excard{border:2px solid var(--green-deep);display:flex;flex-direction:column}
+  .excard h4{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--green);color:var(--paper);padding:7px 12px}
+  .excard .exbody{padding:12px 14px;font-size:13px;color:#4A4D43;flex:1}
+  .excard .exitems{font-family:var(--mono);font-size:11.5px;color:#6B6E62;line-height:1.6;margin-top:8px}
+  .excard .exnums{font-family:var(--mono);font-size:12px;padding:10px 14px;border-top:2px dotted var(--line)}
+  .excard .exnums b{color:var(--green-deep)}
+  .excard .exsave{color:#1D6B37;font-weight:600}
+  .excard button.exload{font:700 13px 'Archivo',sans-serif;letter-spacing:.05em;text-transform:uppercase;background:var(--ink);color:var(--paper);border:0;padding:10px;cursor:pointer}
+  .excard button.exload:hover{background:var(--green-deep)}
+  .exnote{padding:0 20px 16px;font-family:var(--mono);font-size:11.5px;color:#6B6E62;line-height:1.5}
+  .exbasis-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:12px 20px 0;font-size:12.5px;color:#4A4D43}
+  .exbasis-row .exb-note{font-weight:600;color:var(--green-deep)}
+  button.exbasis{font:600 12px var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:5px 12px;border:1.5px solid #B9B29C;background:var(--paper);cursor:pointer;color:#6B6E62}
+  button.exbasis.active{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .basis-label{font-weight:400;color:rgba(34,37,31,.75);letter-spacing:.02em;text-transform:none}
   .msg{display:none;margin-top:24px;padding:18px 20px;border:2px solid;font-weight:600}
   .msg.on{display:block}
   #msg-ok{border-color:var(--success);background:#EDF3EC;color:var(--success-deep)}
@@ -105,6 +127,7 @@
       <h1>Member <em>Order</em> Sheet</h1>
       <p class="label-sub">Put in your order — your quantities pool with neighbors in your club and across the whole network to unlock bulk-case prices from the coalición's farms.</p>
       <div class="label-strip">
+        <span>100% Organic Produce</span>
         <span>Prices updated 7/2/26</span>
         <span>One order per member</span>
         <span>Sliding-scale boxes $15–$60 · median $30</span>
@@ -113,10 +136,47 @@
   </header>
 
   <div class="howto">
-    <strong>How this works:</strong> your order is a vote. Every quantity you enter joins the pool — when the network hits a full bulk case of anything, everyone who ordered it pays the lower bulk rate, never more than the individual price shown. Your coordinator confirms final prices and pickup once the round closes. <strong>Coordinators:</strong> submit club-level totals on the <a href="aggregate-order-form.html">coordinator order sheet</a> instead.
+    <strong>How this works:</strong> your order is a vote on <strong>what goes into the standard box</strong>. Tell us how many boxes your household wants and vote for the items you want in it. Everyone's votes together decide the box's contents and trigger bulk-case purchases from the farms — and the <strong>price per box comes out of that math</strong>: total cost of what we collectively buy, divided by total boxes. The more the pool bulks, the lower everyone's box price. You never pay more than individual farm prices. Your coordinator confirms final box contents and price once the round closes. <strong>Coordinators:</strong> submit club-level totals on the <a href="aggregate-order-form.html">coordinator order sheet</a> instead.
   </div>
 
-  <form id="member-form" novalidate>
+  <details class="examples">
+      <summary>Example Boxes — Compositions That Maximize Savings</summary>
+      <div class="exbasis-row">
+        <span class="exb-note">The coalición's produce is 100% organically grown — always.</span>
+        <span>This toggle only changes which store price we compare against:</span>
+        <button type="button" class="exbasis active" data-b="org">Organic retail</button>
+        <button type="button" class="exbasis" data-b="conv">Conventional retail</button>
+      </div>
+      <div class="exgrid">
+        <div class="excard">
+          <h4>La Cosecha Máxima</h4>
+          <div class="exbody">The biggest-discount items across seven categories — tomatoes three ways, corn, berries, and staples. The best pure value in the catalog.
+            <div class="exitems">2 lb heirloom tomatoes · 1 bsk cherry tomatoes · 1 lb jalapeño · 1 lb tomatillos · 2 lb yellow zucchini · 4 sweet corn · 1 lb cucumber · 2 cilantro · 1 bsk raspberries · 1 spring onion · 1 lb onions</div>
+          </div>
+          <div class="exnums"><b>$30.00</b>/box bulk · <span id="ex-maxima-retail">$69.52</span> at <span class="ex-basis-word">organic</span> retail · <span class="exsave" id="ex-maxima-save">save $39.52 (57%)</span></div>
+          <button type="button" class="exload" data-ex="maxima">Load this box</button>
+        </div>
+        <div class="excard">
+          <h4>La Semana</h4>
+          <div class="exbody">A full week of everyday cooking — potatoes, onions, greens, broccoli, tomatoes. Familiar staples, deeply discounted.
+            <div class="exitems">3 lb red potatoes · 2 lb onions · 1 carrots · 1 beets · 1 green kale · 1 romaine · 1 lb broccoli · 3 sweet corn · 1 cilantro · 2 lb green zucchini · 1 lb roma tomatoes · 1 celery</div>
+          </div>
+          <div class="exnums"><b>$27.97</b>/box bulk · <span id="ex-semana-retail">$47.22</span> at <span class="ex-basis-word">organic</span> retail · <span class="exsave" id="ex-semana-save">save $19.25 (41%)</span></div>
+          <button type="button" class="exload" data-ex="semana">Load this box</button>
+        </div>
+        <div class="excard">
+          <h4>La Solidaria</h4>
+          <div class="exbody">How cheap items absorb premium ones: corn, zucchini, jalapeño &amp; cilantro (60%+ savers) carry handmade tortillas and pastured eggs — which cost <em>more</em> than store versions — and the box still beats retail.
+            <div class="exitems">1 dz eggs · 1 dz blue corn tortillas · 4 sweet corn · 2 lb yellow zucchini · 1 lb jalapeño · 1 cilantro</div>
+          </div>
+          <div class="exnums"><b>$30.50</b>/box bulk · <span id="ex-solidaria-retail">$43.40</span> at <span class="ex-basis-word">organic</span> retail · <span class="exsave" id="ex-solidaria-save">save $12.90 (30%)</span></div>
+          <button type="button" class="exload" data-ex="solidaria">Load this box</button>
+        </div>
+      </div>
+      <p class="exnote">Prices per box at pooled bulk rates; savings vs Berkeley Bowl (7/3/26) on the basis selected above. Every item is coalición-grown, 100% organic, regardless of which store price you compare against. Loading a box fills the quantities below as a starting point — edit freely.</p>
+    </details>
+
+    <form id="member-form" novalidate>
     <fieldset>
       <legend>Who You Are</legend>
       <div class="grid">
@@ -141,7 +201,7 @@
     </fieldset>
 
     <fieldset>
-      <legend>Standard Box</legend>
+      <legend>Your Boxes</legend>
       <div class="grid">
         <div class="field"><label for="boxes">Standard boxes for your household</label>
           <input id="boxes" class="recalc" type="number" min="0" step="1" value="0"></div>
@@ -151,7 +211,7 @@
     </fieldset>
 
     <fieldset>
-      <legend>Add-On Items — Your Quantities</legend>
+      <legend>Vote the Box — What You Want In It</legend>
       <div class="sheet-head"><span>Item</span><span>Farm price</span><span>Bulk case</span><span>Grocery retail</span><span>Qty</span></div>
       <div id="catalog"></div>
     </fieldset>
@@ -159,7 +219,7 @@
     <div class="savings" aria-live="polite">
       <div class="savings-head">
         <h2>Your Personal Savings</h2>
-        <div class="basis" role="radiogroup" aria-label="Retail comparison basis">
+        <div class="basis" role="radiogroup" aria-label="Store price comparison basis"><span class="basis-label">Compare store prices vs:</span>
           <label><input type="radio" name="basis" value="org" checked> Organic</label>
           <label><input type="radio" name="basis" value="conv"> Conventional</label>
         </div>
@@ -170,7 +230,9 @@
         <div class="sav-row pool"><span>What you pay if the pool fills the bulk cases (your minimum)</span><span class="amt" id="s-pooled">$0.00</span></div>
         <div class="sav-row hero"><span>You save vs the grocery store — achieved through pooled bulk buying</span><span class="amt" id="s-save">$0.00</span></div>
         <div class="sav-row"><span>If the pool doesn't reach bulk, you still save this much at individual farm prices</span><span class="amt" id="s-save-nobulk">$0.00</span></div>
-        <div class="sav-note">The headline savings are only achieved through bulk — when enough neighbors' orders fill a case, everyone who ordered that item pays the bulk rate. Part of your savings comes from other people's orders, and yours unlocks savings for them. You never pay more than the individual farm price, so the smaller figure is your guaranteed floor. Retail comparison: Berkeley Bowl, 7/3/26 (toggle above); items with no retail equivalent count at farm price with no claimed savings.</div>
+        <div class="sav-row pool"><span>Implied price per box — if the pool bulks (your items ÷ your boxes)</span><span class="amt" id="s-perbox-bulk">—</span></div>
+        <div class="sav-row"><span>Implied price per box — worst case, individual prices</span><span class="amt" id="s-perbox-max">—</span></div>
+        <div class="sav-note">The headline savings are only achieved through bulk — when enough neighbors' orders fill a case, everyone who ordered that item pays the bulk rate. Part of your savings comes from other people's orders, and yours unlocks savings for them. You never pay more than the individual farm price, so the smaller figure is your guaranteed floor. The implied price per box is what your chosen contents cost divided by your boxes — it's why the sliding scale depends on the final bulk order price. Retail comparison: Berkeley Bowl, 7/3/26 (toggle above); items with no retail equivalent count at farm price with no claimed savings. The toggle changes only the store price we compare against — the coalición's produce is always 100% organically grown; switching to “conventional” shows that coalición organic often beats even conventional store prices.</div>
       </div>
     </div>
 
@@ -190,12 +252,12 @@
 <div class="tally" aria-live="polite">
   <div class="tally-in">
     <span class="tally-item">Boxes <b id="t-boxes">0</b> <b id="t-boxcost">$0.00</b></span>
-    <span class="tally-item">Add-ons <b id="t-items">0</b> <b id="t-addoncost">$0.00</b></span>
+    <span class="tally-item">Box items <b id="t-items">0</b> <b id="t-addoncost">$0.00</b></span>
     <span class="tally-item">Your max total <b id="t-total">$0.00</b></span>
     <span class="tally-item">You save (w/ bulk) <b class="save" id="t-save">$0.00</b></span>
     <span class="spacer"></span>
     <button type="submit" form="member-form" class="submit" id="send-btn">Cast your order</button>
-    <small>Max total = boxes × your rate + add-ons at individual farm price. The savings figure assumes the pool fills the bulk cases — see the savings panel for your guaranteed no-bulk floor. Basis selected above.</small>
+    <small>Max total = boxes × your rate + your voted items at individual farm price. The savings figure assumes the pool fills the bulk cases — see the savings panel for your guaranteed no-bulk floor. Basis selected above.</small>
   </div>
 </div>
 
@@ -368,6 +430,8 @@ function tally() {
   document.getElementById('s-pooled').textContent = fmt(pooled);
   document.getElementById('s-save').textContent = fmt(retail - pooled);
   document.getElementById('s-save-nobulk').textContent = fmt(retail - farm);
+  document.getElementById('s-perbox-bulk').textContent = boxes > 0 ? fmt(pooled / boxes) : '—';
+  document.getElementById('s-perbox-max').textContent = boxes > 0 ? fmt(farm / boxes) : '—';
   return { farm, pooled, retail, items, boxes, rate, boxesCost };
 }
 document.addEventListener('input', e => { if (e.target.matches('.qty,.recalc')) tally(); });
@@ -415,7 +479,7 @@ form.addEventListener('submit', async e => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
-          _subject: `MEMBER order: ${member} — ${club} (${boxes} boxes, ${items} add-ons)`,
+          _subject: `MEMBER order: ${member} — ${club} (${boxes} boxes, ${items} items voted)`,
           // Field names below match the Airtable Orders table exactly,
           // so the Formspree -> Airtable integration maps one-to-one.
           'Order': `${member} — ${club} — ${new Date().toISOString().slice(0,10)}`,
@@ -440,7 +504,41 @@ form.addEventListener('submit', async e => {
     btn.disabled = false; btn.textContent = 'Cast your order';
   }
 });
+const EXAMPLES = {
+  maxima: {"Heirloom Tomatoes":2,"Cherry Tomatoes":1,"Jalapeño":1,"Tomatillos":1,"Yellow Zucchini":2,"Sweet Corn":4,"Cucumber":1,"Cilantro":2,"Raspberries":1,"Spring Onion":1,"Yellow Onions":1},
+  semana: {"Red Potatoes":3,"Yellow Onions":2,"Yellow Carrots":1,"Beets":1,"Kale (Green)":1,"Romaine Lettuce":1,"Broccoli (Green)":1,"Sweet Corn":3,"Cilantro":1,"Green Zucchini":2,"Roma Tomatoes":1,"Celery":1},
+  solidaria: {"Eggs":1,"Handmade Blue Corn Tortilla Packs":1,"Sweet Corn":4,"Yellow Zucchini":2,"Jalapeño":1,"Cilantro":1}
+};
+document.querySelectorAll('.exload').forEach(btn => btn.addEventListener('click', () => {
+  const ex = EXAMPLES[btn.dataset.ex];
+  document.querySelectorAll('.qty:not(.aqty)').forEach(q => {
+    q.value = ex[q.dataset.name] != null ? ex[q.dataset.name] : '';
+  });
+  tally();
+  document.getElementById('catalog').scrollIntoView({ block: 'start', behavior: 'smooth' });
+}));
 tally();
+
+// ── example-box basis sync ──
+const EXDATA = { maxima:{bulk:30.00,org:69.52,conv:32.62}, semana:{bulk:27.97,org:47.22,conv:29.12}, solidaria:{bulk:30.50,org:43.40,conv:18.37} };
+function updateExamples(){
+  const b = basis();
+  document.querySelectorAll('.ex-basis-word').forEach(el => el.textContent = b === 'org' ? 'organic' : 'conventional');
+  document.querySelectorAll('.exbasis').forEach(btn => btn.classList.toggle('active', btn.dataset.b === b));
+  for (const [k, d] of Object.entries(EXDATA)) {
+    const r = d[b], save = r - d.bulk;
+    document.getElementById('ex-' + k + '-retail').textContent = fmt(r);
+    const el = document.getElementById('ex-' + k + '-save');
+    if (save >= 0) { el.textContent = `save ${fmt(save)} (${Math.round(save / r * 100)}%) — organic beating ${b === 'org' ? 'organic' : 'conventional'} prices`; el.style.color = ''; }
+    else { el.textContent = `${fmt(-save)} above conventional — the artisan premium, still 100% organic`; el.style.color = '#8E2418'; }
+  }
+}
+document.querySelectorAll('.exbasis').forEach(btn => btn.addEventListener('click', () => {
+  document.querySelector(`input[name="basis"][value="${btn.dataset.b}"]`).checked = true;
+  tally(); updateExamples();
+}));
+document.querySelectorAll('input[name="basis"]').forEach(r => r.addEventListener('change', updateExamples));
+updateExamples();
 </script>
 </body>
 </html>
