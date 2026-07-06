@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Member Order — Buyers Club Network</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Archivo:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FBF7EE; --ink:#22251F; --green:#7E211B; --green-deep:#54130E;
+    --success:#24513B; --success-deep:#183826;
+    --tomato:#C93A2C; --marigold:#EBA937; --line:#D8D0BC;
+    --mono:'IBM Plex Mono',ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+  body{background:var(--paper);color:var(--ink);font:16px/1.55 'Archivo',system-ui,sans-serif;padding:20px 16px 150px}
+  .sheet{max-width:900px;margin:0 auto}
+  .label{border:3px solid var(--green-deep);background:var(--green);color:var(--paper);padding:6px}
+  .label-inner{border:2px solid var(--paper);padding:26px 24px 20px;text-align:center}
+  .label-eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--marigold)}
+  .label h1{font-family:'Alfa Slab One',serif;font-weight:400;font-size:clamp(26px,5.4vw,44px);line-height:1.08;margin:10px 0 8px;text-transform:uppercase}
+  .label h1 em{font-style:normal;color:var(--marigold)}
+  .label-sub{font-size:14px;max-width:56ch;margin:0 auto;color:#E9E3D2}
+  .label-strip{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:16px;font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase}
+  .label-strip span{border-top:1px solid rgba(251,247,238,.4);padding-top:6px}
+  .howto{border:1px solid var(--line);border-top:0;background:#fff;padding:16px 20px;font-size:14.5px;color:#4A4D43}
+  .howto strong{color:var(--green-deep)}
+  fieldset{border:1px solid var(--line);background:#fff;margin-top:28px;padding:22px 20px 24px}
+  legend{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;background:var(--ink);color:var(--paper);padding:5px 12px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px 20px}
+  @media(max-width:620px){.grid{grid-template-columns:1fr}}
+  .field label{display:block;font-size:13px;font-weight:700;margin-bottom:5px}
+  .field label small{font-weight:400;color:#6B6E62}
+  .field input,.field select,.field textarea{width:100%;border:1.5px solid #B9B29C;background:var(--paper);padding:10px 12px;font:inherit;font-size:15px;border-radius:0}
+  .field textarea{min-height:88px;resize:vertical}
+  .field input:focus-visible,.field select:focus-visible,.field textarea:focus-visible,
+  .qty:focus-visible,button:focus-visible,input[type=radio]:focus-visible{outline:3px solid var(--marigold);outline-offset:1px}
+  .span2{grid-column:1/-1}
+  .cat{display:flex;align-items:center;gap:12px;margin:26px 0 10px}
+  .cat:first-of-type{margin-top:8px}
+  .cat h3{font-family:var(--mono);font-size:12.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--paper);background:var(--green);padding:4px 12px}
+  .cat::after{content:'';flex:1;border-top:2px dotted var(--line)}
+  .row{display:grid;grid-template-columns:1fr 122px 140px 132px 88px;gap:10px;align-items:center;padding:8px 4px;border-bottom:1px solid #EFEADB}
+  .row:hover{background:#FDFBF4}
+  .row .pname{font-size:15px;font-weight:600}
+  .row .pname small{display:block;font-weight:400;color:#6B6E62;font-size:12.5px}
+  .price{font-family:var(--mono);font-size:13px;color:#3E4137}
+  .price b{font-weight:600;color:var(--green-deep)}
+  .price small.perunit{display:block;color:#6B6E62;font-size:11.5px}
+  .retail{font-family:var(--mono);font-size:11.5px;color:#8E4A42;line-height:1.5}
+  .retail span{display:block;white-space:nowrap}
+  .retail .rl{color:#9B7E77;font-size:10px;letter-spacing:.08em;text-transform:uppercase;margin-right:4px}
+  .qty{width:100%;border:1.5px solid #B9B29C;background:var(--paper);padding:8px 10px;font-family:var(--mono);font-size:15px;text-align:center;border-radius:0}
+  .qty.has-qty{border-color:var(--success);background:#EDF3EC;font-weight:600}
+  .bulkstatus{grid-column:1/-1;display:none;font-family:var(--mono);font-size:12px;line-height:1.55;padding:6px 10px;margin:2px 0 4px;border-left:3px solid var(--marigold);background:#FBF4E3;color:#5A4A1E}
+  .bulkstatus.on{display:block}
+  .bulkstatus.full{border-left-color:var(--success);background:#EDF3EC;color:var(--success-deep)}
+  .bulkstatus b{font-weight:600}
+  .sheet-head{display:grid;grid-template-columns:1fr 122px 140px 132px 88px;gap:10px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#6B6E62;padding:0 4px 6px}
+  @media(max-width:740px){
+    .row{grid-template-columns:1fr 88px;grid-template-areas:'name qty' 'ind qty' 'bulk qty' 'ret qty'}
+    .row .pname{grid-area:name}.row .ind{grid-area:ind}.row .bulk{grid-area:bulk}.row .retail{grid-area:ret}.row .qty{grid-area:qty;align-self:center}
+    .sheet-head{display:none}
+  }
+  .savings{border:3px solid var(--green-deep);background:#fff;margin-top:28px}
+  .savings-head{background:var(--marigold);color:var(--ink);padding:8px 16px;border-bottom:3px solid var(--green-deep);display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .savings-head h2{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase}
+  .basis{margin-left:auto;display:flex;gap:12px;font-family:var(--mono);font-size:12px}
+  .basis label{display:flex;align-items:center;gap:5px;cursor:pointer;font-weight:600}
+  .savings-body{padding:18px 20px}
+  .sav-row{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px dashed var(--line);font-size:14.5px}
+  .sav-row:last-of-type{border-bottom:0}
+  .sav-row .amt{font-family:var(--mono);font-weight:600}
+  .sav-row.hero{border-top:2px solid var(--ink);margin-top:6px;padding-top:12px;font-weight:700;font-size:16px}
+  .sav-row.hero .amt{color:var(--success-deep);font-size:20px}
+  .sav-row.pool .amt{color:#8A6410}
+  .sav-note{font-size:12px;color:#6B6E62;margin-top:12px;font-family:var(--mono);line-height:1.5}
+  .tally{position:fixed;left:0;right:0;bottom:0;background:var(--ink);color:var(--paper);border-top:4px solid var(--marigold);padding:12px 16px;z-index:10}
+  .tally-in{max-width:900px;margin:0 auto;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .tally-item{font-family:var(--mono);font-size:13px}
+  .tally-item b{color:var(--marigold);font-size:17px}
+  .tally-item b.save{color:#7FC98F}
+  .tally .spacer{flex:1}
+  .tally small{color:#B9B29C;font-size:11.5px;flex-basis:100%;line-height:1.3}
+  button.submit{font:700 16px 'Archivo',sans-serif;letter-spacing:.04em;text-transform:uppercase;background:var(--marigold);color:var(--ink);border:2px solid #B37E12;padding:12px 26px;cursor:pointer}
+  button.submit:hover{background:#D69A2E}
+  button.submit:disabled{opacity:.55;cursor:wait}
+  .msg{display:none;margin-top:24px;padding:18px 20px;border:2px solid;font-weight:600}
+  .msg.on{display:block}
+  #msg-ok{border-color:var(--success);background:#EDF3EC;color:var(--success-deep)}
+  #msg-err{border-color:var(--tomato);background:#FBEBE8;color:#8E2418}
+  .foot{margin-top:34px;font-size:12.5px;color:#6B6E62;font-family:var(--mono)}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header class="label">
+    <div class="label-inner">
+      <p class="label-eyebrow">Coalición de Pequeños Agricultores · Farm Direct</p>
+      <h1>Member <em>Order</em> Sheet</h1>
+      <p class="label-sub">Put in your order — your quantities pool with neighbors in your club and across the whole network to unlock bulk-case prices from the coalición's farms.</p>
+      <div class="label-strip">
+        <span>Prices updated 7/2/26</span>
+        <span>One order per member</span>
+        <span>Sliding-scale boxes $15–$60 · median $30</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="howto">
+    <strong>How this works:</strong> your order is a vote. Every quantity you enter joins the pool — when the network hits a full bulk case of anything, everyone who ordered it pays the lower bulk rate, never more than the individual price shown. Your coordinator confirms final prices and pickup once the round closes. <strong>Coordinators:</strong> submit club-level totals on the <a href="aggregate-order-form.html">coordinator order sheet</a> instead.
+  </div>
+
+  <form id="member-form" novalidate>
+    <fieldset>
+      <legend>Who You Are</legend>
+      <div class="grid">
+        <div class="field"><label for="club">Your buyers club</label>
+          <select id="club" name="club" required>
+            <option value="" disabled selected>Select your club…</option>
+            <option>North Oakland Buyer Club</option>
+            <option>Eastlake Oakland Buyer Club</option>
+            <option>West Oakland Buyer Club</option>
+            <option>Fruitvale Oakland Buyer Club</option>
+            <option>Haight Ashbury SF Buyer Club</option>
+            <option>Stanford Grad Union Buyer Club</option>
+            <option>Richmond-Berkeley Buyer Club</option>
+          </select></div>
+        <div class="field"><label for="member">Your name</label>
+          <input id="member" name="member" required autocomplete="name"></div>
+        <div class="field"><label for="email">Email <small>(for your order confirmation)</small></label>
+          <input id="email" type="email" name="email" required autocomplete="email"></div>
+        <div class="field"><label for="phone">Phone <small>(optional)</small></label>
+          <input id="phone" type="tel" name="phone" autocomplete="tel"></div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Standard Box</legend>
+      <div class="grid">
+        <div class="field"><label for="boxes">Standard boxes for your household</label>
+          <input id="boxes" class="recalc" type="number" min="0" step="1" value="0"></div>
+        <div class="field"><label for="paid">What you'll pay per box <small>($15–$60 sliding scale — $30 is the median; your final cost depends on the final bulk order price)</small></label>
+          <input id="paid" class="recalc" type="number" min="0" step="1" value="30"></div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Add-On Items — Your Quantities</legend>
+      <div class="sheet-head"><span>Item</span><span>Farm price</span><span>Bulk case</span><span>Grocery retail</span><span>Qty</span></div>
+      <div id="catalog"></div>
+    </fieldset>
+
+    <div class="savings" aria-live="polite">
+      <div class="savings-head">
+        <h2>Your Personal Savings</h2>
+        <div class="basis" role="radiogroup" aria-label="Retail comparison basis">
+          <label><input type="radio" name="basis" value="org" checked> Organic</label>
+          <label><input type="radio" name="basis" value="conv"> Conventional</label>
+        </div>
+      </div>
+      <div class="savings-body">
+        <div class="sav-row"><span id="s-retail-label">What this costs at the grocery store (organic)</span><span class="amt" id="s-retail">$0.00</span></div>
+        <div class="sav-row"><span>What you pay farm-direct (individual prices — your maximum)</span><span class="amt" id="s-farm">$0.00</span></div>
+        <div class="sav-row pool"><span>What you pay if the pool fills the bulk cases (your minimum)</span><span class="amt" id="s-pooled">$0.00</span></div>
+        <div class="sav-row hero"><span>You save vs the grocery store</span><span class="amt" id="s-save">$0.00</span></div>
+        <div class="sav-row"><span>…and up to this much more when the pool bulks</span><span class="amt" id="s-save-max">$0.00</span></div>
+        <div class="sav-note">You never pay more than the individual farm price. When enough neighbors' orders fill a bulk case, everyone who ordered that item pays the bulk rate — part of your savings comes from other people's orders, and yours unlocks savings for them. Retail comparison: Berkeley Bowl, 7/3/26 (toggle above); items with no retail equivalent count at farm price with no claimed savings.</div>
+      </div>
+    </div>
+
+    <fieldset>
+      <legend>Notes</legend>
+      <div class="field span2"><label for="notes">Anything your coordinator should know <small>(substitutions OK? pickup constraints?)</small></label>
+        <textarea id="notes" name="notes"></textarea></div>
+    </fieldset>
+
+    <div id="msg-ok" class="msg" role="status">Your order is in the pool! Watch the network progress bars to see it aggregate with your neighbors' — your coordinator will confirm final prices when the round closes.</div>
+    <div id="msg-err" class="msg" role="alert">The order didn't go through. Check that your name, email, and club are filled in, then try again. If it keeps failing, send your list to your coordinator directly.</div>
+  </form>
+
+  <p class="foot">Farm prices: Coalición inventory, updated 7/2/26. Retail comparison: Berkeley Bowl, 7/3/26. Powered by the buyers club network.</p>
+</div>
+
+<div class="tally" aria-live="polite">
+  <div class="tally-in">
+    <span class="tally-item">Boxes <b id="t-boxes">0</b> <b id="t-boxcost">$0.00</b></span>
+    <span class="tally-item">Add-ons <b id="t-items">0</b> <b id="t-addoncost">$0.00</b></span>
+    <span class="tally-item">Your max total <b id="t-total">$0.00</b></span>
+    <span class="tally-item">You save <b class="save" id="t-save">$0.00</b></span>
+    <span class="spacer"></span>
+    <button type="submit" form="member-form" class="submit" id="send-btn">Cast your order</button>
+    <small>Max total = boxes × your rate + add-ons at individual farm price. Pooled bulk cases only bring it down. Savings use the basis selected above.</small>
+  </div>
+</div>
+
+<script>
+// ── CONFIG ──────────────────────────────────────────────────────────────
+// Default path: submissions go to Formspree, whose Airtable integration
+// (same pattern as the PLRCAWG territorial markets form) writes them into
+// the Orders table; an Airtable automation then explodes 'Lines JSON' into
+// Order Lines records. Alternative: deploy airtable-worker.js on Cloudflare
+// and paste its URL below to write structured records directly.
+const AIRTABLE_PROXY_URL = "";
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mwvdarpo"; // or a dedicated member endpoint
+
+// [name, unit, farm ind $, bulk case $, bulk qty, bulk label, retail organic, retail conventional]
+const PRODUCTS = {
+ "Vegetables":[
+  ["Beets","bunch",2.50,45,24,"$45 · 24 bunches",3.29,3.29],
+  ["Broccoli (Green)","lb",3.00,50,20,"$50 · 20 lb",3.89,2.19],
+  ["White Cauliflower","lb",3.00,50,20,"$50 · 20 lb",3.29,2.69],
+  ["Yellow Carrots","bunch",2.50,45,24,"$45 · 24 bunches",3.29,1.89],
+  ["Celery","pz",2.50,40,24,"$40 · 24 pz",2.59,1.09],
+  ["Fennel","pz",3.00,40,24,"$40 · 24 pz",2.89,2.99],
+  ["Cucumber","lb",1.99,33,22,"$33 · 22 lb",3.38,1.58],
+  ["Leeks","pz",2.50,36,24,"$36 · 24 pz",2.79,2.89],
+  ["Nopales","lb",3.00,40,20,"$40 · 20 lb",null,3.29],
+  ["Roma Tomatoes","lb",2.50,40,20,"$40 · 20 lb",3.29,1.39],
+  ["Cherry Tomatoes","basket",3.00,35,12,"$35 · 12 baskets",6.59,2.09],
+  ["Heirloom Tomatoes","lb",3.50,30,10,"$30 · 10 lb",6.59,4.39],
+  ["Beefsteak Tomatoes","lb",3.50,30,10,"$30 · 10 lb",6.59,4.39],
+  ["Tomatillos","lb",2.50,40,20,"$40 · 20 lb",5.49,1.09],
+  ["Jalapeño","lb",3.00,25,10,"$25 · 10 lb",6.59,1.39],
+  ["Sweet Corn","pz",1.25,48,48,"$48 · 48 pz",2.59,1.49],
+  ["Oaxacan Green Heirloom Corn","pz",1.25,48,48,"$48 · 48 pz",2.50,1.50],
+  ["{LIMITED} Purple-Cased Sweet Peas","lb",6.00,null,null,"",8.79,4.79]
+ ],
+ "Squashes":[
+  ["Green Zucchini","lb",1.99,33,22,"$33 · 22 lb",2.59,1.79],
+  ["Grey Zucchini","lb",1.99,33,22,"$33 · 22 lb",3.89,1.79],
+  ["Yellow Zucchini","lb",1.99,33,22,"$33 · 22 lb",3.89,1.79],
+  ["Italian (Costata Romanesco) Zucchini","lb",1.99,33,22,"$33 · 22 lb",3.89,1.79]
+ ],
+ "Greens":[
+  ["Cabbage (Green)","pz",3.00,35,35,"$35 · 35 lb",1.69,0.79],
+  ["Cabbage (Red)","pz",3.00,35,35,"$35 · 35 lb",1.69,1.49],
+  ["Chard","bunch",2.50,45,24,"$45 · 24 bunches",2.59,2.69],
+  ["Kale (Lacinato/Dino)","bunch",2.50,45,24,"$45 · 24 bunches",2.19,2.09],
+  ["Kale (Red)","bunch",2.50,45,24,"$45 · 24 bunches",2.79,null],
+  ["Kale (Green)","bunch",2.50,45,24,"$45 · 24 bunches",2.19,1.89],
+  ["Romaine Lettuce","pz",2.50,45,24,"$45 · 24 pz",2.59,1.89]
+ ],
+ "Roots":[
+  ["Red Potatoes","lb",2.00,40,25,"$40 · 25 lb",2.19,1.49],
+  ["Yellow Potatoes","lb",2.00,40,25,"$40 · 25 lb",2.19,2.19],
+  ["Yellow Onions","lb",1.50,25,20,"$25 · 20 lb",2.19,1.09],
+  ["White Onion","lb",1.50,25,20,"$25 · 20 lb",2.19,1.09],
+  ["Red Onion","lb",1.50,25,20,"$25 · 20 lb",2.19,1.09],
+  ["Radishes","bunch",2.50,45,24,"$45 · 24 bunches",2.79,0.79]
+ ],
+ "Fruits":[
+  ["Blackberries","basket",4.50,40,12,"$40 · 12 baskets",5.49,4.09],
+  ["Raspberries","basket",4.50,40,12,"$40 · 12 baskets",6.59,4.89],
+  ["Strawberries (1-lb Clamshell)","basket",5.00,35,8,"$35 · 8 baskets",5.49,2.29],
+  ["Strawberries (Open-air basket)","basket",3.50,35,12,"$35 · 12 baskets",3.50,2.00],
+  ["Zutano Avocados","pz",2.49,null,null,"",2.19,1.59]
+ ],
+ "Herbs":[
+  ["Cilantro","bunch",1.50,30,30,"$30 · 30 bunches",2.19,0.79],
+  ["Parsley","bunch",1.50,30,30,"$30 · 30 bunches",2.19,0.69],
+  ["Spring Onion","bunch",2.00,36,24,"$36 · 24 bunches",2.99,0.59],
+  ["Garlic","lb",6.00,100,20,"$100 · 20 lb",7.69,5.29]
+ ],
+ "Salsas & Sauce":[
+  ["Salsa Roja (8 oz)","jar",5.00,15,3,"$15 · 3-pack",2.75,3.30],
+  ["Salsa Roja (16 oz)","jar",8.00,24,3,"$24 · 3-pack",5.49,6.59],
+  ["Salsa Roja (32 oz)","jar",15.00,45,3,"$45 · 3-pack",10.98,13.18],
+  ["Salsa Roja (64 oz)","jar",25.00,75,3,"$75 · 3-pack",21.96,26.36],
+  ["Salsa Verde (8 oz)","jar",5.00,15,3,"$15 · 3-pack",2.75,3.30],
+  ["Salsa Verde (16 oz)","jar",8.00,24,3,"$24 · 3-pack",5.49,6.59],
+  ["Salsa Verde (32 oz)","jar",15.00,45,3,"$45 · 3-pack",10.98,13.18],
+  ["Salsa Verde (64 oz)","jar",25.00,75,3,"$75 · 3-pack",21.96,26.36],
+  ["Tomato Sauce (16 oz)","jar",8.00,24,3,"$24 · 3-pack",null,null],
+  ["Tomato Sauce (32 oz)","jar",15.00,45,3,"$45 · 3-pack",null,null],
+  ["Tomato Sauce (64 oz)","jar",25.00,75,3,"$75 · 3-pack",null,null]
+ ],
+ "Flowers":[
+  ["Sunflowers","4-flower bunch",6.00,null,null,"",null,null],
+  ["Campesina Mix (Strawflowers)","bunch",5.00,null,null,"",null,null],
+  ["Lavender","bunch",8.00,60,10,"$60 · 10 bunches",null,null]
+ ],
+ "Pantry & Eggs":[
+  ["Eggs","dozen",10.00,null,null,"",9.89,4.99],
+  ["Handmade Blue Corn Tortilla Packs","dozen",10.00,null,null,"",6.59,1.66],
+  ["Honey (16 Oz.)","pz",20.00,null,null,"",9.89,9.69]
+ ]
+};
+
+const catalog = document.getElementById('catalog');
+const info = {};
+for (const [cat, items] of Object.entries(PRODUCTS)) {
+  const h = document.createElement('div'); h.className = 'cat'; h.innerHTML = `<h3>${cat}</h3>`;
+  catalog.appendChild(h);
+  for (const [name, unit, ind, bulk, bulkQty, bulkLabel, org, conv] of items) {
+    info[name] = { ind, bulk, bulkQty, org, conv };
+    const id = 'q_' + name.replace(/\W+/g, '_');
+    const rline = (label, v) => `<span><span class="rl">${label}</span>${v != null ? '$' + v.toFixed(2) + '/' + unit : '—'}</span>`;
+    const bulkCell = bulkLabel
+      ? bulkLabel + '<small class="perunit">$' + (bulk / bulkQty).toFixed(2) + '/' + unit + '</small>'
+      : '<span style="color:#9a9d90">no bulk case</span>';
+    const row = document.createElement('div'); row.className = 'row';
+    row.innerHTML =
+      `<div class="pname"><label for="${id}">${name}</label><small>per ${unit}</small></div>
+       <div class="price ind"><b>$${ind.toFixed(2)}</b>/${unit}</div>
+       <div class="price bulk">${bulkCell}</div>
+       <div class="retail">${rline('org', org)}${rline('conv', conv)}</div>
+       <input class="qty" id="${id}" type="number" min="0" step="1" inputmode="numeric" placeholder="0" data-name="${name}" data-unit="${unit}" aria-label="Quantity: ${name}">
+       <div class="bulkstatus" role="status"></div>`;
+    catalog.appendChild(row);
+  }
+}
+
+const fmt = n => '$' + n.toFixed(2);
+const num = id => Math.max(0, parseFloat(document.getElementById(id).value) || 0);
+const basis = () => document.querySelector('input[name="basis"]:checked').value;
+
+function totalsFor(which) {
+  let farm = 0, pooled = 0, retail = 0, items = 0;
+  document.querySelectorAll('.qty').forEach(q => {
+    const v = Math.max(0, parseInt(q.value) || 0);
+    if (!v) return;
+    const p = info[q.dataset.name];
+    items += v;
+    farm += v * p.ind;
+    pooled += v * (p.bulk ? Math.min(p.ind, p.bulk / p.bulkQty) : p.ind);
+    const r = which === 'org' ? p.org : p.conv;
+    retail += v * (r != null ? r : p.ind);
+  });
+  return { farm, pooled, retail, items };
+}
+
+function tally() {
+  const b = basis();
+  const { farm, pooled, retail, items } = totalsFor(b);
+  document.querySelectorAll('.qty').forEach(q => {
+    const v = Math.max(0, parseInt(q.value) || 0);
+    q.classList.toggle('has-qty', v > 0);
+    const bs = q.nextElementSibling;
+    const p = info[q.dataset.name], unit = q.dataset.unit;
+    if (!v || !p.bulk) { bs.className = 'bulkstatus'; bs.innerHTML = ''; return; }
+    const Q = p.bulkQty, perU = p.bulk / Q;
+    if (v >= Q) {
+      bs.innerHTML = `✓ Your order alone fills ${Math.floor(v/Q)} bulk case${v >= 2*Q ? 's' : ''} — those units lock in ${fmt(perU)}/${unit}.`;
+      bs.className = 'bulkstatus on full';
+    } else {
+      bs.innerHTML = `Your <b>${v} ${unit}</b> joins the network pool — <b>${Q - v} more</b> from neighbors fills a case and drops everyone to <b>${fmt(perU)}/${unit}</b> (you'd save ${fmt(v * (p.ind - perU))}).`;
+      bs.className = 'bulkstatus on';
+    }
+  });
+  const boxes = Math.floor(num('boxes')), rate = num('paid') || 30;
+  const boxesCost = boxes * rate;
+  document.getElementById('t-boxes').textContent = boxes;
+  document.getElementById('t-boxcost').textContent = fmt(boxesCost);
+  document.getElementById('t-items').textContent = items;
+  document.getElementById('t-addoncost').textContent = fmt(farm);
+  document.getElementById('t-total').textContent = fmt(boxesCost + farm);
+  document.getElementById('t-save').textContent = fmt(Math.max(0, retail - farm));
+  document.getElementById('s-retail-label').textContent =
+    b === 'org' ? 'What this costs at the grocery store (organic)' : 'What this costs at the grocery store (conventional)';
+  document.getElementById('s-retail').textContent = fmt(retail);
+  document.getElementById('s-farm').textContent = fmt(farm);
+  document.getElementById('s-pooled').textContent = fmt(pooled);
+  document.getElementById('s-save').textContent = fmt(retail - farm);
+  document.getElementById('s-save-max').textContent = fmt(retail - pooled);
+  return { farm, pooled, retail, items, boxes, rate, boxesCost };
+}
+document.addEventListener('input', e => { if (e.target.matches('.qty,.recalc')) tally(); });
+document.querySelectorAll('input[name="basis"]').forEach(r => r.addEventListener('change', tally));
+
+const form = document.getElementById('member-form');
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  const ok = document.getElementById('msg-ok'), err = document.getElementById('msg-err');
+  ok.classList.remove('on'); err.classList.remove('on');
+  if (!form.reportValidity()) return;
+
+  const { farm, pooled, retail, items, boxes, rate } = tally();
+  const lines = [];
+  document.querySelectorAll('.qty').forEach(q => {
+    const v = Math.max(0, parseInt(q.value) || 0);
+    if (v > 0) lines.push({ product: q.dataset.name, qty: v });
+  });
+  const club = form.elements['club'].value, member = form.elements['member'].value;
+  const payload = {
+    club, member,
+    email: form.elements['email'].value,
+    phone: form.elements['phone'].value,
+    boxes, paidPerBox: rate,
+    notes: form.elements['notes'].value,
+    lines,
+    summary: lines.map(l => `${l.qty} × ${l.product}`).join('\n') || 'Boxes only',
+    maxTotal: fmt(boxes * rate + farm),
+    pooledBest: fmt(boxes * rate + pooled),
+    retailValue: fmt(retail)
+  };
+
+  const btn = document.getElementById('send-btn');
+  btn.disabled = true; btn.textContent = 'Casting…';
+  try {
+    let res;
+    if (AIRTABLE_PROXY_URL) {
+      res = await fetch(AIRTABLE_PROXY_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+    } else {
+      res = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          _subject: `MEMBER order: ${member} — ${club} (${boxes} boxes, ${items} add-ons)`,
+          Club: club, Member: member, Email: payload.email, Phone: payload.phone,
+          'Standard Boxes': boxes, 'Pays per Box': fmt(rate),
+          'Order Summary': payload.summary, 'Lines JSON': JSON.stringify(lines),
+          'Max Total': payload.maxTotal,
+          'Pooled Best Case': payload.pooledBest, Notes: payload.notes
+        })
+      });
+    }
+    if (!res.ok) throw new Error();
+    ok.classList.add('on');
+    form.reset(); tally();
+    ok.scrollIntoView({ block: 'center' });
+  } catch {
+    err.classList.add('on');
+    err.scrollIntoView({ block: 'center' });
+  } finally {
+    btn.disabled = false; btn.textContent = 'Cast your order';
+  }
+});
+tally();
+</script>
+</body>
+</html>
