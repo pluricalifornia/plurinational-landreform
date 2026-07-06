@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coalición Aggregate Order — Buyers Club Network</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Archivo:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FBF7EE;
+    --ink:#22251F;
+    --green:#24513B;
+    --green-deep:#183826;
+    --tomato:#C93A2C;
+    --marigold:#EBA937;
+    --line:#D8D0BC;
+    --mono:'IBM Plex Mono',ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+  body{background:var(--paper);color:var(--ink);font:16px/1.55 'Archivo',system-ui,sans-serif;padding:20px 16px 150px}
+  .sheet{max-width:900px;margin:0 auto}
+
+  /* ── crate-label masthead ── */
+  .label{border:3px solid var(--green-deep);background:var(--green);color:var(--paper);padding:6px}
+  .label-inner{border:2px solid var(--paper);padding:26px 24px 20px;text-align:center;position:relative}
+  .label-eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--marigold)}
+  .label h1{font-family:'Alfa Slab One',serif;font-weight:400;font-size:clamp(26px,5.4vw,44px);line-height:1.08;margin:10px 0 8px;text-transform:uppercase}
+  .label h1 em{font-style:normal;color:var(--marigold)}
+  .label-sub{font-size:14px;max-width:56ch;margin:0 auto;color:#E9E3D2}
+  .label-strip{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:16px;font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase}
+  .label-strip span{border-top:1px solid rgba(251,247,238,.4);padding-top:6px}
+
+  .howto{border:1px solid var(--line);border-top:0;background:#fff;padding:16px 20px;font-size:14.5px;color:#4A4D43}
+  .howto strong{color:var(--green-deep)}
+
+  /* ── fieldsets ── */
+  fieldset{border:1px solid var(--line);background:#fff;margin-top:28px;padding:22px 20px 24px}
+  legend{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;background:var(--ink);color:var(--paper);padding:5px 12px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px 20px}
+  @media(max-width:620px){.grid{grid-template-columns:1fr}}
+  .field label{display:block;font-size:13px;font-weight:700;margin-bottom:5px}
+  .field label small{font-weight:400;color:#6B6E62}
+  .field input,.field select,.field textarea{width:100%;border:1.5px solid #B9B29C;background:var(--paper);padding:10px 12px;font:inherit;font-size:15px;border-radius:0}
+  .field textarea{min-height:88px;resize:vertical}
+  .field input:focus-visible,.field select:focus-visible,.field textarea:focus-visible,
+  .qty:focus-visible,button:focus-visible,input[type=radio]:focus-visible{outline:3px solid var(--marigold);outline-offset:1px}
+  .span2{grid-column:1/-1}
+
+  /* ── order sheet ── */
+  .cat{display:flex;align-items:center;gap:12px;margin:26px 0 10px}
+  .cat:first-of-type{margin-top:8px}
+  .cat h3{font-family:var(--mono);font-size:12.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--paper);background:var(--green);padding:4px 12px}
+  .cat::after{content:'';flex:1;border-top:2px dotted var(--line)}
+  .row{display:grid;grid-template-columns:1fr 122px 140px 132px 88px;gap:10px;align-items:center;padding:8px 4px;border-bottom:1px solid #EFEADB}
+  .row:hover{background:#FDFBF4}
+  .row .pname{font-size:15px;font-weight:600}
+  .row .pname small{display:block;font-weight:400;color:#6B6E62;font-size:12.5px}
+  .price{font-family:var(--mono);font-size:13px;color:#3E4137}
+  .price b{font-weight:600;color:var(--green-deep)}
+  .retail{font-family:var(--mono);font-size:11.5px;color:#8E4A42;line-height:1.5}
+  .retail span{display:block;white-space:nowrap}
+  .retail .rl{color:#9B7E77;font-size:10px;letter-spacing:.08em;text-transform:uppercase;margin-right:4px}
+  .qty{width:100%;border:1.5px solid #B9B29C;background:var(--paper);padding:8px 10px;font-family:var(--mono);font-size:15px;text-align:center;border-radius:0}
+  .qty.has-qty{border-color:var(--green);background:#EDF3EC;font-weight:600}
+  .price small.perunit{display:block;color:#6B6E62;font-size:11.5px}
+  .bulkstatus{grid-column:1/-1;display:none;font-family:var(--mono);font-size:12px;line-height:1.55;padding:6px 10px;margin:2px 0 4px;border-left:3px solid var(--marigold);background:#FBF4E3;color:#5A4A1E}
+  .bulkstatus.on{display:block}
+  .bulkstatus.full{border-left-color:var(--green);background:#EDF3EC;color:var(--green-deep)}
+  .bulkstatus b{font-weight:600}
+  .sheet-head{display:grid;grid-template-columns:1fr 122px 140px 132px 88px;gap:10px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#6B6E62;padding:0 4px 6px}
+  @media(max-width:740px){
+    .row{grid-template-columns:1fr 88px;grid-template-areas:'name qty' 'ind qty' 'bulk qty' 'ret qty'}
+    .row .pname{grid-area:name}.row .ind{grid-area:ind}.row .bulk{grid-area:bulk}.row .retail{grid-area:ret}.row .qty{grid-area:qty;align-self:center}
+    .sheet-head{display:none}
+  }
+
+  /* ── savings calculator ── */
+  .savings{border:3px solid var(--green-deep);background:#fff;margin-top:28px}
+  .savings-head{background:var(--marigold);color:var(--ink);padding:8px 16px;border-bottom:3px solid var(--green-deep);display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .savings-head h2{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase}
+  .basis{margin-left:auto;display:flex;gap:12px;font-family:var(--mono);font-size:12px}
+  .basis label{display:flex;align-items:center;gap:5px;cursor:pointer;font-weight:600}
+  .savings-body{padding:18px 20px}
+  .sav-row{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px dashed var(--line);font-size:14.5px}
+  .sav-row:last-of-type{border-bottom:0}
+  .sav-row .amt{font-family:var(--mono);font-weight:600}
+  .sav-row.hero{border-top:2px solid var(--ink);margin-top:6px;padding-top:12px;font-weight:700;font-size:16px}
+  .sav-row.hero .amt{color:var(--green-deep);font-size:20px}
+  .sav-row.pool .amt{color:#8A6410}
+  .sav-note{font-size:12px;color:#6B6E62;margin-top:12px;font-family:var(--mono);line-height:1.5}
+  .sav-sub{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--paper);background:var(--green);display:inline-block;padding:3px 10px;margin:14px 0 4px}
+  .sav-sub:first-child{margin-top:0}
+  .sav-row small{font-weight:400;color:#6B6E62;font-size:12px}
+  .sav-row .amt.neg{color:var(--tomato)}
+
+  /* ── receipt strip / total bar ── */
+  .tally{position:fixed;left:0;right:0;bottom:0;background:var(--ink);color:var(--paper);border-top:4px solid var(--marigold);padding:12px 16px;z-index:10}
+  .tally-in{max-width:900px;margin:0 auto;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .tally-item{font-family:var(--mono);font-size:13px}
+  .tally-item b{color:var(--marigold);font-size:17px}
+  .tally-item b.save{color:#7FC98F}
+  .tally .spacer{flex:1}
+  .tally small{color:#B9B29C;font-size:11.5px;flex-basis:100%;line-height:1.3}
+  button.submit{font:700 16px 'Archivo',sans-serif;letter-spacing:.04em;text-transform:uppercase;background:var(--tomato);color:#fff;border:2px solid #A02A1F;padding:12px 26px;cursor:pointer}
+  button.submit:hover{background:#B33225}
+  button.submit:disabled{opacity:.55;cursor:wait}
+
+  .msg{display:none;margin-top:24px;padding:18px 20px;border:2px solid;font-weight:600}
+  .msg.on{display:block}
+  #msg-ok{border-color:var(--green);background:#EDF3EC;color:var(--green-deep)}
+  #msg-err{border-color:var(--tomato);background:#FBEBE8;color:#8E2418}
+  .foot{margin-top:34px;font-size:12.5px;color:#6B6E62;font-family:var(--mono)}
+  .visually-hidden{position:absolute;left:-9999px}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header class="label">
+    <div class="label-inner">
+      <p class="label-eyebrow">Coalición de Pequeños Agricultores · Farm Direct</p>
+      <h1>Aggregate <em>Order</em> Sheet</h1>
+      <p class="label-sub">One order per buyers club. We pool demand across clubs to hit bulk-case prices from the coalición's farms in San Benito, Santa Clara, Santa Cruz &amp; Monterey counties.</p>
+      <div class="label-strip">
+        <span>Prices updated 7/2/26</span>
+        <span>Deliveries: Sat · Tue · Thu</span>
+        <span>Sliding-scale boxes $15–$60 · median $30</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="howto">
+    <strong>Coordinators only:</strong> this sheet submits club-level totals. Your club takes orders from its own members first — members should cast individual orders on the <a href="member-order-form.html">member order sheet</a>, which pools them automatically. Then submit your club's combined totals here: standard boxes plus any add-on items. Quantities from every club are pooled to reach bulk-case pricing; the estimate below uses individual farm prices, so the final invoice is usually <strong>lower</strong> after bulk savings are applied.
+  </div>
+
+  <form id="agg-form" novalidate>
+    <fieldset>
+      <legend>Your Buyers Club</legend>
+      <div class="grid">
+        <div class="field"><label for="club">Buyers club</label>
+          <select id="club" name="Buyers Club" required>
+            <option value="" disabled selected>Select your club…</option>
+            <option>North Oakland Buyer Club</option>
+            <option>Eastlake Oakland Buyer Club</option>
+            <option>West Oakland Buyer Club</option>
+            <option>Fruitvale Oakland Buyer Club</option>
+            <option>Haight Ashbury SF Buyer Club</option>
+            <option>Stanford Grad Union Buyer Club</option>
+            <option>Richmond-Berkeley Buyer Club</option>
+            <option>Other / new club (name it in Notes)</option>
+          </select></div>
+        <div class="field"><label for="hood">Neighborhood / city</label>
+          <input id="hood" name="Neighborhood-City" required placeholder="e.g. West Oakland"></div>
+        <div class="field"><label for="coord">Coordinator name</label>
+          <input id="coord" name="Coordinator" required autocomplete="name"></div>
+        <div class="field"><label for="email">Coordinator email</label>
+          <input id="email" type="email" name="email" required autocomplete="email"></div>
+        <div class="field"><label for="phone">Phone <small>(for delivery-day coordination)</small></label>
+          <input id="phone" type="tel" name="Phone" autocomplete="tel"></div>
+        <div class="field"><label for="delivery">Preferred delivery day</label>
+          <select id="delivery" name="Delivery Day">
+            <option>Saturday</option><option>Tuesday</option><option>Thursday</option><option>Flexible</option>
+          </select></div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Standard Boxes</legend>
+      <div class="grid">
+        <div class="field"><label for="boxes">Standard boxes ordered <small>(club total)</small></label>
+          <input id="boxes" class="qty-boxes" type="number" min="0" step="1" value="0" name="Standard Boxes"></div>
+        <div class="field"><label for="boxrate">Box rate for your math <small>($/box — sliding scale $15–$60, median $30; actual cost depends on the final bulk order price)</small></label>
+          <input id="boxrate" class="qty-boxes" type="number" min="0" step="0.01" value="30" name="Box Rate ($)"></div>
+        <div class="field span2"><label for="collected">Total collected for boxes <small>($ — what your members actually paid; used for the budget balance check below)</small></label>
+          <input id="collected" class="qty-boxes" type="number" min="0" step="0.01" placeholder="0.00" name="Collected for Boxes ($)"></div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Add-On Items — Club Totals</legend>
+      <div class="sheet-head"><span>Item</span><span>Farm price</span><span>Bulk case</span><span>Grocery retail</span><span>Qty</span></div>
+      <div id="catalog"></div>
+    </fieldset>
+
+    <div class="savings" aria-live="polite">
+      <div class="savings-head">
+        <h2>Order Math &amp; Costs Saved</h2>
+        <div class="basis" role="radiogroup" aria-label="Retail comparison basis">
+          <label><input type="radio" name="basis" value="org" checked> Organic</label>
+          <label><input type="radio" name="basis" value="conv"> Conventional</label>
+        </div>
+      </div>
+      <div class="savings-body">
+        <div class="sav-sub">Your club's order math — every line, no hidden totals</div>
+        <div class="sav-row"><span id="m-boxes-label">Standard boxes: 0 × $30.00</span><span class="amt" id="m-boxes">$0.00</span></div>
+        <div class="sav-row"><span>Add-ons at individual farm prices</span><span class="amt" id="m-addons-ind">$0.00</span></div>
+        <div class="sav-row"><span>Add-ons with your club's own bulk cases applied <small>(auto, incl. round-ups)</small></span><span class="amt" id="m-addons-own">$0.00</span></div>
+        <div class="sav-row pool"><span>Bulk discount your club earns on its own</span><span class="amt" id="m-ownsave">−$0.00</span></div>
+        <div class="sav-row hero"><span>Estimated club total (boxes + add-ons w/ your bulk)</span><span class="amt" id="m-total">$0.00</span></div>
+        <div class="sav-row"><span>Money collected for boxes (entered above)</span><span class="amt" id="m-collected">$0.00</span></div>
+        <div class="sav-row"><span>Box budget balance (collected − boxes cost)</span><span class="amt" id="m-balance">$0.00</span></div>
+
+        <div class="sav-sub">Costs saved vs the grocery store — add-on items</div>
+        <div class="sav-row"><span id="s-retail-label">Grocery store value (East Bay organic retail)</span><span class="amt" id="s-retail">$0.00</span></div>
+        <div class="sav-row"><span>Farm-direct cost (individual prices)</span><span class="amt" id="s-farm">$0.00</span></div>
+        <div class="sav-row pool"><span>Farm-direct cost if pooled to full bulk cases</span><span class="amt" id="s-pooled">$0.00</span></div>
+        <div class="sav-row"><span>Full bulk cases your club fills on its own</span><span class="amt" id="s-cases">0</span></div>
+        <div class="sav-row"><span>Units at individual price (the cross-club pool may bulk these)</span><span class="amt" id="s-pool-units">0</span></div>
+        <div class="sav-row hero"><span>Your club saves vs the grocery store</span><span class="amt" id="s-save">$0.00</span></div>
+        <div class="sav-row"><span>…and up to this much when clubs pool to bulk</span><span class="amt" id="s-save-max">$0.00</span></div>
+        <div class="sav-note">Boxes and add-ons are separate lines: the estimated club total = boxes × your box rate + add-ons with your own bulk cases already applied. Retail comparison: Berkeley Bowl prices collected 7/3/26 — toggle organic/conventional above. Items with no retail equivalent on the selected basis (e.g. tomato sauce, flowers) count at farm price with no claimed savings. Savings on the standard box's contents are calculated in your club's ordering tool.</div>
+      </div>
+    </div>
+
+    <fieldset>
+      <legend>Notes</legend>
+      <div class="field span2"><label for="notes">Anything the aggregator should know <small>(substitutions OK? pickup constraints? surplus distro plans?)</small></label>
+        <textarea id="notes" name="Notes"></textarea></div>
+    </fieldset>
+
+    <input type="text" name="_gotcha" class="visually-hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+    <div id="msg-ok" class="msg" role="status">Order received. Your club's totals are in the pool — the aggregator will confirm final bulk pricing and your delivery window by email.</div>
+    <div id="msg-err" class="msg" role="alert">The order didn't go through. Check that the coordinator email is filled in, then try again. If it keeps failing, email your totals to the aggregator directly.</div>
+  </form>
+
+  <p class="foot">Farm prices: Coalición inventory, updated 7/2/26. Retail comparison: Berkeley Bowl, 7/3/26 (organic &amp; conventional). Add-on estimate uses individual (non-bulk) prices — pooled bulk cases only lower the final cost. Powered by the buyers club network.</p>
+</div>
+
+<div class="tally" aria-live="polite">
+  <div class="tally-in">
+    <span class="tally-item">Boxes <b id="t-boxes">0</b> <b id="t-boxcost">$0.00</b></span>
+    <span class="tally-item">Add-ons <b id="t-items">0</b> <b id="t-addoncost">$0.00</b></span>
+    <span class="tally-item">Club total <b id="t-total">$0.00</b></span>
+    <span class="tally-item">Saved vs grocery <b class="save" id="t-save">$0.00</b></span>
+    <span class="spacer"></span>
+    <button type="submit" form="agg-form" class="submit" id="send-btn">Submit club order</button>
+    <small>Club total = boxes × your box rate + add-ons with your own bulk cases applied. Full line-by-line math is in the Order Math panel above. Savings use the retail basis selected there (organic by default).</small>
+  </div>
+</div>
+
+<script>
+// [name, unit, farm individual $, bulk case $, bulk case qty, bulk label, ORGANIC retail $, CONVENTIONAL retail $] — null = no comparable
+const PRODUCTS = {
+ "Vegetables":[
+  ["Beets","bunch",2.50,45,24,"$45 · 24 bunches",3.29,3.29],
+  ["Broccoli (Green)","lb",3.00,50,20,"$50 · 20 lb",3.89,2.19],
+  ["White Cauliflower","lb",3.00,50,20,"$50 · 20 lb",3.29,2.69],
+  ["Yellow Carrots","bunch",2.50,45,24,"$45 · 24 bunches",3.29,1.89],
+  ["Celery","pz",2.50,40,24,"$40 · 24 pz",2.59,1.09],
+  ["Fennel","pz",3.00,40,24,"$40 · 24 pz",2.89,2.99],
+  ["Cucumber","lb",1.99,33,22,"$33 · 22 lb",3.38,1.58],
+  ["Leeks","pz",2.50,36,24,"$36 · 24 pz",2.79,2.89],
+  ["Nopales","lb",3.00,40,20,"$40 · 20 lb",null,3.29],
+  ["Roma Tomatoes","lb",2.50,40,20,"$40 · 20 lb",3.29,1.39],
+  ["Cherry Tomatoes","basket",3.00,35,12,"$35 · 12 baskets",6.59,2.09],
+  ["Heirloom Tomatoes","lb",3.50,30,10,"$30 · 10 lb",6.59,4.39],
+  ["Beefsteak Tomatoes","lb",3.50,30,10,"$30 · 10 lb",6.59,4.39],
+  ["Tomatillos","lb",2.50,40,20,"$40 · 20 lb",5.49,1.09],
+  ["Jalapeño","lb",3.00,25,10,"$25 · 10 lb",6.59,1.39],
+  ["Sweet Corn","pz",1.25,48,48,"$48 · 48 pz",2.59,1.49],
+  ["Oaxacan Green Heirloom Corn","pz",1.25,48,48,"$48 · 48 pz",2.50,1.50],
+  ["{LIMITED} Purple-Cased Sweet Peas","lb",6.00,null,null,"",8.79,4.79]
+ ],
+ "Squashes":[
+  ["Green Zucchini","lb",1.99,33,22,"$33 · 22 lb",2.59,1.79],
+  ["Grey Zucchini","lb",1.99,33,22,"$33 · 22 lb",3.89,1.79],
+  ["Yellow Zucchini","lb",1.99,33,22,"$33 · 22 lb",3.89,1.79],
+  ["Italian (Costata Romanesco) Zucchini","lb",1.99,33,22,"$33 · 22 lb",3.89,1.79]
+ ],
+ "Greens":[
+  ["Cabbage (Green)","pz",3.00,35,35,"$35 · 35 lb",1.69,0.79],
+  ["Cabbage (Red)","pz",3.00,35,35,"$35 · 35 lb",1.69,1.49],
+  ["Chard","bunch",2.50,45,24,"$45 · 24 bunches",2.59,2.69],
+  ["Kale (Lacinato/Dino)","bunch",2.50,45,24,"$45 · 24 bunches",2.19,2.09],
+  ["Kale (Red)","bunch",2.50,45,24,"$45 · 24 bunches",2.79,null],
+  ["Kale (Green)","bunch",2.50,45,24,"$45 · 24 bunches",2.19,1.89],
+  ["Romaine Lettuce","pz",2.50,45,24,"$45 · 24 pz",2.59,1.89]
+ ],
+ "Roots":[
+  ["Red Potatoes","lb",2.00,40,25,"$40 · 25 lb",2.19,1.49],
+  ["Yellow Potatoes","lb",2.00,40,25,"$40 · 25 lb",2.19,2.19],
+  ["Yellow Onions","lb",1.50,25,20,"$25 · 20 lb",2.19,1.09],
+  ["White Onion","lb",1.50,25,20,"$25 · 20 lb",2.19,1.09],
+  ["Red Onion","lb",1.50,25,20,"$25 · 20 lb",2.19,1.09],
+  ["Radishes","bunch",2.50,45,24,"$45 · 24 bunches",2.79,0.79]
+ ],
+ "Fruits":[
+  ["Blackberries","basket",4.50,40,12,"$40 · 12 baskets",5.49,4.09],
+  ["Raspberries","basket",4.50,40,12,"$40 · 12 baskets",6.59,4.89],
+  ["Strawberries (1-lb Clamshell)","basket",5.00,35,8,"$35 · 8 baskets",5.49,2.29],
+  ["Strawberries (Open-air basket)","basket",3.50,35,12,"$35 · 12 baskets",3.50,2.00],
+  ["Zutano Avocados","pz",2.49,null,null,"",2.19,1.59]
+ ],
+ "Herbs":[
+  ["Cilantro","bunch",1.50,30,30,"$30 · 30 bunches",2.19,0.79],
+  ["Parsley","bunch",1.50,30,30,"$30 · 30 bunches",2.19,0.69],
+  ["Spring Onion","bunch",2.00,36,24,"$36 · 24 bunches",2.99,0.59],
+  ["Garlic","lb",6.00,100,20,"$100 · 20 lb",7.69,5.29]
+ ],
+ "Salsas & Sauce":[
+  ["Salsa Roja (8 oz)","jar",5.00,15,3,"$15 · 3-pack",2.75,3.30],
+  ["Salsa Roja (16 oz)","jar",8.00,24,3,"$24 · 3-pack",5.49,6.59],
+  ["Salsa Roja (32 oz)","jar",15.00,45,3,"$45 · 3-pack",10.98,13.18],
+  ["Salsa Roja (64 oz)","jar",25.00,75,3,"$75 · 3-pack",21.96,26.36],
+  ["Salsa Verde (8 oz)","jar",5.00,15,3,"$15 · 3-pack",2.75,3.30],
+  ["Salsa Verde (16 oz)","jar",8.00,24,3,"$24 · 3-pack",5.49,6.59],
+  ["Salsa Verde (32 oz)","jar",15.00,45,3,"$45 · 3-pack",10.98,13.18],
+  ["Salsa Verde (64 oz)","jar",25.00,75,3,"$75 · 3-pack",21.96,26.36],
+  ["Tomato Sauce (16 oz)","jar",8.00,24,3,"$24 · 3-pack",null,null],
+  ["Tomato Sauce (32 oz)","jar",15.00,45,3,"$45 · 3-pack",null,null],
+  ["Tomato Sauce (64 oz)","jar",25.00,75,3,"$75 · 3-pack",null,null]
+ ],
+ "Flowers":[
+  ["Sunflowers","4-flower bunch",6.00,null,null,"",null,null],
+  ["Campesina Mix (Strawflowers)","bunch",5.00,null,null,"",null,null],
+  ["Lavender","bunch",8.00,60,10,"$60 · 10 bunches",null,null]
+ ],
+ "Pantry & Eggs":[
+  ["Eggs","dozen",10.00,null,null,"",9.89,4.99],
+  ["Handmade Blue Corn Tortilla Packs","dozen",10.00,null,null,"",6.59,1.66],
+  ["Honey (16 Oz.)","pz",20.00,null,null,"",9.89,9.69]
+ ]
+};
+const BOX_TARGET = 30;
+const ENDPOINT = "https://formspree.io/f/mwvdarpo";
+
+const catalog = document.getElementById('catalog');
+const info = {}; // name -> {ind, bulk, bulkQty, org, conv}
+for (const [cat, items] of Object.entries(PRODUCTS)) {
+  const h = document.createElement('div'); h.className = 'cat'; h.innerHTML = `<h3>${cat}</h3>`;
+  catalog.appendChild(h);
+  for (const [name, unit, ind, bulk, bulkQty, bulkLabel, org, conv] of items) {
+    info[name] = { ind, bulk, bulkQty, org, conv };
+    const row = document.createElement('div'); row.className = 'row';
+    const id = 'q_' + name.replace(/\W+/g, '_');
+    const rline = (label, v) => `<span><span class="rl">${label}</span>${v != null ? '$' + v.toFixed(2) + '/' + unit : '—'}</span>`;
+    const bulkCell = bulkLabel
+      ? bulkLabel + '<small class="perunit">$' + (bulk / bulkQty).toFixed(2) + '/' + unit + '</small>'
+      : '<span style="color:#9a9d90">no bulk case</span>';
+    row.innerHTML =
+      `<div class="pname"><label for="${id}">${name}</label><small>per ${unit}</small></div>
+       <div class="price ind"><b>$${ind.toFixed(2)}</b>/${unit}</div>
+       <div class="price bulk">${bulkCell}</div>
+       <div class="retail">${rline('org', org)}${rline('conv', conv)}</div>
+       <input class="qty" id="${id}" type="number" min="0" step="1" inputmode="numeric" placeholder="0" data-name="${name}" data-unit="${unit}" aria-label="Quantity: ${name}">
+       <div class="bulkstatus" role="status"></div>`;
+    catalog.appendChild(row);
+  }
+}
+
+const fmt = n => '$' + n.toFixed(2);
+const basis = () => document.querySelector('input[name="basis"]:checked').value; // 'org' | 'conv'
+
+function totalsFor(which) {
+  let farm = 0, pooled = 0, own = 0, retail = 0, items = 0;
+  document.querySelectorAll('.qty').forEach(q => {
+    const v = Math.max(0, parseInt(q.value) || 0);
+    if (!v) return;
+    const p = info[q.dataset.name];
+    items += v;
+    farm += v * p.ind;
+    pooled += v * (p.bulk ? Math.min(p.ind, p.bulk / p.bulkQty) : p.ind);
+    // what the club pays ordering alone: full cases at case price,
+    // remainder at individual — or a whole extra case if that's cheaper (round-up)
+    if (p.bulk) {
+      const cases = Math.floor(v / p.bulkQty), r = v % p.bulkQty;
+      own += cases * p.bulk + Math.min(r * p.ind, r > 0 ? p.bulk : 0);
+    } else own += v * p.ind;
+    const r = which === 'org' ? p.org : p.conv;
+    retail += v * (r != null ? r : p.ind); // no comparable: farm price, no claimed savings
+  });
+  return { farm, pooled, own, retail, items };
+}
+const num = id => Math.max(0, parseFloat(document.getElementById(id).value) || 0);
+
+function tally() {
+  const b = basis();
+  const { farm, pooled, retail, items } = totalsFor(b);
+  let casesFilled = 0, poolUnits = 0;
+  document.querySelectorAll('.qty').forEach(q => {
+    const v = Math.max(0, parseInt(q.value) || 0);
+    q.classList.toggle('has-qty', v > 0);
+    const bs = q.nextElementSibling;
+    const p = info[q.dataset.name], unit = q.dataset.unit;
+    if (!v || !p.bulk) { bs.className = 'bulkstatus'; bs.innerHTML = ''; return; }
+    const Q = p.bulkQty, cases = Math.floor(v / Q), r = v % Q, perU = p.bulk / Q;
+    casesFilled += cases; poolUnits += r;
+    if (r === 0) {
+      const saved = cases * (Q * p.ind - p.bulk);
+      bs.innerHTML = `✓ <b>${cases} full case${cases > 1 ? 's' : ''}</b> (${v} ${unit}) — every ${unit} at ${fmt(perU)} bulk rate. Your club saves <b>${fmt(saved)}</b> vs individual pricing.`;
+      bs.className = 'bulkstatus on full';
+    } else {
+      const need = Q - r, roundUpNet = p.bulk - r * p.ind;
+      let html = cases > 0
+        ? `<b>${cases} bulk case${cases > 1 ? 's' : ''} + ${r} extra ${unit}</b> at ${fmt(p.ind)}/${unit} individual pricing.`
+        : `<b>${r} of ${Q} ${unit}</b> toward a bulk case — ${fmt(p.ind)}/${unit} individual for now.`;
+      if (roundUpNet <= 0) {
+        html += ` ⚠ <b>Round up:</b> a full case (${fmt(p.bulk)}) costs ${roundUpNet === 0 ? 'the same as' : 'LESS than'} your ${r} × ${fmt(p.ind)} = ${fmt(r * p.ind)} — take ${need} more ${unit} free${roundUpNet < 0 ? ' and save ' + fmt(-roundUpNet) : ''}.`;
+      } else {
+        html += ` <b>${need} more ${unit}</b> fills the next case → unlocks ${fmt(perU)}/${unit}. Filling it costs just <b>+${fmt(roundUpNet)}</b> net — or the cross-club pool may fill it for you.`;
+      }
+      bs.innerHTML = html;
+      bs.className = 'bulkstatus on';
+    }
+  });
+  document.getElementById('s-cases').textContent = casesFilled;
+  document.getElementById('s-pool-units').textContent = poolUnits;
+  const { own } = totalsFor(b);
+  const boxes = Math.floor(num('boxes')), rate = num('boxrate') || BOX_TARGET, collected = num('collected');
+  const boxesCost = boxes * rate, clubTotal = boxesCost + own, balance = collected - boxesCost;
+  document.getElementById('t-boxes').textContent = boxes;
+  document.getElementById('t-boxcost').textContent = fmt(boxesCost);
+  document.getElementById('t-items').textContent = items;
+  document.getElementById('t-addoncost').textContent = fmt(own);
+  document.getElementById('t-total').textContent = fmt(clubTotal);
+  document.getElementById('t-save').textContent = fmt(Math.max(0, retail - farm));
+  // order math panel
+  document.getElementById('m-boxes-label').textContent = `Standard boxes: ${boxes} × ${fmt(rate)}`;
+  document.getElementById('m-boxes').textContent = fmt(boxesCost);
+  document.getElementById('m-addons-ind').textContent = fmt(farm);
+  document.getElementById('m-addons-own').textContent = fmt(own);
+  document.getElementById('m-ownsave').textContent = '−' + fmt(farm - own);
+  document.getElementById('m-total').textContent = fmt(clubTotal);
+  document.getElementById('m-collected').textContent = fmt(collected);
+  const bal = document.getElementById('m-balance');
+  bal.textContent = (balance < 0 ? '−' : '+') + fmt(Math.abs(balance));
+  bal.classList.toggle('neg', balance < 0);
+  document.getElementById('s-retail-label').textContent =
+    b === 'org' ? 'Grocery store value (East Bay organic retail)' : 'Grocery store value (East Bay conventional retail)';
+  document.getElementById('s-retail').textContent = fmt(retail);
+  document.getElementById('s-farm').textContent = fmt(farm);
+  document.getElementById('s-pooled').textContent = fmt(pooled);
+  document.getElementById('s-save').textContent = fmt(retail - farm);
+  document.getElementById('s-save-max').textContent = fmt(retail - pooled);
+  return { farm, own, pooled, items, boxes, rate, boxesCost, clubTotal, collected };
+}
+document.addEventListener('input', e => { if (e.target.matches('.qty,.qty-boxes')) tally(); });
+document.querySelectorAll('input[name="basis"]').forEach(r => r.addEventListener('change', tally));
+
+const form = document.getElementById('agg-form');
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  const ok = document.getElementById('msg-ok'), err = document.getElementById('msg-err');
+  ok.classList.remove('on'); err.classList.remove('on');
+  if (!form.reportValidity()) return;
+
+  const { farm, own, pooled, items, boxes, rate, boxesCost, clubTotal, collected } = tally();
+  const org = totalsFor('org'), conv = totalsFor('conv');
+  const data = {
+    _subject: `Club order: ${form.elements['Buyers Club'].value} — ${boxes} boxes, ${items} add-ons`,
+  };
+  new FormData(form).forEach((v, k) => { if (v !== '' && k !== '_gotcha' && k !== 'basis') data[k] = v; });
+  if (form.elements['_gotcha'].value) return; // honeypot
+
+  const lines = [];
+  document.querySelectorAll('.qty').forEach(q => {
+    const v = Math.max(0, parseInt(q.value) || 0);
+    if (v > 0) {
+      data[q.dataset.name] = `${v} ${q.dataset.unit}`;
+      lines.push(`${v} × ${q.dataset.name} (${q.dataset.unit}) @ ${fmt(info[q.dataset.name].ind)}`);
+    }
+  });
+  data['Order Summary'] = lines.length ? lines.join('\n') : 'Boxes only — no add-on items';
+  data['Boxes math'] = `${boxes} × ${fmt(rate)} = ${fmt(boxesCost)} (collected: ${fmt(collected)})`;
+  data['Add-ons: individual / own-bulk / pooled-bulk cost'] = `${fmt(farm)} / ${fmt(own)} / ${fmt(pooled)}`;
+  data['Estimated Club Total (boxes + add-ons w/ own bulk)'] = fmt(clubTotal);
+  data['Add-ons: grocery retail (organic / conventional)'] = `${fmt(org.retail)} / ${fmt(conv.retail)}`;
+
+  const btn = document.getElementById('send-btn');
+  btn.disabled = true; btn.textContent = 'Sending…';
+  try {
+    const res = await fetch(ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    if (!res.ok) throw new Error();
+    ok.classList.add('on');
+    form.reset(); tally();
+    ok.scrollIntoView({ block: 'center' });
+  } catch {
+    err.classList.add('on');
+    err.scrollIntoView({ block: 'center' });
+  } finally {
+    btn.disabled = false; btn.textContent = 'Submit club order';
+  }
+});
+tally();
+</script>
+</body>
+</html>
