@@ -168,9 +168,9 @@
         <div class="sav-row"><span id="s-retail-label">What this costs at the grocery store (organic)</span><span class="amt" id="s-retail">$0.00</span></div>
         <div class="sav-row"><span>What you pay farm-direct (individual prices — your maximum)</span><span class="amt" id="s-farm">$0.00</span></div>
         <div class="sav-row pool"><span>What you pay if the pool fills the bulk cases (your minimum)</span><span class="amt" id="s-pooled">$0.00</span></div>
-        <div class="sav-row hero"><span>You save vs the grocery store</span><span class="amt" id="s-save">$0.00</span></div>
-        <div class="sav-row"><span>…and up to this much more when the pool bulks</span><span class="amt" id="s-save-max">$0.00</span></div>
-        <div class="sav-note">You never pay more than the individual farm price. When enough neighbors' orders fill a bulk case, everyone who ordered that item pays the bulk rate — part of your savings comes from other people's orders, and yours unlocks savings for them. Retail comparison: Berkeley Bowl, 7/3/26 (toggle above); items with no retail equivalent count at farm price with no claimed savings.</div>
+        <div class="sav-row hero"><span>You save vs the grocery store — achieved through pooled bulk buying</span><span class="amt" id="s-save">$0.00</span></div>
+        <div class="sav-row"><span>If the pool doesn't reach bulk, you still save this much at individual farm prices</span><span class="amt" id="s-save-nobulk">$0.00</span></div>
+        <div class="sav-note">The headline savings are only achieved through bulk — when enough neighbors' orders fill a case, everyone who ordered that item pays the bulk rate. Part of your savings comes from other people's orders, and yours unlocks savings for them. You never pay more than the individual farm price, so the smaller figure is your guaranteed floor. Retail comparison: Berkeley Bowl, 7/3/26 (toggle above); items with no retail equivalent count at farm price with no claimed savings.</div>
       </div>
     </div>
 
@@ -192,10 +192,10 @@
     <span class="tally-item">Boxes <b id="t-boxes">0</b> <b id="t-boxcost">$0.00</b></span>
     <span class="tally-item">Add-ons <b id="t-items">0</b> <b id="t-addoncost">$0.00</b></span>
     <span class="tally-item">Your max total <b id="t-total">$0.00</b></span>
-    <span class="tally-item">You save <b class="save" id="t-save">$0.00</b></span>
+    <span class="tally-item">You save (w/ bulk) <b class="save" id="t-save">$0.00</b></span>
     <span class="spacer"></span>
     <button type="submit" form="member-form" class="submit" id="send-btn">Cast your order</button>
-    <small>Max total = boxes × your rate + add-ons at individual farm price. Pooled bulk cases only bring it down. Savings use the basis selected above.</small>
+    <small>Max total = boxes × your rate + add-ons at individual farm price. The savings figure assumes the pool fills the bulk cases — see the savings panel for your guaranteed no-bulk floor. Basis selected above.</small>
   </div>
 </div>
 
@@ -207,7 +207,7 @@
 // Order Lines records. Alternative: deploy airtable-worker.js on Cloudflare
 // and paste its URL below to write structured records directly.
 const AIRTABLE_PROXY_URL = "";
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/mwvdarpo"; // or a dedicated member endpoint
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mdarjzzr"; // dedicated member-voting endpoint
 
 // [name, unit, farm ind $, bulk case $, bulk qty, bulk label, retail organic, retail conventional]
 const PRODUCTS = {
@@ -360,14 +360,14 @@ function tally() {
   document.getElementById('t-items').textContent = items;
   document.getElementById('t-addoncost').textContent = fmt(farm);
   document.getElementById('t-total').textContent = fmt(boxesCost + farm);
-  document.getElementById('t-save').textContent = fmt(Math.max(0, retail - farm));
+  document.getElementById('t-save').textContent = fmt(Math.max(0, retail - pooled));
   document.getElementById('s-retail-label').textContent =
     b === 'org' ? 'What this costs at the grocery store (organic)' : 'What this costs at the grocery store (conventional)';
   document.getElementById('s-retail').textContent = fmt(retail);
   document.getElementById('s-farm').textContent = fmt(farm);
   document.getElementById('s-pooled').textContent = fmt(pooled);
-  document.getElementById('s-save').textContent = fmt(retail - farm);
-  document.getElementById('s-save-max').textContent = fmt(retail - pooled);
+  document.getElementById('s-save').textContent = fmt(retail - pooled);
+  document.getElementById('s-save-nobulk').textContent = fmt(retail - farm);
   return { farm, pooled, retail, items, boxes, rate, boxesCost };
 }
 document.addEventListener('input', e => { if (e.target.matches('.qty,.recalc')) tally(); });
@@ -416,11 +416,16 @@ form.addEventListener('submit', async e => {
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
           _subject: `MEMBER order: ${member} — ${club} (${boxes} boxes, ${items} add-ons)`,
-          Club: club, Member: member, Email: payload.email, Phone: payload.phone,
-          'Standard Boxes': boxes, 'Pays per Box': fmt(rate),
-          'Order Summary': payload.summary, 'Lines JSON': JSON.stringify(lines),
-          'Max Total': payload.maxTotal,
-          'Pooled Best Case': payload.pooledBest, Notes: payload.notes
+          // Field names below match the Airtable Orders table exactly,
+          // so the Formspree -> Airtable integration maps one-to-one.
+          'Order': `${member} — ${club} — ${new Date().toISOString().slice(0,10)}`,
+          'Member Name': member, 'Member Email': payload.email,
+          'Member Phone': payload.phone, 'Club Name': club,
+          'Standard Boxes': boxes, 'Paid for Boxes $': boxes * rate,
+          'Lines JSON': JSON.stringify(lines), 'Notes': payload.notes,
+          // Extra context for the email copy (not mapped to Airtable):
+          'Order Summary': payload.summary, 'Max Total': payload.maxTotal,
+          'Pooled Best Case': payload.pooledBest
         })
       });
     }
