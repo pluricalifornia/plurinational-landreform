@@ -94,7 +94,9 @@
   details.examples summary::-webkit-details-marker{display:none}
   details.examples summary::before{content:'\25B8';font-size:14px;transition:transform .15s}
   details.examples[open] summary::before{transform:rotate(90deg)}
-  .exgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:16px 20px 20px}
+  .exgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;padding:16px 20px 20px}
+  .excard.conv{border-color:#8A6410}
+  .excard.conv h4{background:#8A6410}
   @media(max-width:760px){.exgrid{grid-template-columns:1fr}}
   .excard{border:2px solid var(--green-deep);display:flex;flex-direction:column}
   .excard h4{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--green);color:var(--paper);padding:7px 12px}
@@ -136,7 +138,7 @@
   </header>
 
   <div class="howto">
-    <strong>How this works:</strong> your order is a vote on <strong>what goes into the standard box</strong>. Tell us how many boxes your household wants and vote for the items you want in it. Everyone's votes together decide the box's contents and trigger bulk-case purchases from the farms — and the <strong>price per box comes out of that math</strong>: total cost of what we collectively buy, divided by total boxes. The more the pool bulks, the lower everyone's box price. You never pay more than individual farm prices. Your coordinator confirms final box contents and price once the round closes. <strong>Coordinators:</strong> submit club-level totals on the <a href="aggregate-order-form.html">coordinator order sheet</a> instead.
+    <strong>How this works:</strong> your order is a vote on <strong>what goes into the box</strong>. Tell us how many boxes your household wants and vote for the items you want in it. Everyone's votes together decide the box's contents and trigger bulk-case purchases from the farms — and the <strong>price per box comes out of that math</strong>: total cost of what we collectively buy, divided by total boxes. The more the pool bulks, the lower everyone's box price. You never pay more than individual farm prices. Your coordinator confirms final box contents and price once the round closes. <strong>Coordinators:</strong> submit club-level totals on the <a href="aggregate-order-form.html">coordinator order sheet</a> instead.
   </div>
 
   <details class="examples">
@@ -172,6 +174,14 @@
           <div class="exnums"><b>$30.50</b>/box bulk · <span id="ex-solidaria-retail">$43.40</span> at <span class="ex-basis-word">organic</span> retail · <span class="exsave" id="ex-solidaria-save">save $12.90 (30%)</span></div>
           <button type="button" class="exload" data-ex="solidaria">Load this box</button>
         </div>
+        <div class="excard conv">
+          <h4>La Imbatible</h4>
+          <div class="exbody">Different game than the boxes above: every item here has a bulk rate <em>below the CONVENTIONAL store price</em> — organic beets, leeks, fennel, heirloom tomatoes and berries, cheaper than non-organic. The box for skeptics.
+            <div class="exitems">2 beets · 1 fennel · 2 leeks · 1 lb nopales · 2 lb heirloom tomatoes · 1 chard · 1 bsk raspberries · 1 bsk blackberries · 3 Oaxacan corn · 2 lb yellow potatoes</div>
+          </div>
+          <div class="exnums"><b>$31.16</b>/box bulk · <span id="ex-imbatible-retail">$57.78</span> at <span class="ex-basis-word">organic</span> retail · <span class="exsave" id="ex-imbatible-save">save $26.62 (46%)</span></div>
+          <button type="button" class="exload" data-ex="imbatible">Load this box</button>
+        </div>
       </div>
       <p class="exnote">Prices per box at pooled bulk rates; savings vs Berkeley Bowl (7/3/26) on the basis selected above. Every item is coalición-grown, 100% organic, regardless of which store price you compare against. Loading a box fills the quantities below as a starting point — edit freely.</p>
     </details>
@@ -203,7 +213,7 @@
     <fieldset>
       <legend>Your Boxes</legend>
       <div class="grid">
-        <div class="field"><label for="boxes">Standard boxes for your household</label>
+        <div class="field"><label for="boxes">Boxes for your household <small>(sets your club's box count &amp; budget — not added to your items total)</small></label>
           <input id="boxes" class="recalc" type="number" min="0" step="1" value="0"></div>
         <div class="field"><label for="paid">What you'll pay per box <small>($15–$60 sliding scale — $30 is the median; your final cost depends on the final bulk order price)</small></label>
           <input id="paid" class="recalc" type="number" min="0" step="1" value="30"></div>
@@ -251,13 +261,13 @@
 
 <div class="tally" aria-live="polite">
   <div class="tally-in">
-    <span class="tally-item">Boxes <b id="t-boxes">0</b> <b id="t-boxcost">$0.00</b></span>
+    <span class="tally-item">Boxes <b id="t-boxes">0</b> <b id="t-boxcost">$0.00</b> pledged</span>
     <span class="tally-item">Box items <b id="t-items">0</b> <b id="t-addoncost">$0.00</b></span>
-    <span class="tally-item">Your max total <b id="t-total">$0.00</b></span>
+    <span class="tally-item">Items max total <b id="t-total">$0.00</b></span>
     <span class="tally-item">You save (w/ bulk) <b class="save" id="t-save">$0.00</b></span>
     <span class="spacer"></span>
     <button type="submit" form="member-form" class="submit" id="send-btn">Cast your order</button>
-    <small>Max total = boxes × your rate + your voted items at individual farm price. The savings figure assumes the pool fills the bulk cases — see the savings panel for your guaranteed no-bulk floor. Basis selected above.</small>
+    <small>Items max total = your voted items at individual farm price (bulk only brings it down). Box pledge (boxes × your rate) goes to your club's box budget & participant count — it is not added to the items total. Savings assume the pool fills the bulk cases.</small>
   </div>
 </div>
 
@@ -421,7 +431,7 @@ function tally() {
   document.getElementById('t-boxcost').textContent = fmt(boxesCost);
   document.getElementById('t-items').textContent = items;
   document.getElementById('t-addoncost').textContent = fmt(farm);
-  document.getElementById('t-total').textContent = fmt(boxesCost + farm);
+  document.getElementById('t-total').textContent = fmt(farm);
   document.getElementById('t-save').textContent = fmt(Math.max(0, retail - pooled));
   document.getElementById('s-retail-label').textContent =
     b === 'org' ? 'What this costs at the grocery store (organic)' : 'What this costs at the grocery store (conventional)';
@@ -459,8 +469,8 @@ form.addEventListener('submit', async e => {
     notes: form.elements['notes'].value,
     lines,
     summary: lines.map(l => `${l.qty} × ${l.product}`).join('\n') || 'Boxes only',
-    maxTotal: fmt(boxes * rate + farm),
-    pooledBest: fmt(boxes * rate + pooled),
+    maxTotal: fmt(farm),
+    pooledBest: fmt(pooled),
     retailValue: fmt(retail)
   };
 
@@ -482,10 +492,10 @@ form.addEventListener('submit', async e => {
           _subject: `MEMBER order: ${member} — ${club} (${boxes} boxes, ${items} items voted)`,
           // Field names below match the Airtable Orders table exactly,
           // so the Formspree -> Airtable integration maps one-to-one.
-          'Order': `${member} — ${club} — ${new Date().toISOString().slice(0,10)}`,
+          'Vote': `${member} — ${club} — ${new Date().toISOString().slice(0,10)}`,
           'Member Name': member, 'Member Email': payload.email,
           'Member Phone': payload.phone, 'Club Name': club,
-          'Standard Boxes': boxes, 'Paid for Boxes $': boxes * rate,
+          'Boxes': boxes, 'Paid for Boxes $': boxes * rate,
           'Lines JSON': JSON.stringify(lines), 'Notes': payload.notes,
           // Extra context for the email copy (not mapped to Airtable):
           'Order Summary': payload.summary, 'Max Total': payload.maxTotal,
@@ -507,7 +517,8 @@ form.addEventListener('submit', async e => {
 const EXAMPLES = {
   maxima: {"Heirloom Tomatoes":2,"Cherry Tomatoes":1,"Jalapeño":1,"Tomatillos":1,"Yellow Zucchini":2,"Sweet Corn":4,"Cucumber":1,"Cilantro":2,"Raspberries":1,"Spring Onion":1,"Yellow Onions":1},
   semana: {"Red Potatoes":3,"Yellow Onions":2,"Yellow Carrots":1,"Beets":1,"Kale (Green)":1,"Romaine Lettuce":1,"Broccoli (Green)":1,"Sweet Corn":3,"Cilantro":1,"Green Zucchini":2,"Roma Tomatoes":1,"Celery":1},
-  solidaria: {"Eggs":1,"Handmade Blue Corn Tortilla Packs":1,"Sweet Corn":4,"Yellow Zucchini":2,"Jalapeño":1,"Cilantro":1}
+  solidaria: {"Eggs":1,"Handmade Blue Corn Tortilla Packs":1,"Sweet Corn":4,"Yellow Zucchini":2,"Jalapeño":1,"Cilantro":1},
+  imbatible: {"Beets":2,"Fennel":1,"Leeks":2,"Nopales":1,"Heirloom Tomatoes":2,"Chard":1,"Raspberries":1,"Blackberries":1,"Oaxacan Green Heirloom Corn":3,"Yellow Potatoes":2}
 };
 document.querySelectorAll('.exload').forEach(btn => btn.addEventListener('click', () => {
   const ex = EXAMPLES[btn.dataset.ex];
@@ -520,7 +531,7 @@ document.querySelectorAll('.exload').forEach(btn => btn.addEventListener('click'
 tally();
 
 // ── example-box basis sync ──
-const EXDATA = { maxima:{bulk:30.00,org:69.52,conv:32.62}, semana:{bulk:27.97,org:47.22,conv:29.12}, solidaria:{bulk:30.50,org:43.40,conv:18.37} };
+const EXDATA = { maxima:{bulk:30.00,org:69.52,conv:32.62}, semana:{bulk:27.97,org:47.22,conv:29.12}, solidaria:{bulk:30.50,org:43.40,conv:18.37}, imbatible:{bulk:31.16,org:57.78,conv:47.97} };
 function updateExamples(){
   const b = basis();
   document.querySelectorAll('.ex-basis-word').forEach(el => el.textContent = b === 'org' ? 'organic' : 'conventional');
