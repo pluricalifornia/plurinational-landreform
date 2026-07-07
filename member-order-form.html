@@ -138,7 +138,7 @@
   </header>
 
   <div class="howto">
-    <strong>How this works:</strong> your order is a vote on <strong>what goes into the box</strong>. Tell us how many boxes your household wants and vote for the items you want in it. Everyone's votes together decide the box's contents and trigger bulk-case purchases from the farms — and the <strong>price per box comes out of that math</strong>: total cost of what we collectively buy, divided by total boxes. The more the pool bulks, the lower everyone's box price. You never pay more than individual farm prices. Your coordinator confirms final box contents and price once the round closes. <strong>Coordinators:</strong> submit club-level totals on the <a href="aggregate-order-form.html">coordinator order sheet</a> instead.
+    <strong>How this works:</strong> your order is a vote on <strong>what goes into the box</strong>. Tell us how many boxes your household wants and vote for the items you want in it. Everyone's votes together decide the box's contents and trigger bulk-case purchases from the farms — and the <strong>price per box comes out of that math</strong>: total cost of what we collectively buy, divided by total boxes. The more the pool bulks, the lower everyone's box price. You never pay more than individual farm prices. Watch your vote aggregate with your neighbors’ in real time on the <a class="pool-link" href="#" target="_blank" rel="noopener">live Pool Progress board</a>. Your coordinator confirms final box contents and price once the round closes. <strong>Coordinators:</strong> submit club-level totals on the <a href="aggregate-order-form.html">coordinator order sheet</a> instead.
   </div>
 
   <details class="examples">
@@ -252,7 +252,7 @@
         <textarea id="notes" name="notes"></textarea></div>
     </fieldset>
 
-    <div id="msg-ok" class="msg" role="status">Your order is in the pool! Watch the network progress bars to see it aggregate with your neighbors' — your coordinator will confirm final prices when the round closes.</div>
+    <div id="msg-ok" class="msg" role="status">Your order is in the pool! <a class="pool-link" href="#" target="_blank" rel="noopener">Watch the live progress board</a> to see it aggregate with your neighbors’ votes — your coordinator will confirm final prices when the round closes.</div>
     <div id="msg-err" class="msg" role="alert">The order didn't go through. Check that your name, email, and club are filled in, then try again. If it keeps failing, send your list to your coordinator directly.</div>
   </form>
 
@@ -279,6 +279,9 @@
 // Order Lines records. Alternative: deploy airtable-worker.js on Cloudflare
 // and paste its URL below to write structured records directly.
 const AIRTABLE_PROXY_URL = "";
+// Live Pool Progress board. NOTE: replace with the public "anyone with the link"
+// Share URL from the interface so members without Airtable accounts can view it.
+const POOL_PROGRESS_URL = "https://airtable.com/appR8k4ZWs85baAMy/shrNPvgnb9BwNHi6a";
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/mdarjzzr"; // dedicated member-voting endpoint
 
 // [name, unit, farm ind $, bulk case $, bulk qty, bulk label, retail organic, retail conventional]
@@ -549,6 +552,7 @@ document.querySelectorAll('.exbasis').forEach(btn => btn.addEventListener('click
   tally(); updateExamples();
 }));
 document.querySelectorAll('input[name="basis"]').forEach(r => r.addEventListener('change', updateExamples));
+document.querySelectorAll('.pool-link').forEach(a => a.href = POOL_PROGRESS_URL);
 updateExamples();
 </script>
 </body>
