@@ -14,6 +14,11 @@
             --light:   #f5f5f3;
             --orange:  #ff9f1c;
             --green:   #8bc34a;
+            /* Supplying formations */
+            --f-coal:  #2f7d4f;
+            --f-milp:  #6b3fa0;
+            --f-raic:  #0f6f8c;
+            --f-tbc:   #8a8a8a;
         }
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         body { background: var(--light); color: #1a1a2e; font-family: 'Barlow', sans-serif; font-size: 1rem; line-height: 1.7; }
@@ -74,12 +79,48 @@
         .filter-btn { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.42rem 0.85rem; border: 2px solid var(--primary); color: var(--primary); background: transparent; cursor: pointer; transition: all 0.15s; }
         .filter-btn:hover { background: var(--primary); color: #fff; }
         .filter-btn.active { background: var(--red); border-color: var(--red); color: #fff; }
+        .filter-row-label { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: #888; margin-right: 0.2rem; }
+        .fform-btn { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.42rem 0.85rem; border: 2px solid #ccc; background: transparent; color: #555; cursor: pointer; transition: all 0.15s; display: inline-flex; align-items: center; gap: 0.45rem; }
+        .fform-btn .swatch { width: 11px; height: 11px; display: inline-block; }
+        .fform-btn[data-formation="coalicion"] .swatch { background: var(--f-coal); }
+        .fform-btn[data-formation="milperas"] .swatch  { background: var(--f-milp); }
+        .fform-btn[data-formation="raices"] .swatch    { background: var(--f-raic); }
+        .fform-btn:hover { border-color: #888; }
+        .fform-btn.active { color: #fff; border-color: transparent; }
+        .fform-btn.active .swatch { background: rgba(255,255,255,0.85); }
+        .fform-btn.active[data-formation="all"]       { background: var(--dark); border-color: var(--dark); }
+        .fform-btn.active[data-formation="coalicion"] { background: var(--f-coal); }
+        .fform-btn.active[data-formation="milperas"]  { background: var(--f-milp); }
+        .fform-btn.active[data-formation="raices"]    { background: var(--f-raic); }
+        .legend { max-width: 1100px; margin: 0 auto; padding: 0.5rem 2rem 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.9rem; }
+        .legend-item { border-left: 5px solid; padding: 0.5rem 0.85rem; background: var(--light); }
+        .legend-item.coalicion { border-color: var(--f-coal); }
+        .legend-item.milperas  { border-color: var(--f-milp); }
+        .legend-item.raices    { border-color: var(--f-raic); }
+        .legend-item strong { display: block; font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 0.95rem; text-transform: uppercase; color: var(--dark); line-height: 1.2; }
+        .legend-item span { font-size: 0.8rem; color: #666; line-height: 1.4; display: block; margin-top: 0.15rem; }
         .products-grid { max-width: 1100px; margin: 0 auto; padding: 0 2rem 3rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(255px, 1fr)); gap: 1.1rem; }
-        .product-card { background: #fff; border-top: 4px solid var(--red); box-shadow: 3px 3px 0 rgba(0,0,0,0.07); display: flex; flex-direction: column; transition: transform 0.18s; }
+        .product-card { background: #fff; box-shadow: 3px 3px 0 rgba(0,0,0,0.07); display: flex; flex-direction: column; transition: transform 0.18s; }
+        .pc-strip { display: flex; height: 5px; }
+        .pc-strip span { flex: 1; }
+        .pc-strip .coalicion { background: var(--f-coal); }
+        .pc-strip .milperas  { background: var(--f-milp); }
+        .pc-strip .raices    { background: var(--f-raic); }
+        .pc-strip .tbc       { background: var(--f-tbc); }
         .product-card:hover { transform: translateY(-3px); }
         .pc-head { background: var(--dark); padding: 0.9rem 1.1rem; }
         .pc-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.05rem; text-transform: uppercase; color: #fff; line-height: 1.1; }
         .pc-cat { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-top: 0.15rem; }
+        .pc-chips { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.5rem; }
+        .fchip { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: #fff; padding: 0.15rem 0.45rem 0.1rem; line-height: 1.3; }
+        .fchip.coalicion { background: var(--f-coal); }
+        .fchip.milperas  { background: var(--f-milp); }
+        .fchip.raices    { background: var(--f-raic); }
+        .fchip.tbc       { background: var(--f-tbc); }
+        .pc-lead { background: rgba(107,63,160,0.09); border-left: 3px solid var(--f-milp); color: #4a2b73; font-size: 0.78rem; line-height: 1.35; padding: 0.4rem 0.6rem; margin-top: 0.6rem; }
+        .pc-note { font-size: 0.78rem; color: #777; margin-top: 0.5rem; line-height: 1.35; }
+        .pc-tbd { display: inline-block; background: #fdecec; color: #b3121f; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.64rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.1rem 0.4rem; margin-left: 0.35rem; vertical-align: middle; }
+        .pc-prov { display: inline-block; background: #fff3d9; color: #8a5a00; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.64rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.1rem 0.4rem; margin-left: 0.35rem; vertical-align: middle; }
         .pc-body { padding: 1rem 1.1rem; flex: 1; }
         .price-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.6rem; }
         .price-ind { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.2rem; color: var(--primary); }
@@ -188,26 +229,20 @@
         .schedule-when { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.15rem; text-transform: uppercase; color: #fff; line-height: 1.1; }
         .schedule-arrow { color: var(--red); font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.2rem; }
         .schedule-receive { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.95rem; color: rgba(255,255,255,0.85); text-transform: uppercase; letter-spacing: 0.04em; line-height: 1.2; }
-
-        /* COMING SOON */
-        .coming-wrap { background: var(--light); border-bottom: 5px solid var(--green); }
-        .coming-header { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem 0.5rem; }
-        .coming-header h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 2rem; text-transform: uppercase; color: var(--primary); border-left: 5px solid var(--green); padding-left: 1rem; }
-        .coming-header p { font-size: 1rem; color: #555; margin-top: 0.75rem; padding-left: 1.3rem; }
-        .coming-grid { max-width: 1100px; margin: 0 auto; padding: 1.5rem 2rem 3rem; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.1rem; }
-        .coming-card { background: var(--dark); border-top: 4px solid var(--green); box-shadow: 3px 3px 0 rgba(0,0,0,0.1); display: flex; flex-direction: column; }
-        .coming-card-head { padding: 1.1rem 1.25rem 0.9rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
-        .coming-season-label { display: inline-block; align-self: flex-start; background: var(--green); color: var(--dark); font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 0.82rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.3rem 0.7rem 0.25rem; line-height: 1; margin-bottom: 0.6rem; }
-        .coming-season-label.late { background: var(--orange); }
-        .coming-card-head h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
-        .coming-tags { padding: 1.1rem 1.25rem 1.3rem; display: flex; flex-wrap: wrap; gap: 0.55rem; }
-        .coming-tag { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.03em; text-transform: uppercase; color: #fff; background: rgba(255,255,255,0.08); border-left: 3px solid var(--red); padding: 0.4rem 0.75rem; line-height: 1.2; }
-        .coming-tag span { display: block; font-size: 0.72rem; letter-spacing: 0.06em; color: rgba(255,255,255,0.4); font-weight: 600; }
+        .schedule-track-head { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.7rem; }
+        .schedule-track-head h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.15rem; text-transform: uppercase; color: var(--dark); line-height: 1; }
+        .schedule-track-head .swatch { width: 14px; height: 14px; flex-shrink: 0; }
+        .schedule-track-head .swatch.split { background: linear-gradient(90deg, var(--f-coal) 0 50%, var(--f-raic) 50% 100%); }
+        .schedule-track-head .swatch.milperas { background: var(--f-milp); }
+        .schedule-track-note { font-size: 0.9rem; color: rgba(1,22,39,0.75); margin: -0.35rem 0 0.9rem; max-width: 62ch; }
+        .schedule-track + .schedule-track { margin-top: 2rem; padding-top: 1.75rem; border-top: 2px solid rgba(1,22,39,0.18); }
+        .schedule-card.milperas { border-left-color: var(--f-milp); }
+        .schedule-card.milperas .schedule-when-label { background: var(--f-milp); }
+        .schedule-card.milperas .schedule-arrow { color: #b28ee0; }
 
         /* MOBILE */
         @media (max-width: 820px) {
             .schedule-grid { grid-template-columns: 1fr; }
-            .coming-grid { grid-template-columns: 1fr; }
             nav { flex-direction: column; }
             .nav-brand { padding: 0.7rem 1rem; justify-content: center; }
             .nav-main-links { flex-direction: column; display: none; }
@@ -222,6 +257,7 @@
             .submit-btn { text-align: center; }
             .search-filter-bar { flex-direction: column; align-items: stretch; }
             .product-search { max-width: 100%; }
+            .legend { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -236,7 +272,7 @@
         <button class="nav-hamburger" id="hamburger">☰ Menu</button>
         <ul class="nav-main-links" id="nav-links">
             <li><a href="OurCompass.html">Theory of Change</a></li>
-            <li><a href="territorial_markets.html">Order Now ↗</a></li>
+            <li><a href="territorial_markets.html" class="active">Order Now ↗</a></li>
             <li class="has-dropdown"><a href="#">Our Initiatives <span class="chevron">▼</span></a>
                 <div class="mega-menu"><div class="mega-menu-label">Initiatives</div>
                 <div class="mega-menu-grid single-col">
@@ -259,7 +295,7 @@
                     <a href="join-la.html">Los Angeles</a>
                     <a href="join-san-diego.html">San Diego</a>
                 </div></div></li>
-            <li class="has-dropdown"><a href="donations.html" class="active">Donate <span class="chevron">▼</span></a>
+            <li class="has-dropdown"><a href="donations.html">Donate <span class="chevron">▼</span></a>
                 <div class="mega-menu"><div class="mega-menu-label">Fundraisers</div>
                 <div class="mega-menu-grid single-col">
                     <a href="donations-territorial-markets.html">Territorial Markets</a>
@@ -271,9 +307,9 @@
 
 <div class="hero">
     <div class="hero-inner">
-        <p class="hero-eyebrow">Territorial Markets — Order Directly</p>
+        <p class="hero-eyebrow">Territorial Markets — September Availability</p>
         <h1>Order Now</h1>
-        <p class="hero-sub">Fresh, organic produce across farmworker-to-organic small producers across San Benito, Santa Clara, Santa Cruz, and Monterey Counties; orders are coordinated across <strong style="color:#fff">la Coalición de Pequeños Agricultores, Tierras Milperas, & Raices Nuevas (Rooted Roots) Cooperative. </strong>.</p>
+        <p class="hero-sub">Fresh, organic produce from farmworker-to-organic small producers in San Benito, Santa Clara, Santa Cruz, and Monterey Counties. Orders are coordinated across <strong style="color:#fff">la Coalición de Pequeños Agricultores, Tierras Milperas, and Raíces Nuevas (Rooted Roots) Cooperative</strong>. Every product below shows which formation grows it.</p>
         <div class="hero-actions">
             <a href="#products" class="hero-btn hero-btn-secondary">Browse Products ↓</a>
             <a href="#order" class="hero-btn hero-btn-primary">Place Order →</a>
@@ -292,55 +328,53 @@
     <div class="schedule-inner">
         <p class="schedule-eyebrow">⏱ Ordering Schedule</p>
         <h2>Order Cutoffs &amp; Delivery Days</h2>
-        <div class="schedule-grid">
-            <div class="schedule-card">
-                <p class="schedule-when-label">Order By</p>
-                <p class="schedule-when">Sunday Night <span class="schedule-arrow">→</span></p>
-                <p class="schedule-receive">Receive Tuesday morning / noon</p>
-            </div>
-            <div class="schedule-card">
-                <p class="schedule-when-label">Order By</p>
-                <p class="schedule-when">Tuesday Night <span class="schedule-arrow">→</span></p>
-                <p class="schedule-receive">Receive Thursday morning / noon</p>
-            </div>
-            <div class="schedule-card">
-                <p class="schedule-when-label">Order By</p>
-                <p class="schedule-when">Thursday Night <span class="schedule-arrow">→</span></p>
-                <p class="schedule-receive">Receive Saturday morning / noon</p>
-            </div>
-        </div>
-    </div>
-</div>
 
-<div class="coming-wrap" id="coming-soon">
-    <div class="coming-header">
-        <h2>🌱 Coming Soon</h2>
-        <p>Seasonal crops our campesin@ farmers are growing now — not yet available to order, but on the way. Dates are approximate and depend on the harvest.</p>
-    </div>
-    <div class="coming-grid">
-        <div class="coming-card">
-            <div class="coming-card-head">
-                <span class="coming-season-label">Mid-June</span>
-                <h3>First summer tomatoes &amp; chiles</h3>
+        <div class="schedule-track">
+            <div class="schedule-track-head">
+                <span class="swatch split"></span>
+                <h3>Coalición &amp; Raíces Nuevas — two-day turnaround</h3>
             </div>
-            <div class="coming-tags">
-                <div class="coming-tag">Roma Tomatoes <span>Jitomates</span></div>
-                <div class="coming-tag">Early Girl Tomatoes</div>
-                <div class="coming-tag">Heirloom Tomatoes</div>
-                <div class="coming-tag">Cherry Tomatoes</div>
-                <div class="coming-tag">Tomatillos</div>
-                <div class="coming-tag">Jalapeños</div>
+            <div class="schedule-grid">
+                <div class="schedule-card">
+                    <p class="schedule-when-label">Order By</p>
+                    <p class="schedule-when">Sunday Night <span class="schedule-arrow">→</span></p>
+                    <p class="schedule-receive">Receive Tuesday morning / noon</p>
+                </div>
+                <div class="schedule-card">
+                    <p class="schedule-when-label">Order By</p>
+                    <p class="schedule-when">Tuesday Night <span class="schedule-arrow">→</span></p>
+                    <p class="schedule-receive">Receive Thursday morning / noon</p>
+                </div>
+                <div class="schedule-card">
+                    <p class="schedule-when-label">Order By</p>
+                    <p class="schedule-when">Thursday Night <span class="schedule-arrow">→</span></p>
+                    <p class="schedule-receive">Receive Saturday morning / noon</p>
+                </div>
             </div>
         </div>
-        <div class="coming-card">
-            <div class="coming-card-head">
-                <span class="coming-season-label late">July – August</span>
-                <h3>Milpa staples — corn &amp; beans</h3>
+
+        <div class="schedule-track">
+            <div class="schedule-track-head">
+                <span class="swatch milperas"></span>
+                <h3>Tierras Milperas — four-day turnaround</h3>
             </div>
-            <div class="coming-tags">
-                <div class="coming-tag">Mexican Dent Corn <span>Cacahuazintle</span></div>
-                <div class="coming-tag">Sweet Corn <span>Yellow</span></div>
-                <div class="coming-tag">Green Beans <span>Ejotes</span></div>
+            <p class="schedule-track-note">Milpa crops are hand-picked to order, so Tierras Milperas needs an extra delivery cycle to prepare. Orders skip the next delivery day and arrive on the one after.</p>
+            <div class="schedule-grid">
+                <div class="schedule-card milperas">
+                    <p class="schedule-when-label">Order By</p>
+                    <p class="schedule-when">Sunday Night <span class="schedule-arrow">→</span></p>
+                    <p class="schedule-receive">Receive Thursday morning / noon</p>
+                </div>
+                <div class="schedule-card milperas">
+                    <p class="schedule-when-label">Order By</p>
+                    <p class="schedule-when">Tuesday Night <span class="schedule-arrow">→</span></p>
+                    <p class="schedule-receive">Receive Saturday morning / noon</p>
+                </div>
+                <div class="schedule-card milperas">
+                    <p class="schedule-when-label">Order By</p>
+                    <p class="schedule-when">Thursday Night <span class="schedule-arrow">→</span></p>
+                    <p class="schedule-receive">Receive Tuesday morning / noon (following week)</p>
+                </div>
             </div>
         </div>
     </div>
@@ -349,21 +383,41 @@
 <div class="catalogue-wrap" id="products">
     <div class="catalogue-header">
         <h2>Available Products</h2>
-        <p>All produce grown by small campesin@ farmers. Individual pricing for single-household orders; bulk pricing for cooperatives, unions, and community formations.</p>
+        <p>September availability, grown by small campesin@ farmers. Individual pricing is for single households; bulk pricing is for cooperatives, unions, and community formations. The stripe and tags on each card show which formation supplies it.</p>
+    </div>
+    <div class="legend">
+        <div class="legend-item coalicion">
+            <strong>Coalición de Pequeños Agricultores</strong>
+            <span>Mayra, Margarita, Víctor, Familia Catalán, World's Finest, Rufino</span>
+        </div>
+        <div class="legend-item milperas">
+            <strong>Tierras Milperas</strong>
+            <span>Milpa crops — four-day turnaround, see schedule above</span>
+        </div>
+        <div class="legend-item raices">
+            <strong>Raíces Nuevas / Rooted Roots Cooperative</strong>
+            <span>Zamudio, Green Mix Ranch</span>
+        </div>
     </div>
     <div class="search-filter-bar">
+        <span class="filter-row-label">Grown by</span>
+        <button class="fform-btn active" data-formation="all">All formations</button>
+        <button class="fform-btn" data-formation="coalicion"><span class="swatch"></span>Coalición</button>
+        <button class="fform-btn" data-formation="milperas"><span class="swatch"></span>Tierras Milperas</button>
+        <button class="fform-btn" data-formation="raices"><span class="swatch"></span>Raíces Nuevas</button>
+    </div>
+    <div class="search-filter-bar" style="padding-top:0">
         <input type="text" id="productSearch" class="product-search" placeholder="Search products...">
         <button class="filter-btn active" data-cat="all">All</button>
         <button class="filter-btn" data-cat="vegetables">Vegetables</button>
-        <button class="filter-btn" data-cat="chiles">Chiles & Peppers</button>
-        <button class="filter-btn" data-cat="herbs">Herbs</button>
-        <button class="filter-btn" data-cat="greens">Greens</button>
-        <button class="filter-btn" data-cat="fruits">Fruits</button>
-        <button class="filter-btn" data-cat="salsas">Salsas</button>
+        <button class="filter-btn" data-cat="chiles">Chiles &amp; Peppers</button>
         <button class="filter-btn" data-cat="squashes">Squashes</button>
-        <button class="filter-btn" data-cat="roots">Roots</button>
-        <button class="filter-btn" data-cat="beans">Beans</button>
+        <button class="filter-btn" data-cat="greens">Greens</button>
+        <button class="filter-btn" data-cat="roots">Roots &amp; Onions</button>
+        <button class="filter-btn" data-cat="fruits">Fruits</button>
+        <button class="filter-btn" data-cat="herbs">Herbs</button>
         <button class="filter-btn" data-cat="flowers">Flowers</button>
+        <button class="filter-btn" data-cat="salsas">Salsas</button>
         <button class="filter-btn" data-cat="misc">Misc</button>
     </div>
     <div class="products-grid" id="productsGrid"></div>
@@ -440,6 +494,7 @@
 
             <div class="form-section">
                 <h3>Delivery &amp; Pickup</h3>
+                <p style="color:rgba(255,255,255,0.65);font-size:0.9rem;margin:-0.9rem 0 1.25rem">If your order includes Tierras Milperas crops, pick a date at least four days out — those are picked to order. Everything else runs on the two-day cycle.</p>
                 <div class="form-grid">
                     <div class="form-group">
                         <label for="deliveryMethod">Preferred Method *</label>
@@ -491,7 +546,7 @@
     <div class="social-links">
         <a href="https://instagram.com/plurinational.landreform_cawg" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
     </div>
-    <p>&copy; 2025 Plurinational Land Reform in CA Working Group. All rights reserved.</p>
+    <p>&copy; 2026 Plurinational Land Reform in CA Working Group. All rights reserved.</p>
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
@@ -511,148 +566,297 @@
         });
     });
 
-    // ── PRODUCTS ─────────────────────────────────────────────────────────────
+    // ── FORMATIONS ───────────────────────────────────────────────────
+    var FORMATIONS = {
+        coalicion: { short: 'Coalici\u00f3n',      full: 'Coalici\u00f3n de Peque\u00f1os Agricultores' },
+        milperas:  { short: 'Tierras Milperas', full: 'Tierras Milperas' },
+        raices:    { short: 'Ra\u00edces Nuevas',    full: 'Ra\u00edces Nuevas / Rooted Roots Cooperative' },
+        tbc:       { short: 'Formation TBC',    full: 'Supplying formation to be confirmed' }
+    };
+    var MILPERAS_LEAD = 'Tierras Milperas \u2014 order four days ahead (Tue night \u2192 Sat delivery)';
+
+    // ── PRODUCTS ──────────────────────────────────────────────────────
+    // tbd: true       → price not yet set; excluded from the estimated total
+    // provisional:true → price carried over from a comparable item, needs confirming
     var products = [
-        // ── VEGETABLES ────────────────────────────────────────────────────────
-        { name: "Beets",                  category: "vegetables", individual: 2.50,  indDisplay: "$2.50/bunch",   bulk: 45.00,  bulkDisplay: "$45.00 (24 bunch · $1.88/bunch)" },
-        { name: "Broccoli",       category: "vegetables", individual: 3.00,  indDisplay: "$3.00/lb",      bulk: 50.00,  bulkDisplay: "$50.00 (20 lb · $2.50/lb)" },
-        { name: "White Cauliflower",       category: "vegetables", individual: 3.00,  indDisplay: "$3.00/lb",      bulk: 50.00,  bulkDisplay: "$50.00 (20 lb · $2.50/lb)" },
-        { name: "Celery",                 category: "vegetables", individual: 2.50,  indDisplay: "$2.50/pz",      bulk: 40.00,  bulkDisplay: "$40.00 (24 pz · $1.67/pz)" },
-        { name: "Cucumber",         category: "vegetables", individual: 1.99,  indDisplay: "$1.99/lb",      bulk: 33.00,  bulkDisplay: "$33.00 (22 lbs · $1.50/lb)" },
-        { name: "Green Zucchini",         category: "squashes", individual: 1.99,  indDisplay: "$1.99/lb",      bulk: 33.00,  bulkDisplay: "$33.00 (22 lbs · $1.50/lb)" },
-        { name: "Yellow Zucchini",        category: "squashes", individual: 1.99,  indDisplay: "$1.99/lb",     bulk: 33.00,  bulkDisplay: "$33.00 (22 lbs · $1.50/lb)" },
-        { name: "Yellow Round Summer Squash",        category: "squashes", individual: 1.99,  indDisplay: "$1.99/lb",     bulk: 33.00,  bulkDisplay: "$33.00 (22 lbs · $1.50/lb)" },
-        { name: "Green Round Summer Squash",        category: "squashes", individual: 1.99,  indDisplay: "$1.99/lb",     bulk: 33.00,  bulkDisplay: "$33.00 (22 lbs · $1.50/lb)" },
-        { name: "Leeks",                  category: "vegetables", individual: 2.50,  indDisplay: "$2.50/pz",      bulk: 36.00,  bulkDisplay: "$36.00 (24 pz · $1.50/pz)" },
-        { name: "(Peeled) Nopales",                category: "vegetables", individual: 4.50,  indDisplay: "$4.50/lb",      bulk: 100.00,  bulkDisplay: "$100 (25 lbs · $4.00/lb)" },
-        { name: "Roma Tomatoes",                category: "vegetables", individual: 2.50,  indDisplay: "$2.50/lb",      bulk: 20.00,  bulkDisplay: "$20.00 (20 lbs · $1.00/lb)" },
-        { name: "Early Girl Tomatoes",                category: "vegetables", individual: 2.50,  indDisplay: "$2.50/lb",      bulk: 40.00,  bulkDisplay: "$40.00 (20 lbs · $2.00/lb)" },
-        { name: "Cherry Tomatoes",                category: "vegetables", individual: 3.00,  indDisplay: "$3.00/basket",      bulk: 35.00,  bulkDisplay: "$35.00 (12 baskets · $2.92/basket)" },
-        { name: "Blush Cherry Tomatoes",                category: "vegetables", individual: 3.00,  indDisplay: "$3.00/basket",      bulk: 35.00,  bulkDisplay: "$35.00 (12 baskets · $2.92/basket)" },
-        { name: "Heirloom Tomatoes",                category: "vegetables", individual: 3.00,  indDisplay: "$3.50/lb",      bulk: 30.00,  bulkDisplay: "$30.00 (10 lbs · $3.00/lb)" },
-        { name: "Tomatillos (Standard)",                category: "vegetables", individual: 2.50,  indDisplay: "$2.50/lb",      bulk: 40.00,  bulkDisplay: "$40.00 (20 lbs · $2.00/lb)" },
-        { name: "Tomatillos Milperos",                category: "vegetables", individual: 2.00,  indDisplay: "$2.00/lb",      bulk: 25.00,  bulkDisplay: "$25.00 (20 lbs · $1.25/lb)" },
-        { name: "Serrano Pepper",                category: "chiles", individual: 2.50,  indDisplay: "$2.50/lb",      bulk: 20.00,  bulkDisplay: "$20.00 (10 lbs · $2.00/lb)" },
-        { name: "Poblano Pepper",                category: "chiles", individual: 2.50,  indDisplay: "$2.50/lb",      bulk: 20.00,  bulkDisplay: "$20.00 (10 lbs · $2.00/lb)" },
-        { name: "Jalapeños",                category: "chiles", individual: 2.50,  indDisplay: "$2.50/lb",      bulk: 15.00,  bulkDisplay: "$15.00 (10 lbs · $1.50/lb)" },
-        { name: "Chiles de Arbol",                category: "chiles", individual: 2.50,  indDisplay: "TBD/lb",      bulk: 20.00,  bulkDisplay: "TBD (10 lbs · TBD/lb)" },
-        { name: "Chiles Chilacas",                category: "chiles", individual: 2.50,  indDisplay: "TBD/lb",      bulk: 20.00,  bulkDisplay: "TBD (10 lbs · TBD/lb)" },
-        { name: "Chiles Güeros",                category: "chiles", individual: 2.50,  indDisplay: "TBD/lb",      bulk: 20.00,  bulkDisplay: "TBD (10 lbs · TBD/lb)" },
-        { name: "Sweet Corn",                category: "vegetables", individual: 1.25,  indDisplay: "$1.25/pz",      bulk: 48.00,  bulkDisplay: "$48.00 (48 pz · $1.00/pz)" },
-        { name: "Maize Mexicano (Dent)", category: "vegetables", individual: 1.25,  indDisplay: "TBD/pz",      bulk: 48.00,  bulkDisplay: "TBD (48 pz · TBD/pz)" },
+        // ── VEGETABLES ──
+        { name: "Broccoli", category: "vegetables", formations: ["raices"],
+          individual: 3.00, indDisplay: "$3.00/lb", bulk: 25.00, bulkDisplay: "$25.00 (12 lbs \u00b7 $2.08/lb)" },
+        { name: "Broccolini", category: "vegetables", formations: ["coalicion","raices"],
+          individual: 3.50, indDisplay: "$3.50/lb", bulk: 28.00, bulkDisplay: "$28.00 (12 lbs \u00b7 $2.33/lb)" },
+        { name: "White Cauliflower", category: "vegetables", formations: ["coalicion"],
+          individual: 3.00, indDisplay: "$3.00/lb", bulk: 50.00, bulkDisplay: "$50.00 (20 lb \u00b7 $2.50/lb)" },
+        { name: "Celery", category: "vegetables", formations: ["coalicion","raices"],
+          individual: 2.50, indDisplay: "$2.50/pz", bulk: 40.00, bulkDisplay: "$40.00 (24 pz \u00b7 $1.67/pz)",
+          note: "Supply is limited some weeks \u2014 order early for large quantities." },
+        { name: "Cucumber", category: "vegetables", formations: ["coalicion","raices"],
+          individual: 1.99, indDisplay: "$1.99/lb", bulk: 33.00, bulkDisplay: "$33.00 (22 lbs \u00b7 $1.50/lb)" },
+        { name: "Fennel", category: "vegetables", formations: ["raices"],
+          individual: 2.50, indDisplay: "$2.50/pz", bulk: 40.00, bulkDisplay: "$40.00 (24 pz \u00b7 $1.67/pz)" },
+        { name: "Leeks", category: "vegetables", formations: ["coalicion","raices"],
+          individual: 2.50, indDisplay: "$2.50/pz", bulk: 36.00, bulkDisplay: "$36.00 (24 pz \u00b7 $1.50/pz)" },
+        { name: "(Peeled) Nopales", category: "vegetables", formations: ["raices"],
+          individual: 4.50, indDisplay: "$4.50/lb", bulk: 100.00, bulkDisplay: "$100 (25 lbs \u00b7 $4.00/lb)" },
+        { name: "Sweet Corn", category: "vegetables", formations: ["coalicion"],
+          individual: 1.25, indDisplay: "$1.25/pz", bulk: 48.00, bulkDisplay: "$48.00 (48 pz \u00b7 $1.00/pz)" },
+        { name: "Maize Mexicano (Dent)", category: "vegetables", formations: ["milperas"], tbd: true,
+          individual: 0, indDisplay: "TBD", bulk: 0, bulkDisplay: "TBD (48 pz)",
+          note: "Cacahuazintle \u2014 Mexican dent corn, grown from seed the milperas keep themselves." },
+        { name: "Roma Tomatoes", category: "vegetables", formations: ["coalicion","raices"],
+          individual: 2.50, indDisplay: "$2.50/lb", bulk: 20.00, bulkDisplay: "$20.00 (20 lbs \u00b7 $1.00/lb)" },
+        { name: "Napoli Roma Tomatoes", category: "vegetables", formations: ["milperas"],
+          individual: 2.75, indDisplay: "$2.75/lb", bulk: 25.00, bulkDisplay: "$25.00 (25 lbs \u00b7 $1.00/lb)",
+          note: "The Napoli variety \u2014 meatier and drier than a standard Roma, good for sauce." },
+        { name: "Early Girl Tomatoes", category: "vegetables", formations: ["coalicion","raices"],
+          individual: 2.50, indDisplay: "$2.50/lb", bulk: 40.00, bulkDisplay: "$40.00 (20 lbs \u00b7 $2.00/lb)" },
+        { name: "Cherry Tomatoes", category: "vegetables", formations: ["coalicion","raices"],
+          individual: 3.00, indDisplay: "$3.00/basket", bulk: 35.00, bulkDisplay: "$35.00 (12 baskets \u00b7 $2.92/basket)" },
+        { name: "Blush Cherry Tomatoes", category: "vegetables", formations: ["coalicion"],
+          individual: 3.00, indDisplay: "$3.00/basket", bulk: 35.00, bulkDisplay: "$35.00 (12 baskets \u00b7 $2.92/basket)" },
+        { name: "Sungold Cherry Tomatoes", category: "vegetables", formations: ["raices"],
+          individual: 4.00, indDisplay: "$4.00/lb", bulk: 30.00, bulkDisplay: "$30.00 (12 lbs \u00b7 $2.50/lb)",
+          note: "Sold by the pound rather than by basket." },
+        { name: "Heirloom Tomatoes", category: "vegetables", formations: ["coalicion","raices"],
+          individual: 3.50, indDisplay: "$3.50/lb", bulk: 30.00, bulkDisplay: "$30.00 (10 lbs \u00b7 $3.00/lb)" },
+        { name: "Tomatillos (Standard)", category: "vegetables", formations: ["coalicion"],
+          individual: 2.50, indDisplay: "$2.50/lb", bulk: 40.00, bulkDisplay: "$40.00 (20 lbs \u00b7 $2.00/lb)" },
+        { name: "Tomatillos Milperos", category: "vegetables", formations: ["coalicion","milperas"],
+          individual: 2.00, indDisplay: "$2.00/lb", bulk: 25.00, bulkDisplay: "$25.00 (20 lbs \u00b7 $1.25/lb)" },
 
-        // ── GREENS ────────────────────────────────────────────────────────────
-        { name: "Cabbage (Green)",        category: "greens",     individual: 3.00,  indDisplay: "$3.00/pz",      bulk: 35.00,  bulkDisplay: "$35.00 (35 lb · $1.00/lb)" },
-        { name: "Cabbage (Red)",          category: "greens",     individual: 3.00,  indDisplay: "$3.00/pz",      bulk: 35.00,  bulkDisplay: "$35.00 (35 lb · $1.00/lb)" },
-        { name: "Chard",   category: "greens",     individual: 2.50,  indDisplay: "$2.50/bunch",   bulk: 45.00,  bulkDisplay: "$45.00 (24 bunch · $1.88/bunch)" },
-        { name: "Kale (Lacinato/Dino)",   category: "greens",     individual: 2.50,  indDisplay: "$2.50/bunch",   bulk: 45.00,  bulkDisplay: "$45.00 (24 bunch · $1.88/bunch)" },
-        { name: "Kale (Red Curly)",             category: "greens",     individual: 2.50,  indDisplay: "$2.50/bunch",   bulk: 45.00,  bulkDisplay: "$45.00 (24 bunch · $1.88/bunch)" },
-        { name: "Romaine Lettuce",        category: "greens",     individual: 2.50,  indDisplay: "$2.50/pz",      bulk: 45.00,  bulkDisplay: "$45.00 (24 pz · $1.88/pz)" },
+        // ── CHILES & PEPPERS ──
+        { name: "Jalape\u00f1os", category: "chiles", formations: ["coalicion","milperas","raices"],
+          individual: 2.50, indDisplay: "$2.50/lb", bulk: 15.00, bulkDisplay: "$15.00 (10 lbs \u00b7 $1.50/lb)" },
+        { name: "Serrano Pepper", category: "chiles", formations: ["milperas","raices"],
+          individual: 2.50, indDisplay: "$2.50/lb", bulk: 20.00, bulkDisplay: "$20.00 (10 lbs \u00b7 $2.00/lb)" },
+        { name: "Poblano Pepper", category: "chiles", formations: ["raices"],
+          individual: 2.50, indDisplay: "$2.50/lb", bulk: 22.00, bulkDisplay: "$22.00 (12 lbs \u00b7 $1.83/lb)" },
+        { name: "Green Bell Peppers", category: "chiles", formations: ["raices"],
+          individual: 2.50, indDisplay: "$2.50/lb", bulk: 22.00, bulkDisplay: "$22.00 (12 lbs \u00b7 $1.83/lb)" },
+        { name: "Red Bell Peppers", category: "chiles", formations: ["raices"],
+          individual: 3.00, indDisplay: "$3.00/lb", bulk: 24.00, bulkDisplay: "$24.00 (12 lbs \u00b7 $2.00/lb)" },
+        { name: "Mini Banana Peppers", category: "chiles", formations: ["coalicion"],
+          individual: 5.00, indDisplay: "$5.00/lb", bulk: 40.00, bulkDisplay: "$40.00 (10 lbs \u00b7 $4.00/lb)" },
+        { name: "Chiles de \u00c1rbol", category: "chiles", formations: ["milperas"], tbd: true,
+          individual: 0, indDisplay: "TBD", bulk: 0, bulkDisplay: "TBD (10 lbs)" },
+        { name: "Chiles Chilacas", category: "chiles", formations: ["milperas"],
+          individual: 2.50, indDisplay: "$2.50/lb", bulk: 20.00, bulkDisplay: "$20.00 (10 lbs \u00b7 $2.00/lb)" },
+        { name: "Chiles G\u00fceros", category: "chiles", formations: ["milperas"], tbd: true,
+          individual: 0, indDisplay: "TBD", bulk: 0, bulkDisplay: "TBD (10 lbs)" },
 
-        // ── ROOTS ─────────────────────────────────────────────────────────────
-        { name: "Red Potatoes",           category: "roots",      individual: 2.00,  indDisplay: "$2.00/lb",      bulk: 40.00,  bulkDisplay: "$40.00 (25 lbs · $1.60/lb)" },
-        { name: "Yellow Potatoes",        category: "roots",      individual: 2.00,  indDisplay: "$2.00/lb",      bulk: 40.00,  bulkDisplay: "$40.00 (25 lbs · $1.60/lb)" },
-        { name: "Fingerling Potatoes",           category: "roots",      individual: 1.50,  indDisplay: "$1.50/lb",      bulk: 31.25,  bulkDisplay: "$31.25 (25 lbs · $1.25/lb)" },
-        { name: "Yellow Onions",        category: "roots", individual: 1.50,  indDisplay: "$1.50/lb",      bulk: 25.00,  bulkDisplay: "$25.00 (20 lb · $1.25/lb)" },
-        { name: "Red Onion",              category: "roots", individual: 1.50,  indDisplay: "$1.50/lb",      bulk: 25.00,  bulkDisplay: "$25.00 (20 lb · $1.25/lb)" },
-        { name: "Carrots",        category: "roots", individual: 2.50,  indDisplay: "$2.50/bunch",   bulk: 45.00,  bulkDisplay: "$45.00 (24 bunch · $1.88/bunch)" },
+        // ── SQUASHES ──
+        { name: "Green Zucchini", category: "squashes", formations: ["coalicion"],
+          individual: 1.99, indDisplay: "$1.99/lb", bulk: 33.00, bulkDisplay: "$33.00 (22 lbs \u00b7 $1.50/lb)" },
+        { name: "Summer Squash", category: "squashes", formations: ["raices"], provisional: true,
+          individual: 1.99, indDisplay: "$1.99/lb", bulk: 33.00, bulkDisplay: "$33.00 (22 lbs \u00b7 $1.50/lb)" },
+        { name: "Grey Mexican Squash", category: "squashes", formations: ["raices"],
+          individual: 2.50, indDisplay: "$2.50/lb", bulk: 11.00, bulkDisplay: "$11.00 (12 lbs \u00b7 $0.92/lb)",
+          note: "Also sold as gray zucchini \u2014 pale, firm, and good for calabacitas." },
 
-        // ── FRUITS ────────────────────────────────────────────────────────────
-        { name: "Blackberries",           category: "fruits",     individual: 4.50,  indDisplay: "$4.50/basket",  bulk: 40.00,  bulkDisplay: "$40.00 (12 baskets · $3.33/basket)" },
-        { name: "Raspberries",           category: "fruits",     individual: 4.50,  indDisplay: "$4.50/basket",  bulk: 40.00,  bulkDisplay: "$40.00 (12 baskets · $3.33/basket)" },
-        { name: "Watermelons",    category: "fruits",     individual: 3.50,  indDisplay: "TBD/pz",    bulk: 35.00,  bulkDisplay: "TBD (25 pz · TBD/pz)" },
-        { name: "Strawberries (1-lb Clamshell)",  category: "fruits",     individual: 5.00,  indDisplay: "$5.00/basket",  bulk: 35.00,  bulkDisplay: "$35.00 (8 × 1-lb baskets · $4.38/basket)" },
-        { name: "Strawberries (Open-air basket)",    category: "fruits",     individual: 3.50,  indDisplay: "$3.50/basket",    bulk: 35.00,  bulkDisplay: "$35.00 (12 basket · $2.92/basket)" },
-        { name: "Zutano Avocados",        category: "fruits",     individual: 2.49,  indDisplay: "$2.49/pz",      noBulk: true },
+        // ── GREENS ──
+        { name: "Cabbage (Green)", category: "greens", formations: ["coalicion","raices"],
+          individual: 3.00, indDisplay: "$3.00/pz", bulk: 35.00, bulkDisplay: "$35.00 (35 lb \u00b7 $1.00/lb)" },
+        { name: "Cabbage (Red)", category: "greens", formations: ["coalicion"],
+          individual: 3.00, indDisplay: "$3.00/pz", bulk: 35.00, bulkDisplay: "$35.00 (35 lb \u00b7 $1.00/lb)" },
+        { name: "Chard", category: "greens", formations: ["coalicion"],
+          individual: 2.50, indDisplay: "$2.50/bunch", bulk: 45.00, bulkDisplay: "$45.00 (24 bunch \u00b7 $1.88/bunch)" },
+        { name: "Rainbow Chard", category: "greens", formations: ["coalicion","raices"], provisional: true,
+          individual: 2.50, indDisplay: "$2.50/bunch", bulk: 45.00, bulkDisplay: "$45.00 (24 bunch \u00b7 $1.88/bunch)" },
+        { name: "Kale (Lacinato/Dino)", category: "greens", formations: ["coalicion"],
+          individual: 2.50, indDisplay: "$2.50/bunch", bulk: 45.00, bulkDisplay: "$45.00 (24 bunch \u00b7 $1.88/bunch)" },
+        { name: "Kale (Red Curly)", category: "greens", formations: ["coalicion"],
+          individual: 2.50, indDisplay: "$2.50/bunch", bulk: 45.00, bulkDisplay: "$45.00 (24 bunch \u00b7 $1.88/bunch)" },
+        { name: "Kale (Green Curly)", category: "greens", formations: ["raices"],
+          individual: 2.50, indDisplay: "$2.50/bunch", bulk: 11.00, bulkDisplay: "$11.00 (12 bunches \u00b7 $0.92/bunch)" },
+        { name: "Romaine Lettuce", category: "greens", formations: ["raices"],
+          individual: 2.50, indDisplay: "$2.50/head", bulk: 13.00, bulkDisplay: "$13.00 (12 heads \u00b7 $1.08/head)" },
+        { name: "Red Leaf Lettuce", category: "greens", formations: ["raices"],
+          individual: 2.50, indDisplay: "$2.50/head", bulk: 13.00, bulkDisplay: "$13.00 (12 heads \u00b7 $1.08/head)" },
 
-        // ── HERBS ─────────────────────────────────────────────────────────────
-        { name: "Cilantro",               category: "herbs",      individual: 1.50,  indDisplay: "$1.50/bunch",   bulk: 30.00,  bulkDisplay: "$30.00 (30 bunch · $1.00/bunch)" },
-        { name: "Parsley",                category: "herbs",      individual: 1.50,  indDisplay: "$1.50/bunch",   bulk: 30.00,  bulkDisplay: "$30.00 (30 bunch · $1.00/bunch)" },
-        { name: "Garlic",                 category: "herbs",       individual: 6.00,  indDisplay: "$6.00/lb",      bulk: 100.00, bulkDisplay: "$100.00 (20 lb · $5.00/lb)" },
-        { name: "Red Basil",              category: "herbs",       individual: 2.50,  indDisplay: "$2.50/bunch", noBulk: true },
+        // ── ROOTS & ONIONS ──
+        { name: "Red Potatoes", category: "roots", formations: ["coalicion","raices"],
+          individual: 2.00, indDisplay: "$2.00/lb", bulk: 40.00, bulkDisplay: "$40.00 (25 lbs \u00b7 $1.60/lb)" },
+        { name: "Yellow Potatoes", category: "roots", formations: ["coalicion"],
+          individual: 2.00, indDisplay: "$2.00/lb", bulk: 40.00, bulkDisplay: "$40.00 (25 lbs \u00b7 $1.60/lb)" },
+        { name: "Fingerling Potatoes", category: "roots", formations: ["raices"],
+          individual: 1.50, indDisplay: "$1.50/lb", bulk: 31.25, bulkDisplay: "$31.25 (25 lbs \u00b7 $1.25/lb)" },
+        { name: "Yellow Onions", category: "roots", formations: ["coalicion","milperas"],
+          individual: 1.50, indDisplay: "$1.50/lb", bulk: 25.00, bulkDisplay: "$25.00 (20 lb \u00b7 $1.25/lb)" },
+        { name: "Red Onion", category: "roots", formations: ["coalicion"],
+          individual: 1.50, indDisplay: "$1.50/lb", bulk: 25.00, bulkDisplay: "$25.00 (20 lb \u00b7 $1.25/lb)" },
+        { name: "Green Onion", category: "roots", formations: ["raices"],
+          individual: 1.00, indDisplay: "$1.00/bunch", bulk: 10.00, bulkDisplay: "$10.00 (12 bunches \u00b7 $0.83/bunch)" },
+        { name: "Carrots", category: "roots", formations: ["coalicion"],
+          individual: 2.50, indDisplay: "$2.50/bunch", bulk: 45.00, bulkDisplay: "$45.00 (24 bunch \u00b7 $1.88/bunch)" },
 
-        // ── SALSAS ────────────────────────────────────────────────────────────
-        { name: "Salsa Roja",   category: "salsas", individual: 0, indDisplay: "By Size", bulk: 0, bulkDisplay: "See sizes", hasSizes: true,
+        // ── FRUITS ──
+        { name: "Strawberries (1-lb Clamshell)", category: "fruits", formations: ["coalicion"],
+          individual: 5.00, indDisplay: "$5.00/basket", bulk: 35.00, bulkDisplay: "$35.00 (8 \u00d7 1-lb baskets \u00b7 $4.38/basket)" },
+        { name: "Strawberries (Open-air basket)", category: "fruits", formations: ["coalicion"],
+          individual: 3.50, indDisplay: "$3.50/basket", bulk: 35.00, bulkDisplay: "$35.00 (12 basket \u00b7 $2.92/basket)" },
+        { name: "Blackberries", category: "fruits", formations: ["raices"],
+          individual: 4.50, indDisplay: "$4.50/basket", bulk: 40.00, bulkDisplay: "$40.00 (12 baskets \u00b7 $3.33/basket)" },
+        { name: "Raspberries", category: "fruits", formations: ["raices"],
+          individual: 4.50, indDisplay: "$4.50/basket", bulk: 40.00, bulkDisplay: "$40.00 (12 baskets \u00b7 $3.33/basket)" },
+        { name: "Watermelons", category: "fruits", formations: ["milperas"], tbd: true,
+          individual: 0, indDisplay: "TBD", bulk: 0, bulkDisplay: "TBD (25 pz)" },
+        { name: "Lemons", category: "fruits", formations: ["raices"],
+          individual: 2.50, indDisplay: "$2.50/lb", bulk: 27.00, bulkDisplay: "$27.00 (12 lbs \u00b7 $2.25/lb)" },
+        { name: "Hass Avocados", category: "fruits", formations: ["raices"],
+          individual: 2.50, indDisplay: "$2.50/pz", noBulk: true },
+
+        // ── HERBS ──
+        { name: "Cilantro", category: "herbs", formations: ["coalicion"],
+          individual: 1.50, indDisplay: "$1.50/bunch", bulk: 30.00, bulkDisplay: "$30.00 (30 bunch \u00b7 $1.00/bunch)" },
+        { name: "Parsley", category: "herbs", formations: ["coalicion"],
+          individual: 1.50, indDisplay: "$1.50/bunch", bulk: 30.00, bulkDisplay: "$30.00 (30 bunch \u00b7 $1.00/bunch)" },
+        { name: "Garlic", category: "herbs", formations: ["coalicion"],
+          individual: 6.00, indDisplay: "$6.00/lb", bulk: 100.00, bulkDisplay: "$100.00 (20 lb \u00b7 $5.00/lb)" },
+        { name: "Basil (Sweet)", category: "herbs", formations: ["coalicion"], provisional: true,
+          individual: 2.50, indDisplay: "$2.50/bunch", noBulk: true },
+
+        // ── SALSAS ──
+        { name: "Salsa Roja", category: "salsas", formations: ["tbc"], individual: 0, indDisplay: "By Size", bulk: 0, bulkDisplay: "See sizes", hasSizes: true,
           sizes: [{size:"8 oz",price:5},{size:"16 oz",price:8},{size:"32 oz",price:15},{size:"64 oz",price:25}] },
-        { name: "Salsa Verde",  category: "salsas", individual: 0, indDisplay: "By Size", bulk: 0, bulkDisplay: "See sizes", hasSizes: true,
+        { name: "Salsa Verde", category: "salsas", formations: ["tbc"], individual: 0, indDisplay: "By Size", bulk: 0, bulkDisplay: "See sizes", hasSizes: true,
           sizes: [{size:"8 oz",price:5},{size:"16 oz",price:8},{size:"32 oz",price:15},{size:"64 oz",price:25}] },
-        { name: "Tomato Sauce", category: "salsas", individual: 0, indDisplay: "By Size", bulk: 0, bulkDisplay: "See sizes", hasSizes: true,
+        { name: "Tomato Sauce", category: "salsas", formations: ["tbc"], individual: 0, indDisplay: "By Size", bulk: 0, bulkDisplay: "See sizes", hasSizes: true,
           sizes: [{size:"16 oz",price:8},{size:"32 oz",price:15},{size:"64 oz",price:25}] },
 
-        // ── FLOWERS ───────────────────────────────────────────────────────────
-        { name: "Campesina Mix (Strawflowers)",          category: "flowers",    individual: 5.00,  indDisplay: "$5.00/bunch",   noBulk: true },
-        { name: "Lavender",               category: "flowers",    individual: 7.00,  indDisplay: "$7.00/bunch",   bulk: 55.00,  bulkDisplay: "$55.00 (10 bunch · $5.50/bunch)" },
-        { name: "Fresh Roselle (Jamaica/Hibiscus/Sorrel) Calyx", category: "flowers",    individual: 10.00,  indDisplay: "$10.00/lb",   bulk: 80.00,  bulkDisplay: "$80.00 (10 lbs · $8.00/lb)" },
+        // ── FLOWERS ──
+        { name: "Campesina Mix (Strawflowers)", category: "flowers", formations: ["coalicion"],
+          individual: 5.00, indDisplay: "$5.00/bunch", noBulk: true },
+        { name: "Lavender", category: "flowers", formations: ["raices"],
+          individual: 7.00, indDisplay: "$7.00/bunch", bulk: 55.00, bulkDisplay: "$55.00 (10 bunch \u00b7 $5.50/bunch)" },
+        { name: "Fresh Roselle (Jamaica/Hibiscus/Sorrel) Calyx", category: "flowers", formations: ["coalicion"],
+          individual: 10.00, indDisplay: "$10.00/lb", bulk: 80.00, bulkDisplay: "$80.00 (10 lbs \u00b7 $8.00/lb)" },
 
-        // ── MISC ──────────────────────────────────────────────────────────────
-        { name: "Eggs",                   category: "misc",       individual: 10.00, indDisplay: "$10.00/dozen",  noBulk: true },
-        { name: "Handmade Blue Corn Tortilla Packs",category: "misc",       individual: 10.00, indDisplay: "$10.00/dozen",  noBulk: true },
-        { name: "Honey (16 Oz.)",         category: "misc",       individual: 20.00, indDisplay: "$20.00/pz",     noBulk: true }
+        // ── MISC ──
+        { name: "Eggs", category: "misc", formations: ["coalicion"],
+          individual: 10.00, indDisplay: "$10.00/dozen", noBulk: true },
+        { name: "Honey (16 Oz.)", category: "misc", formations: ["coalicion"],
+          individual: 20.00, indDisplay: "$20.00/pz", noBulk: true },
+        { name: "Handmade Blue Corn Tortilla Packs", category: "misc", formations: ["tbc"],
+          individual: 10.00, indDisplay: "$10.00/dozen", noBulk: true }
     ];
 
-    // ── RENDER PRODUCT CARDS ─────────────────────────────────────────────────
+    function formationChips(p) {
+        var html = '<div class="pc-chips">';
+        for (var i = 0; i < p.formations.length; i++) {
+            var key = p.formations[i];
+            if (key === 'tbc') continue;
+            html += '<span class="fchip ' + key + '">' + FORMATIONS[key].short + '</span>';
+        }
+        return html + '</div>';
+    }
+
+    function formationStrip(p) {
+        var html = '<div class="pc-strip">';
+        for (var i = 0; i < p.formations.length; i++) {
+            html += '<span class="' + p.formations[i] + '"></span>';
+        }
+        return html + '</div>';
+    }
+
+    function formationNames(p) {
+        var names = [];
+        for (var i = 0; i < p.formations.length; i++) names.push(FORMATIONS[p.formations[i]].short);
+        return names.join(' + ');
+    }
+
+    // Public-facing: nothing is shown until a formation is confirmed.
+    function formationLabel(p) {
+        var names = [];
+        for (var i = 0; i < p.formations.length; i++) {
+            if (p.formations[i] === 'tbc') continue;
+            names.push(FORMATIONS[p.formations[i]].short);
+        }
+        return names.join(' + ');
+    }
+
+    function isMilperas(p) { return p.formations.indexOf('milperas') > -1; }
+
+    // ── RENDER PRODUCT CARDS ────────────────────────────────────────
     function renderProducts(list) {
         var grid = document.getElementById('productsGrid');
         if (!list) list = products;
         if (list.length === 0) {
-            grid.innerHTML = '<p style="color:#888;padding:2rem">No products found.</p>';
+            grid.innerHTML = '<p style="color:#888;padding:2rem">Nothing matches those filters. Clear the search or choose another category.</p>';
             return;
         }
         var html = '';
         for (var i = 0; i < list.length; i++) {
             var p = list[i];
+            var flag = p.tbd ? '<span class="pc-tbd">Price TBD</span>'
+                     : (p.provisional ? '<span class="pc-prov">Provisional</span>' : '');
             var bodyHtml = '';
             if (p.hasSizes) {
                 var indRows = '', bulkRows = '';
-                for (var s = 0; s < p.sizes.length; s++) {
-                    indRows  += '<div class="size-row">' + p.sizes[s].size + ': <strong>$' + p.sizes[s].price.toFixed(2) + '</strong></div>';
-                    bulkRows += '<div class="size-row">' + p.sizes[s].size + ': <strong>$' + (p.sizes[s].price * 3).toFixed(2) + '</strong> (3-pack)</div>';
+                for (var s2 = 0; s2 < p.sizes.length; s2++) {
+                    indRows  += '<div class="size-row">' + p.sizes[s2].size + ': <strong>$' + p.sizes[s2].price.toFixed(2) + '</strong></div>';
+                    bulkRows += '<div class="size-row">' + p.sizes[s2].size + ': <strong>$' + (p.sizes[s2].price * 3).toFixed(2) + '</strong> (3-pack)</div>';
                 }
                 bodyHtml = '<div style="margin-bottom:0.6rem"><div style="font-family:\'Barlow Condensed\',sans-serif;font-weight:700;font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:#888;margin-bottom:0.25rem">Individual</div>' + indRows + '</div>'
                          + '<div class="bulk-box"><div class="bulk-label">Bulk (3-packs)</div>' + bulkRows + '</div>';
             } else if (p.noBulk) {
-                bodyHtml = '<div class="price-row"><span class="price-ind">' + p.indDisplay + '</span><span class="price-ind-label">Individual</span></div>'
+                bodyHtml = '<div class="price-row"><span class="price-ind">' + p.indDisplay + flag + '</span><span class="price-ind-label">Individual</span></div>'
                          + '<div class="bulk-box" style="opacity:0.5"><div class="bulk-label">Bulk Pricing</div><div class="bulk-price" style="color:#999;font-size:0.88rem">Individual only</div></div>';
             } else {
-                bodyHtml = '<div class="price-row"><span class="price-ind">' + p.indDisplay + '</span><span class="price-ind-label">Individual</span></div>'
+                bodyHtml = '<div class="price-row"><span class="price-ind">' + p.indDisplay + flag + '</span><span class="price-ind-label">Individual</span></div>'
                          + '<div class="bulk-box"><div class="bulk-label">Bulk Pricing</div><div class="bulk-price">' + p.bulkDisplay + '</div></div>';
             }
+            if (isMilperas(p)) bodyHtml += '<div class="pc-lead">' + MILPERAS_LEAD + '</div>';
+            if (p.note) bodyHtml += '<div class="pc-note">' + p.note + '</div>';
+
             html += '<div class="product-card">'
-                  + '<div class="pc-head"><div class="pc-name">' + p.name + '</div><div class="pc-cat">' + p.category + '</div></div>'
+                  + formationStrip(p)
+                  + '<div class="pc-head"><div class="pc-name">' + p.name + '</div><div class="pc-cat">' + p.category + '</div>' + formationChips(p) + '</div>'
                   + '<div class="pc-body">' + bodyHtml + '</div>'
                   + '<div class="pc-foot"><button type="button" class="add-to-order-btn" data-name="' + p.name + '">+ Add to Order</button></div>'
                   + '</div>';
         }
         grid.innerHTML = html;
-        // Attach click listeners to Add to Order buttons
         var btns = grid.querySelectorAll('.add-to-order-btn');
         for (var b = 0; b < btns.length; b++) {
             btns[b].addEventListener('click', handleAddToOrder);
         }
     }
 
-    // ── FILTER / SEARCH ───────────────────────────────────────────────────────
+    // ── FILTER / SEARCH ───────────────────────────────────────────
+    var filterState = { cat: 'all', formation: 'all', q: '' };
+
+    function applyFilters() {
+        renderProducts(products.filter(function(p) {
+            if (filterState.cat !== 'all' && p.category !== filterState.cat) return false;
+            if (filterState.formation !== 'all' && p.formations.indexOf(filterState.formation) === -1) return false;
+            if (filterState.q) {
+                var q = filterState.q;
+                if (p.name.toLowerCase().indexOf(q) === -1 && p.category.toLowerCase().indexOf(q) === -1) return false;
+            }
+            return true;
+        }));
+    }
+
     document.querySelectorAll('.filter-btn').forEach(function(btn) {
         btn.addEventListener('click', function() {
             document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
             this.classList.add('active');
-            document.getElementById('productSearch').value = '';
-            var cat = this.getAttribute('data-cat');
-            renderProducts(cat === 'all' ? null : products.filter(function(p) { return p.category === cat; }));
+            filterState.cat = this.getAttribute('data-cat');
+            applyFilters();
+        });
+    });
+
+    document.querySelectorAll('.fform-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.fform-btn').forEach(function(b) { b.classList.remove('active'); });
+            this.classList.add('active');
+            filterState.formation = this.getAttribute('data-formation');
+            applyFilters();
         });
     });
 
     document.getElementById('productSearch').addEventListener('input', function() {
-        var q = this.value.toLowerCase().trim();
-        document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
-        if (!q) {
-            document.querySelector('.filter-btn[data-cat="all"]').classList.add('active');
-            renderProducts(null);
-        } else {
-            renderProducts(products.filter(function(p) {
-                return p.name.toLowerCase().indexOf(q) > -1 || p.category.toLowerCase().indexOf(q) > -1;
-            }));
-        }
+        filterState.q = this.value.toLowerCase().trim();
+        applyFilters();
     });
 
     // ── SNAP ─────────────────────────────────────────────────────────────────
@@ -775,7 +979,7 @@
             for (var i = 0; i < list.length; i++) {
                 html += '<div class="ps-item" data-name="' + list[i].name + '" data-id="' + id + '">'
                       + '<strong>' + list[i].name + '</strong>'
-                      + '<small>' + list[i].category + ' — ' + list[i].indDisplay + '</small>'
+                      + '<small>' + (formationLabel(list[i]) ? formationLabel(list[i]) + ' — ' : '') + list[i].indDisplay + '</small>'
                       + '</div>';
             }
             dd.innerHTML = html;
@@ -804,17 +1008,22 @@
 
         var product = products.filter(function(p) { return p.name === name; })[0];
         if (product) {
+            var label = formationLabel(product);
+            var meta = label ? '<span style="color:#fff;font-weight:600">Grown by ' + label + '</span><br>' : '';
+            if (isMilperas(product)) meta += '<span style="color:#c9a8f0">' + MILPERAS_LEAD + '</span><br>';
+            if (product.tbd) meta += '<span style="color:var(--orange)">Price still being set — we\'ll confirm it when we reply to your order. It is not counted in the estimate below.</span><br>';
+            else if (product.provisional) meta += '<span style="color:var(--orange)">Provisional price — may change slightly on confirmation.</span><br>';
             if (product.hasSizes) {
                 var txt = '';
                 for (var s = 0; s < product.sizes.length; s++) {
                     txt += product.sizes[s].size + ': $' + product.sizes[s].price.toFixed(2) + ' ind / $' + (product.sizes[s].price * 3).toFixed(2) + ' bulk';
                     if (s < product.sizes.length - 1) txt += ' &nbsp;·&nbsp; ';
                 }
-                info.innerHTML = txt;
+                info.innerHTML = meta + txt;
             } else if (product.noBulk) {
-                info.innerHTML = 'Individual: <strong>' + product.indDisplay + '</strong> &nbsp;·&nbsp; <em style="color:rgba(255,255,255,0.4)">Individual only (no bulk)</em>';
+                info.innerHTML = meta + 'Individual: <strong>' + product.indDisplay + '</strong> &nbsp;·&nbsp; <em style="color:rgba(255,255,255,0.4)">Individual only (no bulk)</em>';
             } else {
-                info.innerHTML = 'Individual: <strong>' + product.indDisplay + '</strong> &nbsp;·&nbsp; Bulk: <strong>' + product.bulkDisplay + '</strong>';
+                info.innerHTML = meta + 'Individual: <strong>' + product.indDisplay + '</strong> &nbsp;·&nbsp; Bulk: <strong>' + product.bulkDisplay + '</strong>';
             }
             info.classList.add('open');
         }
@@ -946,7 +1155,7 @@
             document.getElementById('orderTotal').innerHTML = 'Estimated Total: <span>$0.00 (SNAP)</span>';
             return;
         }
-        var total = 0;
+        var total = 0, pending = 0;
         var rows = document.querySelectorAll('.order-item');
         for (var r = 0; r < rows.length; r++) {
             var rowId   = rows[r].id.replace('oi-', '');
@@ -958,6 +1167,7 @@
             var qty     = parseInt(qtyEl.value) || 0;
             var pricing = priceEl.value;
             if (!product || !qty) continue;
+            if (product.tbd) { pending++; continue; }
             if (product.hasSizes) {
                 var sizeEl = rows[r].querySelector('select[name="size"]');
                 if (sizeEl && sizeEl.value) {
@@ -969,7 +1179,10 @@
                 total += unitPrice;
             }
         }
-        document.getElementById('orderTotal').innerHTML = 'Estimated Total: <span>$' + total.toFixed(2) + '</span>';
+        var pendingNote = pending
+            ? '<div style="font-family:\'Barlow\',sans-serif;font-weight:400;font-size:0.82rem;text-transform:none;color:var(--orange);margin-top:0.3rem">Plus ' + pending + ' item' + (pending > 1 ? 's' : '') + ' with pricing still to be set. We\'ll quote them in your confirmation.</div>'
+            : '';
+        document.getElementById('orderTotal').innerHTML = 'Estimated Total: <span>$' + total.toFixed(2) + '</span>' + pendingNote;
     }
 
     // ── FORM SUBMIT ───────────────────────────────────────────────────────────
@@ -988,6 +1201,10 @@
             var pricing = priceEl.value;
             if (!product || !qty) continue;
             var itemTotal = 0, pricingDisplay = pricing;
+            if (product.tbd) {
+                orderItems.push({ product: product.name, formation: formationNames(product), quantity: qty, pricing: pricing + ' pricing — PRICE TBD', itemTotal: 0, tbd: true });
+                continue;
+            }
             if (!isSnap) {
                 if (product.hasSizes) {
                     var sizeEl = rows[r].querySelector('select[name="size"]');
@@ -1002,7 +1219,7 @@
                     itemTotal = pricing === 'individual' || product.noBulk ? product.individual * qty : product.bulk * qty;
                 }
             }
-            orderItems.push({ product: selEl.value, quantity: qty, pricing: pricingDisplay, itemTotal: itemTotal });
+            orderItems.push({ product: selEl.value, formation: formationNames(product), quantity: qty, pricing: pricingDisplay, itemTotal: itemTotal, milperas: isMilperas(product) });
         }
         if (orderItems.length === 0) { showMsg('error', 'Please add at least one product to your order.'); return; }
 
@@ -1020,16 +1237,21 @@
             '- Phone: ' + (tempData.get('phone') || 'N/A'),
             '', 'ORDER DETAILS:'
         ];
-        var grandTotal = 0;
+        var grandTotal = 0, hasMilperas = false, tbdCount = 0;
         for (var i = 0; i < orderItems.length; i++) {
             var pricingLabel = orderItems[i].pricing === 'individual' ? 'individual pricing' : orderItems[i].pricing === 'bulk' ? 'bulk pricing' : orderItems[i].pricing;
-            emailLines.push('- ' + orderItems[i].product + ': ' + orderItems[i].quantity + ' units (' + pricingLabel + ') - $' + orderItems[i].itemTotal.toFixed(2));
+            var amount = orderItems[i].tbd ? 'TBD' : '$' + orderItems[i].itemTotal.toFixed(2);
+            emailLines.push('- ' + orderItems[i].product + ' [' + orderItems[i].formation + ']: ' + orderItems[i].quantity + ' units (' + pricingLabel + ') - ' + amount);
             grandTotal += orderItems[i].itemTotal;
+            if (orderItems[i].milperas) hasMilperas = true;
+            if (orderItems[i].tbd) tbdCount++;
         }
         if (tempData.get('customItems')) emailLines.push('', 'CUSTOM ITEMS:', tempData.get('customItems'));
         emailLines.push('', 'DELIVERY:', '- Method: ' + (tempData.get('deliveryMethod') || ''), '- Preferred Date: ' + (tempData.get('preferredDate') || 'N/A'), '- Address: ' + (tempData.get('address') || 'N/A'));
         emailLines.push('', 'SPECIAL REQUESTS:', (tempData.get('specialRequests') || 'None'));
         emailLines.push('', 'ESTIMATED TOTAL: $' + (isSnap ? '0.00 (SNAP SPECIAL)' : grandTotal.toFixed(2)));
+        if (tbdCount) emailLines.push('NOTE: ' + tbdCount + ' item(s) have no price set yet and are excluded from the total above.');
+        if (hasMilperas) emailLines.push('NOTE: Order includes Tierras Milperas crops - four-day turnaround applies (e.g. Tuesday night cutoff for Saturday delivery).');
         emailLines.push('', 'Please confirm this order and coordinate pickup/delivery details.', '', 'Thank you for supporting territorial markets and the Coalición de Pequeños Agricultores!');
         var emailBody = emailLines.join('\n');
         document.getElementById('orderDataField').value = emailBody;
@@ -1071,7 +1293,7 @@
     }
 
     // ── INIT ──────────────────────────────────────────────────────────────────
-    renderProducts(null);
+    applyFilters();
     addOrderItem(null);
 
     // Check for submission redirect
