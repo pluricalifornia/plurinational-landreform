@@ -569,177 +569,14 @@
     });
 
     // ── FORMATIONS ───────────────────────────────────────────────────
-    var FORMATIONS = {
-        coalicion: { short: 'Coalici\u00f3n',      full: 'Coalici\u00f3n de Peque\u00f1os Agricultores' },
-        milperas:  { short: 'Tierras Milperas', full: 'Tierras Milperas' },
-        raices:    { short: 'Ra\u00edces Nuevas',    full: 'Ra\u00edces Nuevas / Rooted Roots Cooperative' },
-        tbc:       { short: 'Formation TBC',    full: 'Supplying formation to be confirmed' }
-    };
+    var FORMATIONS = {};
     var MILPERAS_LEAD = 'Tierras Milperas \u2014 order four days ahead (Tue night \u2192 Sat delivery)';
 
     // ── PRODUCTS ──────────────────────────────────────────────────────
+    // FORMATIONS and products loaded from products.json at startup (see INIT).
     // tbd: true       → price not yet set; excluded from the estimated total
     // provisional:true → price carried over from a comparable item, needs confirming
-    var products = [
-        // ── VEGETABLES ──
-        { name: "Broccoli", category: "vegetables", formations: ["raices"],
-          individual: 3.00, unit: "lb", bulk: 25.00, bulkQty: 12 },
-        { name: "Broccolini", category: "vegetables", formations: ["coalicion","raices"],
-          individual: 3.50, unit: "lb", bulk: 28.00, bulkQty: 12 },
-        { name: "White Cauliflower", category: "vegetables", formations: ["coalicion"],
-          individual: 3.00, unit: "lb", bulk: 50.00, bulkQty: 20 },
-        { name: "Celery", category: "vegetables", formations: ["coalicion","raices"],
-          individual: 2.50, unit: "pz", bulk: 40.00, bulkQty: 24,
-          note: "Supply is limited some weeks \u2014 order early for large quantities." },
-        { name: "Cucumber", category: "vegetables", formations: ["coalicion","raices"],
-          individual: 1.99, unit: "lb", bulk: 33.00, bulkQty: 22 },
-        { name: "Fennel", category: "vegetables", formations: ["raices"],
-          individual: 2.50, unit: "pz", bulk: 40.00, bulkQty: 24 },
-        { name: "Leeks", category: "vegetables", formations: ["coalicion","raices"],
-          individual: 2.50, unit: "pz", bulk: 36.00, bulkQty: 24 },
-        { name: "(Peeled) Nopales", category: "vegetables", formations: ["raices"],
-          individual: 4.50, unit: "lb", bulk: 100.00, bulkQty: 25 },
-        { name: "Sweet Corn", category: "vegetables", formations: ["coalicion"],
-          individual: 1.25, unit: "pz", bulk: 48.00, bulkQty: 48 },
-        { name: "Maize Mexicano (Dent)", category: "vegetables", formations: ["milperas"], tbd: true,
-          individual: 0, unit: "pz", bulk: 0, bulkQty: 48,
-          note: "Cacahuazintle \u2014 Mexican dent corn, grown from seed the milperas keep themselves." },
-        { name: "Roma Tomatoes", category: "vegetables", formations: ["coalicion","raices"],
-          individual: 2.50, unit: "lb", bulk: 20.00, bulkQty: 20 },
-        { name: "Napoli Roma Tomatoes", category: "vegetables", formations: ["milperas"],
-          individual: 2.75, unit: "lb", bulk: 25.00, bulkQty: 25,
-          note: "The Napoli variety \u2014 meatier and drier than a standard Roma, good for sauce." },
-        { name: "Early Girl Tomatoes", category: "vegetables", formations: ["coalicion","raices"],
-          individual: 2.50, unit: "lb", bulk: 40.00, bulkQty: 20 },
-        { name: "Cherry Tomatoes", category: "vegetables", formations: ["coalicion","raices"],
-          individual: 3.00, unit: "basket", bulk: 35.00, bulkQty: 12 },
-        { name: "Blush Cherry Tomatoes", category: "vegetables", formations: ["coalicion"],
-          individual: 3.00, unit: "basket", bulk: 35.00, bulkQty: 12 },
-        { name: "Sungold Cherry Tomatoes", category: "vegetables", formations: ["raices"],
-          individual: 4.00, unit: "lb", bulk: 30.00, bulkQty: 12,
-          note: "Sold by the pound rather than by basket." },
-        { name: "Heirloom Tomatoes", category: "vegetables", formations: ["coalicion","raices"],
-          individual: 3.50, unit: "lb", bulk: 30.00, bulkQty: 10 },
-        { name: "Tomatillos (Standard)", category: "vegetables", formations: ["coalicion"],
-          individual: 2.50, unit: "lb", bulk: 40.00, bulkQty: 20 },
-        { name: "Tomatillos Milperos", category: "vegetables", formations: ["coalicion","milperas"],
-          individual: 2.00, unit: "lb", bulk: 25.00, bulkQty: 20 },
-
-        // ── CHILES & PEPPERS ──
-        { name: "Jalape\u00f1os", category: "chiles", formations: ["coalicion","milperas","raices"],
-          individual: 2.50, unit: "lb", bulk: 15.00, bulkQty: 10 },
-        { name: "Serrano Pepper", category: "chiles", formations: ["milperas","raices"],
-          individual: 2.50, unit: "lb", bulk: 20.00, bulkQty: 10 },
-        { name: "Poblano Pepper", category: "chiles", formations: ["raices"],
-          individual: 2.50, unit: "lb", bulk: 22.00, bulkQty: 12 },
-        { name: "Green Bell Peppers", category: "chiles", formations: ["raices"],
-          individual: 2.50, unit: "lb", bulk: 22.00, bulkQty: 12 },
-        { name: "Red Bell Peppers", category: "chiles", formations: ["raices"],
-          individual: 3.00, unit: "lb", bulk: 24.00, bulkQty: 12 },
-        { name: "Mini Banana Peppers", category: "chiles", formations: ["coalicion"],
-          individual: 5.00, unit: "lb", bulk: 40.00, bulkQty: 10 },
-        { name: "Chiles de \u00c1rbol", category: "chiles", formations: ["milperas"], tbd: true,
-          individual: 0, unit: "lb", bulk: 0, bulkQty: 10 },
-        { name: "Chiles Chilacas", category: "chiles", formations: ["milperas"],
-          individual: 2.50, unit: "lb", bulk: 20.00, bulkQty: 10 },
-        { name: "Chiles G\u00fceros", category: "chiles", formations: ["milperas"], tbd: true,
-          individual: 0, unit: "lb", bulk: 0, bulkQty: 10 },
-
-        // ── SQUASHES ──
-        { name: "Green Zucchini", category: "squashes", formations: ["coalicion"],
-          individual: 1.99, unit: "lb", bulk: 33.00, bulkQty: 22 },
-        { name: "Summer Squash", category: "squashes", formations: ["raices"], provisional: true,
-          individual: 1.99, unit: "lb", bulk: 33.00, bulkQty: 22 },
-        { name: "Grey Mexican Squash", category: "squashes", formations: ["raices"],
-          individual: 2.50, unit: "lb", bulk: 11.00, bulkQty: 12,
-          note: "Also sold as gray zucchini \u2014 pale, firm, and good for calabacitas." },
-
-        // ── GREENS ──
-        { name: "Cabbage (Green)", category: "greens", formations: ["coalicion","raices"],
-          individual: 3.00, unit: "pz", bulk: 35.00, bulkQty: 35, bulkUnit: "lb", conversionRate: 35 / 12 },
-        { name: "Cabbage (Red)", category: "greens", formations: ["coalicion"],
-          individual: 3.00, unit: "pz", bulk: 35.00, bulkQty: 35, bulkUnit: "lb", conversionRate: 35 / 12 },
-        { name: "Chard", category: "greens", formations: ["coalicion"],
-          individual: 2.50, unit: "bunch", bulk: 45.00, bulkQty: 24 },
-        { name: "Rainbow Chard", category: "greens", formations: ["coalicion","raices"], provisional: true,
-          individual: 2.50, unit: "bunch", bulk: 45.00, bulkQty: 24 },
-        { name: "Kale (Lacinato/Dino)", category: "greens", formations: ["coalicion"],
-          individual: 2.50, unit: "bunch", bulk: 45.00, bulkQty: 24 },
-        { name: "Kale (Red Curly)", category: "greens", formations: ["coalicion"],
-          individual: 2.50, unit: "bunch", bulk: 45.00, bulkQty: 24 },
-        { name: "Kale (Green Curly)", category: "greens", formations: ["raices"],
-          individual: 2.50, unit: "bunch", bulk: 11.00, bulkQty: 12 },
-        { name: "Romaine Lettuce", category: "greens", formations: ["raices"],
-          individual: 2.50, unit: "head", bulk: 13.00, bulkQty: 12 },
-        { name: "Red Leaf Lettuce", category: "greens", formations: ["raices"],
-          individual: 2.50, unit: "head", bulk: 13.00, bulkQty: 12 },
-
-        // ── ROOTS & ONIONS ──
-        { name: "Red Potatoes", category: "roots", formations: ["coalicion","raices"],
-          individual: 2.00, unit: "lb", bulk: 40.00, bulkQty: 25 },
-        { name: "Yellow Potatoes", category: "roots", formations: ["coalicion"],
-          individual: 2.00, unit: "lb", bulk: 40.00, bulkQty: 25 },
-        { name: "Fingerling Potatoes", category: "roots", formations: ["raices"],
-          individual: 1.50, unit: "lb", bulk: 31.25, bulkQty: 25 },
-        { name: "Yellow Onions", category: "roots", formations: ["coalicion","milperas"],
-          individual: 1.50, unit: "lb", bulk: 25.00, bulkQty: 20 },
-        { name: "Red Onion", category: "roots", formations: ["coalicion"],
-          individual: 1.50, unit: "lb", bulk: 25.00, bulkQty: 20 },
-        { name: "Green Onion", category: "roots", formations: ["raices"],
-          individual: 1.00, unit: "bunch", bulk: 10.00, bulkQty: 12 },
-        { name: "Carrots", category: "roots", formations: ["coalicion"],
-          individual: 2.50, unit: "bunch", bulk: 45.00, bulkQty: 24 },
-
-        // ── FRUITS ──
-        { name: "Strawberries (1-lb Clamshell)", category: "fruits", formations: ["coalicion"],
-          individual: 5.00, unit: "basket", bulk: 35.00, bulkQty: 8 },
-        { name: "Strawberries (Open-air basket)", category: "fruits", formations: ["coalicion"],
-          individual: 3.50, unit: "basket", bulk: 35.00, bulkQty: 12 },
-        { name: "Blackberries", category: "fruits", formations: ["raices"],
-          individual: 4.50, unit: "basket", bulk: 40.00, bulkQty: 12 },
-        { name: "Raspberries", category: "fruits", formations: ["raices"],
-          individual: 4.50, unit: "basket", bulk: 40.00, bulkQty: 12 },
-        { name: "Watermelons", category: "fruits", formations: ["milperas"], tbd: true,
-          individual: 0, unit: "pz", bulk: 0, bulkQty: 25 },
-        { name: "Lemons", category: "fruits", formations: ["raices"],
-          individual: 2.50, unit: "lb", bulk: 27.00, bulkQty: 12 },
-        { name: "Hass Avocados", category: "fruits", formations: ["raices"],
-          individual: 2.50, unit: "pz", noBulk: true },
-
-        // ── HERBS ──
-        { name: "Cilantro", category: "herbs", formations: ["coalicion"],
-          individual: 1.50, unit: "bunch", bulk: 30.00, bulkQty: 30 },
-        { name: "Parsley", category: "herbs", formations: ["coalicion"],
-          individual: 1.50, unit: "bunch", bulk: 30.00, bulkQty: 30 },
-        { name: "Garlic", category: "herbs", formations: ["coalicion"],
-          individual: 6.00, unit: "lb", bulk: 100.00, bulkQty: 20 },
-        { name: "Basil (Sweet)", category: "herbs", formations: ["coalicion"], provisional: true,
-          individual: 2.50, unit: "bunch", noBulk: true },
-
-        // ── SALSAS ──
-        { name: "Salsa Roja", category: "salsas", formations: ["tbc"], individual: 0, bulk: 0, bulkQty: 3, hasSizes: true,
-          sizes: [{size:"8 oz",individual:5,bulk:15},{size:"16 oz",individual:8,bulk:24},{size:"32 oz",individual:15,bulk:45},{size:"64 oz",individual:25,bulk:75}] },
-        { name: "Salsa Verde", category: "salsas", formations: ["tbc"], individual: 0, bulk: 0, bulkQty: 3, hasSizes: true,
-          sizes: [{size:"8 oz",individual:5,bulk:15},{size:"16 oz",individual:8,bulk:24},{size:"32 oz",individual:15,bulk:45},{size:"64 oz",individual:25,bulk:75}] },
-        { name: "Tomato Sauce", category: "salsas", formations: ["tbc"], individual: 0, bulk: 0, bulkQty: 3, hasSizes: true,
-          sizes: [{size:"16 oz",individual:8,bulk:24},{size:"32 oz",individual:15,bulk:45},{size:"64 oz",individual:25,bulk:75}] },
-
-        // ── FLOWERS ──
-        { name: "Campesina Mix (Strawflowers)", category: "flowers", formations: ["coalicion"],
-          individual: 5.00, unit: "bunch", noBulk: true },
-        { name: "Lavender", category: "flowers", formations: ["raices"],
-          individual: 7.00, unit: "bunch", bulk: 55.00, bulkQty: 10 },
-        { name: "Fresh Roselle (Jamaica/Hibiscus/Sorrel) Calyx", category: "flowers", formations: ["coalicion"],
-          individual: 10.00, unit: "lb", bulk: 80.00, bulkQty: 10 },
-
-        // ── MISC ──
-        { name: "Eggs", category: "misc", formations: ["coalicion"],
-          individual: 10.00, unit: "dozen", noBulk: true },
-        { name: "Honey (16 Oz.)", category: "misc", formations: ["coalicion"],
-          individual: 20.00, unit: "pz", noBulk: true },
-        { name: "Handmade Blue Corn Tortilla Packs", category: "misc", formations: ["tbc"],
-          individual: 10.00, unit: "dozen", noBulk: true }
-    ];
+    var products = [];
 
     // Build price strings from individual/bulk/bulkQty/unit to keep them consistent
     // Uses bulkUnit and conversionRate if bulk and individuals have different units
@@ -788,9 +625,6 @@
             price: prices.bulk * bulkAmt + prices.individual * indAmt
         };
     }
-    products.forEach(function(p) {
-        if (p.bulkUnit && !p.conversionRate) console.error(p.name + ': bulkUnit needs a conversionRate');
-    });
 
     function formationChips(p) {
         var html = '<div class="pc-chips">';
@@ -952,14 +786,6 @@
                 '<label>Quantity</label>' +
                 '<input type="number" name="quantity" min="1" value="1">' +
             '</div>' +
-            // '<div class="form-group" id="pricing-grp-' + id + '">' +
-            //     '<label>Pricing</label>' +
-            //     '<select name="pricing">' +
-            //         '<option value="">Select</option>' +
-            //         '<option value="individual">Individual</option>' +
-            //         '<option value="bulk">Bulk</option>' + // TODO: REMOVE PRICING OPTIONS
-            //     '</select>' +
-            // '</div>' +
             '<button type="button" class="remove-btn" data-id="' + id + '">✕ Remove</button>';
 
         document.getElementById('orderItemsList').appendChild(div);
@@ -975,7 +801,6 @@
         });
 
         // Wire pricing change
-        // div.querySelector('select[name="pricing"]').addEventListener('change', calculateTotal);
         div.querySelector('input[name="quantity"]').addEventListener('change', calculateTotal);
 
         // Preselect a product if requested
@@ -1083,21 +908,11 @@
         }
 
         // Update pricing group for salsa products
-        // var pricingGrp = document.getElementById('pricing-grp-' + id);  // TODO: REMOVE PRICING GROUPS
-        // var pricingGrp = document.getElementById('pricing-grp-' + id);  // TODO: REMOVE PRICING GROUPS
         var qtyGrp     = document.getElementById('qty-grp-' + id);
         // Label the (individual) unit
         var qtyUnit = product && product.unit ? (PLURAL[product.unit] || product.unit) : 'units';
         qtyGrp.querySelector('label').textContent = 'Qty (' + qtyUnit + ')';
         if (product && product.hasSizes) {
-            // pricingGrp.innerHTML =
-            //     '<label>Order Type</label>';
-            //      +
-            //     '<select name="pricing" id="pricing-sel-' + id + '">' +
-            //         '<option value="">Select type</option>' +
-            //         '<option value="individual">Individual</option>' +
-            //         '<option value="bulk">Bulk (3-packs)</option>' +
-            //     '</select>';
             // Add size group
             var sizeGrpId = 'size-grp-' + id;
             var existing = document.getElementById(sizeGrpId);
@@ -1106,26 +921,13 @@
                 sizeGrp.className = 'form-group';
                 sizeGrp.id = sizeGrpId;
                 sizeGrp.style.display = 'none';
-                qtyGrp.parentNode.insertBefore(sizeGrp, qtyGrp.nextSibling)
-                // pricingGrp.parentNode.insertBefore(sizeGrp, pricingGrp.nextSibling);
+                qtyGrp.parentNode.insertBefore(sizeGrp, qtyGrp.nextSibling);
             }
-            // var pricingSel = document.getElementById('pricing-sel-' + id);
-            // if (pricingSel) {
-            // qtyGrp.addEventListener('change', function() { updateSizeOptions(id); calculateTotal(); });
-            // }
             updateSizeOptions(id);
         } else {
             var oldSizeGrp = document.getElementById('size-grp-' + id);
             if (oldSizeGrp) oldSizeGrp.remove();
             var bulkOpt = product && product.noBulk ? '' : '<option value="bulk">Bulk</option>';
-            // pricingGrp.innerHTML =  // TODO: UPDATE INDIVIDUAL/BULK SELECTION
-            //     '<label>Pricing</label>' +
-            //     '<select name="pricing">' +
-            //         '<option value="">Select</option>' +
-            //         '<option value="individual">Individual</option>' +
-            //         bulkOpt +
-            //     '</select>';
-            // pricingGrp.querySelector('select').addEventListener('change', calculateTotal);
         }
         qtyGrp.querySelector('input').addEventListener('change', calculateTotal);
         calculateTotal();
@@ -1133,30 +935,21 @@
 
     function updateSizeOptions(id) {
         var item     = document.getElementById('oi-' + id);
-        // var pricingSel = document.getElementById('pricing-sel-' + id);
         var sizeGrp  = document.getElementById('size-grp-' + id);
-        // if (!item || !pricingSel || !sizeGrp) return;
         if (!item || !sizeGrp) return;
         var selEl    = document.getElementById('ps-sel-' + id);
         var pname    = selEl ? selEl.value : '';
         var product  = products.filter(function(p) { return p.name === pname; })[0];
-        // var ptype    = pricingSel.value;
-        // if (!product || !product.hasSizes || !ptype) return;
         if (!product || !product.hasSizes) return;
         var opts = '<option value="">Select size</option>';
         for (var s = 0; s < product.sizes.length; s++) {
             var sz = product.sizes[s];
-            // var label = ptype === 'individual'
             var label = sz.size;
-                // ? sz.size + ' — $' + sz.price.toFixed(2)
-                // : sz.size + ' — $' + (sz.price * sz.bulkQty).toFixed(2) + ' (' + sz.bulkQty + '-pack)';
             opts += '<option value="' + sz.size + '">' + label + '</option>';
         }
         sizeGrp.innerHTML = '<label>Size</label><select name="size">' + opts + '</select>';
         sizeGrp.querySelector('select').addEventListener('change', calculateTotal);
         sizeGrp.style.display = 'flex';
-        // document.getElementById('qty-grp-' + id).querySelector('label').textContent =
-        //     ptype === 'individual' ? 'Qty (units)' : 'Qty (3-packs)';
         document.getElementById('qty-grp-' + id).querySelector('label').textContent = 'Quantity';
     }
 
@@ -1387,8 +1180,26 @@
     }
 
     // ── INIT ──────────────────────────────────────────────────────────────────
-    applyFilters();
-    addOrderItem(null);
+    // Bump ?v= after editing products.json so browsers don't use a cached copy
+    fetch('products.json?v=2026-10-10')
+        .then(function(res) {
+            if (!res.ok) throw new Error('products.json: HTTP ' + res.status);
+            return res.json();
+        })
+        .then(function(data) {
+            FORMATIONS = data.formations;
+            products = data.products;
+            products.forEach(function(p) {
+                if (p.bulkUnit && !p.conversionRate) console.error(p.name + ': bulkUnit needs a conversionRate');
+            });
+            applyFilters();
+            addOrderItem(null);
+        })
+        .catch(function(err) {
+            console.error(err);
+            document.getElementById('productsGrid').innerHTML =
+                '<p style="color:#888;padding:2rem">Products could not be loaded. Please refresh the page, or email <a href="mailto:pluricalifornia@gmail.com">pluricalifornia@gmail.com</a> to order.</p>';
+        });
 
     // Check for submission redirect
     if (window.location.search.indexOf('submitted=true') > -1) {
