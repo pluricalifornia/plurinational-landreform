@@ -192,6 +192,8 @@
         .ps-item small { color: rgba(255,255,255,0.45); font-size: 0.82rem; }
         .ps-info { display: none; margin-top: 0.5rem; padding: 0.6rem 0.85rem; background: rgba(255,255,255,0.06); border-left: 3px solid var(--orange); font-size: 0.88rem; color: rgba(255,255,255,0.7); line-height: 1.5; }
         .ps-info.open { display: block; }
+        .bulk-hint:empty { display: none; }
+        .bulk-hint { margin-top: 0.4rem; font-size: 0.85rem; color: var(--orange); }
 
         /* FORM ACTIONS */
         .form-actions { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1.75rem 2rem; background: rgba(255,255,255,0.04); border-left: 4px solid var(--orange); }
@@ -581,163 +583,214 @@
     var products = [
         // ── VEGETABLES ──
         { name: "Broccoli", category: "vegetables", formations: ["raices"],
-          individual: 3.00, indDisplay: "$3.00/lb", bulk: 25.00, bulkDisplay: "$25.00 (12 lbs \u00b7 $2.08/lb)" },
+          individual: 3.00, unit: "lb", bulk: 25.00, bulkQty: 12 },
         { name: "Broccolini", category: "vegetables", formations: ["coalicion","raices"],
-          individual: 3.50, indDisplay: "$3.50/lb", bulk: 28.00, bulkDisplay: "$28.00 (12 lbs \u00b7 $2.33/lb)" },
+          individual: 3.50, unit: "lb", bulk: 28.00, bulkQty: 12 },
         { name: "White Cauliflower", category: "vegetables", formations: ["coalicion"],
-          individual: 3.00, indDisplay: "$3.00/lb", bulk: 50.00, bulkDisplay: "$50.00 (20 lb \u00b7 $2.50/lb)" },
+          individual: 3.00, unit: "lb", bulk: 50.00, bulkQty: 20 },
         { name: "Celery", category: "vegetables", formations: ["coalicion","raices"],
-          individual: 2.50, indDisplay: "$2.50/pz", bulk: 40.00, bulkDisplay: "$40.00 (24 pz \u00b7 $1.67/pz)",
+          individual: 2.50, unit: "pz", bulk: 40.00, bulkQty: 24,
           note: "Supply is limited some weeks \u2014 order early for large quantities." },
         { name: "Cucumber", category: "vegetables", formations: ["coalicion","raices"],
-          individual: 1.99, indDisplay: "$1.99/lb", bulk: 33.00, bulkDisplay: "$33.00 (22 lbs \u00b7 $1.50/lb)" },
+          individual: 1.99, unit: "lb", bulk: 33.00, bulkQty: 22 },
         { name: "Fennel", category: "vegetables", formations: ["raices"],
-          individual: 2.50, indDisplay: "$2.50/pz", bulk: 40.00, bulkDisplay: "$40.00 (24 pz \u00b7 $1.67/pz)" },
+          individual: 2.50, unit: "pz", bulk: 40.00, bulkQty: 24 },
         { name: "Leeks", category: "vegetables", formations: ["coalicion","raices"],
-          individual: 2.50, indDisplay: "$2.50/pz", bulk: 36.00, bulkDisplay: "$36.00 (24 pz \u00b7 $1.50/pz)" },
+          individual: 2.50, unit: "pz", bulk: 36.00, bulkQty: 24 },
         { name: "(Peeled) Nopales", category: "vegetables", formations: ["raices"],
-          individual: 4.50, indDisplay: "$4.50/lb", bulk: 100.00, bulkDisplay: "$100 (25 lbs \u00b7 $4.00/lb)" },
+          individual: 4.50, unit: "lb", bulk: 100.00, bulkQty: 25 },
         { name: "Sweet Corn", category: "vegetables", formations: ["coalicion"],
-          individual: 1.25, indDisplay: "$1.25/pz", bulk: 48.00, bulkDisplay: "$48.00 (48 pz \u00b7 $1.00/pz)" },
+          individual: 1.25, unit: "pz", bulk: 48.00, bulkQty: 48 },
         { name: "Maize Mexicano (Dent)", category: "vegetables", formations: ["milperas"], tbd: true,
-          individual: 0, indDisplay: "TBD", bulk: 0, bulkDisplay: "TBD (48 pz)",
+          individual: 0, unit: "pz", bulk: 0, bulkQty: 48,
           note: "Cacahuazintle \u2014 Mexican dent corn, grown from seed the milperas keep themselves." },
         { name: "Roma Tomatoes", category: "vegetables", formations: ["coalicion","raices"],
-          individual: 2.50, indDisplay: "$2.50/lb", bulk: 20.00, bulkDisplay: "$20.00 (20 lbs \u00b7 $1.00/lb)" },
+          individual: 2.50, unit: "lb", bulk: 20.00, bulkQty: 20 },
         { name: "Napoli Roma Tomatoes", category: "vegetables", formations: ["milperas"],
-          individual: 2.75, indDisplay: "$2.75/lb", bulk: 25.00, bulkDisplay: "$25.00 (25 lbs \u00b7 $1.00/lb)",
+          individual: 2.75, unit: "lb", bulk: 25.00, bulkQty: 25,
           note: "The Napoli variety \u2014 meatier and drier than a standard Roma, good for sauce." },
         { name: "Early Girl Tomatoes", category: "vegetables", formations: ["coalicion","raices"],
-          individual: 2.50, indDisplay: "$2.50/lb", bulk: 40.00, bulkDisplay: "$40.00 (20 lbs \u00b7 $2.00/lb)" },
+          individual: 2.50, unit: "lb", bulk: 40.00, bulkQty: 20 },
         { name: "Cherry Tomatoes", category: "vegetables", formations: ["coalicion","raices"],
-          individual: 3.00, indDisplay: "$3.00/basket", bulk: 35.00, bulkDisplay: "$35.00 (12 baskets \u00b7 $2.92/basket)" },
+          individual: 3.00, unit: "basket", bulk: 35.00, bulkQty: 12 },
         { name: "Blush Cherry Tomatoes", category: "vegetables", formations: ["coalicion"],
-          individual: 3.00, indDisplay: "$3.00/basket", bulk: 35.00, bulkDisplay: "$35.00 (12 baskets \u00b7 $2.92/basket)" },
+          individual: 3.00, unit: "basket", bulk: 35.00, bulkQty: 12 },
         { name: "Sungold Cherry Tomatoes", category: "vegetables", formations: ["raices"],
-          individual: 4.00, indDisplay: "$4.00/lb", bulk: 30.00, bulkDisplay: "$30.00 (12 lbs \u00b7 $2.50/lb)",
+          individual: 4.00, unit: "lb", bulk: 30.00, bulkQty: 12,
           note: "Sold by the pound rather than by basket." },
         { name: "Heirloom Tomatoes", category: "vegetables", formations: ["coalicion","raices"],
-          individual: 3.50, indDisplay: "$3.50/lb", bulk: 30.00, bulkDisplay: "$30.00 (10 lbs \u00b7 $3.00/lb)" },
+          individual: 3.50, unit: "lb", bulk: 30.00, bulkQty: 10 },
         { name: "Tomatillos (Standard)", category: "vegetables", formations: ["coalicion"],
-          individual: 2.50, indDisplay: "$2.50/lb", bulk: 40.00, bulkDisplay: "$40.00 (20 lbs \u00b7 $2.00/lb)" },
+          individual: 2.50, unit: "lb", bulk: 40.00, bulkQty: 20 },
         { name: "Tomatillos Milperos", category: "vegetables", formations: ["coalicion","milperas"],
-          individual: 2.00, indDisplay: "$2.00/lb", bulk: 25.00, bulkDisplay: "$25.00 (20 lbs \u00b7 $1.25/lb)" },
+          individual: 2.00, unit: "lb", bulk: 25.00, bulkQty: 20 },
 
         // ── CHILES & PEPPERS ──
         { name: "Jalape\u00f1os", category: "chiles", formations: ["coalicion","milperas","raices"],
-          individual: 2.50, indDisplay: "$2.50/lb", bulk: 15.00, bulkDisplay: "$15.00 (10 lbs \u00b7 $1.50/lb)" },
+          individual: 2.50, unit: "lb", bulk: 15.00, bulkQty: 10 },
         { name: "Serrano Pepper", category: "chiles", formations: ["milperas","raices"],
-          individual: 2.50, indDisplay: "$2.50/lb", bulk: 20.00, bulkDisplay: "$20.00 (10 lbs \u00b7 $2.00/lb)" },
+          individual: 2.50, unit: "lb", bulk: 20.00, bulkQty: 10 },
         { name: "Poblano Pepper", category: "chiles", formations: ["raices"],
-          individual: 2.50, indDisplay: "$2.50/lb", bulk: 22.00, bulkDisplay: "$22.00 (12 lbs \u00b7 $1.83/lb)" },
+          individual: 2.50, unit: "lb", bulk: 22.00, bulkQty: 12 },
         { name: "Green Bell Peppers", category: "chiles", formations: ["raices"],
-          individual: 2.50, indDisplay: "$2.50/lb", bulk: 22.00, bulkDisplay: "$22.00 (12 lbs \u00b7 $1.83/lb)" },
+          individual: 2.50, unit: "lb", bulk: 22.00, bulkQty: 12 },
         { name: "Red Bell Peppers", category: "chiles", formations: ["raices"],
-          individual: 3.00, indDisplay: "$3.00/lb", bulk: 24.00, bulkDisplay: "$24.00 (12 lbs \u00b7 $2.00/lb)" },
+          individual: 3.00, unit: "lb", bulk: 24.00, bulkQty: 12 },
         { name: "Mini Banana Peppers", category: "chiles", formations: ["coalicion"],
-          individual: 5.00, indDisplay: "$5.00/lb", bulk: 40.00, bulkDisplay: "$40.00 (10 lbs \u00b7 $4.00/lb)" },
+          individual: 5.00, unit: "lb", bulk: 40.00, bulkQty: 10 },
         { name: "Chiles de \u00c1rbol", category: "chiles", formations: ["milperas"], tbd: true,
-          individual: 0, indDisplay: "TBD", bulk: 0, bulkDisplay: "TBD (10 lbs)" },
+          individual: 0, unit: "lb", bulk: 0, bulkQty: 10 },
         { name: "Chiles Chilacas", category: "chiles", formations: ["milperas"],
-          individual: 2.50, indDisplay: "$2.50/lb", bulk: 20.00, bulkDisplay: "$20.00 (10 lbs \u00b7 $2.00/lb)" },
+          individual: 2.50, unit: "lb", bulk: 20.00, bulkQty: 10 },
         { name: "Chiles G\u00fceros", category: "chiles", formations: ["milperas"], tbd: true,
-          individual: 0, indDisplay: "TBD", bulk: 0, bulkDisplay: "TBD (10 lbs)" },
+          individual: 0, unit: "lb", bulk: 0, bulkQty: 10 },
 
         // ── SQUASHES ──
         { name: "Green Zucchini", category: "squashes", formations: ["coalicion"],
-          individual: 1.99, indDisplay: "$1.99/lb", bulk: 33.00, bulkDisplay: "$33.00 (22 lbs \u00b7 $1.50/lb)" },
+          individual: 1.99, unit: "lb", bulk: 33.00, bulkQty: 22 },
         { name: "Summer Squash", category: "squashes", formations: ["raices"], provisional: true,
-          individual: 1.99, indDisplay: "$1.99/lb", bulk: 33.00, bulkDisplay: "$33.00 (22 lbs \u00b7 $1.50/lb)" },
+          individual: 1.99, unit: "lb", bulk: 33.00, bulkQty: 22 },
         { name: "Grey Mexican Squash", category: "squashes", formations: ["raices"],
-          individual: 2.50, indDisplay: "$2.50/lb", bulk: 11.00, bulkDisplay: "$11.00 (12 lbs \u00b7 $0.92/lb)",
+          individual: 2.50, unit: "lb", bulk: 11.00, bulkQty: 12,
           note: "Also sold as gray zucchini \u2014 pale, firm, and good for calabacitas." },
 
         // ── GREENS ──
         { name: "Cabbage (Green)", category: "greens", formations: ["coalicion","raices"],
-          individual: 3.00, indDisplay: "$3.00/pz", bulk: 35.00, bulkDisplay: "$35.00 (35 lb \u00b7 $1.00/lb)" },
+          individual: 3.00, unit: "pz", bulk: 35.00, bulkQty: 35, bulkUnit: "lb", conversionRate: 35 / 12 },
         { name: "Cabbage (Red)", category: "greens", formations: ["coalicion"],
-          individual: 3.00, indDisplay: "$3.00/pz", bulk: 35.00, bulkDisplay: "$35.00 (35 lb \u00b7 $1.00/lb)" },
+          individual: 3.00, unit: "pz", bulk: 35.00, bulkQty: 35, bulkUnit: "lb", conversionRate: 35 / 12 },
         { name: "Chard", category: "greens", formations: ["coalicion"],
-          individual: 2.50, indDisplay: "$2.50/bunch", bulk: 45.00, bulkDisplay: "$45.00 (24 bunch \u00b7 $1.88/bunch)" },
+          individual: 2.50, unit: "bunch", bulk: 45.00, bulkQty: 24 },
         { name: "Rainbow Chard", category: "greens", formations: ["coalicion","raices"], provisional: true,
-          individual: 2.50, indDisplay: "$2.50/bunch", bulk: 45.00, bulkDisplay: "$45.00 (24 bunch \u00b7 $1.88/bunch)" },
+          individual: 2.50, unit: "bunch", bulk: 45.00, bulkQty: 24 },
         { name: "Kale (Lacinato/Dino)", category: "greens", formations: ["coalicion"],
-          individual: 2.50, indDisplay: "$2.50/bunch", bulk: 45.00, bulkDisplay: "$45.00 (24 bunch \u00b7 $1.88/bunch)" },
+          individual: 2.50, unit: "bunch", bulk: 45.00, bulkQty: 24 },
         { name: "Kale (Red Curly)", category: "greens", formations: ["coalicion"],
-          individual: 2.50, indDisplay: "$2.50/bunch", bulk: 45.00, bulkDisplay: "$45.00 (24 bunch \u00b7 $1.88/bunch)" },
+          individual: 2.50, unit: "bunch", bulk: 45.00, bulkQty: 24 },
         { name: "Kale (Green Curly)", category: "greens", formations: ["raices"],
-          individual: 2.50, indDisplay: "$2.50/bunch", bulk: 11.00, bulkDisplay: "$11.00 (12 bunches \u00b7 $0.92/bunch)" },
+          individual: 2.50, unit: "bunch", bulk: 11.00, bulkQty: 12 },
         { name: "Romaine Lettuce", category: "greens", formations: ["raices"],
-          individual: 2.50, indDisplay: "$2.50/head", bulk: 13.00, bulkDisplay: "$13.00 (12 heads \u00b7 $1.08/head)" },
+          individual: 2.50, unit: "head", bulk: 13.00, bulkQty: 12 },
         { name: "Red Leaf Lettuce", category: "greens", formations: ["raices"],
-          individual: 2.50, indDisplay: "$2.50/head", bulk: 13.00, bulkDisplay: "$13.00 (12 heads \u00b7 $1.08/head)" },
+          individual: 2.50, unit: "head", bulk: 13.00, bulkQty: 12 },
 
         // ── ROOTS & ONIONS ──
         { name: "Red Potatoes", category: "roots", formations: ["coalicion","raices"],
-          individual: 2.00, indDisplay: "$2.00/lb", bulk: 40.00, bulkDisplay: "$40.00 (25 lbs \u00b7 $1.60/lb)" },
+          individual: 2.00, unit: "lb", bulk: 40.00, bulkQty: 25 },
         { name: "Yellow Potatoes", category: "roots", formations: ["coalicion"],
-          individual: 2.00, indDisplay: "$2.00/lb", bulk: 40.00, bulkDisplay: "$40.00 (25 lbs \u00b7 $1.60/lb)" },
+          individual: 2.00, unit: "lb", bulk: 40.00, bulkQty: 25 },
         { name: "Fingerling Potatoes", category: "roots", formations: ["raices"],
-          individual: 1.50, indDisplay: "$1.50/lb", bulk: 31.25, bulkDisplay: "$31.25 (25 lbs \u00b7 $1.25/lb)" },
+          individual: 1.50, unit: "lb", bulk: 31.25, bulkQty: 25 },
         { name: "Yellow Onions", category: "roots", formations: ["coalicion","milperas"],
-          individual: 1.50, indDisplay: "$1.50/lb", bulk: 25.00, bulkDisplay: "$25.00 (20 lb \u00b7 $1.25/lb)" },
+          individual: 1.50, unit: "lb", bulk: 25.00, bulkQty: 20 },
         { name: "Red Onion", category: "roots", formations: ["coalicion"],
-          individual: 1.50, indDisplay: "$1.50/lb", bulk: 25.00, bulkDisplay: "$25.00 (20 lb \u00b7 $1.25/lb)" },
+          individual: 1.50, unit: "lb", bulk: 25.00, bulkQty: 20 },
         { name: "Green Onion", category: "roots", formations: ["raices"],
-          individual: 1.00, indDisplay: "$1.00/bunch", bulk: 10.00, bulkDisplay: "$10.00 (12 bunches \u00b7 $0.83/bunch)" },
+          individual: 1.00, unit: "bunch", bulk: 10.00, bulkQty: 12 },
         { name: "Carrots", category: "roots", formations: ["coalicion"],
-          individual: 2.50, indDisplay: "$2.50/bunch", bulk: 45.00, bulkDisplay: "$45.00 (24 bunch \u00b7 $1.88/bunch)" },
+          individual: 2.50, unit: "bunch", bulk: 45.00, bulkQty: 24 },
 
         // ── FRUITS ──
         { name: "Strawberries (1-lb Clamshell)", category: "fruits", formations: ["coalicion"],
-          individual: 5.00, indDisplay: "$5.00/basket", bulk: 35.00, bulkDisplay: "$35.00 (8 \u00d7 1-lb baskets \u00b7 $4.38/basket)" },
+          individual: 5.00, unit: "basket", bulk: 35.00, bulkQty: 8 },
         { name: "Strawberries (Open-air basket)", category: "fruits", formations: ["coalicion"],
-          individual: 3.50, indDisplay: "$3.50/basket", bulk: 35.00, bulkDisplay: "$35.00 (12 basket \u00b7 $2.92/basket)" },
+          individual: 3.50, unit: "basket", bulk: 35.00, bulkQty: 12 },
         { name: "Blackberries", category: "fruits", formations: ["raices"],
-          individual: 4.50, indDisplay: "$4.50/basket", bulk: 40.00, bulkDisplay: "$40.00 (12 baskets \u00b7 $3.33/basket)" },
+          individual: 4.50, unit: "basket", bulk: 40.00, bulkQty: 12 },
         { name: "Raspberries", category: "fruits", formations: ["raices"],
-          individual: 4.50, indDisplay: "$4.50/basket", bulk: 40.00, bulkDisplay: "$40.00 (12 baskets \u00b7 $3.33/basket)" },
+          individual: 4.50, unit: "basket", bulk: 40.00, bulkQty: 12 },
         { name: "Watermelons", category: "fruits", formations: ["milperas"], tbd: true,
-          individual: 0, indDisplay: "TBD", bulk: 0, bulkDisplay: "TBD (25 pz)" },
+          individual: 0, unit: "pz", bulk: 0, bulkQty: 25 },
         { name: "Lemons", category: "fruits", formations: ["raices"],
-          individual: 2.50, indDisplay: "$2.50/lb", bulk: 27.00, bulkDisplay: "$27.00 (12 lbs \u00b7 $2.25/lb)" },
+          individual: 2.50, unit: "lb", bulk: 27.00, bulkQty: 12 },
         { name: "Hass Avocados", category: "fruits", formations: ["raices"],
-          individual: 2.50, indDisplay: "$2.50/pz", noBulk: true },
+          individual: 2.50, unit: "pz", noBulk: true },
 
         // ── HERBS ──
         { name: "Cilantro", category: "herbs", formations: ["coalicion"],
-          individual: 1.50, indDisplay: "$1.50/bunch", bulk: 30.00, bulkDisplay: "$30.00 (30 bunch \u00b7 $1.00/bunch)" },
+          individual: 1.50, unit: "bunch", bulk: 30.00, bulkQty: 30 },
         { name: "Parsley", category: "herbs", formations: ["coalicion"],
-          individual: 1.50, indDisplay: "$1.50/bunch", bulk: 30.00, bulkDisplay: "$30.00 (30 bunch \u00b7 $1.00/bunch)" },
+          individual: 1.50, unit: "bunch", bulk: 30.00, bulkQty: 30 },
         { name: "Garlic", category: "herbs", formations: ["coalicion"],
-          individual: 6.00, indDisplay: "$6.00/lb", bulk: 100.00, bulkDisplay: "$100.00 (20 lb \u00b7 $5.00/lb)" },
+          individual: 6.00, unit: "lb", bulk: 100.00, bulkQty: 20 },
         { name: "Basil (Sweet)", category: "herbs", formations: ["coalicion"], provisional: true,
-          individual: 2.50, indDisplay: "$2.50/bunch", noBulk: true },
+          individual: 2.50, unit: "bunch", noBulk: true },
 
         // ── SALSAS ──
-        { name: "Salsa Roja", category: "salsas", formations: ["tbc"], individual: 0, indDisplay: "By Size", bulk: 0, bulkDisplay: "See sizes", hasSizes: true,
-          sizes: [{size:"8 oz",price:5},{size:"16 oz",price:8},{size:"32 oz",price:15},{size:"64 oz",price:25}] },
-        { name: "Salsa Verde", category: "salsas", formations: ["tbc"], individual: 0, indDisplay: "By Size", bulk: 0, bulkDisplay: "See sizes", hasSizes: true,
-          sizes: [{size:"8 oz",price:5},{size:"16 oz",price:8},{size:"32 oz",price:15},{size:"64 oz",price:25}] },
-        { name: "Tomato Sauce", category: "salsas", formations: ["tbc"], individual: 0, indDisplay: "By Size", bulk: 0, bulkDisplay: "See sizes", hasSizes: true,
-          sizes: [{size:"16 oz",price:8},{size:"32 oz",price:15},{size:"64 oz",price:25}] },
+        { name: "Salsa Roja", category: "salsas", formations: ["tbc"], individual: 0, bulk: 0, bulkQty: 3, hasSizes: true,
+          sizes: [{size:"8 oz",individual:5,bulk:15},{size:"16 oz",individual:8,bulk:24},{size:"32 oz",individual:15,bulk:45},{size:"64 oz",individual:25,bulk:75}] },
+        { name: "Salsa Verde", category: "salsas", formations: ["tbc"], individual: 0, bulk: 0, bulkQty: 3, hasSizes: true,
+          sizes: [{size:"8 oz",individual:5,bulk:15},{size:"16 oz",individual:8,bulk:24},{size:"32 oz",individual:15,bulk:45},{size:"64 oz",individual:25,bulk:75}] },
+        { name: "Tomato Sauce", category: "salsas", formations: ["tbc"], individual: 0, bulk: 0, bulkQty: 3, hasSizes: true,
+          sizes: [{size:"16 oz",individual:8,bulk:24},{size:"32 oz",individual:15,bulk:45},{size:"64 oz",individual:25,bulk:75}] },
 
         // ── FLOWERS ──
         { name: "Campesina Mix (Strawflowers)", category: "flowers", formations: ["coalicion"],
-          individual: 5.00, indDisplay: "$5.00/bunch", noBulk: true },
+          individual: 5.00, unit: "bunch", noBulk: true },
         { name: "Lavender", category: "flowers", formations: ["raices"],
-          individual: 7.00, indDisplay: "$7.00/bunch", bulk: 55.00, bulkDisplay: "$55.00 (10 bunch \u00b7 $5.50/bunch)" },
+          individual: 7.00, unit: "bunch", bulk: 55.00, bulkQty: 10 },
         { name: "Fresh Roselle (Jamaica/Hibiscus/Sorrel) Calyx", category: "flowers", formations: ["coalicion"],
-          individual: 10.00, indDisplay: "$10.00/lb", bulk: 80.00, bulkDisplay: "$80.00 (10 lbs \u00b7 $8.00/lb)" },
+          individual: 10.00, unit: "lb", bulk: 80.00, bulkQty: 10 },
 
         // ── MISC ──
         { name: "Eggs", category: "misc", formations: ["coalicion"],
-          individual: 10.00, indDisplay: "$10.00/dozen", noBulk: true },
+          individual: 10.00, unit: "dozen", noBulk: true },
         { name: "Honey (16 Oz.)", category: "misc", formations: ["coalicion"],
-          individual: 20.00, indDisplay: "$20.00/pz", noBulk: true },
+          individual: 20.00, unit: "pz", noBulk: true },
         { name: "Handmade Blue Corn Tortilla Packs", category: "misc", formations: ["tbc"],
-          individual: 10.00, indDisplay: "$10.00/dozen", noBulk: true }
+          individual: 10.00, unit: "dozen", noBulk: true }
     ];
+
+    // Build price strings from individual/bulk/bulkQty/unit to keep them consistent
+    // Uses bulkUnit and conversionRate if bulk and individuals have different units
+    var PLURAL = { lb: 'lbs', basket: 'baskets', bunch: 'bunches', head: 'heads', unit: 'units' };
+    function money(n) {
+        return '$' + n.toFixed(2);
+    }
+    // "1 lb", "12 lbs"; products without a unit (salsas) count in "units"
+    function formatQty(n, unit) {
+        unit = unit || 'unit';
+        return n + ' ' + (n === 1 ? unit : (PLURAL[unit] || unit));
+    }
+    function indDisplay(p) {
+        if (p.hasSizes) return 'By Size';
+        return p.tbd ? 'TBD' : money(p.individual) + '/' + p.unit;
+    }
+    function bulkDisplay(p) {
+        var unit = p.bulkUnit || p.unit;
+        var qty = p.bulkQty + ' ' + (PLURAL[unit] || unit);
+        return p.tbd ? 'TBD (' + qty + ')'
+             : money(p.bulk) + ' (' + qty + ' · ' + money(p.bulk / p.bulkQty) + '/' + unit + ')';
+    }
+
+    // Bulk box size in individual units, for splitting an order into bulk + individual
+    function bulkLotSize(p) {
+        return p.bulkUnit ? p.bulkQty / p.conversionRate : p.bulkQty;
+    }
+    // Split qty (in individual units) into as many bulk boxes as fit. sz optional, used when relevant
+    function splitOrder(p, qty, sz) {
+        var prices = sz || p;
+        if (p.noBulk) return {
+            lot: 0,
+            bulkAmt: 0,
+            indAmt: qty,
+            prices: prices,
+            price: prices.individual * qty
+        };
+        var lot = Math.round(bulkLotSize(p));
+        var bulkAmt = Math.floor(qty / lot);
+        var indAmt = qty - bulkAmt * lot;
+        return {
+            lot: lot,
+            bulkAmt: bulkAmt,
+            indAmt: indAmt,
+            prices: prices,
+            price: prices.bulk * bulkAmt + prices.individual * indAmt
+        };
+    }
+    products.forEach(function(p) {
+        if (p.bulkUnit && !p.conversionRate) console.error(p.name + ': bulkUnit needs a conversionRate');
+    });
 
     function formationChips(p) {
         var html = '<div class="pc-chips">';
@@ -792,17 +845,17 @@
             if (p.hasSizes) {
                 var indRows = '', bulkRows = '';
                 for (var s2 = 0; s2 < p.sizes.length; s2++) {
-                    indRows  += '<div class="size-row">' + p.sizes[s2].size + ': <strong>$' + p.sizes[s2].price.toFixed(2) + '</strong></div>';
-                    bulkRows += '<div class="size-row">' + p.sizes[s2].size + ': <strong>$' + (p.sizes[s2].price * 3).toFixed(2) + '</strong> (3-pack)</div>';
+                    indRows  += '<div class="size-row">' + p.sizes[s2].size + ': <strong>' + money(p.sizes[s2].individual) + '</strong></div>';
+                    bulkRows += '<div class="size-row">' + p.sizes[s2].size + ': <strong>' + money(p.sizes[s2].bulk) + '</strong> (' + p.bulkQty + '-pack)</div>';
                 }
                 bodyHtml = '<div style="margin-bottom:0.6rem"><div style="font-family:\'Barlow Condensed\',sans-serif;font-weight:700;font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:#888;margin-bottom:0.25rem">Individual</div>' + indRows + '</div>'
                          + '<div class="bulk-box"><div class="bulk-label">Bulk (3-packs)</div>' + bulkRows + '</div>';
             } else if (p.noBulk) {
-                bodyHtml = '<div class="price-row"><span class="price-ind">' + p.indDisplay + flag + '</span><span class="price-ind-label">Individual</span></div>'
+                bodyHtml = '<div class="price-row"><span class="price-ind">' + indDisplay(p) + flag + '</span><span class="price-ind-label">Individual</span></div>'
                          + '<div class="bulk-box" style="opacity:0.5"><div class="bulk-label">Bulk Pricing</div><div class="bulk-price" style="color:#999;font-size:0.88rem">Individual only</div></div>';
             } else {
-                bodyHtml = '<div class="price-row"><span class="price-ind">' + p.indDisplay + flag + '</span><span class="price-ind-label">Individual</span></div>'
-                         + '<div class="bulk-box"><div class="bulk-label">Bulk Pricing</div><div class="bulk-price">' + p.bulkDisplay + '</div></div>';
+                bodyHtml = '<div class="price-row"><span class="price-ind">' + indDisplay(p) + flag + '</span><span class="price-ind-label">Individual</span></div>'
+                         + '<div class="bulk-box"><div class="bulk-label">Bulk Pricing</div><div class="bulk-price">' + bulkDisplay(p) + '</div></div>';
             }
             if (isMilperas(p)) bodyHtml += '<div class="pc-lead">' + MILPERAS_LEAD + '</div>';
             if (p.note) bodyHtml += '<div class="pc-note">' + p.note + '</div>';
@@ -893,19 +946,20 @@
                     '<div class="ps-dropdown" id="ps-dd-' + id + '"></div>' +
                 '</div>' +
                 '<div class="ps-info" id="ps-info-' + id + '"></div>' +
+                '<div class="bulk-hint"></div>' +
             '</div>' +
             '<div class="form-group" id="qty-grp-' + id + '">' +
                 '<label>Quantity</label>' +
                 '<input type="number" name="quantity" min="1" value="1">' +
             '</div>' +
-            '<div class="form-group" id="pricing-grp-' + id + '">' +
-                '<label>Pricing</label>' +
-                '<select name="pricing">' +
-                    '<option value="">Select</option>' +
-                    '<option value="individual">Individual</option>' +
-                    '<option value="bulk">Bulk</option>' +
-                '</select>' +
-            '</div>' +
+            // '<div class="form-group" id="pricing-grp-' + id + '">' +
+            //     '<label>Pricing</label>' +
+            //     '<select name="pricing">' +
+            //         '<option value="">Select</option>' +
+            //         '<option value="individual">Individual</option>' +
+            //         '<option value="bulk">Bulk</option>' + // TODO: REMOVE PRICING OPTIONS
+            //     '</select>' +
+            // '</div>' +
             '<button type="button" class="remove-btn" data-id="' + id + '">✕ Remove</button>';
 
         document.getElementById('orderItemsList').appendChild(div);
@@ -921,7 +975,7 @@
         });
 
         // Wire pricing change
-        div.querySelector('select[name="pricing"]').addEventListener('change', calculateTotal);
+        // div.querySelector('select[name="pricing"]').addEventListener('change', calculateTotal);
         div.querySelector('input[name="quantity"]').addEventListener('change', calculateTotal);
 
         // Preselect a product if requested
@@ -979,7 +1033,7 @@
             for (var i = 0; i < list.length; i++) {
                 html += '<div class="ps-item" data-name="' + list[i].name + '" data-id="' + id + '">'
                       + '<strong>' + list[i].name + '</strong>'
-                      + '<small>' + (formationLabel(list[i]) ? formationLabel(list[i]) + ' — ' : '') + list[i].indDisplay + '</small>'
+                      + '<small>' + (formationLabel(list[i]) ? formationLabel(list[i]) + ' — ' : '') + indDisplay(list[i]) + '</small>'
                       + '</div>';
             }
             dd.innerHTML = html;
@@ -1016,29 +1070,34 @@
             if (product.hasSizes) {
                 var txt = '';
                 for (var s = 0; s < product.sizes.length; s++) {
-                    txt += product.sizes[s].size + ': $' + product.sizes[s].price.toFixed(2) + ' ind / $' + (product.sizes[s].price * 3).toFixed(2) + ' bulk';
+                    txt += product.sizes[s].size + ': ' + money(product.sizes[s].individual) + ' ind / ' + money(product.sizes[s].bulk) + ' bulk';
                     if (s < product.sizes.length - 1) txt += ' &nbsp;·&nbsp; ';
                 }
                 info.innerHTML = meta + txt;
             } else if (product.noBulk) {
-                info.innerHTML = meta + 'Individual: <strong>' + product.indDisplay + '</strong> &nbsp;·&nbsp; <em style="color:rgba(255,255,255,0.4)">Individual only (no bulk)</em>';
+                info.innerHTML = meta + 'Individual: <strong>' + indDisplay(product) + '</strong> &nbsp;·&nbsp; <em style="color:rgba(255,255,255,0.4)">Individual only (no bulk)</em>';
             } else {
-                info.innerHTML = meta + 'Individual: <strong>' + product.indDisplay + '</strong> &nbsp;·&nbsp; Bulk: <strong>' + product.bulkDisplay + '</strong>';
+                info.innerHTML = meta + 'Individual: <strong>' + indDisplay(product) + '</strong> &nbsp;·&nbsp; Bulk: <strong>' + bulkDisplay(product) + '</strong>';
             }
             info.classList.add('open');
         }
 
         // Update pricing group for salsa products
-        var pricingGrp = document.getElementById('pricing-grp-' + id);
+        // var pricingGrp = document.getElementById('pricing-grp-' + id);  // TODO: REMOVE PRICING GROUPS
+        // var pricingGrp = document.getElementById('pricing-grp-' + id);  // TODO: REMOVE PRICING GROUPS
         var qtyGrp     = document.getElementById('qty-grp-' + id);
+        // Label the (individual) unit
+        var qtyUnit = product && product.unit ? (PLURAL[product.unit] || product.unit) : 'units';
+        qtyGrp.querySelector('label').textContent = 'Qty (' + qtyUnit + ')';
         if (product && product.hasSizes) {
-            pricingGrp.innerHTML =
-                '<label>Order Type</label>' +
-                '<select name="pricing" id="pricing-sel-' + id + '">' +
-                    '<option value="">Select type</option>' +
-                    '<option value="individual">Individual</option>' +
-                    '<option value="bulk">Bulk (3-packs)</option>' +
-                '</select>';
+            // pricingGrp.innerHTML =
+            //     '<label>Order Type</label>';
+            //      +
+            //     '<select name="pricing" id="pricing-sel-' + id + '">' +
+            //         '<option value="">Select type</option>' +
+            //         '<option value="individual">Individual</option>' +
+            //         '<option value="bulk">Bulk (3-packs)</option>' +
+            //     '</select>';
             // Add size group
             var sizeGrpId = 'size-grp-' + id;
             var existing = document.getElementById(sizeGrpId);
@@ -1047,24 +1106,26 @@
                 sizeGrp.className = 'form-group';
                 sizeGrp.id = sizeGrpId;
                 sizeGrp.style.display = 'none';
-                pricingGrp.parentNode.insertBefore(sizeGrp, pricingGrp.nextSibling);
+                qtyGrp.parentNode.insertBefore(sizeGrp, qtyGrp.nextSibling)
+                // pricingGrp.parentNode.insertBefore(sizeGrp, pricingGrp.nextSibling);
             }
-            var pricingSel = document.getElementById('pricing-sel-' + id);
-            if (pricingSel) {
-                pricingSel.addEventListener('change', function() { updateSizeOptions(id); calculateTotal(); });
-            }
+            // var pricingSel = document.getElementById('pricing-sel-' + id);
+            // if (pricingSel) {
+            // qtyGrp.addEventListener('change', function() { updateSizeOptions(id); calculateTotal(); });
+            // }
+            updateSizeOptions(id);
         } else {
             var oldSizeGrp = document.getElementById('size-grp-' + id);
             if (oldSizeGrp) oldSizeGrp.remove();
             var bulkOpt = product && product.noBulk ? '' : '<option value="bulk">Bulk</option>';
-            pricingGrp.innerHTML =
-                '<label>Pricing</label>' +
-                '<select name="pricing">' +
-                    '<option value="">Select</option>' +
-                    '<option value="individual">Individual</option>' +
-                    bulkOpt +
-                '</select>';
-            pricingGrp.querySelector('select').addEventListener('change', calculateTotal);
+            // pricingGrp.innerHTML =  // TODO: UPDATE INDIVIDUAL/BULK SELECTION
+            //     '<label>Pricing</label>' +
+            //     '<select name="pricing">' +
+            //         '<option value="">Select</option>' +
+            //         '<option value="individual">Individual</option>' +
+            //         bulkOpt +
+            //     '</select>';
+            // pricingGrp.querySelector('select').addEventListener('change', calculateTotal);
         }
         qtyGrp.querySelector('input').addEventListener('change', calculateTotal);
         calculateTotal();
@@ -1072,34 +1133,43 @@
 
     function updateSizeOptions(id) {
         var item     = document.getElementById('oi-' + id);
-        var pricingSel = document.getElementById('pricing-sel-' + id);
+        // var pricingSel = document.getElementById('pricing-sel-' + id);
         var sizeGrp  = document.getElementById('size-grp-' + id);
-        if (!item || !pricingSel || !sizeGrp) return;
+        // if (!item || !pricingSel || !sizeGrp) return;
+        if (!item || !sizeGrp) return;
         var selEl    = document.getElementById('ps-sel-' + id);
         var pname    = selEl ? selEl.value : '';
         var product  = products.filter(function(p) { return p.name === pname; })[0];
-        var ptype    = pricingSel.value;
-        if (!product || !product.hasSizes || !ptype) return;
+        // var ptype    = pricingSel.value;
+        // if (!product || !product.hasSizes || !ptype) return;
+        if (!product || !product.hasSizes) return;
         var opts = '<option value="">Select size</option>';
         for (var s = 0; s < product.sizes.length; s++) {
             var sz = product.sizes[s];
-            var label = ptype === 'individual'
-                ? sz.size + ' — $' + sz.price.toFixed(2)
-                : sz.size + ' — $' + (sz.price * 3).toFixed(2) + ' (3-pack)';
+            // var label = ptype === 'individual'
+            var label = sz.size;
+                // ? sz.size + ' — $' + sz.price.toFixed(2)
+                // : sz.size + ' — $' + (sz.price * sz.bulkQty).toFixed(2) + ' (' + sz.bulkQty + '-pack)';
             opts += '<option value="' + sz.size + '">' + label + '</option>';
         }
         sizeGrp.innerHTML = '<label>Size</label><select name="size">' + opts + '</select>';
         sizeGrp.querySelector('select').addEventListener('change', calculateTotal);
         sizeGrp.style.display = 'flex';
-        document.getElementById('qty-grp-' + id).querySelector('label').textContent =
-            ptype === 'individual' ? 'Qty (units)' : 'Qty (3-packs)';
+        // document.getElementById('qty-grp-' + id).querySelector('label').textContent =
+        //     ptype === 'individual' ? 'Qty (units)' : 'Qty (3-packs)';
+        document.getElementById('qty-grp-' + id).querySelector('label').textContent = 'Quantity';
     }
 
     // Close dropdowns on outside click
     document.addEventListener('click', function(e) {
         if (!e.target.closest('.psw')) {
-            document.querySelectorAll('.ps-input.open').forEach(function(el) { el.classList.remove('open'); el.value = ''; });
-            document.querySelectorAll('.ps-dropdown.open').forEach(function(el) { el.classList.remove('open'); });
+            document.querySelectorAll('.ps-input.open').forEach(function(el) {
+                el.classList.remove('open');
+                el.value = '';
+            });
+            document.querySelectorAll('.ps-dropdown.open').forEach(function(el) {
+                el.classList.remove('open');
+            });
         }
     });
 
@@ -1117,7 +1187,10 @@
         for (var r = 0; r < rows.length; r++) {
             var rowId  = rows[r].id.replace('oi-', '');
             var rowSel = document.getElementById('ps-sel-' + rowId);
-            if (rowSel && rowSel.value === '') { targetId = rowId; break; }
+            if (rowSel && rowSel.value === '') {
+                targetId = rowId;
+                break;
+            }
         }
 
         if (targetId !== null) {
@@ -1151,6 +1224,10 @@
 
     // ── CALCULATE TOTAL ───────────────────────────────────────────────────────
     function calculateTotal() {
+        var hints = document.querySelectorAll('.order-item .bulk-hint');
+        for (var h = 0; h < hints.length; h++) {
+            hints[h].textContent = '';
+        }
         if (isSnap) {
             document.getElementById('orderTotal').innerHTML = 'Estimated Total: <span>$0.00 (SNAP)</span>';
             return;
@@ -1161,22 +1238,35 @@
             var rowId   = rows[r].id.replace('oi-', '');
             var selEl   = document.getElementById('ps-sel-' + rowId);
             var qtyEl   = rows[r].querySelector('input[name="quantity"]');
-            var priceEl = rows[r].querySelector('select[name="pricing"]');
-            if (!selEl || !selEl.value || !qtyEl || !priceEl || !priceEl.value) continue;
+            if (!selEl || !selEl.value || !qtyEl) continue;
+
             var product = products.filter(function(p) { return p.name === selEl.value; })[0];
             var qty     = parseInt(qtyEl.value) || 0;
-            var pricing = priceEl.value;
             if (!product || !qty) continue;
-            if (product.tbd) { pending++; continue; }
+            if (product.tbd) {
+                pending++;
+                continue;
+            }
+            var sz = null;
             if (product.hasSizes) {
                 var sizeEl = rows[r].querySelector('select[name="size"]');
-                if (sizeEl && sizeEl.value) {
-                    var sz = product.sizes.filter(function(s) { return s.size === sizeEl.value; })[0];
-                    if (sz) total += pricing === 'individual' ? sz.price * qty : sz.price * 3 * qty;
-                }
-            } else {
-                var unitPrice = pricing === 'individual' || product.noBulk ? product.individual * qty : product.bulk * qty;
-                total += unitPrice;
+                sz = sizeEl && product.sizes.filter(function(s) {
+                    return s.size === sizeEl.value;
+                })[0];
+                if (!sz) continue;
+            }
+            var split = splitOrder(product, qty, sz);
+            total += split.price;
+            // Only hint when bulk is actually cheaper per unit
+            var bulkSaves = split.lot && split.prices.bulk < split.prices.individual * split.lot;
+            if (split.indAmt > 0 && bulkSaves) {
+                // Compare against rounding the leftover individual units up to one more bulk lot
+                var upQty  = (split.bulkAmt + 1) * split.lot;
+                var diff   = (split.bulkAmt + 1) * split.prices.bulk - split.price;
+                var upUnit = product.unit ? (PLURAL[product.unit] || product.unit) : 'units';
+                rows[r].querySelector('.bulk-hint').textContent = diff <= 0
+                    ? 'Save ' + money(-diff) + ' by rounding up to ' + upQty + ' ' + upUnit + ' (bulk)'
+                    : 'Round up to ' + upQty + ' ' + upUnit + ' (bulk) for ' + money(diff) + ' more';
             }
         }
         var pendingNote = pending
@@ -1194,32 +1284,37 @@
             var rowId   = rows[r].id.replace('oi-', '');
             var selEl   = document.getElementById('ps-sel-' + rowId);
             var qtyEl   = rows[r].querySelector('input[name="quantity"]');
-            var priceEl = rows[r].querySelector('select[name="pricing"]');
-            if (!selEl || !selEl.value || !qtyEl || !priceEl || !priceEl.value) continue;
+            if (!selEl || !selEl.value || !qtyEl) continue;
             var product = products.filter(function(p) { return p.name === selEl.value; })[0];
             var qty     = parseInt(qtyEl.value) || 0;
-            var pricing = priceEl.value;
             if (!product || !qty) continue;
-            var itemTotal = 0, pricingDisplay = pricing;
-            if (product.tbd) {
-                orderItems.push({ product: product.name, formation: formationNames(product), quantity: qty, pricing: pricing + ' pricing — PRICE TBD', itemTotal: 0, tbd: true });
-                continue;
-            }
-            if (!isSnap) {
-                if (product.hasSizes) {
-                    var sizeEl = rows[r].querySelector('select[name="size"]');
-                    if (sizeEl && sizeEl.value) {
-                        var sz = product.sizes.filter(function(s) { return s.size === sizeEl.value; })[0];
-                        if (sz) {
-                            pricingDisplay = pricing === 'individual' ? sz.size + ' (Individual)' : sz.size + ' (Bulk 3-pack)';
-                            itemTotal = pricing === 'individual' ? sz.price * qty : sz.price * 3 * qty;
-                        }
-                    }
-                } else {
-                    itemTotal = pricing === 'individual' || product.noBulk ? product.individual * qty : product.bulk * qty;
+            var sz = null;
+            if (product.hasSizes) {
+                var sizeEl = rows[r].querySelector('select[name="size"]');
+                sz = sizeEl && product.sizes.filter(function(s) {
+                    return s.size === sizeEl.value;
+                })[0];
+                if (!sz) {
+                    showMsg('error', 'Please choose a size for ' + product.name + '.');
+                    return;
                 }
             }
-            orderItems.push({ product: selEl.value, formation: formationNames(product), quantity: qty, pricing: pricingDisplay, itemTotal: itemTotal, milperas: isMilperas(product) });
+            // Describe the split, e.g. "3 bulk × 35 lbs (≈12 pz) + 4 pz individual"
+            var split = splitOrder(product, qty, sz);
+            var parts = [];
+            if (split.bulkAmt) {
+                parts.push(split.bulkAmt + ' bulk × ' + (product.bulkUnit
+                    ? formatQty(product.bulkQty, product.bulkUnit) + ' (≈' + formatQty(split.lot, product.unit) + ')'
+                    : formatQty(split.lot, product.unit)));
+            }
+            if (split.indAmt) parts.push(formatQty(split.indAmt, product.unit) + ' individual');
+            var pricingDisplay = (sz ? sz.size + ': ' : '') + parts.join(' + ');
+            if (product.tbd) {
+                orderItems.push({ product: product.name, formation: formationNames(product), quantity: formatQty(qty, product.unit), pricing: pricingDisplay + ' — PRICE TBD', itemTotal: 0, tbd: true });
+                continue;
+            }
+            var itemTotal = isSnap ? 0 : split.price;
+            orderItems.push({ product: selEl.value, formation: formationNames(product), quantity: formatQty(qty, product.unit), pricing: pricingDisplay, itemTotal: itemTotal, milperas: isMilperas(product) });
         }
         if (orderItems.length === 0) { showMsg('error', 'Please add at least one product to your order.'); return; }
 
@@ -1238,10 +1333,9 @@
             '', 'ORDER DETAILS:'
         ];
         var grandTotal = 0, hasMilperas = false, tbdCount = 0;
-        for (var i = 0; i < orderItems.length; i++) {
-            var pricingLabel = orderItems[i].pricing === 'individual' ? 'individual pricing' : orderItems[i].pricing === 'bulk' ? 'bulk pricing' : orderItems[i].pricing;
-            var amount = orderItems[i].tbd ? 'TBD' : '$' + orderItems[i].itemTotal.toFixed(2);
-            emailLines.push('- ' + orderItems[i].product + ' [' + orderItems[i].formation + ']: ' + orderItems[i].quantity + ' units (' + pricingLabel + ') - ' + amount);
+        for (var i = 0; i < orderItems.length; i++) {  // Add order details for each item
+            var amount = orderItems[i].tbd ? 'TBD' : money(orderItems[i].itemTotal);
+            emailLines.push('- ' + orderItems[i].product + ' [' + orderItems[i].formation + ']: ' + orderItems[i].quantity + ' (' + orderItems[i].pricing + ') - ' + amount);
             grandTotal += orderItems[i].itemTotal;
             if (orderItems[i].milperas) hasMilperas = true;
             if (orderItems[i].tbd) tbdCount++;
