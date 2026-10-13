@@ -1072,6 +1072,7 @@
     document.getElementById('orderForm').addEventListener('submit', function(e) {
         e.preventDefault();
         var orderItems = [];
+        var items = [];  // Sent as one JSON field so product names containing ', ' can't break the order sheet's lists
         var rows = document.querySelectorAll('.order-item');
         for (var r = 0; r < rows.length; r++) {
             var rowId   = rows[r].id.replace('oi-', '');
@@ -1092,6 +1093,7 @@
                     return;
                 }
             }
+            items.push({ product: product.name, quantity: qty, size: sz ? sz.size : '' });
             // Describe the split, e.g. "3 bulk × 35 lbs (≈12 pz) + 4 pz individual"
             var split = splitOrder(product, qty, sz);
             var parts = [];
@@ -1144,6 +1146,8 @@
         document.getElementById('orderDataField').value = emailBody;
 
         var formData = new FormData(this);
+        // Also send all items as one field, since Formspree joins the per-row fields with ', '
+        formData.set('items', JSON.stringify(items));
 
         var submitBtn = document.getElementById('submitBtn');
         submitBtn.textContent = 'Submitting...';
