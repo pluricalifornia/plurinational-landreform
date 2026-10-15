@@ -66,6 +66,10 @@
   .retail .rl{color:#9B7E77;font-size:10px;letter-spacing:.08em;text-transform:uppercase;margin-right:4px}
   .qty{width:100%;border:1.5px solid #B9B29C;background:var(--paper);padding:8px 10px;font-family:var(--mono);font-size:15px;text-align:center;border-radius:0}
   .qty.has-qty{border-color:var(--green);background:#EDF3EC;font-weight:600}
+  .row .pname small.pnote{font-style:italic;color:#7A6A3A;font-size:12px}
+  .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;padding:0 5px}
+  .tag.prov{background:#FBF4E3;color:#8A6410;border:1px solid #E6CF95}
+  .tag.tbd{background:#EFEDE6;color:#6B6E62;border:1px solid #D8D0BC}
   .price small.perunit{display:block;color:#6B6E62;font-size:11.5px}
   .bulkstatus{grid-column:1/-1;display:none;font-family:var(--mono);font-size:12px;line-height:1.55;padding:6px 10px;margin:2px 0 4px;border-left:3px solid var(--marigold);background:#FBF4E3;color:#5A4A1E}
   .bulkstatus.on{display:block}
@@ -162,7 +166,7 @@
       <p class="label-sub">One order per buyers club. We pool demand across clubs to hit bulk-case prices from the coalición's farms in San Benito, Santa Clara, Santa Cruz &amp; Monterey counties.</p>
       <div class="label-strip">
         <span>100% Organic Produce</span>
-        <span>Prices updated 7/2/26</span>
+        <span>Prices updated 10/15/26</span>
         <span>Deliveries: Sat · Tue · Thu</span>
         <span>Sliding-scale boxes $15–$60 · median $30</span>
       </div>
@@ -184,34 +188,34 @@
       <div class="exgrid">
         <div class="excard">
           <h4>La Cosecha Máxima</h4>
-          <div class="exbody">The biggest-discount items across seven categories — tomatoes three ways, corn, berries, and staples. The best pure value in the catalog.
-            <div class="exitems">2 lb heirloom tomatoes · 1 bsk cherry tomatoes · 1 lb jalapeño · 1 lb tomatillos · 2 lb yellow zucchini · 4 sweet corn · 1 lb cucumber · 2 cilantro · 1 bsk raspberries · 1 spring onion · 1 lb onions</div>
+          <div class="exbody">The biggest-discount items across six categories — tomatoes three ways, grey squash, corn, berries and staples. The best pure value in the catalog.
+            <div class="exitems">2 lb heirloom tomatoes · 2 lb roma tomatoes · 1 bsk cherry tomatoes · 1 lb jalapeños · 1 lb tomatillos · 2 lb grey Mexican squash · 4 sweet corn · 1 lb cucumber · 2 cilantro · 1 bsk raspberries · 1 lb onions</div>
           </div>
-          <div class="exnums"><b>$30.00</b>/box bulk · <span id="ex-maxima-retail">$69.52</span> at <span class="ex-basis-word">organic</span> retail · <span class="exsave" id="ex-maxima-save">save $39.52 (57%)</span></div>
+          <div class="exnums"><b id="ex-maxima-bulk">—</b>/box bulk · <span id="ex-maxima-retail">—</span> at <span class="ex-basis-word">organic</span> retail · <span class="exsave" id="ex-maxima-save"></span></div>
           <button type="button" class="exload" data-ex="maxima">Load this box</button>
         </div>
         <div class="excard">
           <h4>La Semana</h4>
           <div class="exbody">A full week of everyday cooking — potatoes, onions, greens, broccoli, tomatoes. Familiar staples, deeply discounted.
-            <div class="exitems">3 lb red potatoes · 2 lb onions · 1 carrots · 1 beets · 1 green kale · 1 romaine · 1 lb broccoli · 3 sweet corn · 1 cilantro · 2 lb green zucchini · 1 lb roma tomatoes · 1 celery</div>
+            <div class="exitems">3 lb red potatoes · 2 lb onions · 1 carrots · 1 radishes · 1 lacinato kale · 1 romaine · 1 lb broccoli · 3 sweet corn · 1 cilantro · 2 lb green zucchini · 2 lb roma tomatoes · 1 celery</div>
           </div>
-          <div class="exnums"><b>$27.97</b>/box bulk · <span id="ex-semana-retail">$47.22</span> at <span class="ex-basis-word">organic</span> retail · <span class="exsave" id="ex-semana-save">save $19.25 (41%)</span></div>
+          <div class="exnums"><b id="ex-semana-bulk">—</b>/box bulk · <span id="ex-semana-retail">—</span> at <span class="ex-basis-word">organic</span> retail · <span class="exsave" id="ex-semana-save"></span></div>
           <button type="button" class="exload" data-ex="semana">Load this box</button>
         </div>
         <div class="excard">
           <h4>La Solidaria</h4>
-          <div class="exbody">How cheap items absorb premium ones: corn, zucchini, jalapeño &amp; cilantro (60%+ savers) carry handmade tortillas and pastured eggs — which cost <em>more</em> than store versions — and the box still beats retail.
-            <div class="exitems">1 dz eggs · 1 dz blue corn tortillas · 4 sweet corn · 2 lb yellow zucchini · 1 lb jalapeño · 1 cilantro</div>
+          <div class="exbody">How cheap items absorb premium ones: corn, grey squash, romas, jalapeños &amp; cilantro carry handmade tortillas and pastured eggs — which cost <em>more</em> than store versions — and the box still beats retail.
+            <div class="exitems">1 dz eggs · 1 dz blue corn tortillas · 4 sweet corn · 2 lb grey Mexican squash · 2 lb roma tomatoes · 1 lb jalapeños · 1 cilantro</div>
           </div>
-          <div class="exnums"><b>$30.50</b>/box bulk · <span id="ex-solidaria-retail">$43.40</span> at <span class="ex-basis-word">organic</span> retail · <span class="exsave" id="ex-solidaria-save">save $12.90 (30%)</span></div>
+          <div class="exnums"><b id="ex-solidaria-bulk">—</b>/box bulk · <span id="ex-solidaria-retail">—</span> at <span class="ex-basis-word">organic</span> retail · <span class="exsave" id="ex-solidaria-save"></span></div>
           <button type="button" class="exload" data-ex="solidaria">Load this box</button>
         </div>
         <div class="excard conv">
           <h4>La Imbatible</h4>
-          <div class="exbody">Different game than the boxes above: every item here has a bulk rate <em>below the CONVENTIONAL store price</em> — organic beets, leeks, fennel, heirloom tomatoes and berries, cheaper than non-organic. The box for skeptics.
-            <div class="exitems">2 beets · 1 fennel · 2 leeks · 1 lb nopales · 2 lb heirloom tomatoes · 1 chard · 1 bsk raspberries · 1 bsk blackberries · 3 Oaxacan corn · 2 lb yellow potatoes</div>
+          <div class="exbody">Different game than the boxes above: every item here has a bulk rate <em>below the CONVENTIONAL store price</em> — organic leeks, fennel, heirloom tomatoes, grey squash and berries, cheaper than non-organic. The box for skeptics.
+            <div class="exitems">1 fennel · 2 leeks · 2 lb heirloom tomatoes · 2 lb roma tomatoes · 2 lb grey Mexican squash · 1 chard · 1 bsk raspberries · 1 bsk blackberries · 3 sweet corn · 2 lb yellow potatoes</div>
           </div>
-          <div class="exnums"><b>$31.16</b>/box bulk · <span id="ex-imbatible-retail">$57.78</span> at <span class="ex-basis-word">organic</span> retail · <span class="exsave" id="ex-imbatible-save">save $26.62 (46%)</span></div>
+          <div class="exnums"><b id="ex-imbatible-bulk">—</b>/box bulk · <span id="ex-imbatible-retail">—</span> at <span class="ex-basis-word">organic</span> retail · <span class="exsave" id="ex-imbatible-save"></span></div>
           <button type="button" class="exload" data-ex="imbatible">Load this box</button>
         </div>
       </div>
@@ -320,7 +324,7 @@
     <div id="msg-err" class="msg" role="alert">The order didn't go through. Check that the coordinator email is filled in, then try again. If it keeps failing, email your totals to the aggregator directly.</div>
   </form>
 
-  <p class="foot">Farm prices: Coalición inventory, updated 7/2/26. Retail comparison: Berkeley Bowl, 7/3/26 (organic &amp; conventional). Add-on estimate uses individual (non-bulk) prices — pooled bulk cases only lower the final cost. Powered by the buyers club network.</p>
+  <p class="foot">Farm prices: Coalición, Raíces &amp; Milperas availability, updated 10/15/26. Retail comparison: Berkeley Bowl, 7/3/26 (organic &amp; conventional). Add-on estimate uses individual (non-bulk) prices — pooled bulk cases only lower the final cost. Powered by the buyers club network.</p>
 </div>
 
 <div class="tally" aria-live="polite">
@@ -336,107 +340,127 @@
 </div>
 
 <script>
-// [name, unit, farm individual $, bulk case $, bulk case qty, bulk label, ORGANIC retail $, CONVENTIONAL retail $] — null = no comparable
+// [name, unit, farm individual $, bulk case $, bulk case qty, bulk label, ORGANIC retail $, CONVENTIONAL retail $, meta] — null = no comparable
+// meta: f = farm formations · tbd = price not set yet (excluded from totals) · prov = provisional price, needs confirming · note
+// Retail is only carried over from the 7/3/26 Berkeley Bowl survey where the item is the same product; new varieties have no comparable (null).
+const C = 'coalicion', R = 'raices', M = 'milperas', T = 'tbc';
 const PRODUCTS = {
  "Vegetables":[
-  ["Beets","bunch",2.50,45,24,"$45 · 24 bunches",3.29,3.29],
-  ["Broccoli (Green)","lb",3.00,50,20,"$50 · 20 lb",3.89,2.19],
-  ["White Cauliflower","lb",3.00,50,20,"$50 · 20 lb",3.29,2.69],
-  ["Yellow Carrots","bunch",2.50,45,24,"$45 · 24 bunches",3.29,1.89],
-  ["Celery","pz",2.50,40,24,"$40 · 24 pz",2.59,1.09],
-  ["Fennel","pz",3.00,40,24,"$40 · 24 pz",2.89,2.99],
-  ["Cucumber","lb",1.99,33,22,"$33 · 22 lb",3.38,1.58],
-  ["Leeks","pz",2.50,36,24,"$36 · 24 pz",2.79,2.89],
-  ["Nopales","lb",3.00,40,20,"$40 · 20 lb",null,3.29],
-  ["Roma Tomatoes","lb",2.50,40,20,"$40 · 20 lb",3.29,1.39],
-  ["Cherry Tomatoes","basket",3.00,35,12,"$35 · 12 baskets",6.59,2.09],
-  ["Heirloom Tomatoes","lb",3.50,30,10,"$30 · 10 lb",6.59,4.39],
-  ["Beefsteak Tomatoes","lb",3.50,30,10,"$30 · 10 lb",6.59,4.39],
-  ["Tomatillos","lb",2.50,40,20,"$40 · 20 lb",5.49,1.09],
-  ["Jalapeño","lb",3.00,25,10,"$25 · 10 lb",6.59,1.39],
-  ["Sweet Corn","pz",1.25,48,48,"$48 · 48 pz",2.59,1.49],
-  ["Oaxacan Green Heirloom Corn","pz",1.25,48,48,"$48 · 48 pz",2.50,1.50],
-  ["{LIMITED} Purple-Cased Sweet Peas","lb",6.00,null,null,"",8.79,4.79]
+  ["White Cauliflower","lb",3.00,50,20,"$50 · 20 lb",3.29,2.69,{f:[C]}],
+  ["Broccoli","lb",3.00,50,20,"$50 · 20 lb",3.89,2.19,{f:[C]}],
+  ["Celery","pz",2.50,40,24,"$40 · 24 pz",2.59,1.09,{f:[C,R]}],
+  ["Cucumber","lb",1.99,33,22,"$33 · 22 lb",3.38,1.58,{f:[C,R]}],
+  ["Fennel","pz",2.50,40,24,"$40 · 24 pz",2.89,2.99,{f:[R]}],
+  ["Leeks","pz",2.50,36,24,"$36 · 24 pz",2.79,2.89,{f:[C,R]}],
+  ["(Peeled) Nopales","lb",4.50,100,25,"$100 · 25 lb",null,3.29,{f:[R]}],
+  ["Sweet Corn","pz",1.25,48,48,"$48 · 48 pz",2.59,1.49,{f:[C]}],
+  ["Maize Mexicano (Dent)","pz",0,null,null,"",null,null,{f:[M],tbd:true,tbdBulk:"TBD · 48 pz",note:"Cacahuazintle — Mexican dent corn, grown from seed the milperas keep themselves."}],
+  ["Roma Tomatoes","lb",2.50,20,20,"$20 · 20 lb",3.29,1.39,{f:[C,R]}],
+  ["Napoli Roma Tomatoes","lb",2.75,25,25,"$25 · 25 lb",null,null,{f:[M],note:"The Napoli variety — meatier and drier than a standard Roma, good for sauce."}],
+  ["Early Girl Tomatoes","lb",2.50,40,20,"$40 · 20 lb",null,null,{f:[C,R]}],
+  ["Cherry Tomatoes","basket",3.00,35,12,"$35 · 12 baskets",6.59,2.09,{f:[C,R]}],
+  ["Blush Cherry Tomatoes","basket",3.00,35,12,"$35 · 12 baskets",null,null,{f:[C]}],
+  ["Sungold Cherry Tomatoes","lb",4.00,30,12,"$30 · 12 lb",null,null,{f:[R],note:"Sold by the pound rather than by basket."}],
+  ["Heirloom Tomatoes","lb",3.50,30,10,"$30 · 10 lb",6.59,4.39,{f:[C,R]}],
+  ["Tomatillos (Standard)","lb",2.50,40,20,"$40 · 20 lb",5.49,1.09,{f:[C]}],
+  ["Tomatillos Milperos","lb",2.00,25,20,"$25 · 20 lb",null,null,{f:[C,M]}]
+ ],
+ "Chiles & Peppers":[
+  ["Jalapeños","lb",2.50,15,10,"$15 · 10 lb",6.59,1.39,{f:[C,R]}],
+  ["Serrano Pepper","lb",2.50,20,10,"$20 · 10 lb",null,null,{f:[M,R]}],
+  ["Poblano Pepper","lb",2.50,22,12,"$22 · 12 lb",null,null,{f:[R]}],
+  ["Sweet Peppers (Orange, Red, Yellow Mix)","lb",3.00,22,10,"$22 · 10 lb",null,null,{f:[C]}]
  ],
  "Squashes":[
-  ["Green Zucchini","lb",1.99,33,22,"$33 · 22 lb",2.59,1.79],
-  ["Grey Zucchini","lb",1.99,33,22,"$33 · 22 lb",3.89,1.79],
-  ["Yellow Zucchini","lb",1.99,33,22,"$33 · 22 lb",3.89,1.79],
-  ["Italian (Costata Romanesco) Zucchini","lb",1.99,33,22,"$33 · 22 lb",3.89,1.79]
+  ["Green Zucchini","lb",1.99,33,22,"$33 · 22 lb",2.59,1.79,{f:[C]}],
+  ["Butternut Squash","lb",1.99,33,22,"$33 · 22 lb",null,null,{f:[C],prov:true}],
+  ["Delicata Squash","lb",1.99,33,22,"$33 · 22 lb",null,null,{f:[C],prov:true}],
+  ["Spaghetti Squash","lb",1.99,33,22,"$33 · 22 lb",null,null,{f:[C],prov:true}],
+  ["Grey Mexican Squash","lb",2.50,11,12,"$11 · 12 lb",3.89,1.79,{f:[R],note:"Also sold as gray zucchini — pale, firm, and good for calabacitas."}]
  ],
  "Greens":[
-  ["Cabbage (Green)","pz",3.00,35,35,"$35 · 35 lb",1.69,0.79],
-  ["Cabbage (Red)","pz",3.00,35,35,"$35 · 35 lb",1.69,1.49],
-  ["Chard","bunch",2.50,45,24,"$45 · 24 bunches",2.59,2.69],
-  ["Kale (Lacinato/Dino)","bunch",2.50,45,24,"$45 · 24 bunches",2.19,2.09],
-  ["Kale (Red)","bunch",2.50,45,24,"$45 · 24 bunches",2.79,null],
-  ["Kale (Green)","bunch",2.50,45,24,"$45 · 24 bunches",2.19,1.89],
-  ["Romaine Lettuce","pz",2.50,45,24,"$45 · 24 pz",2.59,1.89]
+  ["Cabbage (Green)","pz",3.00,35,35,"$35 · 35 lb",1.69,0.79,{f:[C,R]}],
+  ["Cabbage (Red)","pz",3.00,35,35,"$35 · 35 lb",1.69,1.49,{f:[C]}],
+  ["Chard","bunch",2.50,45,24,"$45 · 24 bunches",2.59,2.69,{f:[C]}],
+  ["Rainbow Chard","bunch",2.50,45,24,"$45 · 24 bunches",null,null,{f:[C,R],prov:true}],
+  ["Kale (Lacinato/Dino)","bunch",2.50,45,24,"$45 · 24 bunches",2.19,2.09,{f:[C]}],
+  ["Romaine Lettuce","head",2.50,13,12,"$13 · 12 heads",2.59,1.89,{f:[R]}],
+  ["Red Leaf Lettuce","head",2.50,13,12,"$13 · 12 heads",null,null,{f:[R]}]
  ],
- "Roots":[
-  ["Red Potatoes","lb",2.00,40,25,"$40 · 25 lb",2.19,1.49],
-  ["Yellow Potatoes","lb",2.00,40,25,"$40 · 25 lb",2.19,2.19],
-  ["Yellow Onions","lb",1.50,25,20,"$25 · 20 lb",2.19,1.09],
-  ["White Onion","lb",1.50,25,20,"$25 · 20 lb",2.19,1.09],
-  ["Red Onion","lb",1.50,25,20,"$25 · 20 lb",2.19,1.09],
-  ["Radishes","bunch",2.50,45,24,"$45 · 24 bunches",2.79,0.79]
+ "Roots & Onions":[
+  ["Red Potatoes","lb",2.00,40,25,"$40 · 25 lb",2.19,1.49,{f:[C,R]}],
+  ["Yellow Potatoes","lb",2.00,40,25,"$40 · 25 lb",2.19,2.19,{f:[C]}],
+  ["Fingerling Potatoes","lb",1.50,31.25,25,"$31.25 · 25 lb",null,null,{f:[R]}],
+  ["Yellow Onions","lb",1.50,25,20,"$25 · 20 lb",2.19,1.09,{f:[C,M]}],
+  ["Red Onion","lb",1.50,25,20,"$25 · 20 lb",2.19,1.09,{f:[C]}],
+  ["Carrots","bunch",2.50,45,24,"$45 · 24 bunches",3.29,1.89,{f:[C]}],
+  ["Radishes","bunch",2.50,45,24,"$45 · 24 bunches",2.79,0.79,{f:[C]}]
  ],
  "Fruits":[
-  ["Blackberries","basket",4.50,40,12,"$40 · 12 baskets",5.49,4.09],
-  ["Raspberries","basket",4.50,40,12,"$40 · 12 baskets",6.59,4.89],
-  ["Strawberries (1-lb Clamshell)","basket",5.00,35,8,"$35 · 8 baskets",5.49,2.29],
-  ["Strawberries (Open-air basket)","basket",3.50,35,12,"$35 · 12 baskets",3.50,2.00],
-  ["Zutano Avocados","pz",2.49,null,null,"",2.19,1.59]
+  ["Strawberries (1-lb Clamshell)","basket",5.00,35,8,"$35 · 8 baskets",5.49,2.29,{f:[C]}],
+  ["Strawberries (Open-air basket)","basket",3.50,35,12,"$35 · 12 baskets",3.50,2.00,{f:[C]}],
+  ["Blackberries","basket",4.50,40,12,"$40 · 12 baskets",5.49,4.09,{f:[R]}],
+  ["Raspberries","basket",4.50,40,12,"$40 · 12 baskets",6.59,4.89,{f:[R]}]
  ],
  "Herbs":[
-  ["Cilantro","bunch",1.50,30,30,"$30 · 30 bunches",2.19,0.79],
-  ["Parsley","bunch",1.50,30,30,"$30 · 30 bunches",2.19,0.69],
-  ["Spring Onion","bunch",2.00,36,24,"$36 · 24 bunches",2.99,0.59],
-  ["Garlic","lb",6.00,100,20,"$100 · 20 lb",7.69,5.29]
+  ["Cilantro","bunch",1.50,30,30,"$30 · 30 bunches",2.19,0.79,{f:[C]}],
+  ["Parsley","bunch",1.50,30,30,"$30 · 30 bunches",2.19,0.69,{f:[C]}],
+  ["Garlic","lb",6.00,100,20,"$100 · 20 lb",7.69,5.29,{f:[C]}],
+  ["Basil (Sweet)","bunch",2.50,null,null,"",null,null,{f:[C],prov:true}]
  ],
  "Salsas & Sauce":[
-  ["Salsa Roja (8 oz)","jar",5.00,15,3,"$15 · 3-pack",2.75,3.30],
-  ["Salsa Roja (16 oz)","jar",8.00,24,3,"$24 · 3-pack",5.49,6.59],
-  ["Salsa Roja (32 oz)","jar",15.00,45,3,"$45 · 3-pack",10.98,13.18],
-  ["Salsa Roja (64 oz)","jar",25.00,75,3,"$75 · 3-pack",21.96,26.36],
-  ["Salsa Verde (8 oz)","jar",5.00,15,3,"$15 · 3-pack",2.75,3.30],
-  ["Salsa Verde (16 oz)","jar",8.00,24,3,"$24 · 3-pack",5.49,6.59],
-  ["Salsa Verde (32 oz)","jar",15.00,45,3,"$45 · 3-pack",10.98,13.18],
-  ["Salsa Verde (64 oz)","jar",25.00,75,3,"$75 · 3-pack",21.96,26.36],
-  ["Tomato Sauce (16 oz)","jar",8.00,24,3,"$24 · 3-pack",null,null],
-  ["Tomato Sauce (32 oz)","jar",15.00,45,3,"$45 · 3-pack",null,null],
-  ["Tomato Sauce (64 oz)","jar",25.00,75,3,"$75 · 3-pack",null,null]
+  ["Salsa Roja (8 oz)","jar",5.00,null,null,"",2.75,3.30,{f:[T]}],
+  ["Salsa Roja (16 oz)","jar",8.00,null,null,"",5.49,6.59,{f:[T]}],
+  ["Salsa Roja (32 oz)","jar",15.00,null,null,"",10.98,13.18,{f:[T]}],
+  ["Salsa Roja (64 oz)","jar",25.00,null,null,"",21.96,26.36,{f:[T]}],
+  ["Salsa Verde (8 oz)","jar",5.00,null,null,"",2.75,3.30,{f:[T]}],
+  ["Salsa Verde (16 oz)","jar",8.00,null,null,"",5.49,6.59,{f:[T]}],
+  ["Salsa Verde (32 oz)","jar",15.00,null,null,"",10.98,13.18,{f:[T]}],
+  ["Salsa Verde (64 oz)","jar",25.00,null,null,"",21.96,26.36,{f:[T]}],
+  ["Tomato Sauce (16 oz)","jar",8.00,null,null,"",null,null,{f:[T]}],
+  ["Tomato Sauce (32 oz)","jar",15.00,null,null,"",null,null,{f:[T]}],
+  ["Tomato Sauce (64 oz)","jar",25.00,null,null,"",null,null,{f:[T]}]
  ],
  "Flowers":[
-  ["Sunflowers","4-flower bunch",6.00,null,null,"",null,null],
-  ["Campesina Mix (Strawflowers)","bunch",5.00,null,null,"",null,null],
-  ["Lavender","bunch",8.00,60,10,"$60 · 10 bunches",null,null]
+  ["Campesina Mix (Strawflowers)","bunch",5.00,null,null,"",null,null,{f:[C]}],
+  ["Cempasuchil/Marigolds","bunch",10.00,null,null,"",null,null,{f:[C]}],
+  ["Lavender","bunch",7.00,55,10,"$55 · 10 bunches",null,null,{f:[R]}],
+  ["Fresh Roselle (Jamaica/Hibiscus/Sorrel) Calyx","lb",10.00,80,10,"$80 · 10 lb",null,null,{f:[C]}]
  ],
  "Pantry & Eggs":[
-  ["Eggs","dozen",10.00,null,null,"",9.89,4.99],
-  ["Handmade Blue Corn Tortilla Packs","dozen",10.00,null,null,"",6.59,1.66],
-  ["Honey (16 Oz.)","pz",20.00,null,null,"",9.89,9.69]
+  ["Eggs","dozen",10.00,null,null,"",9.89,4.99,{f:[C]}],
+  ["Honey (16 Oz.)","pz",20.00,null,null,"",9.89,9.69,{f:[C]}],
+  ["Handmade Blue Corn Tortilla Packs","dozen",10.00,null,null,"",6.59,1.66,{f:[T]}]
  ]
 };
+const FORMATION_LABEL = { coalicion: 'Coalición', raices: 'Raíces', milperas: 'Milperas', tbc: 'Farm TBC' };
 const BOX_TARGET = 30;
 const ENDPOINT = "https://formspree.io/f/mwvdarpo";
+
+const metaLine = m => (m.f ? ' · ' + m.f.map(x => FORMATION_LABEL[x] || x).join(' + ') : '')
+  + (m.prov ? ' · <span class="tag prov">price provisional</span>' : '')
+  + (m.tbd ? ' · <span class="tag tbd">price TBD — not in totals</span>' : '');
+const priceCell = (ind, unit, m) => m.tbd ? '<b>TBD</b>' : `<b>$${ind.toFixed(2)}</b>/${unit}`;
+const priceText = name => info[name].meta.tbd ? 'TBD' : fmt(info[name].ind);
 
 const catalog = document.getElementById('catalog');
 const info = {}; // name -> {ind, bulk, bulkQty, org, conv}
 for (const [cat, items] of Object.entries(PRODUCTS)) {
   const h = document.createElement('div'); h.className = 'cat'; h.innerHTML = `<h3>${cat}</h3>`;
   catalog.appendChild(h);
-  for (const [name, unit, ind, bulk, bulkQty, bulkLabel, org, conv] of items) {
-    info[name] = { ind, bulk, bulkQty, org, conv };
+  for (const [name, unit, ind, bulk, bulkQty, bulkLabel, org, conv, meta = {}] of items) {
+    info[name] = { ind, bulk, bulkQty, org, conv, meta };
     const row = document.createElement('div'); row.className = 'row';
     const id = 'q_' + name.replace(/\W+/g, '_');
     const rline = (label, v) => `<span><span class="rl">${label}</span>${v != null ? '$' + v.toFixed(2) + '/' + unit : '—'}</span>`;
-    const bulkCell = bulkLabel
+    const bulkCell = meta.tbd
+      ? `<span style="color:#9a9d90">${meta.tbdBulk || 'TBD'}</span>`
+      : bulkLabel
       ? bulkLabel + '<small class="perunit">$' + (bulk / bulkQty).toFixed(2) + '/' + unit + '</small>'
       : '<span style="color:#9a9d90">no bulk case</span>';
     row.innerHTML =
-      `<div class="pname"><label for="${id}">${name}</label><small>per ${unit}</small></div>
-       <div class="price ind"><b>$${ind.toFixed(2)}</b>/${unit}</div>
+      `<div class="pname"><label for="${id}">${name}</label><small>per ${unit}${metaLine(meta)}</small>${meta.note ? `<small class="pnote">${meta.note}</small>` : ''}</div>
+       <div class="price ind">${priceCell(ind, unit, meta)}</div>
        <div class="price bulk">${bulkCell}</div>
        <div class="retail">${rline('org', org)}${rline('conv', conv)}</div>
        <input class="qty" id="${id}" type="number" min="0" step="1" inputmode="numeric" placeholder="0" data-name="${name}" data-unit="${unit}" aria-label="Quantity: ${name}">
@@ -448,12 +472,12 @@ for (const [cat, items] of Object.entries(PRODUCTS)) {
 // slim add-on rows (individual price only), rendered inside the collapsed toggle
 const addonsCatalog = document.getElementById('addons-catalog');
 for (const items of Object.values(PRODUCTS)) {
-  for (const [name, unit, ind] of items) {
+  for (const [name, unit, ind, , , , , , meta = {}] of items) {
     const id = 'a_' + name.replace(/\W+/g, '_');
     const row = document.createElement('div'); row.className = 'arow';
     row.innerHTML =
-      `<div class="pname"><label for="${id}">${name}</label><small>per ${unit}</small></div>
-       <div class="price"><b>$${ind.toFixed(2)}</b>/${unit}</div>
+      `<div class="pname"><label for="${id}">${name}</label><small>per ${unit}${metaLine(meta)}</small></div>
+       <div class="price">${priceCell(ind, unit, meta)}</div>
        <input class="qty aqty" id="${id}" type="number" min="0" step="1" inputmode="numeric" placeholder="0" data-name="${name}" data-unit="${unit}" aria-label="Add-on quantity: ${name}">`;
     addonsCatalog.appendChild(row);
   }
@@ -578,7 +602,7 @@ form.addEventListener('submit', async e => {
     const v = Math.max(0, parseInt(q.value) || 0);
     if (v > 0) {
       data[q.dataset.name] = `${v} ${q.dataset.unit}`;
-      lines.push(`${v} × ${q.dataset.name} (${q.dataset.unit}) @ ${fmt(info[q.dataset.name].ind)}`);
+      lines.push(`${v} × ${q.dataset.name} (${q.dataset.unit}) @ ${priceText(q.dataset.name)}`);
     }
   });
   data['Order Summary'] = lines.length ? lines.join('\n') : 'Boxes only — no add-on items';
@@ -587,7 +611,7 @@ form.addEventListener('submit', async e => {
   const extraLines = [];
   document.querySelectorAll('.aqty').forEach(q => {
     const v = Math.max(0, parseInt(q.value) || 0);
-    if (v > 0) extraLines.push(`${v} × ${q.dataset.name} (${q.dataset.unit}) @ ${fmt(info[q.dataset.name].ind)} individual`);
+    if (v > 0) extraLines.push(`${v} × ${q.dataset.name} (${q.dataset.unit}) @ ${priceText(q.dataset.name)} individual`);
   });
   data['Add-Ons (opt-in, individual price)'] = extraLines.length ? extraLines.join('\n') : 'None';
   data['Add-Ons total'] = fmt(extras);
@@ -614,10 +638,10 @@ form.addEventListener('submit', async e => {
   }
 });
 const EXAMPLES = {
-  maxima: {"Heirloom Tomatoes":2,"Cherry Tomatoes":1,"Jalapeño":1,"Tomatillos":1,"Yellow Zucchini":2,"Sweet Corn":4,"Cucumber":1,"Cilantro":2,"Raspberries":1,"Spring Onion":1,"Yellow Onions":1},
-  semana: {"Red Potatoes":3,"Yellow Onions":2,"Yellow Carrots":1,"Beets":1,"Kale (Green)":1,"Romaine Lettuce":1,"Broccoli (Green)":1,"Sweet Corn":3,"Cilantro":1,"Green Zucchini":2,"Roma Tomatoes":1,"Celery":1},
-  solidaria: {"Eggs":1,"Handmade Blue Corn Tortilla Packs":1,"Sweet Corn":4,"Yellow Zucchini":2,"Jalapeño":1,"Cilantro":1},
-  imbatible: {"Beets":2,"Fennel":1,"Leeks":2,"Nopales":1,"Heirloom Tomatoes":2,"Chard":1,"Raspberries":1,"Blackberries":1,"Oaxacan Green Heirloom Corn":3,"Yellow Potatoes":2}
+  maxima: {"Heirloom Tomatoes":2,"Roma Tomatoes":2,"Cherry Tomatoes":1,"Jalapeños":1,"Tomatillos (Standard)":1,"Grey Mexican Squash":2,"Sweet Corn":4,"Cucumber":1,"Cilantro":2,"Raspberries":1,"Yellow Onions":1},
+  semana: {"Red Potatoes":3,"Yellow Onions":2,"Carrots":1,"Radishes":1,"Kale (Lacinato/Dino)":1,"Romaine Lettuce":1,"Broccoli":1,"Sweet Corn":3,"Cilantro":1,"Green Zucchini":2,"Roma Tomatoes":2,"Celery":1},
+  solidaria: {"Eggs":1,"Handmade Blue Corn Tortilla Packs":1,"Sweet Corn":4,"Grey Mexican Squash":2,"Roma Tomatoes":2,"Jalapeños":1,"Cilantro":1},
+  imbatible: {"Fennel":1,"Leeks":2,"Heirloom Tomatoes":2,"Roma Tomatoes":2,"Grey Mexican Squash":2,"Chard":1,"Raspberries":1,"Blackberries":1,"Sweet Corn":3,"Yellow Potatoes":2}
 };
 document.querySelectorAll('.exload').forEach(btn => btn.addEventListener('click', () => {
   const ex = EXAMPLES[btn.dataset.ex];
@@ -630,7 +654,19 @@ document.querySelectorAll('.exload').forEach(btn => btn.addEventListener('click'
 tally();
 
 // ── example-box basis sync ──
-const EXDATA = { maxima:{bulk:30.00,org:69.52,conv:32.62}, semana:{bulk:27.97,org:47.22,conv:29.12}, solidaria:{bulk:30.50,org:43.40,conv:18.37}, imbatible:{bulk:31.16,org:57.78,conv:47.97} };
+// computed from PRODUCTS so the cards always match current prices
+const EXDATA = {};
+for (const [k, ex] of Object.entries(EXAMPLES)) {
+  let bulk = 0, org = 0, conv = 0;
+  for (const [n, q] of Object.entries(ex)) {
+    const p = info[n]; if (!p) { console.warn('Example item not in catalog:', n); continue; }
+    bulk += q * (p.bulk ? Math.min(p.ind, p.bulk / p.bulkQty) : p.ind);
+    org += q * (p.org != null ? p.org : p.ind);
+    conv += q * (p.conv != null ? p.conv : p.ind);
+  }
+  EXDATA[k] = { bulk, org, conv };
+  document.getElementById('ex-' + k + '-bulk').textContent = fmt(bulk);
+}
 function updateExamples(){
   const b = basis();
   document.querySelectorAll('.ex-basis-word').forEach(el => el.textContent = b === 'org' ? 'organic' : 'conventional');
