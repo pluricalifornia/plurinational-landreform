@@ -18,7 +18,6 @@
             --f-coal:  #2f7d4f;
             --f-milp:  #6b3fa0;
             --f-raic:  #0f6f8c;
-            --f-tbc:   #8a8a8a;
         }
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         body { background: var(--light); color: #1a1a2e; font-family: 'Barlow', sans-serif; font-size: 1rem; line-height: 1.7; }
@@ -106,7 +105,6 @@
         .pc-strip .coalicion { background: var(--f-coal); }
         .pc-strip .milperas  { background: var(--f-milp); }
         .pc-strip .raices    { background: var(--f-raic); }
-        .pc-strip .tbc       { background: var(--f-tbc); }
         .product-card:hover { transform: translateY(-3px); }
         .pc-head { background: var(--dark); padding: 0.9rem 1.1rem; }
         .pc-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.05rem; text-transform: uppercase; color: #fff; line-height: 1.1; }
@@ -116,7 +114,6 @@
         .fchip.coalicion { background: var(--f-coal); }
         .fchip.milperas  { background: var(--f-milp); }
         .fchip.raices    { background: var(--f-raic); }
-        .fchip.tbc       { background: var(--f-tbc); }
         .pc-lead { background: rgba(107,63,160,0.09); border-left: 3px solid var(--f-milp); color: #4a2b73; font-size: 0.78rem; line-height: 1.35; padding: 0.4rem 0.6rem; margin-top: 0.6rem; }
         .pc-note { font-size: 0.78rem; color: #777; margin-top: 0.5rem; line-height: 1.35; }
         .pc-tbd { display: inline-block; background: #fdecec; color: #b3121f; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.64rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.1rem 0.4rem; margin-left: 0.35rem; vertical-align: middle; }
@@ -411,16 +408,7 @@
     <div class="search-filter-bar" style="padding-top:0">
         <input type="text" id="productSearch" class="product-search" placeholder="Search products...">
         <button class="filter-btn active" data-cat="all">All</button>
-        <button class="filter-btn" data-cat="vegetables">Vegetables</button>
-        <button class="filter-btn" data-cat="chiles">Chiles &amp; Peppers</button>
-        <button class="filter-btn" data-cat="squashes">Squashes</button>
-        <button class="filter-btn" data-cat="greens">Greens</button>
-        <button class="filter-btn" data-cat="roots">Roots &amp; Onions</button>
-        <button class="filter-btn" data-cat="fruits">Fruits</button>
-        <button class="filter-btn" data-cat="herbs">Herbs</button>
-        <button class="filter-btn" data-cat="flowers">Flowers</button>
-        <button class="filter-btn" data-cat="salsas">Salsas</button>
-        <button class="filter-btn" data-cat="misc">Misc</button>
+        <!-- One button per products.json heading, added when products load -->
     </div>
     <div class="products-grid" id="productsGrid"></div>
 </div>
@@ -594,6 +582,7 @@
         return p.tbd ? 'TBD' : money(p.individual) + '/' + p.unit;
     }
     function bulkDisplay(p) {
+        if (!p.bulkQty) return p.tbd ? 'TBD' : 'Individual only';  // New TBD products have no bulk size yet
         var unit = p.bulkUnit || p.unit;
         var qty = p.bulkQty + ' ' + (PLURAL[unit] || unit);
         return p.tbd ? 'TBD (' + qty + ')'
@@ -607,7 +596,7 @@
     // Split qty (in individual units) into as many bulk boxes as fit. sz optional, used when relevant
     function splitOrder(p, qty, sz) {
         var prices = sz || p;
-        if (p.noBulk) return {
+        if (p.noBulk || !p.bulkQty) return {
             lot: 0,
             bulkAmt: 0,
             indAmt: qty,
@@ -630,7 +619,6 @@
         var html = '<div class="pc-chips">';
         for (var i = 0; i < p.formations.length; i++) {
             var key = p.formations[i];
-            if (key === 'tbc') continue;
             html += '<span class="fchip ' + key + '">' + FORMATIONS[key].short + '</span>';
         }
         return html + '</div>';
@@ -647,16 +635,6 @@
     function formationNames(p) {
         var names = [];
         for (var i = 0; i < p.formations.length; i++) names.push(FORMATIONS[p.formations[i]].short);
-        return names.join(' + ');
-    }
-
-    // Public-facing: nothing is shown until a formation is confirmed.
-    function formationLabel(p) {
-        var names = [];
-        for (var i = 0; i < p.formations.length; i++) {
-            if (p.formations[i] === 'tbc') continue;
-            names.push(FORMATIONS[p.formations[i]].short);
-        }
         return names.join(' + ');
     }
 
@@ -723,13 +701,14 @@
         }));
     }
 
-    document.querySelectorAll('.filter-btn').forEach(function(btn) {
-        btn.addEventListener('click', function() {
-            document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
-            this.classList.add('active');
-            filterState.cat = this.getAttribute('data-cat');
-            applyFilters();
-        });
+    // Category buttons are added after products load, so listen on their container
+    document.querySelector('.search-filter-bar').addEventListener('click', function(e) {
+        var btn = e.target.closest('.filter-btn');
+        if (!btn) return;
+        document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        filterState.cat = btn.getAttribute('data-cat');
+        applyFilters();
     });
 
     document.querySelectorAll('.fform-btn').forEach(function(btn) {
@@ -858,7 +837,7 @@
             for (var i = 0; i < list.length; i++) {
                 html += '<div class="ps-item" data-name="' + list[i].name + '" data-id="' + id + '">'
                       + '<strong>' + list[i].name + '</strong>'
-                      + '<small>' + (formationLabel(list[i]) ? formationLabel(list[i]) + ' — ' : '') + indDisplay(list[i]) + '</small>'
+                      + '<small>' + (formationNames(list[i]) ? formationNames(list[i]) + ' — ' : '') + indDisplay(list[i]) + '</small>'
                       + '</div>';
             }
             dd.innerHTML = html;
@@ -887,7 +866,7 @@
 
         var product = products.filter(function(p) { return p.name === name; })[0];
         if (product) {
-            var label = formationLabel(product);
+            var label = formationNames(product);
             var meta = label ? '<span style="color:#fff;font-weight:600">Grown by ' + label + '</span><br>' : '';
             if (isMilperas(product)) meta += '<span style="color:#c9a8f0">' + MILPERAS_LEAD + '</span><br>';
             if (product.tbd) meta += '<span style="color:var(--orange)">Price still being set — we\'ll confirm it when we reply to your order. It is not counted in the estimate below.</span><br>';
@@ -1191,9 +1170,29 @@
         })
         .then(function(data) {
             FORMATIONS = data.formations;
-            products = data.products;
+            // Hide products that no farmer is listed for yet (they can't be assigned when ordered)
+            // products.json groups products by heading; the heading is each product's category
+            products = [];
+            Object.keys(data.products).forEach(function(heading) {
+                data.products[heading].forEach(function(p) { p.category = heading; products.push(p); });
+            });
+            products = products.filter(function(p) {
+                if (!p.farmers.length) console.warn(p.name + ': no farmers listed, hidden');
+                return p.farmers.length;
+            });
             products.forEach(function(p) {
+                // Get formations for the farmers selling each product
+                p.formations = p.farmers.map(function(f) {
+                    if (!data.farmers[f]) console.error(p.name + ': farmer "' + f + '" is not in the farmers list');
+                    return data.farmers[f];
+                }).filter(function(key, i, keys) { return key && keys.indexOf(key) === i; });
                 if (p.bulkUnit && !p.conversionRate) console.error(p.name + ': bulkUnit needs a conversionRate');
+            });
+            var bar = document.querySelector('.search-filter-bar');
+            Object.keys(data.products).forEach(function(heading) {
+                if (products.some(function(p) { return p.category === heading; })) {
+                    bar.insertAdjacentHTML('beforeend', '<button class="filter-btn" data-cat="' + heading + '">' + heading + '</button>');
+                }
             });
             applyFilters();
             addOrderItem(null);
