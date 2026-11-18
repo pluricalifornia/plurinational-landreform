@@ -1184,8 +1184,7 @@
     }
 
     // ── INIT ──────────────────────────────────────────────────────────────────
-    // Bump ?v= after editing products.json so browsers don't use a cached copy
-    fetch('products.json?v=2026-10-10')
+    fetch('products.json', { cache: 'no-cache' })
         .then(function(res) {
             if (!res.ok) throw new Error('products.json: HTTP ' + res.status);
             return res.json();
