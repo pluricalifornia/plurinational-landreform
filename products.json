@@ -64,14 +64,14 @@
     {"name":"Parsley","category":"herbs","formations":["coalicion"],"individual":1.5,"unit":"bunch","bulk":30,"bulkQty":30},
     {"name":"Garlic","category":"herbs","formations":["coalicion"],"individual":6,"unit":"lb","bulk":100,"bulkQty":20},
     {"name":"Basil (Sweet)","category":"herbs","formations":["coalicion"],"provisional":true,"individual":2.5,"unit":"bunch","noBulk":true},
-    {"name":"Salsa Roja","category":"salsas","formations":["tbc"],"individual":0,"bulk":0,"bulkQty":3,"hasSizes":true,"sizes":[{"size":"8 oz","individual":5,"bulk":15},{"size":"16 oz","individual":8,"bulk":24},{"size":"32 oz","individual":15,"bulk":45},{"size":"64 oz","individual":25,"bulk":75}]},
-    {"name":"Salsa Verde","category":"salsas","formations":["tbc"],"individual":0,"bulk":0,"bulkQty":3,"hasSizes":true,"sizes":[{"size":"8 oz","individual":5,"bulk":15},{"size":"16 oz","individual":8,"bulk":24},{"size":"32 oz","individual":15,"bulk":45},{"size":"64 oz","individual":25,"bulk":75}]},
-    {"name":"Tomato Sauce","category":"salsas","formations":["tbc"],"individual":0,"bulk":0,"bulkQty":3,"hasSizes":true,"sizes":[{"size":"16 oz","individual":8,"bulk":24},{"size":"32 oz","individual":15,"bulk":45},{"size":"64 oz","individual":25,"bulk":75}]},
+    {"name":"Salsa Roja","category":"salsas","formations":["coalicion"],"individual":0,"bulk":0,"bulkQty":3,"hasSizes":true,"sizes":[{"size":"8 oz","individual":5,"bulk":15},{"size":"16 oz","individual":8,"bulk":24},{"size":"32 oz","individual":15,"bulk":45},{"size":"64 oz","individual":25,"bulk":75}]},
+    {"name":"Salsa Verde","category":"salsas","formations":["coalicion"],"individual":0,"bulk":0,"bulkQty":3,"hasSizes":true,"sizes":[{"size":"8 oz","individual":5,"bulk":15},{"size":"16 oz","individual":8,"bulk":24},{"size":"32 oz","individual":15,"bulk":45},{"size":"64 oz","individual":25,"bulk":75}]},
+    {"name":"Tomato Sauce","category":"salsas","formations":["coalicion"],"individual":0,"bulk":0,"bulkQty":3,"hasSizes":true,"sizes":[{"size":"16 oz","individual":8,"bulk":24},{"size":"32 oz","individual":15,"bulk":45},{"size":"64 oz","individual":25,"bulk":75}]},
     {"name":"Campesina Mix (Strawflowers)","category":"flowers","formations":["coalicion"],"individual":5,"unit":"bunch","noBulk":true},
     {"name":"Lavender","category":"flowers","formations":["raices"],"individual":7,"unit":"bunch","bulk":55,"bulkQty":10},
     {"name":"Fresh Roselle (Jamaica/Hibiscus/Sorrel) Calyx","category":"flowers","formations":["coalicion"],"individual":10,"unit":"lb","bulk":80,"bulkQty":10},
     {"name":"Eggs","category":"misc","formations":["coalicion"],"individual":10,"unit":"dozen","noBulk":true},
     {"name":"Honey (16 Oz.)","category":"misc","formations":["coalicion"],"individual":20,"unit":"pz","noBulk":true},
-    {"name":"Handmade Blue Corn Tortilla Packs","category":"misc","formations":["tbc"],"individual":10,"unit":"dozen","noBulk":true}
+    {"name":"Handmade Blue Corn Tortilla Packs","category":"misc","formations":["coalicion"],"individual":10,"unit":"dozen","noBulk":true}
   ]
 }
