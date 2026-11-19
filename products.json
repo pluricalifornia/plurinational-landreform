@@ -1,8 +1,9 @@
 {
+  "_turnaroundNote": "If you change turnaroundDays for a formation, also update the turnaround text in territorial_markets.html: Order Cutoffs & Delivery Days, the legend, the Delivery & Pickup note and the order email note.",
   "formations": {
-    "coalicion": {"short":"Coalición","full":"Coalición de Pequeños Agricultores"},
-    "milperas": {"short":"Tierras Milperas","full":"Tierras Milperas"},
-    "raices": {"short":"Raíces Nuevas","full":"Raíces Nuevas / Rooted Roots Cooperative"}
+    "coalicion": {"short":"Coalición","full":"Coalición de Pequeños Agricultores","turnaroundDays":2},
+    "milperas": {"short":"Tierras Milperas","full":"Tierras Milperas","turnaroundDays":4},
+    "raices": {"short":"Raíces Nuevas","full":"Raíces Nuevas / Rooted Roots Cooperative","turnaroundDays":2}
   },
   "farmers": {
     "Mayra": "coalicion",

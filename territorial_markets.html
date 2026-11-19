@@ -558,7 +558,6 @@
 
     // ── FORMATIONS ───────────────────────────────────────────────────
     var FORMATIONS = {};
-    var MILPERAS_LEAD = 'Tierras Milperas \u2014 order four days ahead (Tue night \u2192 Sat delivery)';
 
     // ── PRODUCTS ──────────────────────────────────────────────────────
     // FORMATIONS and products loaded from products.json at startup (see INIT).
@@ -669,7 +668,6 @@
                 bodyHtml = '<div class="price-row"><span class="price-ind">' + indDisplay(p) + flag + '</span><span class="price-ind-label">Individual</span></div>'
                          + '<div class="bulk-box"><div class="bulk-label">Bulk Pricing</div><div class="bulk-price">' + bulkDisplay(p) + '</div></div>';
             }
-            if (isMilperas(p)) bodyHtml += '<div class="pc-lead">' + MILPERAS_LEAD + '</div>';
             if (p.note) bodyHtml += '<div class="pc-note">' + p.note + '</div>';
 
             html += '<div class="product-card">'
@@ -725,6 +723,45 @@
         applyFilters();
     });
 
+    // ── TURNAROUND ───────────────────────────────────────────────────────────
+    // Whole days from today to the preferred date
+    function daysUntilPreferred() {
+        var dateVal = document.getElementById('preferredDate').value;
+        if (!dateVal) return null;
+        var today = new Date();
+        today.setHours(0, 0, 0, 0);
+        return Math.round((new Date(dateVal + 'T00:00') - today) / 864e5);
+    }
+    // A formation can only supply a product only if its turnaround is before the preferred date
+    function readyFormations(product) {
+        var days = daysUntilPreferred();
+        return product.formations.filter(function(k) {
+            return days === null || FORMATIONS[k].turnaroundDays <= days;
+        });
+    }
+    // Flag order rows no formation can have ready in time; returns their product names
+    function markUnready() {
+        var unready = [];
+        document.querySelectorAll('.order-item').forEach(function(row) {
+            var sel = row.querySelector('select[name="product"]');
+            // Get product corresponding to selection
+            var p = products.filter(function(x) {
+                return x.name === sel.value;
+            })[0];
+            var hint = row.querySelector('.ready-hint');
+            hint.textContent = '';
+            if (!p || readyFormations(p).length) return;
+            // Get min number of days needed for this product
+            var need = Math.min.apply(null, p.formations.map(function(k) {
+                return FORMATIONS[k].turnaroundDays;
+            }));
+            hint.textContent = 'No farm can have this ready by your preferred date (needs ' + need + ' days\' notice). Please select a later date or a different product.';
+            unready.push(p.name);
+        });
+        return unready;
+    }
+    document.getElementById('preferredDate').addEventListener('change', calculateTotal);
+
     // ── SNAP ─────────────────────────────────────────────────────────────────
     var isSnap = false;
     document.getElementById('snapSpecial').addEventListener('change', function() {
@@ -760,6 +797,7 @@
                 '</div>' +
                 '<div class="ps-info" id="ps-info-' + id + '"></div>' +
                 '<div class="bulk-hint"></div>' +
+                '<div class="bulk-hint ready-hint"></div>' +
             '</div>' +
             '<div class="form-group" id="qty-grp-' + id + '">' +
                 '<label>Quantity</label>' +
@@ -868,7 +906,6 @@
         if (product) {
             var label = formationNames(product);
             var meta = label ? '<span style="color:#fff;font-weight:600">Grown by ' + label + '</span><br>' : '';
-            if (isMilperas(product)) meta += '<span style="color:#c9a8f0">' + MILPERAS_LEAD + '</span><br>';
             if (product.tbd) meta += '<span style="color:var(--orange)">Price still being set — we\'ll confirm it when we reply to your order. It is not counted in the estimate below.</span><br>';
             else if (product.provisional) meta += '<span style="color:var(--orange)">Provisional price — may change slightly on confirmation.</span><br>';
             if (product.hasSizes) {
@@ -1000,6 +1037,7 @@
         for (var h = 0; h < hints.length; h++) {
             hints[h].textContent = '';
         }
+        markUnready();
         if (isSnap) {
             document.getElementById('orderTotal').innerHTML = 'Estimated Total: <span>$0.00 (SNAP)</span>';
             return;
@@ -1050,6 +1088,11 @@
     // ── FORM SUBMIT ───────────────────────────────────────────────────────────
     document.getElementById('orderForm').addEventListener('submit', function(e) {
         e.preventDefault();
+        var unready = markUnready();
+        if (unready.length) {
+            showMsg('error', 'No farm can have ' + unready.join(', ') + ' ready by your preferred date. Please choose a later date or different products.');
+            return;
+        }
         var orderItems = [];
         var items = [];  // Sent as one JSON field so product names containing ', ' can't break the order sheet's lists
         var rows = document.querySelectorAll('.order-item');

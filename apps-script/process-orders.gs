@@ -29,7 +29,7 @@ const BUYERS_CLUBS = [
 ];
 
 // Farmers and formations come from products.json:
-//   formations: { coalicion: { short: 'Coalición', ... }, ... }
+//   formations: { coalicion: { short: 'Coalición', turnaroundDays: 2, ... }, ... }
 //   farmers: { Mayra: 'coalicion', ... }, and each product lists its farmers
 
 // Data sheet column positions (from 0) read when totalling farmer earnings
@@ -87,6 +87,27 @@ function getRollingFarmerTotals(timestamp, data, history, window=WINDOW_DAYS) {
   return rollingTotals;
 }
 
+// Whole days from the order to its preferred delivery date
+function daysToDelivery(timestamp, preferred) {
+  if (!preferred) return null;
+  // Get the date into the right format
+  var d = new Date(preferred instanceof Date ? preferred : String(preferred).replace(/-/g, '/'));
+  if (isNaN(d)) return null;
+  var t = new Date(timestamp);
+  d.setHours(0, 0, 0, 0);
+  t.setHours(0, 0, 0, 0);
+  return Math.round((d - t) / 864e5);
+}
+
+// Run from the editor to check daysToDelivery
+function testDaysToDelivery() {
+  var sun = new Date(2026, 10, 15, 22, 30);
+  if (daysToDelivery(sun, '2026-11-17') !== 2) throw new Error('string date');
+  if (daysToDelivery(sun, new Date(2026, 10, 19)) !== 4) throw new Error('Date value');
+  if (daysToDelivery(sun, '') !== null) throw new Error('no date');
+  Logger.log('ok');
+}
+
 // Get farmer with lowest rolling sum
 function getLowestEarningFarmer(rollingTotals, farmerOptions) {
   var minFarmers = [];
@@ -131,6 +152,8 @@ function addOrderRows(row, col, data, history) {
   var isNew = row[col.pricing] === '';
   // Don't include old orders in rolling totals
   var rollingTotals = isNew ? getRollingFarmerTotals(timestamp, data, history) : null;
+  // Farmers whose formation can't turn the order around by this date are skipped
+  var daysAhead = daysToDelivery(timestamp, row[col.preferredDate]);
 
   // Compile fields into JSON for a new row
   function makeItem(name, quantity, pricing, size) {
@@ -208,10 +231,16 @@ function addOrderRows(row, col, data, history) {
           if (!(f in data.farmers)) problems.push(problem + 'farmer "' + f + '" is not in the farmers list');
           return f in data.farmers;
         });
-        if (farmerOptions.length) {
-          farmer = getLowestEarningFarmer(rollingTotals, farmerOptions);
+        var readyOptions = farmerOptions.filter(function(f) {
+          return daysAhead === null || data.formations[data.farmers[f]].turnaroundDays <= daysAhead;
+        });
+        if (readyOptions.length) {
+          farmer = getLowestEarningFarmer(rollingTotals, readyOptions);
           formation = data.formations[data.farmers[farmer]].short;
           rollingTotals[farmer] += cost || 0;
+        } else if (farmerOptions.length) {
+          // The form blocks this -- only happens if the date was edited after submission
+          problems.push(problem + 'no farmer can have it ready in ' + daysAhead + ' days');
         } else {
           // Stays 'Unassigned': fill in the Farmer and Formation cells by hand; rolling totals pick it up from then on
           problems.push(problem + 'no farmer listed in products.json');
