@@ -118,7 +118,8 @@ function itemCost(p, qty, pricing, size) {
 // Make one data sheet row per item in the order: [Timestamp, Buyers Club, Formation, Farmer, Product, Quantity, Unit, Cost]
 // Add them to the top of history (newest first). populateDataSheet writes them to the sheet
 // Returns a list of items that need attention
-function addOrderRows(row, col, data, history) {
+// Adds the order's receipt email (if any) to receipts
+function addOrderRows(row, col, data, history, receipts) {
   var timestamp = new Date(row[col._date]);
   var buyersClub = row[col.orgName];
   var problems = [];
@@ -227,7 +228,56 @@ function addOrderRows(row, col, data, history) {
   }
 
   history.unshift.apply(history, newRows);  // Later orders count these in their rolling totals
+
+  // Receipt for new orders. Skips orders over a day old so a backfill doesn't re-email everyone
+  if (isNew && row[col.email] && Date.now() - timestamp < 864e5) {
+    receipts.push(makeReceipt(row[col.email], buyersClub, row[col.preferredDate], newRows, !!row[col.snapSpecial]));
+  }
   return problems;
+}
+
+// Email receipt for one order, built from its data sheet rows
+// SNAP special orders are free -- every price shows as $0.00
+function makeReceipt(email, buyersClub, preferredDate, rows, isSnap) {
+  var total = 0;
+  var unpriced = 0;
+  var lines = rows.map(function(row) {
+    // Data sheet row: [Timestamp, Buyers Club, Formation, Farmer, Product, Quantity, Unit, Cost]
+    var formation = row[2];
+    var farmer = row[3];
+    var product = row[4];
+    var quantity = row[5];
+    var unit = row[6];
+    var cost = isSnap ? 0 : row[7];
+
+    if (cost === '') {
+      unpriced++;
+    } else {
+      total += cost;
+    }
+
+    var amount = quantity + (unit ? ' ' + unit : '');  // e.g. "30 lb"
+    var grower = farmer === 'Unassigned' ? 'farmer to be assigned' : farmer + ' (' + formation + ')';
+    var price = cost === '' ? 'price TBD' : '$' + cost.toFixed(2);
+    return '- ' + product + ': ' + amount + ' · ' + grower + ' · ' + price;
+  });
+
+  var totalLine = 'Estimated total: $' + total.toFixed(2)
+    + (isSnap ? ' (SNAP special)' : '')
+    + (unpriced ? ' (' + unpriced + ' item(s) without a price yet are not included)' : '');
+  var dateLine = 'Scheduled date: '
+    + (preferredDate instanceof Date ? preferredDate.toDateString() : preferredDate || 'none given');
+
+  var body = ['Hi ' + buyersClub + ',', '',
+    'Your Territorial Markets order was received! Your order:', '',
+    lines.join('\n'), '',
+    totalLine,
+    dateLine, '', '',
+    'This is an estimate; we will follow up to confirm pricing and pickup/delivery details.\n',
+    'Please reply to this email or write to ' + ALERT_EMAIL + ' with any questions.', '',
+    'Thank you for supporting la Coalición de Pequeños Agricultores, Tierras Milperas, and Raíces Nuevas!'
+  ].join('\n');
+  return { to: email, subject: 'Territorial Markets: order received', body: body };
 }
 
 
@@ -257,6 +307,7 @@ function populateDataSheet() {
   Logger.log('Newest order already in data sheet: ' + (history.length ? history[0][0] : 'none'));
 
   var problems = [];
+  var receipts = [];
   for (let i = 1; i < orders.length; i++) {
     if (!orders[i][col._date]) continue;
     var timestamp = new Date(orders[i][col._date]);
@@ -264,7 +315,7 @@ function populateDataSheet() {
       throw new Error('Could not read the date in order sheet row ' + (i + 1) + ': ' + orders[i][col._date]);
     }
     if (Math.floor(timestamp / 1000) <= lastSecond) continue;  // Already processed
-    problems = problems.concat(addOrderRows(orders[i], col, data, history));
+    problems = problems.concat(addOrderRows(orders[i], col, data, history, receipts));
   }
 
   // Write all new rows at once
@@ -274,6 +325,11 @@ function populateDataSheet() {
     dataSheet.insertRowsAfter(1, newRows.length);  // Insert after header
     dataSheet.getRange(2, 1, newRows.length, newRows[0].length).setValues(newRows);
   }
+
+  // Send email after the rows are saved, so a failed run doesn't email twice
+  receipts.forEach(function(r) {
+    MailApp.sendEmail({ to: r.to, subject: r.subject, body: r.body, replyTo: ALERT_EMAIL });
+  });
 
   // One email per run listing everything that needs attention
   if (problems.length) {

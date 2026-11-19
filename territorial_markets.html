@@ -1179,7 +1179,7 @@
         fetch(this.action, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } })
             .then(function(res) {
                 if (res.ok) {
-                    showMsg('success', '<strong>Order submitted!</strong> Order #' + orderNum + '<br>We\'ll respond within 48 hours with confirmation and pickup/delivery details.<br><small>Thank you for supporting the Coalición!</small>');
+                    showMsg('success', '<strong>Order submitted!</strong> Order #' + orderNum + '<br>You\'ll get an emailed receipt with your items and estimated total within 15 minutes. We\'ll follow up within 48 hours to confirm pickup/delivery details.<br><small>Thank you for supporting the Coalición!</small>');
                     document.getElementById('orderForm').reset();
                     document.getElementById('orderItemsList').innerHTML = '';
                     itemCount = 0;
@@ -1260,7 +1260,7 @@
 
     // Check for submission redirect
     if (window.location.search.indexOf('submitted=true') > -1) {
-        showMsg('success', '<strong>Order submitted!</strong><br>We\'ll respond within 48 hours. Thank you for supporting the Coalición!');
+        showMsg('success', '<strong>Order submitted!</strong><br>You\'ll get an emailed receipt within 15 minutes, and we\'ll follow up within 48 hours. Thank you for supporting the Coalición!');
     }
 })();
 </script>
