@@ -17,6 +17,9 @@ const WINDOW_DAYS = 30;
 // Where "needs attention" emails go
 const ALERT_EMAIL = 'pluricalifornia@gmail.com';
 
+// Receipt emails to customers. Off until the script runs from the sending account; receipts are logged instead
+const SEND_RECEIPTS = false;
+
 // URL of products.json on the live site
 const PRODUCTS_URL = 'https://raw.githubusercontent.com/pluricalifornia/plurinational-landreform/order-automation/products.json'
 
@@ -328,7 +331,11 @@ function populateDataSheet() {
 
   // Send email after the rows are saved, so a failed run doesn't email twice
   receipts.forEach(function(r) {
-    MailApp.sendEmail({ to: r.to, subject: r.subject, body: r.body, replyTo: ALERT_EMAIL });
+    if (SEND_RECEIPTS) {
+      MailApp.sendEmail({ to: r.to, subject: r.subject, body: r.body, replyTo: ALERT_EMAIL });
+    } else {
+      Logger.log('Receipt not sent (SEND_RECEIPTS is off) to ' + r.to + ':\n' + r.body);
+    }
   });
 
   // One email per run listing everything that needs attention
