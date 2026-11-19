@@ -313,12 +313,18 @@ function populateDataSheet() {
   var receipts = [];
   for (let i = 1; i < orders.length; i++) {
     if (!orders[i][col._date]) continue;
-    var timestamp = new Date(orders[i][col._date]);
-    if (isNaN(timestamp)) {
-      throw new Error('Could not read the date in order sheet row ' + (i + 1) + ': ' + orders[i][col._date]);
+    // One bad order shouldn't stop the rest: skip it and report it in the alert email
+    try {
+      var timestamp = new Date(orders[i][col._date]);
+      if (isNaN(timestamp)) {
+        throw new Error('could not read the date "' + orders[i][col._date] + '"');
+      }
+      if (Math.floor(timestamp / 1000) <= lastSecond) continue;  // Already processed
+      problems = problems.concat(addOrderRows(orders[i], col, data, history, receipts));
+    } catch (e) {  // Add orders that can't be processed to the "problems" list
+      problems.push('ORDER SKIPPED · order sheet row ' + (i + 1) + ' · ' + orders[i][col.orgName] + ': ' + e.message
+        + '. Later orders were still added, so this one will not be retried; add its rows to the data sheet by hand.');
     }
-    if (Math.floor(timestamp / 1000) <= lastSecond) continue;  // Already processed
-    problems = problems.concat(addOrderRows(orders[i], col, data, history, receipts));
   }
 
   // Write all new rows at once
@@ -340,8 +346,8 @@ function populateDataSheet() {
 
   // One email per run listing everything that needs attention
   if (problems.length) {
-    MailApp.sendEmail(ALERT_EMAIL, 'Territorial Markets: ' + problems.length + ' order item(s) need attention',
-      'These items were added to the data sheet without a farmer or cost:\n\n' + problems.join('\n'));
+    MailApp.sendEmail(ALERT_EMAIL, 'Territorial Markets: ' + problems.length + ' order problem(s) need attention',
+      'Skipped orders, and items added to the data sheet without a farmer or cost:\n\n' + problems.join('\n'));
   }
 }
 
