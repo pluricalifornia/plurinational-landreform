@@ -3,31 +3,6 @@ const FILE_IDS = {
   dataSheet: '1bsXFBK4f4K-201cBkNPdlBLbGUjWBvATwX18UEGCi5U'
 };
 
-const BUYERS_CLUBS = [
-  'Columbae',
-  'Synergy',
-  'Kairos',
-  'EBF',
-  'Terra',
-  'Muwekma',
-  'Ithaka',
-  '576',
-  'Homies Empowerment',
-  "HERO Tent",
-  "SEIU Local 2007",
-  "Hammarskjold",
-  "NOak Assembly",
-  "East Lake",
-  "West Oakland",
-  "Frutivale",
-  "North Oakland",
-  "Haight St",
-  "Mycelium Youth Network",
-  "El Cerrito",
-  "Berkeley student coop",
-  "Mission"
-];
-
 // Farmers and formations come from products.json:
 //   formations: { coalicion: { short: 'Coalición', turnaroundDays: 2, ... }, ... }
 //   farmers: { Mayra: 'coalicion', ... }, and each product lists its farmers

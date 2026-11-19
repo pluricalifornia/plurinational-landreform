@@ -428,7 +428,8 @@
                 <div class="form-grid">
                     <div class="form-group">
                         <label for="orgName">Organization / Group Name *</label>
-                        <input type="text" id="orgName" name="orgName" required placeholder="e.g. Stanford Eating Clubs Co-op">
+                        <input type="text" id="orgName" name="orgName" list="knownGroups" required autocomplete="off" placeholder="Pick from the list or type your group's name">
+                        <datalist id="knownGroups"></datalist>
                     </div>
                     <div class="form-group">
                         <label for="orgType">Organization Type *</label>
@@ -1207,6 +1208,16 @@
     }
 
     // ── INIT ──────────────────────────────────────────────────────────────────
+    // Known groups for the Organization / Group Name suggestions; typing a new name still works
+    fetch('buyers-clubs.json', { cache: 'no-cache' })
+        .then(function(res) { return res.json(); })
+        .then(function(names) {
+            document.getElementById('knownGroups').innerHTML = names.map(function(n) {
+                return '<option value="' + n.replace(/"/g, '&quot;') + '">';
+            }).join('');
+        })
+        .catch(function(err) { console.warn('buyers-clubs.json:', err); });
+
     fetch('products.json', { cache: 'no-cache' })
         .then(function(res) {
             if (!res.ok) throw new Error('products.json: HTTP ' + res.status);

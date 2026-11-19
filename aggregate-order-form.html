@@ -227,17 +227,8 @@
       <legend>Your Buyers Club</legend>
       <div class="grid">
         <div class="field"><label for="club">Buyers club</label>
-          <select id="club" name="Buyers Club" required>
-            <option value="" disabled selected>Select your club…</option>
-            <option>North Oakland Buyer Club</option>
-            <option>Eastlake Oakland Buyer Club</option>
-            <option>West Oakland Buyer Club</option>
-            <option>Fruitvale Oakland Buyer Club</option>
-            <option>Haight Ashbury SF Buyer Club</option>
-            <option>Stanford Grad Union Buyer Club</option>
-            <option>Richmond-Berkeley Buyer Club</option>
-            <option>Other / new club (name it in Notes)</option>
-          </select></div>
+          <input id="club" name="Buyers Club" list="knownGroups" required autocomplete="off" placeholder="Pick from the list or type your club's name">
+          <datalist id="knownGroups"></datalist></div>
         <div class="field"><label for="hood">Neighborhood / city</label>
           <input id="hood" name="Neighborhood-City" required placeholder="e.g. West Oakland"></div>
         <div class="field"><label for="coord">Coordinator name</label>
@@ -349,6 +340,11 @@ try {
   document.getElementById('catalog').innerHTML = '<p style="padding:20px">Products could not be loaded. Please refresh the page, or email <a href="mailto:pluricalifornia@gmail.com">pluricalifornia@gmail.com</a>.</p>';
   throw e;
 }
+// Load known clubs (buyers-clubs.json) as suggestions for the club field; typing a new name still works
+fetch('buyers-clubs.json', { cache: 'no-cache' })
+  .then(res => res.json())
+  .then(names => document.getElementById('knownGroups').replaceChildren(...names.map(n => new Option(n))))
+  .catch(err => console.warn('buyers-clubs.json:', err));
 const BOX_TARGET = 30;
 const ENDPOINT = "https://formspree.io/f/mwvdarpo";
 
