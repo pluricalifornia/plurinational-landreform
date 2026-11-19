@@ -1202,6 +1202,7 @@
         d.innerHTML = html;
         var form = document.getElementById('orderForm');
         form.parentNode.insertBefore(d, form);
+        d.scrollIntoView({ behavior: 'smooth', block: 'center' });
         setTimeout(function() { if (d.parentNode) d.remove(); }, 14000);
     }
 
